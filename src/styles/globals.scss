@@ -1,3 +1,4 @@
+@import 'fonts';
 @import 'variables';
 
 *,
@@ -9,6 +10,10 @@
 body {
   margin: var(--app-margin);
   min-width: var(--app-min-width);
+  font-family: var(--app-font-family), var(--app-fallback-font-family);
+  font-weight: var(--app-font-weight);
+  background-color: var(--app-background);
+  font-size: var(--app-font-size);
 }
 
 a {
