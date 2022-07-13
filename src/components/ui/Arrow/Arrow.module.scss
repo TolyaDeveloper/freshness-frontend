@@ -1,0 +1,31 @@
+.arrow {
+  transition: transform 0.2s ease-in-out;
+}
+
+.green {
+  stroke: var(--arrow-fill-green);
+}
+
+.black {
+  stroke: var(--arrow-fill-black);
+}
+
+.white {
+  stroke: var(--arrow-fill-white);
+}
+
+.up {
+  transform: rotateZ(-90deg);
+}
+
+.right {
+  transform: rotateZ(0);
+}
+
+.down {
+  transform: rotateZ(90deg);
+}
+
+.left {
+  transform: rotateZ(180deg);
+}
