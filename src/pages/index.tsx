@@ -38,6 +38,7 @@ const Home = () => {
           {tag.text}
         </Tag>
       ))}
+      <Tag size="sm">fgdg</Tag>
     </>
   )
 }

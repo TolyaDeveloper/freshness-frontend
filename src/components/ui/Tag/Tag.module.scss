@@ -1,3 +1,5 @@
+@import '~/styles/mixins';
+
 .tag {
   display: inline-flex;
   align-items: center;
@@ -46,11 +48,9 @@
 }
 
 .sm {
-  min-width: 40px;
-  height: 18px;
+  @include min-width-height(40px, 18px);
 }
 
 .md {
-  min-width: 44px;
-  height: 26px;
+  @include min-width-height(44px, 50px);
 }
