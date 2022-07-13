@@ -4,6 +4,7 @@ import { cnb } from 'cnbuilder'
 import DeleteIcon from './delete.svg'
 
 import styles from './Tag.module.scss'
+import Link from 'next/link'
 
 const Tag = ({
   children,
@@ -12,24 +13,32 @@ const Tag = ({
   variant = 'contained',
   isRemovable = false,
   onRemoveTag,
+  href,
   ...props
 }: TagProps) => {
-  return (
-    <span
-      className={cnb(styles.tag, styles[size], styles[variant], className)}
-      {...props}
+  const content = href ? (
+    <Link href={href} {...props}>
+      <a>{children}</a>
+    </Link>
+  ) : (
+    <>{children}</>
+  )
+
+  const deleteButton = isRemovable && (
+    <button
+      className={styles.deleteButton}
+      type="button"
+      aria-label="Delete this tag"
+      onClick={onRemoveTag}
     >
-      {children}
-      {isRemovable && (
-        <button
-          className={styles.deleteButton}
-          type="button"
-          aria-label="Delete this tag"
-          onClick={onRemoveTag}
-        >
-          <DeleteIcon className={styles.deleteSvg} />
-        </button>
-      )}
+      <DeleteIcon className={styles.deleteSvg} />
+    </button>
+  )
+
+  return (
+    <span className={cnb(styles.tag, styles[size], styles[variant], className)}>
+      {content}
+      {deleteButton}
     </span>
   )
 }

@@ -29,7 +29,12 @@ const Home = () => {
       <Arrow color="green" orientation="left" />
       <Tag variant="contained">gfdg</Tag>
       {tags.map(tag => (
-        <Tag key={tag.id} isRemovable onRemoveTag={() => handleRemove(tag.id)}>
+        <Tag
+          key={tag.id}
+          isRemovable
+          onRemoveTag={() => handleRemove(tag.id)}
+          href={`/${tag.id}`}
+        >
           {tag.text}
         </Tag>
       ))}

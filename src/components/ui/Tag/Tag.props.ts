@@ -1,9 +1,11 @@
-import { DetailedHTMLProps, HTMLAttributes } from 'react'
+import { ReactNode } from 'react'
+import { LinkProps } from 'next/link'
 
-export interface TagProps
-  extends DetailedHTMLProps<HTMLAttributes<HTMLSpanElement>, HTMLSpanElement> {
+export interface TagProps extends Partial<LinkProps> {
   size?: 'sm' | 'md'
   variant?: 'contained' | 'outlined' | 'ghost'
   isRemovable?: boolean
+  className?: string
+  children: ReactNode
   onRemoveTag?: () => void
 }
