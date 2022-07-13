@@ -16,17 +16,10 @@
   font-weight: 700;
   font-size: 15px;
   cursor: pointer;
-  transition: transform 0.2s;
-  transform: translateZ(0);
-  backface-visibility: hidden;
 
   &:disabled {
     opacity: 0.6;
     cursor: not-allowed;
-  }
-
-  &:hover {
-    transform: scale(1.04);
   }
 }
 
