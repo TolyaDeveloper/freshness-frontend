@@ -6,7 +6,7 @@ import styles from './Button.module.scss'
 const Button = ({
   children,
   className,
-  variant,
+  variant = 'contained',
   size = 'md',
   ...props
 }: ButtonProps) => {

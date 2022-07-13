@@ -5,6 +5,6 @@ export interface ButtonProps
     ButtonHTMLAttributes<HTMLButtonElement>,
     HTMLButtonElement
   > {
-  variant: 'text' | 'contained' | 'outlined' | 'ghost'
+  variant?: 'text' | 'contained' | 'outlined' | 'ghost'
   size?: 'sm' | 'md' | 'lg'
 }
