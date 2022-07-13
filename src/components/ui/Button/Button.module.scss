@@ -16,6 +16,18 @@
   font-weight: 700;
   font-size: 15px;
   cursor: pointer;
+  transition: transform 0.2s;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+
+  &:hover {
+    transform: scale(1.04);
+  }
 }
 
 .text {
@@ -60,4 +72,12 @@
 
 .lg {
   @include button-size(148px, 56px);
+}
+
+.startIcon {
+  margin-right: 12px;
+}
+
+.endIcon {
+  margin-left: 12px;
 }

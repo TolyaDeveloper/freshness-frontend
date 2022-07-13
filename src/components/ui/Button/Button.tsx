@@ -8,6 +8,8 @@ const Button = ({
   className,
   variant = 'contained',
   size = 'md',
+  startIcon,
+  endIcon,
   ...props
 }: ButtonProps) => {
   return (
@@ -15,7 +17,9 @@ const Button = ({
       className={cnb(styles.button, styles[variant], styles[size], className)}
       {...props}
     >
+      {startIcon && <span className={styles.startIcon}>{startIcon}</span>}
       {children}
+      {endIcon && <span className={styles.endIcon}>{endIcon}</span>}
     </button>
   )
 }
