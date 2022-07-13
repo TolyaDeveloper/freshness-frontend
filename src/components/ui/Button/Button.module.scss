@@ -1,0 +1,63 @@
+@mixin button-variant($border, $fill, $color) {
+  border: $border;
+  background-color: $fill;
+  color: $color;
+}
+
+@mixin button-size($min-width, $height) {
+  min-width: $min-width;
+  height: $height;
+}
+
+.button {
+  padding: 0 10px;
+  border-radius: 12px;
+  font-family: var(--app-secondary-font);
+  font-weight: 700;
+  font-size: 15px;
+  cursor: pointer;
+}
+
+.text {
+  @include button-variant(
+    var(--button-text-border),
+    var(--button-text-fill),
+    var(--button-text-color)
+  );
+}
+
+.contained {
+  @include button-variant(
+    var(--button-contained-border),
+    var(--button-contained-fill),
+    var(--button-contained-color)
+  );
+}
+
+.outlined {
+  @include button-variant(
+    var(--button-outlined-border),
+    var(--button-outlined-fill),
+    var(--button-outlined-color)
+  );
+}
+
+.ghost {
+  @include button-variant(
+    var(--button-ghost-border),
+    var(--button-ghost-fill),
+    var(--button-ghost-color)
+  );
+}
+
+.sm {
+  @include button-size(76px, 36px);
+}
+
+.md {
+  @include button-size(84px, 48px);
+}
+
+.lg {
+  @include button-size(148px, 56px);
+}
