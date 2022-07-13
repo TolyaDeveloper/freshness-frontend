@@ -16,6 +16,11 @@
   font-weight: 700;
   font-size: 15px;
   cursor: pointer;
+
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
 }
 
 .text {
@@ -60,4 +65,12 @@
 
 .lg {
   @include button-size(148px, 56px);
+}
+
+.startIcon {
+  margin-right: 12px;
+}
+
+.endIcon {
+  margin-left: 12px;
 }

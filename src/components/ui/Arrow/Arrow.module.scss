@@ -1,5 +1,5 @@
 .arrow {
-  transition: transform 0.2s ease-in-out;
+  transition: var(--app-transform-transition);
 }
 
 .green {

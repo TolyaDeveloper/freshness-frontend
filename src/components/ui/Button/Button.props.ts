@@ -1,4 +1,4 @@
-import { ButtonHTMLAttributes, DetailedHTMLProps } from 'react'
+import { ButtonHTMLAttributes, DetailedHTMLProps, ReactNode } from 'react'
 
 export interface ButtonProps
   extends DetailedHTMLProps<
@@ -7,4 +7,6 @@ export interface ButtonProps
   > {
   variant?: 'text' | 'contained' | 'outlined' | 'ghost'
   size?: 'sm' | 'md' | 'lg'
+  startIcon?: ReactNode
+  endIcon?: ReactNode
 }
