@@ -1,0 +1,57 @@
+@import '~/styles/mixins';
+
+.tag {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 6px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 600;
+  font-family: var(--app-secondary-font);
+}
+
+.deleteButton {
+  display: inline-flex;
+  margin-left: 7px;
+  padding: 3px 0;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+.contained {
+  background-color: var(--tag-contained-fill);
+  color: var(--tag-contained-color);
+
+  .deleteSvg {
+    stroke: var(--tag-contained-delete-fill);
+  }
+}
+
+.outlined {
+  background-color: var(--tag-outlined-fill);
+  color: var(--tag-outlined-color);
+  border: var(--tag-outlined-border);
+
+  .deleteSvg {
+    stroke: var(--tag-outlined-delete-fill);
+  }
+}
+
+.ghost {
+  background-color: var(--tag-ghost-fill);
+  color: var(--tag-ghost-color);
+
+  .deleteSvg {
+    stroke: var(--tag-ghost-delete-fill);
+  }
+}
+
+.sm {
+  @include min-width-height(40px, 18px);
+}
+
+.md {
+  @include min-width-height(44px, 26px);
+}

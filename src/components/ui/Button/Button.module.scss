@@ -1,13 +1,4 @@
-@mixin button-variant($border, $fill, $color) {
-  border: $border;
-  background-color: $fill;
-  color: $color;
-}
-
-@mixin button-size($min-width, $height) {
-  min-width: $min-width;
-  height: $height;
-}
+@import '~/styles/mixins';
 
 .button {
   padding: 0 10px;
@@ -56,15 +47,15 @@
 }
 
 .sm {
-  @include button-size(76px, 36px);
+  @include min-width-height(76px, 36px);
 }
 
 .md {
-  @include button-size(84px, 48px);
+  @include min-width-height(84px, 48px);
 }
 
 .lg {
-  @include button-size(148px, 56px);
+  @include min-width-height(148px, 56px);
 }
 
 .startIcon {
