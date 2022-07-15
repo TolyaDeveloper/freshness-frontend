@@ -1,0 +1,34 @@
+.label {
+  display: inline-flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.radio {
+  position: absolute;
+  appearance: none;
+  margin: 0;
+
+  &:checked ~ .customRadio {
+    &.black {
+      border: var(--radio-border-filled-black);
+    }
+
+    &.green {
+      border: var(--radio-border-filled-green);
+    }
+  }
+
+  &:focus-visible ~ .customRadio {
+    box-shadow: var(--app-focus-visible);
+  }
+}
+
+.customRadio {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  border: var(--radio-border-not-filled);
+  border-radius: 50%;
+  background-color: var(--radio-not-filled);
+}
