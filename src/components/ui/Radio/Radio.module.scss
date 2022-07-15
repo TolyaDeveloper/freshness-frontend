@@ -10,7 +10,13 @@
   margin: 0;
 
   &:checked ~ .customRadio {
-    border: var(--radio-border-filled);
+    &.black {
+      border: var(--radio-border-filled-black);
+    }
+
+    &.green {
+      border: var(--radio-border-filled-green);
+    }
   }
 
   &:focus-visible ~ .customRadio {
