@@ -1,3 +1,3 @@
-export const pluralize = (count: number, noun: string, suffix = 's') => {
-  return `${noun}${count !== 1 ? suffix : ''}`
+export const pluralize = (count: number, word: string, suffix = 's') => {
+  return `${word}${count !== 1 ? suffix : ''}`
 }

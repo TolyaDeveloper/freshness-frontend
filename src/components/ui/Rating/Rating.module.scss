@@ -7,6 +7,10 @@
   padding: 0;
   border: none;
   background-color: transparent;
+
+  & + & {
+    padding-left: 3px;
+  }
 }
 
 .isEditable {

@@ -5,4 +5,5 @@ export interface RatingProps
   rating: number
   isEditable?: boolean
   onSetRating?: (rating: number) => void
+  max?: number
 }

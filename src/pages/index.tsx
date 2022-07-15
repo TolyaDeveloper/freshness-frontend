@@ -60,7 +60,7 @@ const Home = () => {
       <Tag size="md" variant="ghost" isRemovable>
         -33%
       </Tag>
-      <Rating rating={0} />
+      <Rating rating={3} />
       <Rating rating={rating} isEditable onSetRating={setRating} />
     </>
   )

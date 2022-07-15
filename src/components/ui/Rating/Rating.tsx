@@ -11,46 +11,55 @@ const Rating = ({
   className,
   rating,
   isEditable = false,
+  max = 5,
   onSetRating,
   ...props
 }: RatingProps) => {
-  const [totalStars, setTotalStars] = useState(Array(5).fill(<></>))
+  const [ratingArray, setRatingArray] = useState([...Array(max)])
 
   useEffect(() => {
-    setStars(rating)
+    buildRating(rating)
   }, [rating])
 
-  const onHandleChangeRating = (newRating: number) => {
+  const handleRatingChange = (newRating: number) => {
     if (isEditable && onSetRating) {
       onSetRating(newRating)
     }
   }
 
-  const setStars = (amount: number) => {
-    const rating = totalStars.map((_, i) => (
+  const onChangeDisplay = (newRating: number) => {
+    if (isEditable) {
+      buildRating(newRating)
+    }
+  }
+
+  const buildRating = (amount: number) => {
+    const renderedStars = ratingArray.map((_, index) => (
       <button
         className={cnb(styles.starButton, { [styles.isEditable]: isEditable })}
-        key={i}
+        key={index}
         type="button"
-        aria-label={`${i + 1} ${pluralize(i + 1, 'star')}`}
-        aria-pressed={i < amount}
+        aria-label={`${index + 1} ${pluralize(index + 1, 'star')}`}
+        aria-pressed={index < amount}
         tabIndex={isEditable ? 0 : -1}
-        onClick={() => onHandleChangeRating(i + 1)}
+        onClick={() => handleRatingChange(index + 1)}
+        onMouseOver={() => onChangeDisplay(index + 1)}
+        onMouseLeave={() => onChangeDisplay(rating)}
         disabled={!isEditable}
       >
         <RatingIcon
-          className={cnb(styles.star, { [styles.filled]: i < amount })}
+          className={cnb(styles.star, { [styles.filled]: index < amount })}
         />
       </button>
     ))
 
-    setTotalStars(rating)
+    setRatingArray(renderedStars)
   }
 
   return (
     <span className={cnb(styles.rating, className)} {...props}>
-      {totalStars.map((star, i) => (
-        <Fragment key={i}>{star}</Fragment>
+      {ratingArray.map((star, index) => (
+        <Fragment key={index}>{star}</Fragment>
       ))}
     </span>
   )
