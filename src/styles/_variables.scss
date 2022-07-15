@@ -9,6 +9,7 @@
   --app-container-background: #fff;
   --app-default-font-size: 14px;
   --app-transform-transition: transform 0.3s cubic-bezier(0.075, 0.82, 0.165, 1);
+  --app-focus-visible: 0 0 0 3px #6a983c;
 
   --arrow-fill-green: #6a983c;
   --arrow-fill-white: #fff;
@@ -39,4 +40,9 @@
   --tag-ghost-delete-fill: #d1d1d1;
 
   --rating-star-fill: #fdbc15;
+
+  --checkbox-border: 2px solid #46760a;
+  --checkbox-border-not-filled: 2px solid #d1d1d1;
+  --checkbox-filled: #6a983c;
+  --checkbox-not-filled: #fff;
 }
