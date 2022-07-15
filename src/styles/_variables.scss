@@ -9,6 +9,7 @@
   --app-container-background: #fff;
   --app-default-font-size: 14px;
   --app-transform-transition: transform 0.3s cubic-bezier(0.075, 0.82, 0.165, 1);
+  --app-focus-visible: 0 0 0 3px #6a983c;
 
   --arrow-fill-green: #6a983c;
   --arrow-fill-white: #fff;
@@ -39,4 +40,9 @@
   --tag-ghost-delete-fill: #d1d1d1;
 
   --rating-star-fill: #fdbc15;
+
+  --radio-border-not-filled: 2px solid #d1d1d1;
+  --radio-border-filled-black: 6px solid #151515;
+  --radio-border-filled-green: 6px solid #6a983c;
+  --radio-not-filled: #fff;
 }
