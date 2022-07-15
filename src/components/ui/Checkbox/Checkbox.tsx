@@ -1,17 +1,17 @@
-import { CheckboxProps } from './Checkbox.props'
 import { cnb } from 'cnbuilder'
+import { CheckboxProps } from './Checkbox.props'
 import CheckedIcon from './checked.svg'
 
 import styles from './Checkbox.module.scss'
 
-const Checkbox = ({ label, className, ...props }: CheckboxProps) => {
+const Checkbox = ({ className, label, ...props }: CheckboxProps) => {
   return (
-    <label className={cnb(styles.label, className)} {...props}>
-      <input className={cnb(styles.checkbox)} type="checkbox" />
+    <label className={cnb(styles.label, className)}>
+      <input className={styles.checkbox} type="checkbox" {...props} />
       <span className={styles.customCheckbox}>
-        <CheckedIcon className={cnb(styles.checkedIcon)} />
+        <CheckedIcon className={styles.checkedIcon} />
       </span>
-      {label}
+      <span>{label}</span>
     </label>
   )
 }

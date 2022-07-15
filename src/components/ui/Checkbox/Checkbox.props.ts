@@ -1,9 +1,10 @@
-import { DetailedHTMLProps, LabelHTMLAttributes, ReactNode } from 'react'
+import { DetailedHTMLProps, InputHTMLAttributes, ReactNode } from 'react'
 
 export interface CheckboxProps
   extends DetailedHTMLProps<
-    LabelHTMLAttributes<HTMLLabelElement>,
-    HTMLLabelElement
+    InputHTMLAttributes<HTMLInputElement>,
+    HTMLInputElement
   > {
+  className?: string
   label?: ReactNode
 }
