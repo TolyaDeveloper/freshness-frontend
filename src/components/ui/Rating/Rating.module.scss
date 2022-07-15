@@ -1,0 +1,19 @@
+.rating {
+  display: flex;
+  align-items: center;
+}
+
+.starButton {
+  padding: 0;
+  border: none;
+  background-color: transparent;
+}
+
+.isEditable {
+  cursor: pointer;
+}
+
+.filled {
+  fill: var(--rating-star-fill);
+  stroke: var(--rating-star-fill);
+}

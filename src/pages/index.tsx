@@ -1,6 +1,9 @@
-import { Button, Arrow, Tag } from '~/components'
+import { useState } from 'react'
+import { Button, Arrow, Tag, Rating } from '~/components'
 
 const Home = () => {
+  const [rating, setRating] = useState(3)
+
   return (
     <>
       <Button size="sm" variant="contained" type="button">
@@ -57,6 +60,8 @@ const Home = () => {
       <Tag size="md" variant="ghost" isRemovable>
         -33%
       </Tag>
+      <Rating rating={0} />
+      <Rating rating={rating} isEditable onSetRating={setRating} />
     </>
   )
 }
