@@ -1,4 +1,4 @@
-import { DetailedHTMLProps, InputHTMLAttributes } from 'react'
+import { DetailedHTMLProps, InputHTMLAttributes, ReactNode } from 'react'
 
 export interface RadioProps
   extends DetailedHTMLProps<
@@ -6,4 +6,5 @@ export interface RadioProps
     HTMLInputElement
   > {
   className?: string
+  label?: ReactNode
 }
