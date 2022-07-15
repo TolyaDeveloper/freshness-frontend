@@ -32,6 +32,7 @@
 .outlined {
   background-color: var(--tag-outlined-fill);
   color: var(--tag-outlined-color);
+  border: var(--tag-outlined-border);
 
   .deleteSvg {
     stroke: var(--tag-outlined-delete-fill);
@@ -52,5 +53,5 @@
 }
 
 .md {
-  @include min-width-height(44px, 50px);
+  @include min-width-height(44px, 26px);
 }

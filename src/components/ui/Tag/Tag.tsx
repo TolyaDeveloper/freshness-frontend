@@ -1,10 +1,10 @@
 import { TagProps } from './Tag.props'
 import { cnb } from 'cnbuilder'
+import Link from 'next/link'
 
 import DeleteIcon from './delete.svg'
 
 import styles from './Tag.module.scss'
-import Link from 'next/link'
 
 const Tag = ({
   children,
