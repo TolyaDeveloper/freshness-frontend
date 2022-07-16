@@ -1,5 +1,6 @@
 import { Radio, Logo, Checkbox } from '~/components'
 import Link from 'next/link'
+import Ic from '../../public/icon.svg'
 
 const Home = () => {
   return (
@@ -12,6 +13,7 @@ const Home = () => {
           <Logo />
         </a>
       </Link>
+      <Ic />
     </>
   )
 }

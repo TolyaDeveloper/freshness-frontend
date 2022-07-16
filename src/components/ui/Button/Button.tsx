@@ -1,5 +1,5 @@
-import { ButtonProps } from './Button.props'
 import { cnb } from 'cnbuilder'
+import { ButtonProps } from './Button.props'
 
 import styles from './Button.module.scss'
 
