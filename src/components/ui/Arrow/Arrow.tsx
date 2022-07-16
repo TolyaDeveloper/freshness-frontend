@@ -1,6 +1,5 @@
-import { ArrowProps } from './Arrow.props'
 import { cnb } from 'cnbuilder'
-
+import { ArrowProps } from './Arrow.props'
 import ArrowIcon from './arrow.svg'
 
 import styles from './Arrow.module.scss'
