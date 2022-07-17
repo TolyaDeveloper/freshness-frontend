@@ -1,6 +1,14 @@
-import { Radio, Logo, Checkbox } from '~/components'
+import {
+  Checkbox,
+  Radio,
+  Logo,
+  InputLabel,
+  Input,
+  FormStyledWrapper
+} from '~/components'
 import Link from 'next/link'
-import Ic from '../../public/icon.svg'
+import SearchIcon from '~/assets/icons/search.svg'
+import EmailIcon from '~/assets/icons/email.svg'
 
 const Home = () => {
   return (
@@ -13,7 +21,21 @@ const Home = () => {
           <Logo />
         </a>
       </Link>
-      <Ic />
+      <div
+        style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '30px' }}
+      >
+        <FormStyledWrapper>
+          <Input placeholder="Input" startAdornment={<EmailIcon />} />
+        </FormStyledWrapper>
+        <FormStyledWrapper>
+          <Input
+            placeholder="Input"
+            endAdornment={<SearchIcon />}
+            startAdornment={<EmailIcon />}
+          />
+        </FormStyledWrapper>
+      </div>
+      <Input placeholder="sdfs" endAdornment={<SearchIcon />} />
     </>
   )
 }

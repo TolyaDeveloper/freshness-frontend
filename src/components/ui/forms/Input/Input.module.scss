@@ -1,0 +1,36 @@
+.inputWrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.focused {
+  box-shadow: var(--input-focused-box-shadow);
+  border-radius: 12px;
+}
+
+.input {
+  padding: 0 16px;
+  height: 40px;
+  width: 100%;
+  border: none;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 19px;
+  background-color: transparent;
+  outline: none;
+}
+
+.startAdornment,
+.endAdornment {
+  display: inline-flex;
+}
+
+.startAdornment {
+  margin-left: 16px;
+}
+
+.endAdornment {
+  margin-right: 16px;
+}
