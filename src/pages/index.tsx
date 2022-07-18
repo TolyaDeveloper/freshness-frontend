@@ -12,8 +12,10 @@ import {
 import Link from 'next/link'
 import SearchIcon from '~/assets/icons/search.svg'
 import EmailIcon from '~/assets/icons/email.svg'
+import { useState } from 'react'
 
 const Home = () => {
+  const [rat, setRat] = useState(4)
   return (
     <>
       <Checkbox label="some text" />
@@ -61,6 +63,12 @@ const Home = () => {
           placeholder="Search Products, categories ..."
         />
       </FormStyledWrapper>
+      <Checkbox label={<Rating rating={1} />} />
+      <Checkbox label={<Rating rating={2} />} />
+      <Checkbox label={<Rating rating={3} />} />
+      <Checkbox label={<Rating rating={4} />} />
+      <Checkbox label={<Rating rating={5} />} />
+      <Rating rating={rat} isEditable onSetRating={setRat} />
     </>
   )
 }
