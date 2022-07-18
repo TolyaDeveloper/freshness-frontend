@@ -11,12 +11,11 @@ const Input = ({
 }: InputProps) => {
   return (
     <>
-      <div className={cnb(styles.inputWrapper)}>
+      <div className={cnb(styles.inputWrapper, className)}>
         {startAdornment && (
           <span className={styles.startAdornment}>{startAdornment}</span>
         )}
-        <input className={cnb(styles.input, className)} {...props} />
-        <span className={styles.focused} />
+        <input className={styles.input} {...props} />
         {endAdornment && (
           <span className={styles.endAdornment}>{endAdornment}</span>
         )}

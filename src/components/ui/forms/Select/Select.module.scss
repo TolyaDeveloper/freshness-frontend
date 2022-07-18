@@ -2,17 +2,23 @@
   position: relative;
   display: inline-flex;
   min-width: 50px;
+  z-index: 1;
 }
 
 .select {
   padding: 0 8px 0 0;
-  max-width: 100%;
+  width: 100%;
   border: none;
   background-color: transparent;
   font-family: var(--app-secondary-font);
   font-weight: 600;
   appearance: none;
   cursor: pointer;
+
+  &:focus {
+    outline: var(--select-focused-outline);
+    border-radius: 12px;
+  }
 
   &:focus ~ .endAdornemt > svg {
     transform: rotateZ(0);

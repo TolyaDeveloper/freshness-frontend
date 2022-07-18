@@ -14,14 +14,11 @@
   font-size: 14px;
   line-height: 19px;
   background-color: transparent;
-  outline: none;
+  border-radius: 12px;
+  outline-offset: -5px;
 
-  &:focus ~ .focused {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    box-shadow: var(--input-focused-box-shadow);
-    border-radius: 12px;
+  &:focus {
+    outline: var(--input-focused-outline);
   }
 }
 

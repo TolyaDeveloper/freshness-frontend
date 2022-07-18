@@ -13,8 +13,6 @@ import Link from 'next/link'
 import SearchIcon from '~/assets/icons/search.svg'
 import EmailIcon from '~/assets/icons/email.svg'
 
-import styles from './test.module.scss'
-
 const Home = () => {
   return (
     <>
@@ -27,10 +25,7 @@ const Home = () => {
         </a>
       </Link>
       <Label>label</Label>
-      <Select
-        className={styles.fgd}
-        endAdornment={<Arrow orientation={'down'} color="black" />}
-      >
+      <Select endAdornment={<Arrow orientation={'down'} color="black" />}>
         <option value="volvo">Volvo</option>
         <option value="volvo">Vo</option>
         <option value="volvo">Vohgfhfghgfhfghffgdgfd</option>
@@ -51,6 +46,21 @@ const Home = () => {
         </FormStyledWrapper>
       </div>
       <Input placeholder="sdfs" endAdornment={<SearchIcon />} />
+      <FormStyledWrapper>
+        <Select endAdornment={<Arrow orientation="down" color="green" />}>
+          <option value="All categories">All categories</option>
+          <option value="...">...</option>
+          <option value="...">...</option>
+        </Select>
+        <Input
+          endAdornment={
+            <button>
+              <SearchIcon />
+            </button>
+          }
+          placeholder="Search Products, categories ..."
+        />
+      </FormStyledWrapper>
     </>
   )
 }

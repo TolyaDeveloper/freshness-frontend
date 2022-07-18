@@ -27,6 +27,7 @@
   --button-ghost-fill: #f5f5f5;
   --button-ghost-border: none;
   --button-ghost-color: #151515;
+  --button-focus-visible: 3px solid #6a983c;
 
   --tag-contained-fill: #f4f8ec;
   --tag-contained-color: #6a983c;
@@ -53,8 +54,10 @@
 
   --label-color: #151515;
 
-  --input-focused-box-shadow: 0 0 0 2px #6a983c;
+  --input-focused-outline: 2px solid #6a983c;
 
   --form-styled-wrapper-fill: #f9f9f9;
   --form-styled-wrapper-border: 1px solid #d1d1d1;
+
+  --select-focused-outline: 2px solid #6a983c;
 }

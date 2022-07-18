@@ -38,3 +38,7 @@ h6,
 p {
   margin: 0;
 }
+
+button:focus-visible {
+  outline: var(--button-focus-visible);
+}
