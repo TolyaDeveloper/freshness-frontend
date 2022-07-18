@@ -8,4 +8,5 @@ export interface RadioProps
   className?: string
   label?: ReactNode
   color?: 'black' | 'green'
+  labelTextClassname?: string
 }

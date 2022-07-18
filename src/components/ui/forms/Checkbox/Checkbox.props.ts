@@ -7,4 +7,5 @@ export interface CheckboxProps
   > {
   className?: string
   label?: ReactNode
+  labelTextClassname?: string
 }
