@@ -1,0 +1,29 @@
+.selectWrapper {
+  position: relative;
+  display: inline-flex;
+  min-width: 50px;
+}
+
+.select {
+  padding: 0 8px 0 0;
+  max-width: 100%;
+  border: none;
+  background-color: transparent;
+  font-family: var(--app-secondary-font);
+  font-weight: 600;
+  appearance: none;
+  cursor: pointer;
+
+  &:focus ~ .endAdornemt > svg {
+    transform: rotateZ(0);
+  }
+}
+
+.endAdornemt {
+  position: absolute;
+  display: inline-flex;
+  top: 50%;
+  transform: translateY(-50%);
+  right: 0;
+  z-index: -1;
+}

@@ -5,6 +5,7 @@ export { default as FormStyledWrapper } from './ui/forms/FormStyledWrapper/FormS
 export { default as Input } from './ui/forms/Input/Input'
 export { default as Label } from './ui/forms/Label/Label'
 export { default as Radio } from './ui/forms/Radio/Radio'
+export { default as Select } from './ui/forms/Select/Select'
 export { default as Logo } from './ui/Logo/Logo'
 export { default as Rating } from './ui/Rating/Rating'
 export { default as Tag } from './ui/Tag/Tag'
