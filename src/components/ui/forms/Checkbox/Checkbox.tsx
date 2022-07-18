@@ -1,6 +1,6 @@
 import { cnb } from 'cnbuilder'
 import { CheckboxProps } from './Checkbox.props'
-import CheckedIcon from './checked.svg'
+import CheckedIcon from '~/assets/icons/checked.svg'
 
 import styles from './Checkbox.module.scss'
 

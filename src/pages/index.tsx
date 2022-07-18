@@ -2,9 +2,10 @@ import {
   Checkbox,
   Radio,
   Logo,
-  InputLabel,
   Input,
-  FormStyledWrapper
+  FormStyledWrapper,
+  Label,
+  Rating
 } from '~/components'
 import Link from 'next/link'
 import SearchIcon from '~/assets/icons/search.svg'
@@ -21,6 +22,8 @@ const Home = () => {
           <Logo />
         </a>
       </Link>
+      <Label>label</Label>
+      <Rating rating={4} />
       <div
         style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '30px' }}
       >
