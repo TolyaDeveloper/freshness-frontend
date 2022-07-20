@@ -8,7 +8,7 @@ export const variantsMapping = {
   'h2-xl': 'h2',
   h3: 'h3',
   h4: 'h4',
-  body1: 'div',
+  body1: 'p',
   body2: 'p',
   body3: 'p',
   body4: 'p',
