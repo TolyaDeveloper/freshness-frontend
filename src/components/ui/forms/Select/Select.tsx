@@ -11,7 +11,7 @@ const Select = ({
 }: SelectProps) => {
   return (
     <div className={cnb(styles.selectWrapper, className)}>
-      <select className={cnb(styles.select)} {...props}>
+      <select className={styles.select} {...props}>
         {children}
       </select>
       {endAdornment && (

@@ -1,0 +1,23 @@
+import { DetailedHTMLProps, ElementType, HTMLAttributes } from 'react'
+
+export const variantsMapping = {
+  h1: 'h1',
+  'h2-sm': 'h2',
+  'h2-md': 'h2',
+  'h2-lg': 'h2',
+  'h2-xl': 'h2',
+  h3: 'h3',
+  h4: 'h4',
+  body1: 'div',
+  body2: 'p',
+  body3: 'p',
+  body4: 'p',
+  body5: 'p',
+  body6: 'p'
+}
+
+export interface TypographyProps
+  extends DetailedHTMLProps<HTMLAttributes<HTMLElement>, HTMLElement> {
+  variant: keyof typeof variantsMapping
+  component?: ElementType
+}
