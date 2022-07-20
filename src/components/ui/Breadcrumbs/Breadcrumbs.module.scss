@@ -1,0 +1,14 @@
+.breadcrumbs {
+  ol {
+    display: flex;
+    align-items: center;
+  }
+}
+
+.separator {
+  margin: 0 8px;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 16px;
+  color: var(--breadcrumbs-separator-color);
+}

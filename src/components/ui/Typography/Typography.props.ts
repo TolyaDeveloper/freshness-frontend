@@ -20,4 +20,5 @@ export interface TypographyProps
   extends DetailedHTMLProps<HTMLAttributes<HTMLElement>, HTMLElement> {
   variant: keyof typeof variantsMapping
   component?: ElementType
+  color?: 'black' | 'dark-grey' | 'light-grey' | 'white' | 'green'
 }

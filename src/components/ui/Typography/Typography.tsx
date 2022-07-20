@@ -9,13 +9,19 @@ const Typography = ({
   className,
   variant,
   component,
+  color = 'black',
   ...props
 }: TypographyProps) => {
   const Component = component || (variantsMapping[variant] as ElementType)
 
   return (
     <Component
-      className={cnb(styles.typography, styles[variant], className)}
+      className={cnb(
+        styles.typography,
+        styles[color],
+        styles[variant],
+        className
+      )}
       {...props}
     >
       {children}
