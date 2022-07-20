@@ -1,6 +1,7 @@
 export { default as Arrow } from './ui/Arrow/Arrow'
 export { default as Breadcrumbs } from './ui/Breadcrumbs/Breadcrumbs'
 export { default as Button } from './ui/Button/Button'
+export { default as CustomLink } from './ui/CustomLink/CustomLink'
 export { default as Checkbox } from './ui/forms/Checkbox/Checkbox'
 export { default as FormStyledWrapper } from './ui/forms/FormStyledWrapper/FormStyledWrapper'
 export { default as Input } from './ui/forms/Input/Input'
