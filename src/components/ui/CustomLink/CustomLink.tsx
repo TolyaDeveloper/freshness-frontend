@@ -4,10 +4,29 @@ import Link from 'next/link'
 
 import styles from './CustomLink.module.scss'
 
-const CustomLink = ({ children, className, ...props }: CustomLinkProps) => {
+const CustomLink = ({
+  children,
+  className,
+  endAdornment,
+  underline = 'none',
+  color = 'black',
+  ...props
+}: CustomLinkProps) => {
   return (
     <Link {...props}>
-      <a className={cnb(styles.link, className)}>{children}</a>
+      <a
+        className={cnb(
+          styles.link,
+          styles[`underline-${underline}`],
+          styles[color],
+          className
+        )}
+      >
+        {children}
+        {endAdornment && (
+          <span className={styles.endAdornment}>{endAdornment}</span>
+        )}
+      </a>
     </Link>
   )
 }

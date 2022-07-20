@@ -1,4 +1,4 @@
-import { Typography, Breadcrumbs } from '~/components'
+import { Typography, Breadcrumbs, CustomLink, Arrow } from '~/components'
 
 const Home = () => {
   return (
@@ -29,6 +29,9 @@ const Home = () => {
           Home
         </Typography>
       </Breadcrumbs>
+      <CustomLink href="/" endAdornment={<Arrow />}>
+        Custom link
+      </CustomLink>
     </>
   )
 }

@@ -1,0 +1,31 @@
+.link {
+  &:hover .endAdornment > svg {
+    transform: rotateZ(90deg);
+  }
+}
+
+.underline-hover {
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+.underline-always {
+  text-decoration: underline;
+}
+
+.green {
+  color: var(--custom-link-green-color);
+}
+
+.black {
+  color: var(--custom-link-black-color);
+}
+
+.grey {
+  color: var(--custom-link-grey-color);
+}
+
+.endAdornment {
+  margin-left: 5px;
+}
