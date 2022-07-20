@@ -2,7 +2,7 @@ import { cnb } from 'cnbuilder'
 import { TagProps } from './Tag.props'
 import { TAG } from '~/constants/common'
 import Link from 'next/link'
-import DeleteIcon from './delete.svg'
+import DeleteIcon from '~/assets/icons/delete.svg'
 
 import styles from './Tag.module.scss'
 

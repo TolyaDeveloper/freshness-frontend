@@ -1,11 +1,10 @@
 import { DetailedHTMLProps, InputHTMLAttributes, ReactNode } from 'react'
 
-export interface RadioProps
+export interface InputProps
   extends DetailedHTMLProps<
     InputHTMLAttributes<HTMLInputElement>,
     HTMLInputElement
   > {
-  className?: string
-  label?: ReactNode
-  color?: 'black' | 'green'
+  startAdornment?: ReactNode
+  endAdornment?: ReactNode
 }

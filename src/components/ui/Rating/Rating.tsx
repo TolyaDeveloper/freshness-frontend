@@ -2,7 +2,7 @@ import { useState, useEffect, Fragment } from 'react'
 import { cnb } from 'cnbuilder'
 import { RatingProps } from './Rating.props'
 import { pluralize } from '~/utils/pluralize'
-import RatingIcon from './rating-star.svg'
+import RatingIcon from '~/assets/icons/rating-star.svg'
 
 import styles from './Rating.module.scss'
 

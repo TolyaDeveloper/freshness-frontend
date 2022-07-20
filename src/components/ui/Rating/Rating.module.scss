@@ -4,9 +4,11 @@
 }
 
 .starButton {
+  display: inline-flex;
   padding: 0;
   border: none;
   background-color: transparent;
+  pointer-events: none;
 
   & + & {
     padding-left: 3px;
@@ -15,6 +17,7 @@
 
 .isEditable {
   cursor: pointer;
+  pointer-events: all;
 }
 
 .filled {
