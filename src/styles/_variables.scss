@@ -1,33 +1,81 @@
 :root {
+  --palette-primary-50: #fff;
+  --palette-primary-100: #f9f9f9;
+  --palette-primary-200: #f5f5f5;
+  --palette-primary-300: #ebebeb;
+  --palette-primary-400: #d1d1d1;
+  --palette-primary-500: #a9a9a9;
+  --palette-primary-600: #575757;
+  --palette-primary-700: #151515;
+
+  --palette-secondary-50: #f4f8ec;
+  --palette-secondary-100: #c8deb3;
+  --palette-secondary-200: #92c064;
+  --palette-secondary-300: #6a983c;
+  --palette-secondary-400: #46760a;
+
+  --palette-additional-a-50: #fff9f0;
+  --palette-additional-a-100: #faedd8;
+  --palette-additional-a-200: #ecd2a6;
+  --palette-additional-a-300: #d0a866;
+  --palette-additional-a-400: #b28a48;
+
+  --palette-additional-b-50: #fff1ed;
+  --palette-additional-b-100: #f7c6b7;
+  --palette-additional-b-200: #eb8d70;
+  --palette-additional-b-300: #e6704b;
+  --palette-additional-b-400: #c7522d;
+
+  --palette-additional-c-50: #ecf6f7;
+  --palette-additional-c-100: #b9e6e8;
+  --palette-additional-c-200: #7cd0d3;
+  --palette-additional-c-300: #37d0d6;
+  --palette-additional-c-400: #19b2b8;
+
   --app-min-width: 320px;
   --app-margin: 0;
-  --app-primary-font: 'Open Sans';
-  --app-secondary-font: 'Poppins';
-  --app-fallback-font: sans-serif;
-  --app-default-font-weight: 400;
-  --app-background: #f9f9f9;
-  --app-container-background: #fff;
-  --app-default-font-size: 14px;
+  --app-font-primary: 'Open Sans';
+  --app-font-secondary: 'Poppins';
+  --app-font-fallback: sans-serif;
+  --app-font-weight-default: 400;
+  --app-font-size-default: 14px;
+  --app-background: var(--palette-primary-100);
+  --app-background-container: var(--palette-primary-50);
   --app-transform-transition: transform 0.3s cubic-bezier(0.075, 0.82, 0.165, 1);
   --app-focus-visible: 0 0 0 3px #6a983c;
 
-  --arrow-fill-green: #6a983c;
-  --arrow-fill-white: #fff;
-  --arrow-fill-black: #151515;
+  --arrow-secondary-stroke: var(--palette-secondary-300);
+  --arrow-primary-stroke1: var(--palette-primary-50);
+  --arrow-primary-stroke2: var(--palette-primary-700);
 
-  --button-text-fill: #fff;
-  --button-text-border: none;
-  --button-text-color: #151515;
-  --button-contained-fill: #6a983c;
-  --button-contained-border: 2px solid #46760a;
-  --button-contained-color: #fff;
-  --button-outlined-fill: #fff;
-  --button-outlined-border: 2px solid #92c064;
-  --button-outlined-color: #151515;
-  --button-ghost-fill: #f5f5f5;
-  --button-ghost-border: none;
-  --button-ghost-color: #151515;
-  --button-focus-visible: 3px solid #6a983c;
+  --breadcrumbs-separator-color: var(--palette-primary-400);
+
+  // --button-text-fill: #fff;
+  // --button-text-border: none;
+  // --button-text-color: #151515;
+  // --button-contained-fill: #6a983c;
+  // --button-contained-border: 2px solid #46760a;
+  // --button-contained-color: #fff;
+  // --button-outlined-fill: #fff;
+  // --button-outlined-border: 2px solid #92c064;
+  // --button-outlined-color: #151515;
+  // --button-ghost-fill: #f5f5f5;
+  // --button-ghost-border: none;
+  // --button-ghost-color: #151515;
+  // --button-focus-visible: 3px solid #6a983c;
+
+  --button-solidColor: var(--palette-primary-50);
+  --button-solidBg: var(--palette-secondary-300);
+  --button-solidBorder: var(--palette-secondary-400);
+  --button-softColor: var(--palette-primary-700);
+  --button-softBg: var(--palette-primary-200);
+  --button-softBorder: none;
+  --button-outlinedColor: var(--palette-primary-700);
+  --button-outlinedBg: var(--palette-primary-50);
+  --button-outlinedBorder: var(--palette-secondary-200);
+  --button-plainColor: var(--palette-primary-700);
+  --button-plainBg: var(--palette-primary-50);
+  --button-plainBorder: none;
 
   --tag-contained-fill: #f4f8ec;
   --tag-contained-color: #6a983c;
@@ -68,8 +116,6 @@
   --typography-light-grey: #a9a9a9;
   --typography-white: #fff;
   --typography-green: #6a983c;
-
-  --breadcrumbs-separator-color: #d1d1d1;
 
   --custom-link-green-color: #6a983c;
   --custom-link-black-color: #151515;

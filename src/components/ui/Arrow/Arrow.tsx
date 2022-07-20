@@ -6,7 +6,7 @@ import styles from './Arrow.module.scss'
 
 const Arrow = ({
   className,
-  color = 'green',
+  color = 'secondary',
   orientation = 'right',
   ...props
 }: ArrowProps) => {

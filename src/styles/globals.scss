@@ -11,10 +11,10 @@
 body {
   margin: var(--app-margin);
   min-width: var(--app-min-width);
-  font-family: var(--app-primary-font), var(--app-fallback-font);
-  font-weight: var(--app-default-font-weight);
+  font-family: var(--app-font-primary), var(--app-font-fallback);
+  font-weight: var(--app-font-weight-default);
+  font-size: var(--app-font-size-default);
   background-color: var(--app-background);
-  font-size: var(--app-default-font-size);
 }
 
 a {

@@ -2,16 +2,16 @@
   transition: var(--app-transform-transition);
 }
 
-.green {
-  stroke: var(--arrow-fill-green);
+.primary1 {
+  stroke: var(--arrow-primary-stroke1);
 }
 
-.black {
-  stroke: var(--arrow-fill-black);
+.primary2 {
+  stroke: var(--arrow-primary-stroke2);
 }
 
-.white {
-  stroke: var(--arrow-fill-white);
+.secondary {
+  stroke: var(--arrow-secondary-stroke);
 }
 
 .up {

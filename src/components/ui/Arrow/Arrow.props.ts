@@ -1,6 +1,6 @@
 import { SVGAttributes } from 'react'
 
 export interface ArrowProps extends SVGAttributes<SVGAElement> {
-  color?: 'green' | 'black' | 'white'
+  color?: 'primary1' | 'primary2' | 'secondary'
   orientation?: 'up' | 'right' | 'down' | 'left'
 }
