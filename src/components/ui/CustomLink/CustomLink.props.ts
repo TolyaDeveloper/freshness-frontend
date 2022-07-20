@@ -7,5 +7,6 @@ export interface CustomLinkProps
   endAdornment?: ReactNode
   underline?: 'none' | 'hover' | 'always'
   color?: 'green' | 'black' | 'grey'
+  variant: 'body1' | 'body2' | 'body3'
   children: ReactNode
 }

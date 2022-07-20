@@ -1,3 +1,5 @@
+@import '~/styles/mixins';
+
 .link {
   &:hover .endAdornment > svg {
     transform: rotateZ(90deg);
@@ -28,4 +30,16 @@
 
 .endAdornment {
   margin-left: 5px;
+}
+
+.body1 {
+  @include typography-set(400, 12px 16px);
+}
+
+.body2 {
+  @include typography-set(400, 14px 19px);
+}
+
+.body3 {
+  @include typography-set(500, 15px 22px);
 }
