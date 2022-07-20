@@ -1,4 +1,4 @@
-import { Typography } from '~/components'
+import { Typography, Breadcrumbs } from '~/components'
 
 const Home = () => {
   return (
@@ -18,6 +18,17 @@ const Home = () => {
       <Typography variant="h2-sm">Typography</Typography>
       <Typography variant="h3">Typography</Typography>
       <Typography variant="h4">Typography</Typography>
+      <Breadcrumbs aria-label="Breadcrumbs" separator="/">
+        <Typography variant="body6" color="light-grey">
+          Home
+        </Typography>
+        <Typography variant="body6" color="light-grey">
+          Home
+        </Typography>
+        <Typography variant="body6" color="dark-grey">
+          Home
+        </Typography>
+      </Breadcrumbs>
     </>
   )
 }
