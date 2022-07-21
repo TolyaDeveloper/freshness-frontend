@@ -3,9 +3,9 @@
   height: $height;
 }
 
-@mixin button-variant($border, $fill, $color) {
+@mixin button-variant($border, $bg, $color) {
   border: $border;
-  background-color: $fill;
+  background-color: $bg;
   color: $color;
 }
 

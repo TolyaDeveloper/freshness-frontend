@@ -20,7 +20,12 @@
   pointer-events: all;
 }
 
-.filled {
-  fill: var(--rating-star-fill);
-  stroke: var(--rating-star-fill);
+.primary {
+  fill: var(--rating-star-primary-fill);
+  stroke: var(--rating-star-primary-fill);
+}
+
+.additional {
+  fill: var(--rating-star-additional-fill);
+  stroke: var(--rating-star-additional-fill);
 }

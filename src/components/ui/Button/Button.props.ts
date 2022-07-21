@@ -5,8 +5,8 @@ export interface ButtonProps
     ButtonHTMLAttributes<HTMLButtonElement>,
     HTMLButtonElement
   > {
-  variant?: 'text' | 'contained' | 'outlined' | 'ghost'
+  variant?: 'solid' | 'soft' | 'outlined' | 'plain'
   size?: 'sm' | 'md' | 'lg'
-  startIcon?: ReactNode
-  endIcon?: ReactNode
+  startAdornment?: ReactNode
+  endAdornment?: ReactNode
 }

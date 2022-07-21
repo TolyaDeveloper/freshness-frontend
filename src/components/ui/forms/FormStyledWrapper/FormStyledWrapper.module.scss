@@ -1,8 +1,8 @@
 .styledWrapper {
+  padding: 0 16px;
   display: flex;
   align-items: center;
-  padding: 0 16px;
   border-radius: 12px;
-  background-color: var(--form-styled-wrapper-fill);
+  background-color: var(--form-styled-wrapper-bg);
   border: var(--form-styled-wrapper-border);
 }

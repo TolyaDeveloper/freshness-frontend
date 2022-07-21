@@ -16,7 +16,11 @@ const Checkbox = ({
       <span className={styles.customCheckbox}>
         <CheckedIcon className={styles.checkedIcon} />
       </span>
-      <span className={cnb(styles.labelText, labelTextClassname)}>{label}</span>
+      {label && (
+        <span className={cnb(styles.labelText, labelTextClassname)}>
+          {label}
+        </span>
+      )}
     </label>
   )
 }

@@ -10,7 +10,7 @@ const Tag = ({
   children,
   className,
   size = 'md',
-  variant = 'contained',
+  variant = 'solid',
   isRemovable = false,
   onRemoveTag,
   href,

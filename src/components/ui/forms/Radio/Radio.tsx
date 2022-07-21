@@ -6,7 +6,7 @@ import styles from './Radio.module.scss'
 const Radio = ({
   className,
   labelTextClassname,
-  color = 'green',
+  color = 'secondary',
   label,
   ...props
 }: RadioProps) => {
@@ -14,7 +14,11 @@ const Radio = ({
     <label className={cnb(styles.label, className)}>
       <input className={styles.radio} type="radio" {...props} />
       <span className={cnb(styles.customRadio, styles[color])} />
-      <span className={cnb(styles.labelText, labelTextClassname)}>{label}</span>
+      {label && (
+        <span className={cnb(styles.labelText, labelTextClassname)}>
+          {label}
+        </span>
+      )}
     </label>
   )
 }

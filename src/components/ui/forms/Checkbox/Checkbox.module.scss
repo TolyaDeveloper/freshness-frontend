@@ -7,10 +7,11 @@
 .checkbox {
   appearance: none;
   position: absolute;
+  margin: 0;
 
   &:checked ~ .customCheckbox {
-    border: var(--checkbox-border);
-    background-color: var(--checkbox-filled);
+    border: var(--checkbox-checked-border);
+    background-color: var(--checkbox-checked-bg);
   }
 
   &:checked ~ .customCheckbox > svg {
@@ -18,7 +19,7 @@
   }
 
   &:focus-visible ~ .customCheckbox {
-    box-shadow: var(--app-focus-visible);
+    outline: var(--app-outline-focusVisible);
   }
 }
 
@@ -27,10 +28,9 @@
   display: inline-block;
   width: 20px;
   height: 20px;
-  border: var(--checkbox-border-not-filled);
-  background-color: var(--checkbox-not-filled);
+  border: var(--checkbox-not-checked-border);
+  background-color: var(--checkbox-not-checked-bg);
   border-radius: 4px;
-  margin: 0;
 }
 
 .checkedIcon {

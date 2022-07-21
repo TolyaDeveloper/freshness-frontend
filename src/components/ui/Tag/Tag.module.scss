@@ -8,7 +8,7 @@
   border-radius: 12px;
   font-size: 12px;
   font-weight: 600;
-  font-family: var(--app-secondary-font);
+  font-family: var(--app-font-secondary);
 }
 
 .deleteButton {
@@ -20,31 +20,31 @@
   cursor: pointer;
 }
 
-.contained {
-  background-color: var(--tag-contained-fill);
-  color: var(--tag-contained-color);
+.solid {
+  background-color: var(--tag-solidBg);
+  color: var(--tag-solidColor);
 
   .deleteSvg {
-    stroke: var(--tag-contained-delete-fill);
+    stroke: var(--tag-solidButton-stroke);
+  }
+}
+
+.soft {
+  background-color: var(--tag-softBg);
+  color: var(--tag-softColor);
+
+  .deleteSvg {
+    stroke: var(--tag-softButton-stroke);
   }
 }
 
 .outlined {
-  background-color: var(--tag-outlined-fill);
-  color: var(--tag-outlined-color);
-  border: var(--tag-outlined-border);
+  background-color: var(--tag-outlinedBg);
+  color: var(--tag-outlinedColor);
+  border: var(--tag-outlinedBorder);
 
   .deleteSvg {
-    stroke: var(--tag-outlined-delete-fill);
-  }
-}
-
-.ghost {
-  background-color: var(--tag-ghost-fill);
-  color: var(--tag-ghost-color);
-
-  .deleteSvg {
-    stroke: var(--tag-ghost-delete-fill);
+    stroke: var(--tag-outlinedButton-stroke);
   }
 }
 

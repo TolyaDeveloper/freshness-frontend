@@ -3,7 +3,7 @@
 .button {
   padding: 0 10px;
   border-radius: 12px;
-  font-family: var(--app-secondary-font);
+  font-family: var(--app-font-secondary);
   font-weight: 700;
   font-size: 15px;
   cursor: pointer;
@@ -14,35 +14,35 @@
   }
 }
 
-.text {
+.solid {
   @include button-variant(
-    var(--button-text-border),
-    var(--button-text-fill),
-    var(--button-text-color)
+    var(--button-solidBorder),
+    var(--button-solidBg),
+    var(--button-solidColor)
   );
 }
 
-.contained {
+.soft {
   @include button-variant(
-    var(--button-contained-border),
-    var(--button-contained-fill),
-    var(--button-contained-color)
+    var(--button-softBorder),
+    var(--button-softBg),
+    var(--button-softColor)
   );
 }
 
 .outlined {
   @include button-variant(
-    var(--button-outlined-border),
-    var(--button-outlined-fill),
-    var(--button-outlined-color)
+    var(--button-outlinedBorder),
+    var(--button-outlinedBg),
+    var(--button-outlinedColor)
   );
 }
 
-.ghost {
+.plain {
   @include button-variant(
-    var(--button-ghost-border),
-    var(--button-ghost-fill),
-    var(--button-ghost-color)
+    var(--button-plainBorder),
+    var(--button-plainBg),
+    var(--button-plainColor)
   );
 }
 
@@ -58,10 +58,10 @@
   @include min-width-height(148px, 56px);
 }
 
-.startIcon {
+.startAdornment {
   margin-right: 12px;
 }
 
-.endIcon {
+.endAdornment {
   margin-left: 12px;
 }
