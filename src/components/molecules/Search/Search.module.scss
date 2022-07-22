@@ -1,0 +1,21 @@
+.select {
+  select {
+    font-size: 15px;
+    font-weight: 700;
+    width: 130px;
+  }
+}
+
+.divider {
+  height: 20px;
+  width: 1px;
+  background-color: #d1d1d1;
+  margin: 0 12px 0 24px;
+}
+
+.searchButton {
+  background-color: transparent;
+  padding: 0;
+  border: none;
+  cursor: pointer;
+}

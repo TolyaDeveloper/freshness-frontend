@@ -1,13 +1,11 @@
 .selectWrapper {
   position: relative;
   display: inline-flex;
-  min-width: 50px;
   z-index: 1;
 }
 
 .select {
-  padding: 0 8px 0 0;
-  width: 100%;
+  padding: 0 12px 0 0;
   border: none;
   background-color: transparent;
   font-family: var(--app-font-secondary);
@@ -15,6 +13,7 @@
   appearance: none;
   cursor: pointer;
   border-radius: 12px;
+  outline-offset: 2px;
 
   &:focus {
     outline: var(--app-outline-focusVisible);

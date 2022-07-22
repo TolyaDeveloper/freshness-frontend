@@ -1,0 +1,24 @@
+.userWithCart {
+  display: flex;
+}
+
+.cartIcon {
+  position: relative;
+  margin-left: 40px;
+}
+
+.chip {
+  position: absolute;
+  left: -7px;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background-color: var(--userWithCartChipBg);
+  color: var(--userWithCartChipColor);
+  font-size: 12px;
+  font-weight: 600;
+}
