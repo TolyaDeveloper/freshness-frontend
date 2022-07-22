@@ -1,6 +1,8 @@
 @import '~/styles/mixins';
 
 .link {
+  cursor: pointer;
+
   &:hover .endAdornment > svg {
     transform: rotateZ(90deg);
   }
