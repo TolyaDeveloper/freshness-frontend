@@ -1,4 +1,5 @@
 export { default as Arrow } from './ui/Arrow/Arrow'
+export { default as Avatar } from './ui/Avatar/Avatar'
 export { default as Breadcrumbs } from './ui/Breadcrumbs/Breadcrumbs'
 export { default as Button } from './ui/Button/Button'
 export { default as CustomLink } from './ui/CustomLink/CustomLink'
