@@ -6,4 +6,5 @@ export interface RatingProps
   isEditable?: boolean
   onSetRating?: (rating: number) => void
   max?: number
+  color?: 'primary' | 'additional'
 }

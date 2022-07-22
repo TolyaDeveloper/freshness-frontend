@@ -11,6 +11,7 @@ const Rating = ({
   rating,
   isEditable = false,
   max = 5,
+  color = 'additional',
   onSetRating,
   ...props
 }: RatingProps) => {
@@ -47,7 +48,7 @@ const Rating = ({
         disabled={!isEditable}
       >
         <RatingIcon
-          className={cnb(styles.star, { [styles.filled]: index < amount })}
+          className={cnb(styles.star, { [styles[color]]: index < amount })}
         />
       </button>
     ))

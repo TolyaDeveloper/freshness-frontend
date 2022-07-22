@@ -10,22 +10,22 @@
   width: 100%;
   border: none;
   background-color: transparent;
-  font-family: var(--app-secondary-font);
+  font-family: var(--app-font-secondary);
   font-weight: 600;
   appearance: none;
   cursor: pointer;
+  border-radius: 12px;
 
   &:focus {
-    outline: var(--select-focused-outline);
-    border-radius: 12px;
+    outline: var(--app-outline-focusVisible);
   }
 
-  &:focus ~ .endAdornemt > svg {
+  &:focus ~ .endAdornment > svg {
     transform: rotateZ(0);
   }
 }
 
-.endAdornemt {
+.endAdornment {
   position: absolute;
   display: inline-flex;
   top: 50%;

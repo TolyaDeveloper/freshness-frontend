@@ -4,6 +4,10 @@
   &:hover .endAdornment > svg {
     transform: rotateZ(90deg);
   }
+
+  &:focus-visible {
+    outline: var(--app-outline-focusVisible);
+  }
 }
 
 .underline-hover {
@@ -16,16 +20,16 @@
   text-decoration: underline;
 }
 
-.green {
-  color: var(--custom-link-green-color);
+.secondary {
+  color: var(--custom-link-secondary-color);
 }
 
-.black {
-  color: var(--custom-link-black-color);
+.primary1 {
+  color: var(--custom-link-primary1-color);
 }
 
-.grey {
-  color: var(--custom-link-grey-color);
+.primary2 {
+  color: var(--custom-link-primary2-color);
 }
 
 .endAdornment {
@@ -33,13 +37,15 @@
 }
 
 .body1 {
-  @include typography-set(400, 12px 16px);
+  @include typography-set(400, 12px, 16px);
 }
 
 .body2 {
-  @include typography-set(400, 14px 19px);
+  @include typography-set(400, 14px, 19px);
 }
 
 .body3 {
-  @include typography-set(500, 15px 22px);
+  @include typography-set(500, 15px, 22px);
+
+  font-family: var(--app-font-secondary);
 }

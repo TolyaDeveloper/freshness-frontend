@@ -1,7 +1,7 @@
 @import '~/styles/mixins';
 
 .typography {
-  font-family: var(--app-secondary-font);
+  font-family: var(--app-font-secondary);
 }
 
 .h1 {
@@ -48,22 +48,22 @@
   @include typography-set(400, 12px, 16px);
 }
 
-.black {
-  color: var(--typography-black);
+.primary1 {
+  color: var(--typography-primary1-color);
 }
 
-.dark-grey {
-  color: var(--typography-dark-grey);
+.primary2 {
+  color: var(--typography-primary2-color);
 }
 
-.light-grey {
-  color: var(--typography-light-grey);
+.primary3 {
+  color: var(--typography-primary3-color);
 }
 
-.white {
-  color: var(--typography-white);
+.primary4 {
+  color: var(--typography-primary4-color);
 }
 
-.green {
-  color: var(--typography-green);
+.secondary {
+  color: var(--typography-secondary-color);
 }

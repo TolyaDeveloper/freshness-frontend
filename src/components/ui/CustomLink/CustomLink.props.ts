@@ -1,12 +1,13 @@
-import { AnchorHTMLAttributes, ReactNode } from 'react'
-import { LinkProps } from 'next/link'
+import { AnchorHTMLAttributes, DetailedHTMLProps, ReactNode } from 'react'
 
 export interface CustomLinkProps
-  extends Omit<AnchorHTMLAttributes<HTMLAnchorElement>, 'href'>,
-    Omit<LinkProps, 'onClick' | 'onMouseEnter'> {
+  extends DetailedHTMLProps<
+    AnchorHTMLAttributes<HTMLAnchorElement>,
+    HTMLAnchorElement
+  > {
   endAdornment?: ReactNode
   underline?: 'none' | 'hover' | 'always'
-  color?: 'green' | 'black' | 'grey'
-  variant: 'body1' | 'body2' | 'body3'
+  color?: 'secondary' | 'primary1' | 'primary2'
+  level: 'body1' | 'body2' | 'body3'
   children: ReactNode
 }

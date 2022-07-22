@@ -15,7 +15,7 @@ const Select = ({
         {children}
       </select>
       {endAdornment && (
-        <span className={styles.endAdornemt}>{endAdornment}</span>
+        <span className={styles.endAdornment}>{endAdornment}</span>
       )}
     </div>
   )

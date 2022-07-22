@@ -6,10 +6,10 @@ import styles from './Button.module.scss'
 const Button = ({
   children,
   className,
-  variant = 'contained',
+  variant = 'solid',
   size = 'md',
-  startIcon,
-  endIcon,
+  startAdornment,
+  endAdornment,
   ...props
 }: ButtonProps) => {
   return (
@@ -17,9 +17,11 @@ const Button = ({
       className={cnb(styles.button, styles[variant], styles[size], className)}
       {...props}
     >
-      {startIcon && <span className={styles.startIcon}>{startIcon}</span>}
+      {startAdornment && (
+        <span className={styles.startIcon}>{startAdornment}</span>
+      )}
       {children}
-      {endIcon && <span className={styles.endIcon}>{endIcon}</span>}
+      {endAdornment && <span className={styles.endIcon}>{endAdornment}</span>}
     </button>
   )
 }
