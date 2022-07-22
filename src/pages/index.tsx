@@ -1,7 +1,7 @@
-import {} from '~/components'
+import { Layout } from '~/layout'
 
 const Home = () => {
-  return <></>
+  return <Layout>MAIN</Layout>
 }
 
 export default Home

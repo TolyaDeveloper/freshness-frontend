@@ -34,6 +34,9 @@
 
   --app-min-width: 320px;
   --app-margin: 0;
+  --app-container-width: 1260px;
+  --app-padding-left: 45px;
+  --app-padding-right: 45px;
   --app-font-primary: 'Open Sans';
   --app-font-secondary: 'Poppins';
   --app-font-fallback: sans-serif;
@@ -41,6 +44,7 @@
   --app-font-size-default: 14px;
   --app-background: var(--palette-primary-100);
   --app-background-container: var(--palette-primary-50);
+  --app-box-shadow-container: 0px 2px 4px rgba(0, 0, 0, 0.15);
   --app-transform-transition: transform 0.3s cubic-bezier(0.075, 0.82, 0.165, 1);
   --app-outline-focusVisible: 2px solid var(--palette-secondary-300);
 
@@ -66,6 +70,8 @@
   --custom-link-secondary-color: var(--palette-secondary-300);
   --custom-link-primary1-color: var(--palette-primary-500);
   --custom-link-primary2-color: var(--palette-primary-700);
+
+  --divider-bg: var(--palette-primary-200);
 
   --checkbox-checked-border: 2px solid var(--palette-secondary-400);
   --checkbox-not-checked-border: 2px solid var(--palette-primary-400);

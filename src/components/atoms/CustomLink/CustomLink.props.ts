@@ -8,6 +8,6 @@ export interface CustomLinkProps
   endAdornment?: ReactNode
   underline?: 'none' | 'hover' | 'always'
   color?: 'secondary' | 'primary1' | 'primary2'
-  level: 'body1' | 'body2' | 'body3'
+  level?: 'body1' | 'body2' | 'body3'
   children: ReactNode
 }

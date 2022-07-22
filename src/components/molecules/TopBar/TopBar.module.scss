@@ -1,0 +1,15 @@
+.topBar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.list {
+  display: flex;
+}
+
+.listItem {
+  & + & {
+    margin-left: 35px;
+  }
+}
