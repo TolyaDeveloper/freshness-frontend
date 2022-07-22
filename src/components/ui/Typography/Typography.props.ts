@@ -18,7 +18,7 @@ export const variantsMapping = {
 
 export interface TypographyProps
   extends DetailedHTMLProps<HTMLAttributes<HTMLElement>, HTMLElement> {
-  variant: keyof typeof variantsMapping
+  level: keyof typeof variantsMapping
   component?: ElementType
-  color?: 'black' | 'dark-grey' | 'light-grey' | 'white' | 'green'
+  color?: 'primary1' | 'primary2' | 'primary3' | 'primary4' | 'secondary'
 }

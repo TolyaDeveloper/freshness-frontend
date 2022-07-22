@@ -7,19 +7,19 @@ import styles from './Typography.module.scss'
 const Typography = ({
   children,
   className,
-  variant,
+  level,
   component,
-  color = 'black',
+  color = 'primary4',
   ...props
 }: TypographyProps) => {
-  const Component = component || (variantsMapping[variant] as ElementType)
+  const Component = component || (variantsMapping[level] as ElementType)
 
   return (
     <Component
       className={cnb(
         styles.typography,
         styles[color],
-        styles[variant],
+        styles[level],
         className
       )}
       {...props}

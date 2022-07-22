@@ -6,7 +6,8 @@ import {
   Radio,
   Select,
   Arrow,
-  Tag
+  Tag,
+  Typography
 } from '~/components'
 import EmailIcon from '~/assets/icons/email.svg'
 import SearchIcon from '~/assets/icons/search.svg'
@@ -43,6 +44,21 @@ const Home = () => {
       <Tag variant="outlined" href="/">
         Tag
       </Tag>
+      <Typography level="body1">Text</Typography>
+      <Typography level="body2">Text</Typography>
+      <Typography level="body3">Text</Typography>
+      <Typography level="body4">Text</Typography>
+      <Typography level="body5">Text</Typography>
+      <Typography level="body6">Text</Typography>
+      <Typography level="h1">Text</Typography>
+      <Typography level="h2-xl">Text</Typography>
+      <Typography level="h2-lg">Text</Typography>
+      <Typography level="h2-md">Text</Typography>
+      <Typography level="h2-sm">Text</Typography>
+      <Typography level="h3">Text</Typography>
+      <Typography level="h4" color="secondary" component="cite">
+        Text
+      </Typography>
     </>
   )
 }
