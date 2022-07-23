@@ -71,7 +71,8 @@
   --custom-link-primary1-color: var(--palette-primary-500);
   --custom-link-primary2-color: var(--palette-primary-700);
 
-  --divider-bg: var(--palette-primary-200);
+  --divider-primary1-bg: var(--palette-primary-200);
+  --divider-primary2-bg: var(--palette-primary-400);
 
   --checkbox-checked-border: 2px solid var(--palette-secondary-400);
   --checkbox-not-checked-border: 2px solid var(--palette-primary-400);
@@ -109,4 +110,7 @@
   --typography-primary3-color: var(--palette-primary-600);
   --typography-primary4-color: var(--palette-primary-700);
   --typography-secondary-color: var(--palette-secondary-300);
+
+  --userWithCartChipBg: var(--palette-additional-b-300);
+  --userWithCartChipColor: var(--palette-primary-50);
 }

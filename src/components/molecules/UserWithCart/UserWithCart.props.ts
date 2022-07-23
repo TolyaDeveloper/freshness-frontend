@@ -1,7 +1,6 @@
 import { DetailedHTMLProps, HTMLAttributes } from 'react'
 
-export interface DividerProps
+export interface UserWithCartProps
   extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> {
-  orienation?: 'horizontal' | 'vertical'
-  color?: 'primary1' | 'primary2'
+  itemsInCart?: number
 }

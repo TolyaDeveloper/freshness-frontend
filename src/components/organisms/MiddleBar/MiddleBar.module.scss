@@ -1,0 +1,10 @@
+.middleBar {
+  display: grid;
+  grid-template-columns: 1fr minmax(auto, 500px) 1fr;
+  align-items: center;
+  gap: 30px;
+}
+
+.userWithCart {
+  justify-content: flex-end;
+}

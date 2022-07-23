@@ -3,8 +3,23 @@ import { DividerProps } from './Divider.props'
 
 import styles from './Divider.module.scss'
 
-const Divider = ({ className, ...props }: DividerProps) => {
-  return <div className={cnb(styles.divider, className)} {...props} />
+const Divider = ({
+  className,
+  orienation = 'horizontal',
+  color = 'primary1',
+  ...props
+}: DividerProps) => {
+  return (
+    <div
+      className={cnb(
+        styles.divider,
+        styles[orienation],
+        styles[color],
+        className
+      )}
+      {...props}
+    />
+  )
 }
 
 export default Divider
