@@ -1,14 +1,19 @@
-import { cnb } from 'cnbuilder'
-import { Select, Input, FormStyledWrapper, Arrow } from '~/components/atoms'
+import {
+  Select,
+  Input,
+  FormStyledWrapper,
+  Arrow,
+  Divider
+} from '~/components/atoms'
 import { INPUT_PLACEHOLDER } from '~/constants/molecules/search'
 import { SearchProps } from './Search.props'
 import SearchIcon from '~/assets/icons/search.svg'
 
 import styles from './Search.module.scss'
 
-const Search = ({}: SearchProps) => {
+const Search = ({ className, ...props }: SearchProps) => {
   return (
-    <form autoComplete="off">
+    <form className={className} autoComplete="off" {...props}>
       <FormStyledWrapper>
         <Select
           className={styles.select}
@@ -16,7 +21,11 @@ const Search = ({}: SearchProps) => {
         >
           <option value="gfhfhfhgfhgfhfghgf">All categories</option>
         </Select>
-        <div className={styles.divider} />
+        <Divider
+          className={styles.divider}
+          orienation="vertical"
+          color="primary2"
+        />
         <Input
           className={styles.input}
           placeholder={INPUT_PLACEHOLDER}

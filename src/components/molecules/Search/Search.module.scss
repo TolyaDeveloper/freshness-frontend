@@ -6,16 +6,13 @@
   }
 }
 
-.divider {
-  height: 20px;
-  width: 1px;
-  background-color: #d1d1d1;
-  margin: 0 12px 0 24px;
-}
-
 .searchButton {
   background-color: transparent;
   padding: 0;
   border: none;
   cursor: pointer;
+}
+
+.divider {
+  margin: 10px 12px 10px 24px;
 }
