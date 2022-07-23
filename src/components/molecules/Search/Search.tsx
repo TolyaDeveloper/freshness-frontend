@@ -19,7 +19,7 @@ const Search = ({ className, ...props }: SearchProps) => {
           className={styles.select}
           endAdornment={<Arrow orientation="down" />}
         >
-          <option value="gfhfhfhgfhgfhfghgf">All categories</option>
+          <option value="">All categories</option>
         </Select>
         <Divider
           className={styles.divider}

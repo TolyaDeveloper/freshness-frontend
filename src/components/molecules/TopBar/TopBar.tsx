@@ -1,15 +1,15 @@
 import { cnb } from 'cnbuilder'
 import { CustomLink } from '~/components/atoms'
 import { ROUTES } from '~/constants/routes'
-import { TOP_BAR } from '~/constants/common'
+import { TOP_BAR } from '~/constants/molecules/topBar'
 import { TopBarProps } from './TopBar.props'
 import Link from 'next/link'
 
 import styles from './TopBar.module.scss'
 
-const TopBar = ({ className }: TopBarProps) => {
+const TopBar = ({ className, ...props }: TopBarProps) => {
   return (
-    <div className={cnb(styles.topBar, className)}>
+    <div className={cnb(styles.topBar, className)} {...props}>
       <ul className={styles.list}>
         <li className={styles.listItem}>
           <Link href={ROUTES.chat} passHref>
