@@ -7,9 +7,9 @@ import Link from 'next/link'
 
 import styles from './MiddleBar.module.scss'
 
-const MiddleBar = ({ className }: MiddleBarProps) => {
+const MiddleBar = ({ className, ...props }: MiddleBarProps) => {
   return (
-    <div className={cnb(styles.middleBar, className)}>
+    <div className={cnb(styles.middleBar, className)} {...props}>
       <span>
         <Link href={ROUTES.home}>
           <a>
