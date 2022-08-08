@@ -1,6 +1,6 @@
 import { PropsWithChildren } from 'react'
 import { Divider } from '~/components/atoms'
-import { TopBar } from '~/components/molecules'
+import { TopBar, Navbar } from '~/components/molecules'
 import { MiddleBar } from '~/components/organisms'
 
 import styles from './Layout.module.scss'
@@ -13,6 +13,7 @@ const Layout = ({ children }: PropsWithChildren) => {
           <TopBar className={styles.topBar} />
           <Divider />
           <MiddleBar className={styles.middleBar} />
+          <Navbar />
         </header>
         <main className={styles.main}>{children}</main>
         <footer className={styles.footer}>FOOTER</footer>

@@ -1,13 +1,7 @@
 import { Layout } from '~/layout'
-import { Search, TopBar, UserWithCart } from '~/components/molecules'
 
 const Home = () => {
-  return (
-    <Layout>
-      MAIN <TopBar />
-      <UserWithCart />
-    </Layout>
-  )
+  return <Layout />
 }
 
 export default Home
