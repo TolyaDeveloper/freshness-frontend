@@ -1,10 +1,25 @@
 import type { AppProps } from 'next/app'
+import { ReactElement, ReactNode } from 'react'
+import { NextPage } from 'next'
 import { META } from '~/constants/common'
+import { AppContextProvider } from '~/context/AppContext/App.context'
+import { Layout } from '~/layout'
 import Head from 'next/head'
 
 import '~/styles/globals.scss'
 
-const MyApp = ({ Component, pageProps }: AppProps) => {
+export type NextPageWithLayout = NextPage & {
+  getLayout?: (page: ReactElement) => ReactNode
+}
+
+type AppPropsWithLayout = AppProps & {
+  Component: NextPageWithLayout
+}
+
+const MyApp = ({ Component, pageProps }: AppPropsWithLayout) => {
+  const getLayout =
+    Component.getLayout ?? (page => <Layout {...page.props}>{page}</Layout>)
+
   return (
     <>
       <Head>
@@ -16,7 +31,9 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
         <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
         <link rel="manifest" href="/manifest.webmanifest" />
       </Head>
-      <Component {...pageProps} />
+      <AppContextProvider>
+        {getLayout(<Component {...pageProps} />)}
+      </AppContextProvider>
     </>
   )
 }
