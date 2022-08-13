@@ -3,6 +3,7 @@ import { ReactElement, ReactNode } from 'react'
 import { NextPage } from 'next'
 import { META } from '~/constants/common'
 import { AppContextProvider } from '~/context/AppContext/App.context'
+import { Layout } from '~/layout'
 import Head from 'next/head'
 
 import '~/styles/globals.scss'
@@ -16,7 +17,8 @@ type AppPropsWithLayout = AppProps & {
 }
 
 const MyApp = ({ Component, pageProps }: AppPropsWithLayout) => {
-  const getLayout = Component.getLayout ?? (page => page)
+  const getLayout =
+    Component.getLayout ?? (page => <Layout {...page.props}>{page}</Layout>)
 
   return (
     <>

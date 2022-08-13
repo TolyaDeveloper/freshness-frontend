@@ -1,13 +1,12 @@
 import { GetStaticProps } from 'next'
 import { $api } from '~/api'
-import { ICategory } from '~/interfaces/category.interface'
 
-interface HomeProps {
-  categories: ICategory[]
-}
-
-const Home = ({}: HomeProps) => {
-  return <>MAIN</>
+const NotFound = () => {
+  return (
+    <div>
+      <h1>Page not found!</h1>
+    </div>
+  )
 }
 
 export const getStaticProps: GetStaticProps = async () => {
@@ -19,4 +18,4 @@ export const getStaticProps: GetStaticProps = async () => {
   }
 }
 
-export default Home
+export default NotFound

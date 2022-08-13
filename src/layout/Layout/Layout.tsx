@@ -9,18 +9,13 @@ import styles from './Layout.module.scss'
 
 const Layout = ({
   children,
-  categories,
-  tags
+  categories
 }: PropsWithChildren<Omit<IAppState, 'layout'>>) => {
-  const { dispatch, state } = useAppContext()
+  const { dispatch } = useAppContext()
 
   useEffect(() => {
-    dispatch({ type: 'SET_CATEGORIES', payload: categories })
-  }, [state.categories])
-
-  useEffect(() => {
-    dispatch({ type: 'SET_TAGS', payload: tags })
-  }, [state.tags])
+    categories && dispatch({ type: 'SET_CATEGORIES', payload: categories })
+  }, [categories, dispatch])
 
   return (
     <>
@@ -29,7 +24,7 @@ const Layout = ({
           <TopBar className={styles.topBar} />
           <Divider />
           <MiddleBar className={styles.middleBar} />
-          <Navbar />
+          <Navbar categoryItems={categories} />
         </header>
         <main className={styles.main}>{children}</main>
         <footer className={styles.footer}>FOOTER</footer>
