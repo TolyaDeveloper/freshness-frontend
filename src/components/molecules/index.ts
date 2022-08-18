@@ -1,3 +1,5 @@
+export { default as AsideMenu } from './AsideMenu/AsideMenu'
+export { default as Banner } from './Banner/Banner'
 export { default as Navbar } from './Navbar/Navbar'
 export { default as Search } from './Search/Search'
 export { default as TopBar } from './TopBar/TopBar'

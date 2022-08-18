@@ -18,10 +18,12 @@ const Button = ({
       {...props}
     >
       {startAdornment && (
-        <span className={styles.startIcon}>{startAdornment}</span>
+        <span className={styles.startAdornment}>{startAdornment}</span>
       )}
       {children}
-      {endAdornment && <span className={styles.endIcon}>{endAdornment}</span>}
+      {endAdornment && (
+        <span className={styles.endAdornment}>{endAdornment}</span>
+      )}
     </button>
   )
 }

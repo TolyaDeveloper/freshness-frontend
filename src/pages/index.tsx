@@ -1,13 +1,13 @@
 import { GetStaticProps } from 'next'
 import { $api } from '~/api'
-import { ICategory } from '~/interfaces/category.interface'
+import { HomeTemplate } from '~/components/templates'
 
-interface HomeProps {
-  categories: ICategory[]
-}
-
-const Home = ({}: HomeProps) => {
-  return <>MAIN</>
+const Home = () => {
+  return (
+    <>
+      <HomeTemplate />
+    </>
+  )
 }
 
 export const getStaticProps: GetStaticProps = async () => {
