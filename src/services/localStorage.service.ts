@@ -1,7 +1,7 @@
 import { FRESHNESS } from '~/constants/common'
 
 class LocalStorageService {
-  static get(key: string) {
+  static getItem(key: string) {
     if (typeof window !== 'undefined') {
       const localStorageData = localStorage.getItem(FRESHNESS)
 
@@ -13,7 +13,7 @@ class LocalStorageService {
     }
   }
 
-  static set(key: string, value: unknown) {
+  static setItem(key: string, value: unknown) {
     if (typeof window !== 'undefined') {
       let localStorageData = JSON.parse(
         localStorage.getItem(FRESHNESS) as string
@@ -28,7 +28,7 @@ class LocalStorageService {
     }
   }
 
-  static remove(key: string) {
+  static removeItem(key: string) {
     if (typeof window !== 'undefined') {
       const localStorageData = JSON.parse(
         localStorage.getItem(FRESHNESS) as string
