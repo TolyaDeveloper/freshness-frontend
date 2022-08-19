@@ -17,7 +17,7 @@ const HomeTemplate = () => {
         asideMenu={
           <AsideMenu
             title="Best from farmers"
-            buttonTitle="More products"
+            buttonTitle="More categories"
             categories={state.categories}
           />
         }
