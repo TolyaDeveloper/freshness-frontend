@@ -2,10 +2,11 @@ import { BannerProps } from './Banner.props'
 import { Arrow, Button, Typography } from '~/components/atoms'
 import BannerBg from '~/assets/images/banner-bg.png'
 import Image from 'next/image'
+import Link from 'next/link'
 
 import styles from './Banner.module.scss'
 
-const Banner = ({ subfocus, title, linkTitle = 'Read' }: BannerProps) => {
+const Banner = ({ subfocus, title, linkTitle = 'Read', href }: BannerProps) => {
   return (
     <div className={styles.banner}>
       <Image
@@ -29,14 +30,15 @@ const Banner = ({ subfocus, title, linkTitle = 'Read' }: BannerProps) => {
         <Typography className={styles.title} level="h2-lg">
           {title}
         </Typography>
-        {/* ! todo */}
-        <Button
-          className={styles.button}
-          variant="outlined"
-          endAdornment={<Arrow />}
-        >
-          {linkTitle}
-        </Button>
+        <Link href={href} passHref>
+          <Button
+            className={styles.button}
+            variant="outlined"
+            endAdornment={<Arrow />}
+          >
+            {linkTitle}
+          </Button>
+        </Link>
       </div>
     </div>
   )

@@ -2,6 +2,7 @@ import { cnb } from 'cnbuilder'
 import { AsideMenu, Banner } from '~/components/molecules'
 import { useAppContext } from '~/context/AppContext/App.context'
 import { AsideMenuWithBannerProps } from './AsideMenuWithBanner.props'
+import { ROUTES } from '~/constants/routes'
 
 import styles from './AsideMenuWithBanner.module.scss'
 
@@ -16,13 +17,13 @@ const AsideMenuWithBanner = ({ className }: AsideMenuWithBannerProps) => {
         buttonTitle="More categories"
       />
       <Banner
-        href="/"
+        href={ROUTES.blog}
         title="Space for heading"
         subfocus="Banner subfocus"
         linkTitle="Read recepies"
       />
       <Banner
-        href="/"
+        href={ROUTES.blog}
         title="Space for heading"
         subfocus="Banner subfocus"
         linkTitle="Read recepies"
