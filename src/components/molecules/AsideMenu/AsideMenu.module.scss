@@ -1,0 +1,13 @@
+.title {
+  margin-bottom: 15px;
+}
+
+.category {
+  & + & {
+    margin-top: 12px;
+  }
+}
+
+.button {
+  margin-top: 60px;
+}

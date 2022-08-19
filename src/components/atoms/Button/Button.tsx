@@ -1,29 +1,40 @@
+import { AnchorHTMLAttributes, forwardRef, LegacyRef } from 'react'
 import { cnb } from 'cnbuilder'
 import { ButtonProps } from './Button.props'
 
 import styles from './Button.module.scss'
 
-const Button = ({
-  children,
-  className,
-  variant = 'solid',
-  size = 'md',
-  startAdornment,
-  endAdornment,
-  ...props
-}: ButtonProps) => {
+const Button = (
+  {
+    children,
+    className,
+    variant = 'solid',
+    size = 'md',
+    startAdornment,
+    endAdornment,
+    href,
+    ...props
+  }: ButtonProps & AnchorHTMLAttributes<HTMLAnchorElement>,
+  ref: LegacyRef<any>
+) => {
+  const Component = href ? 'a' : 'button'
+
   return (
-    <button
+    <Component
       className={cnb(styles.button, styles[variant], styles[size], className)}
+      href={href}
+      ref={ref}
       {...props}
     >
       {startAdornment && (
-        <span className={styles.startIcon}>{startAdornment}</span>
+        <span className={styles.startAdornment}>{startAdornment}</span>
       )}
       {children}
-      {endAdornment && <span className={styles.endIcon}>{endAdornment}</span>}
-    </button>
+      {endAdornment && (
+        <span className={styles.endAdornment}>{endAdornment}</span>
+      )}
+    </Component>
   )
 }
 
-export default Button
+export default forwardRef(Button)
