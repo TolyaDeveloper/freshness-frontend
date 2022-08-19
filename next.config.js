@@ -5,6 +5,7 @@ module.exports = {
     locales: ['en'],
     defaultLocale: 'en'
   },
+  images: { domains: ['localhost'] },
   reactStrictMode: true,
   swcMinify: true,
   webpack(config, options) {

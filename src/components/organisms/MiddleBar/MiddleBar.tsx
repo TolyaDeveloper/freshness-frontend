@@ -3,11 +3,14 @@ import { Logo } from '~/components/atoms'
 import { Search, UserWithCart } from '~/components/molecules'
 import { ROUTES } from '~/constants/routes'
 import { MiddleBarProps } from './Middlebar.props'
+import { useAppContext } from '~/context/AppContext/App.context'
 import Link from 'next/link'
 
 import styles from './MiddleBar.module.scss'
 
 const MiddleBar = ({ className, ...props }: MiddleBarProps) => {
+  const { state } = useAppContext()
+
   return (
     <div className={cnb(styles.middleBar, className)} {...props}>
       <span>
@@ -18,7 +21,10 @@ const MiddleBar = ({ className, ...props }: MiddleBarProps) => {
         </Link>
       </span>
       <Search />
-      <UserWithCart className={styles.userWithCart} itemsInCart={12} />
+      <UserWithCart
+        className={styles.userWithCart}
+        itemsInCart={state.cart.length}
+      />
     </div>
   )
 }

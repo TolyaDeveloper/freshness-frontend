@@ -1,3 +1,4 @@
+import { useMemo } from 'react'
 import {
   Select,
   Input,
@@ -5,13 +6,23 @@ import {
   Arrow,
   Divider
 } from '~/components/atoms'
-import { INPUT_PLACEHOLDER } from '~/constants/molecules/search'
 import { SearchProps } from './Search.props'
 import SearchIcon from '~/assets/icons/search.svg'
+import { useAppContext } from '~/context/AppContext/App.context'
 
 import styles from './Search.module.scss'
 
 const Search = ({ className, ...props }: SearchProps) => {
+  const { state } = useAppContext()
+
+  const renderedOptions = useMemo(() => {
+    return state.categories.map(({ _id, name }) => (
+      <option key={_id} value={name}>
+        {name}
+      </option>
+    ))
+  }, [state.categories])
+
   return (
     <form className={className} autoComplete="off" {...props}>
       <FormStyledWrapper>
@@ -20,6 +31,7 @@ const Search = ({ className, ...props }: SearchProps) => {
           endAdornment={<Arrow orientation="down" />}
         >
           <option value="">All categories</option>
+          {renderedOptions}
         </Select>
         <Divider
           className={styles.divider}
@@ -28,7 +40,7 @@ const Search = ({ className, ...props }: SearchProps) => {
         />
         <Input
           className={styles.input}
-          placeholder={INPUT_PLACEHOLDER}
+          placeholder="Search Products, categories ..."
           endAdornment={
             <button className={styles.searchButton} type="submit">
               <SearchIcon />

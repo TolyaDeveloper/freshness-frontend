@@ -1,7 +1,7 @@
 import { cnb } from 'cnbuilder'
 import { CustomLink } from '~/components/atoms'
 import { ROUTES } from '~/constants/routes'
-import { TOP_BAR } from '~/constants/molecules/topBar'
+import { TOP_BAR } from '~/constants/common'
 import { TopBarProps } from './TopBar.props'
 import Link from 'next/link'
 

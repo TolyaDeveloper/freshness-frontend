@@ -1,0 +1,13 @@
+.product {
+  padding: 15px;
+  max-width: 270px;
+  display: block;
+  border: var(--products-border);
+  border-radius: 12px;
+}
+
+.bottomBlock {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}

@@ -1,21 +1,17 @@
 import { cnb } from 'cnbuilder'
-import { AsideMenu, Banner } from '~/components/molecules'
-import { useAppContext } from '~/context/AppContext/App.context'
+import { Banner } from '~/components/molecules'
 import { AsideMenuWithBannerProps } from './AsideMenuWithBanner.props'
 import { ROUTES } from '~/constants/routes'
 
 import styles from './AsideMenuWithBanner.module.scss'
 
-const AsideMenuWithBanner = ({ className }: AsideMenuWithBannerProps) => {
-  const { state } = useAppContext()
-
+const AsideMenuWithBanner = ({
+  className,
+  asideMenu
+}: AsideMenuWithBannerProps) => {
   return (
     <div className={cnb(styles.asideMenuWithBanner, className)}>
-      <AsideMenu
-        categories={state.categories}
-        title="Category menu"
-        buttonTitle="More categories"
-      />
+      {asideMenu}
       <Banner
         href={ROUTES.blog}
         title="Space for heading"
