@@ -3,20 +3,18 @@ import { cnb } from 'cnbuilder'
 import { Button, Typography, Tag, Rating } from '~/components/atoms'
 import { GridProductProps } from './GridProduct.props'
 import { ROUTES } from '~/constants/routes'
+import { useAppContext } from '~/context/AppContext/App.context'
 import Link from 'next/link'
 import Image from 'next/image'
 
 import styles from './GridProduct.module.scss'
 
-const GridProduct = ({
-  product,
-  className,
-  setInCart,
-  isAlreadyInCart
-}: GridProductProps) => {
+const GridProduct = ({ product, className }: GridProductProps) => {
   const { locale } = useRouter()
+  const { dispatch, state } = useAppContext()
   const { _id, imageUri, price, rating, smallDescription, title, newPrice } =
     product
+  const isAlreadyInCart = state.cart.includes(_id)
 
   return (
     <div className={styles.productWrapper}>
@@ -71,18 +69,13 @@ const GridProduct = ({
         </a>
       </Link>
       {isAlreadyInCart ? (
-        <Button
-          className={styles.buyButton}
-          onClick={setInCart}
-          size="sm"
-          href={ROUTES.cart}
-        >
+        <Button className={styles.buyButton} size="sm" href={ROUTES.cart}>
           View in cart
         </Button>
       ) : (
         <Button
           className={styles.buyButton}
-          onClick={setInCart}
+          onClick={() => dispatch({ type: 'SET_CART', payload: _id })}
           size="sm"
           type="button"
         >
