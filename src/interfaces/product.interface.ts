@@ -20,7 +20,7 @@ export interface IProduct {
   smallDescription: string
   descriptionBlock: IProductDescriptionBlock
   price: number
-  newPrice?: number
+  oldPrice?: number
   rating: number
   sku: number
   category: ICategory

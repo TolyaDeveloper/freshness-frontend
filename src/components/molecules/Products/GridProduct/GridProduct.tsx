@@ -8,11 +8,12 @@ import Link from 'next/link'
 import Image from 'next/image'
 
 import styles from './GridProduct.module.scss'
+import { countDiscountPercentage } from '~/utils/countDiscountPercentage'
 
 const GridProduct = ({ product, className }: GridProductProps) => {
   const { locale } = useRouter()
   const { dispatch, state } = useAppContext()
-  const { _id, imageUri, price, rating, smallDescription, title, newPrice } =
+  const { _id, imageUri, price, rating, smallDescription, title, oldPrice } =
     product
   const isAlreadyInCart = state.cart.includes(_id)
 
@@ -30,9 +31,11 @@ const GridProduct = ({ product, className }: GridProductProps) => {
               quality={100}
               alt={title}
             />
-            <Tag className={styles.discountTag} size="sm">
-              -36%
-            </Tag>
+            {oldPrice && oldPrice > price && (
+              <Tag className={styles.discountTag} size="sm">
+                -{countDiscountPercentage(oldPrice, price)}%
+              </Tag>
+            )}
           </div>
           <Typography className={styles.title} level="h2-sm">
             {title}
@@ -47,13 +50,13 @@ const GridProduct = ({ product, className }: GridProductProps) => {
           <Rating className={styles.rating} rating={rating} />
           <div className={styles.bottomBlock}>
             <div className={styles.priceBlock}>
-              {newPrice && (
+              {oldPrice && (
                 <Typography
                   className={styles.newPrice}
                   level="body5"
                   color="primary2"
                 >
-                  12.78
+                  {oldPrice}
                 </Typography>
               )}
 
