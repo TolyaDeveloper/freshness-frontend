@@ -13,9 +13,10 @@ const Home = () => {
 export const getStaticProps: GetStaticProps = async () => {
   const { data: categories } = await $api.get('/categories')
   const { data: products } = await $api.get('/products')
+  const { data: customersReviews } = await $api.get('/customers-reviews')
 
   return {
-    props: { categories, products },
+    props: { categories, products, customersReviews },
     revalidate: 120
   }
 }

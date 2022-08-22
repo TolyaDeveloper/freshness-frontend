@@ -2,18 +2,38 @@ import { Arrow, Button, Typography } from '~/components/atoms'
 import {
   AsideMenu,
   ProductContainer,
-  PreSectionContainer
+  PreSectionContainer,
+  SliderComment
 } from '~/components/molecules'
 import {
   AsideMenuWithBanner,
   AsideMenuWithProducts
 } from '~/components/organisms'
 import { useAppContext } from '~/context/AppContext/App.context'
+import { LeftSliderArrow, RightSliderArrow } from '~/components/atoms'
+import Slider, { Settings } from 'react-slick'
 
 import styles from './HomeTemplate.module.scss'
 
 const HomeTemplate = () => {
   const { state } = useAppContext()
+
+  const sliderSettings: Settings = {
+    dots: false,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 2,
+    slidesToScroll: 1,
+    centerMode: true,
+    centerPadding: '20%',
+    prevArrow: <LeftSliderArrow className={styles.prevArrow} />,
+    nextArrow: <RightSliderArrow className={styles.nextArrow} />,
+    responsive: [
+      { breakpoint: 991, settings: { slidesToShow: 2, centerPadding: '0' } },
+      { breakpoint: 767, settings: { slidesToShow: 1, centerPadding: '20%' } },
+      { breakpoint: 575, settings: { slidesToShow: 1, centerPadding: '0' } }
+    ]
+  }
 
   return (
     <>
@@ -36,7 +56,12 @@ const HomeTemplate = () => {
             categories={state.categories}
           />
         }
-        products={<ProductContainer layout="grid" products={state.products} />}
+        products={
+          <ProductContainer
+            layout="grid"
+            products={state.products.slice(0, 3)}
+          />
+        }
       />
       <AsideMenuWithProducts
         className={styles.asideMenuWithProducts}
@@ -47,8 +72,28 @@ const HomeTemplate = () => {
             categories={state.categories}
           />
         }
-        products={<ProductContainer layout="grid" products={state.products} />}
+        products={
+          <ProductContainer
+            layout="grid"
+            products={state.products.slice(3, 6)}
+          />
+        }
       />
+      <PreSectionContainer
+        className={styles.preSectionContainer}
+        heading={<Typography level="h2-md">Our customers says</Typography>}
+        button={
+          <Button variant="plain" endAdornment={<Arrow />}>
+            Button
+          </Button>
+        }
+      />
+
+      <Slider className={styles.slider} {...sliderSettings}>
+        {state.customersReviews.map(({ _id, ...rest }) => (
+          <SliderComment className={styles.sliderComment} key={_id} {...rest} />
+        ))}
+      </Slider>
       <PreSectionContainer
         className={styles.preSectionContainer}
         heading={<Typography level="h2-md">Section Headline</Typography>}
@@ -58,7 +103,7 @@ const HomeTemplate = () => {
           </Button>
         }
       />
-      <ProductContainer layout="grid" products={state.products} />
+      <ProductContainer layout="grid" products={state.products.slice(0, 4)} />
     </>
   )
 }
