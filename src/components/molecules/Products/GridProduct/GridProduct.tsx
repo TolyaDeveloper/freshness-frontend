@@ -48,27 +48,22 @@ const GridProduct = ({ product, className }: GridProductProps) => {
             {smallDescription}
           </Typography>
           <Rating className={styles.rating} rating={rating} />
-          <div className={styles.bottomBlock}>
-            <div className={styles.priceBlock}>
-              {oldPrice && (
-                <Typography
-                  className={styles.newPrice}
-                  level="body5"
-                  color="primary2"
-                >
-                  {oldPrice}
-                </Typography>
-              )}
-
-              <Typography level="body1" color="primary4">
-                {new Intl.NumberFormat(locale, {
-                  style: 'currency',
-                  currency: 'USD',
-                  currencyDisplay: 'code'
-                }).format(price)}
-              </Typography>
-            </div>
-          </div>
+          {oldPrice && (
+            <Typography
+              className={styles.newPrice}
+              level="body5"
+              color="primary2"
+            >
+              {oldPrice}
+            </Typography>
+          )}
+          <Typography level="body1" color="primary4">
+            {new Intl.NumberFormat(locale, {
+              style: 'currency',
+              currency: 'USD',
+              currencyDisplay: 'code'
+            }).format(price)}
+          </Typography>
         </a>
       </Link>
       {isAlreadyInCart ? (
