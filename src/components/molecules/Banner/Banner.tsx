@@ -1,3 +1,4 @@
+import { memo } from 'react'
 import { BannerProps } from './Banner.props'
 import { Arrow, Button, Typography } from '~/components/atoms'
 import BannerBg from '~/assets/images/banner-bg.png'
@@ -44,4 +45,4 @@ const Banner = ({ subfocus, title, linkTitle = 'Read', href }: BannerProps) => {
   )
 }
 
-export default Banner
+export default memo(Banner)

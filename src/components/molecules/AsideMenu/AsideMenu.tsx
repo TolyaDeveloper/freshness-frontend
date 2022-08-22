@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, memo } from 'react'
 import { AsideMenuProps } from './AsideMenu.props'
 import { Typography, CustomLink, Button, Arrow } from '~/components/atoms'
 import Link from 'next/link'
@@ -50,4 +50,4 @@ const AsideMenu = ({
   )
 }
 
-export default AsideMenu
+export default memo(AsideMenu)

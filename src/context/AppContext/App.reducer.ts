@@ -9,7 +9,7 @@ export const appReducer = (state: IAppState, action: AppActions) => {
     case 'SET_TAGS':
       return { ...state, tags: action.payload }
     case 'SET_CART':
-      return { ...state, cart: state.cart.push(action.payload) }
+      return { ...state, cart: [...state.cart, action.payload] }
     case 'SET_LAYOUT':
       return { ...state, layout: action.payload }
     default:

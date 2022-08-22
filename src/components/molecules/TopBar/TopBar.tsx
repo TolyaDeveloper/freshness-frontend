@@ -1,3 +1,4 @@
+import { memo } from 'react'
 import { cnb } from 'cnbuilder'
 import { CustomLink } from '~/components/atoms'
 import { ROUTES } from '~/constants/routes'
@@ -51,4 +52,4 @@ const TopBar = ({ className, ...props }: TopBarProps) => {
   )
 }
 
-export default TopBar
+export default memo(TopBar)
