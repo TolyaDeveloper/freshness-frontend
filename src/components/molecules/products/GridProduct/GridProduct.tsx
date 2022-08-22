@@ -67,7 +67,12 @@ const GridProduct = ({ product, className }: GridProductProps) => {
         </a>
       </Link>
       {isAlreadyInCart ? (
-        <Button className={styles.buyButton} size="sm" href={ROUTES.cart}>
+        <Button
+          className={styles.buyButton}
+          variant="outlined"
+          size="sm"
+          href={ROUTES.cart}
+        >
           View in cart
         </Button>
       ) : (
