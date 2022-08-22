@@ -2,7 +2,7 @@ import { Arrow, Button, Typography } from '~/components/atoms'
 import {
   AsideMenu,
   ProductContainer,
-  PreSectionWrapper
+  PreSectionContainer
 } from '~/components/molecules'
 import {
   AsideMenuWithBanner,
@@ -49,8 +49,8 @@ const HomeTemplate = () => {
         }
         products={<ProductContainer layout="grid" products={state.products} />}
       />
-      <PreSectionWrapper
-        className={styles.preSectionWrapper}
+      <PreSectionContainer
+        className={styles.preSectionContainer}
         heading={<Typography level="h2-md">Section Headline</Typography>}
         button={
           <Button variant="plain" endAdornment={<Arrow />}>
