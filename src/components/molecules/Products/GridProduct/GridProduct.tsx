@@ -23,12 +23,12 @@ const GridProduct = ({ product, className }: GridProductProps) => {
         <a className={cnb(styles.product, className)}>
           <div className={styles.imageWrapper}>
             <Image
+              className={styles.productImage}
               src={`${process.env.NEXT_PUBLIC_IMAGES_URI}${imageUri}`}
-              height="180px"
-              layout="intrinsic"
-              width="100%"
+              width={270}
+              height={180}
+              layout="responsive"
               objectFit="cover"
-              quality={100}
               alt={title}
             />
             {oldPrice && oldPrice > price && (

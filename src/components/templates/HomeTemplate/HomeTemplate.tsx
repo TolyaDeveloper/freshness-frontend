@@ -1,4 +1,9 @@
-import { AsideMenu, ProductContainer } from '~/components/molecules'
+import { Arrow, Button, Typography } from '~/components/atoms'
+import {
+  AsideMenu,
+  ProductContainer,
+  PreSectionWrapper
+} from '~/components/molecules'
 import {
   AsideMenuWithBanner,
   AsideMenuWithProducts
@@ -44,6 +49,16 @@ const HomeTemplate = () => {
         }
         products={<ProductContainer layout="grid" products={state.products} />}
       />
+      <PreSectionWrapper
+        className={styles.preSectionWrapper}
+        heading={<Typography level="h2-md">Section Headline</Typography>}
+        button={
+          <Button variant="plain" endAdornment={<Arrow />}>
+            Button
+          </Button>
+        }
+      />
+      <ProductContainer layout="grid" products={state.products} />
     </>
   )
 }
