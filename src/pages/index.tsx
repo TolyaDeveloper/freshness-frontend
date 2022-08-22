@@ -12,9 +12,10 @@ const Home = () => {
 
 export const getStaticProps: GetStaticProps = async () => {
   const { data: categories } = await $api.get('/categories')
+  const { data: products } = await $api.get('/products')
 
   return {
-    props: { categories },
+    props: { categories, products },
     revalidate: 120
   }
 }

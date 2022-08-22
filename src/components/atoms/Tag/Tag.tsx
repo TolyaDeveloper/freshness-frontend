@@ -1,6 +1,5 @@
 import { cnb } from 'cnbuilder'
 import { TagProps } from './Tag.props'
-import { TAG } from '~/constants/atoms/tag'
 import Link from 'next/link'
 import DeleteIcon from '~/assets/icons/delete.svg'
 
@@ -28,7 +27,7 @@ const Tag = ({
     <button
       className={styles.deleteButton}
       type="button"
-      aria-label={TAG.ARIA_LABEL}
+      aria-label="Delete this tag"
       onClick={onRemoveTag}
     >
       <DeleteIcon className={styles.deleteSvg} />

@@ -1,0 +1,59 @@
+.productWrapper {
+  position: relative;
+}
+
+.product {
+  padding: 15px;
+  max-width: 100%;
+  display: block;
+  border: var(--products-border);
+  border-radius: 12px;
+}
+
+.imageWrapper {
+  position: relative;
+  text-align: center;
+  margin-bottom: 15px;
+}
+
+.discountTag {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+}
+
+.title,
+.smallDescription {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
+}
+
+.title {
+  margin-bottom: 5px;
+}
+
+.smallDescription {
+  margin-bottom: 12px;
+}
+
+.rating {
+  margin-bottom: 15px;
+}
+
+.newPrice {
+  text-decoration: line-through;
+}
+
+.bottomBlock {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.buyButton {
+  position: absolute;
+  bottom: 15px;
+  right: 15px;
+}

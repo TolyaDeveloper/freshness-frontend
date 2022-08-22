@@ -5,5 +5,6 @@ export const ROUTES = {
   about: '/about-us',
   careers: '/careers',
   profile: '/profile',
-  cart: '/cart'
+  cart: '/cart',
+  products: '/products'
 }

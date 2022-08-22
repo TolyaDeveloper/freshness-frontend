@@ -9,13 +9,18 @@ import styles from './Layout.module.scss'
 
 const Layout = ({
   children,
-  categories
+  categories,
+  products
 }: PropsWithChildren<Omit<IAppState, 'layout'>>) => {
   const { dispatch } = useAppContext()
 
   useEffect(() => {
     categories && dispatch({ type: 'SET_CATEGORIES', payload: categories })
   }, [categories, dispatch])
+
+  useEffect(() => {
+    products && dispatch({ type: 'SET_PRODUCTS', payload: products })
+  }, [products, dispatch])
 
   return (
     <>
