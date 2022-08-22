@@ -23,12 +23,12 @@ const GridProduct = ({ product, className }: GridProductProps) => {
         <a className={cnb(styles.product, className)}>
           <div className={styles.imageWrapper}>
             <Image
+              className={styles.productImage}
               src={`${process.env.NEXT_PUBLIC_IMAGES_URI}${imageUri}`}
-              height="180px"
-              layout="intrinsic"
-              width="100%"
+              width={270}
+              height={180}
+              layout="responsive"
               objectFit="cover"
-              quality={100}
               alt={title}
             />
             {oldPrice && oldPrice > price && (
@@ -48,27 +48,22 @@ const GridProduct = ({ product, className }: GridProductProps) => {
             {smallDescription}
           </Typography>
           <Rating className={styles.rating} rating={rating} />
-          <div className={styles.bottomBlock}>
-            <div className={styles.priceBlock}>
-              {oldPrice && (
-                <Typography
-                  className={styles.newPrice}
-                  level="body5"
-                  color="primary2"
-                >
-                  {oldPrice}
-                </Typography>
-              )}
-
-              <Typography level="body1" color="primary4">
-                {new Intl.NumberFormat(locale, {
-                  style: 'currency',
-                  currency: 'USD',
-                  currencyDisplay: 'code'
-                }).format(price)}
-              </Typography>
-            </div>
-          </div>
+          {oldPrice && (
+            <Typography
+              className={styles.newPrice}
+              level="body5"
+              color="primary2"
+            >
+              {oldPrice}
+            </Typography>
+          )}
+          <Typography level="body1" color="primary4">
+            {new Intl.NumberFormat(locale, {
+              style: 'currency',
+              currency: 'USD',
+              currencyDisplay: 'code'
+            }).format(price)}
+          </Typography>
         </a>
       </Link>
       {isAlreadyInCart ? (
