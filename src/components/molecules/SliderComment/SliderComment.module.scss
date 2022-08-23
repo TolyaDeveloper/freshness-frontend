@@ -1,0 +1,24 @@
+.sliderComment {
+  position: relative;
+  max-width: 100%;
+  padding: 24px 32px 40px 32px;
+  text-align: center;
+  border: var(--slider-comment-border);
+  border-radius: 12px;
+}
+
+.blockquote {
+  margin: 0 0 20px 0;
+  max-width: 100%;
+  display: -webkit-box;
+  overflow: hidden;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+}
+
+.avatar {
+  position: absolute;
+  bottom: -24px;
+  left: 50%;
+  transform: translateX(-50%);
+}
