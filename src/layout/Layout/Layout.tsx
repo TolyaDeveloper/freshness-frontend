@@ -11,9 +11,13 @@ const Layout = ({
   children,
   categories,
   products,
-  customersReviews
+  customersReviews,
+  blogPosts,
+  tags
 }: PropsWithChildren<Omit<IAppState, 'layout'>>) => {
   const { dispatch } = useAppContext()
+
+  // ? refactor
 
   useEffect(() => {
     categories && dispatch({ type: 'SET_CATEGORIES', payload: categories })
@@ -27,6 +31,14 @@ const Layout = ({
     customersReviews &&
       dispatch({ type: 'SET_CUSTOMERS_REVIEWS', payload: customersReviews })
   }, [customersReviews, dispatch])
+
+  useEffect(() => {
+    blogPosts && dispatch({ type: 'SET_BLOG_POSTS', payload: blogPosts })
+  }, [blogPosts, dispatch])
+
+  useEffect(() => {
+    tags && dispatch({ type: 'SET_TAGS', payload: tags })
+  }, [tags, dispatch])
 
   return (
     <>

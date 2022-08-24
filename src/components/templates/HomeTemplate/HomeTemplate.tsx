@@ -3,7 +3,8 @@ import {
   AsideMenu,
   ProductContainer,
   PreSectionContainer,
-  SliderComment
+  SliderComment,
+  LargeBlog
 } from '~/components/molecules'
 import {
   AsideMenuWithBanner,
@@ -11,6 +12,7 @@ import {
 } from '~/components/organisms'
 import { useAppContext } from '~/context/AppContext/App.context'
 import { LeftSliderArrow, RightSliderArrow } from '~/components/atoms'
+import { ROUTES } from '~/constants/routes'
 import Slider, { Settings } from 'react-slick'
 
 import styles from './HomeTemplate.module.scss'
@@ -104,6 +106,18 @@ const HomeTemplate = () => {
         }
       />
       <ProductContainer layout="grid" products={state.products.slice(0, 4)} />
+      <PreSectionContainer
+        className={styles.preSectionContainer}
+        heading={<Typography level="h2-md">Read our Blog posts</Typography>}
+        button={
+          <Button href={ROUTES.blog} variant="plain" endAdornment={<Arrow />}>
+            Go to Blog
+          </Button>
+        }
+      />
+      {state.blogPosts.slice(0, 1).map(blogPost => (
+        <LargeBlog key={blogPost._id} {...blogPost} />
+      ))}
     </>
   )
 }
