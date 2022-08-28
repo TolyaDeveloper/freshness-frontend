@@ -8,7 +8,8 @@ import {
 } from '~/components/molecules'
 import {
   AsideMenuWithBanner,
-  AsideMenuWithProducts
+  AsideMenuWithProducts,
+  BlogPreviews
 } from '~/components/organisms'
 import { useAppContext } from '~/context/AppContext/App.context'
 import { LeftSliderArrow, RightSliderArrow } from '~/components/atoms'
@@ -105,7 +106,11 @@ const HomeTemplate = () => {
           </Button>
         }
       />
-      <ProductContainer layout="grid" products={state.products.slice(0, 4)} />
+      <ProductContainer
+        className={styles.goodsContainer}
+        layout="grid"
+        products={state.products.slice(0, 4)}
+      />
       <PreSectionContainer
         className={styles.preSectionContainer}
         heading={<Typography level="h2-md">Read our Blog posts</Typography>}
@@ -115,9 +120,7 @@ const HomeTemplate = () => {
           </Button>
         }
       />
-      {state.blogPosts.slice(0, 1).map(blogPost => (
-        <LargeBlog key={blogPost._id} {...blogPost} />
-      ))}
+      <BlogPreviews blogs={state.blogPosts} />
     </>
   )
 }

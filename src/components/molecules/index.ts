@@ -1,4 +1,5 @@
 export { default as AsideMenu } from './AsideMenu/AsideMenu'
+export { default as AuthorTimestamp } from './AuthorTimestamp/AuthorTimestamp'
 export { default as Banner } from './Banner/Banner'
 export { default as LargeBlog } from './blog/LargeBlog/LargeBlog'
 export { default as MediumBlog } from './blog/MediumBlog/MediumBlog'

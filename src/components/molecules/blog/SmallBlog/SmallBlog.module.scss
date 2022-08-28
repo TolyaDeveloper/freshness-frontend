@@ -1,0 +1,17 @@
+.smallBlog {
+  display: flex;
+  justify-content: space-between;
+}
+
+.descriptionBlock {
+  max-width: 250px;
+  margin-right: 24px;
+}
+
+.timestamp {
+  margin-top: 15px;
+}
+
+.image {
+  border-radius: 12px;
+}

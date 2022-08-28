@@ -2,6 +2,7 @@
   position: relative;
   max-width: 470px;
   height: 400px;
+  display: block;
 }
 
 .tagsList {
@@ -25,7 +26,20 @@
 
 .descriptionBlock {
   position: absolute;
-  z-index: 2;
   bottom: 24px;
   left: 24px;
+  right: 24px;
+  z-index: 2;
+}
+
+.title {
+  max-width: 100%;
+  display: -webkit-box;
+  overflow: hidden;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+.authorTimestamp {
+  margin-top: 8px;
 }
