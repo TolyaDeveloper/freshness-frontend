@@ -1,0 +1,15 @@
+.linksContainer {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 30px;
+}
+
+.title {
+  margin-bottom: 15px;
+}
+
+.listItem {
+  & + & {
+    margin-top: 15px;
+  }
+}
