@@ -1,4 +1,5 @@
 import { useMemo } from 'react'
+import { useRouter } from 'next/router'
 import {
   Select,
   Input,
@@ -6,14 +7,26 @@ import {
   Arrow,
   Divider
 } from '~/components/atoms'
+import { ROUTES } from '~/constants/routes'
 import { SearchProps } from './Search.props'
-import SearchIcon from '~/assets/icons/search.svg'
 import { useAppContext } from '~/context/AppContext/App.context'
+import { useForm } from 'react-hook-form'
+import { computedTypesResolver } from '@hookform/resolvers/computed-types'
+import {
+  searchSchema,
+  type SearchSchemaType
+} from '~/validators/search.validator'
+import SearchIcon from '~/assets/icons/search.svg'
 
 import styles from './Search.module.scss'
 
 const Search = ({ className, ...props }: SearchProps) => {
   const { state } = useAppContext()
+  const { push } = useRouter()
+
+  const { handleSubmit, register } = useForm<SearchSchemaType>({
+    resolver: computedTypesResolver(searchSchema)
+  })
 
   const renderedOptions = useMemo(() => {
     return state.categories.map(({ _id, name }) => (
@@ -23,12 +36,22 @@ const Search = ({ className, ...props }: SearchProps) => {
     ))
   }, [state.categories])
 
+  const onSubmit = ({ category, search }: SearchSchemaType) => {
+    push({ pathname: ROUTES.search, query: { search, category } })
+  }
+
   return (
-    <form className={className} autoComplete="off" {...props}>
+    <form
+      className={className}
+      autoComplete="off"
+      onSubmit={handleSubmit(onSubmit)}
+      {...props}
+    >
       <FormStyledWrapper>
         <Select
           className={styles.select}
           endAdornment={<Arrow orientation="down" />}
+          {...register('category')}
         >
           <option value="">All categories</option>
           {renderedOptions}
@@ -46,6 +69,7 @@ const Search = ({ className, ...props }: SearchProps) => {
               <SearchIcon />
             </button>
           }
+          {...register('search')}
         />
       </FormStyledWrapper>
     </form>

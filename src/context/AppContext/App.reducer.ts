@@ -13,6 +13,10 @@ export const appReducer = (state: IAppState, action: AppActions) => {
     case 'SET_BLOG_POSTS':
       return { ...state, blogPosts: action.payload }
     case 'SET_CART':
+      if (Array.isArray(action.payload)) {
+        return { ...state, cart: [...action.payload] }
+      }
+
       return { ...state, cart: [...state.cart, action.payload] }
     case 'SET_LAYOUT':
       return { ...state, layout: action.payload }

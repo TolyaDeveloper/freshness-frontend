@@ -4,11 +4,12 @@ import { Button, Typography, Tag, Rating } from '~/components/atoms'
 import { GridProductProps } from './GridProduct.props'
 import { ROUTES } from '~/constants/routes'
 import { useAppContext } from '~/context/AppContext/App.context'
+import { LocalStorageService } from '~/services/localStorage.service'
+import { countDiscountPercentage } from '~/utils/countDiscountPercentage'
 import Link from 'next/link'
 import Image from 'next/image'
 
 import styles from './GridProduct.module.scss'
-import { countDiscountPercentage } from '~/utils/countDiscountPercentage'
 
 const GridProduct = ({ product, className }: GridProductProps) => {
   const { locale } = useRouter()
@@ -16,6 +17,12 @@ const GridProduct = ({ product, className }: GridProductProps) => {
   const { _id, imageUri, price, rating, smallDescription, title, oldPrice } =
     product
   const isAlreadyInCart = state.cart.includes(_id)
+
+  const onAddToCart = () => {
+    dispatch({ type: 'SET_CART', payload: _id })
+
+    LocalStorageService.setItem('products', [...state.cart, _id])
+  }
 
   return (
     <div className={styles.productWrapper}>
@@ -78,7 +85,7 @@ const GridProduct = ({ product, className }: GridProductProps) => {
       ) : (
         <Button
           className={styles.buyButton}
-          onClick={() => dispatch({ type: 'SET_CART', payload: _id })}
+          onClick={onAddToCart}
           size="sm"
           type="button"
         >

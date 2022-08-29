@@ -5,6 +5,7 @@ module.exports = {
     locales: ['en'],
     defaultLocale: 'en'
   },
+  experimental: { scrollRestoration: true },
   images: { domains: ['localhost'] },
   reactStrictMode: true,
   swcMinify: true,
