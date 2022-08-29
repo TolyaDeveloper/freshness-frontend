@@ -2,4 +2,5 @@ export { default as AsideMenuWithBanner } from './AsideMenuWithBanner/AsideMenuW
 export { default as AsideMenuWithProducts } from './AsideMenuWithProducts/AsideMenuWithProducts'
 export { default as BlogPreviews } from './BlogPreviews/BlogPreviews'
 export { default as FooterLinks } from './FooterLinks/FooterLinks'
+export { default as FooterTags } from './FooterTags/FooterTags'
 export { default as MiddleBar } from './MiddleBar/MiddleBar'

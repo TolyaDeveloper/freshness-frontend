@@ -15,10 +15,10 @@ export const getStaticProps: GetStaticProps = async () => {
   const { data: products } = await $api.get('/products')
   const { data: customersReviews } = await $api.get('/customers-reviews')
   const { data: blogPosts } = await $api.get('/blog-posts?limit=5')
-  // const { data: tags } = await $api.get('/tags')
+  const { data: tags } = await $api.get('/tags')
 
   return {
-    props: { categories, products, customersReviews, blogPosts },
+    props: { categories, products, customersReviews, blogPosts, tags },
     revalidate: 120
   }
 }

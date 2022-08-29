@@ -1,7 +1,7 @@
 import { PropsWithChildren, useEffect } from 'react'
-import { Divider } from '~/components/atoms'
+import { Divider, Typography } from '~/components/atoms'
 import { TopBar, Navbar } from '~/components/molecules'
-import { MiddleBar, FooterLinks } from '~/components/organisms'
+import { MiddleBar, FooterLinks, FooterTags } from '~/components/organisms'
 import { IAppState } from '~/context/AppContext/App.types'
 import { useAppContext } from '~/context/AppContext/App.context'
 
@@ -52,6 +52,10 @@ const Layout = ({
         <main className={styles.main}>{children}</main>
         <footer className={styles.footer}>
           <FooterLinks className={styles.footerLinks} />
+          <FooterTags className={styles.footerTags} />
+          <Typography className={styles.copyright} level="body4">
+            Copyright © {new Date().getFullYear()}
+          </Typography>
         </footer>
       </div>
     </>
