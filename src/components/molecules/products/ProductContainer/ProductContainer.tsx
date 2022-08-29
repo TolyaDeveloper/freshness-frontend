@@ -5,7 +5,11 @@ import RowProduct from '../RowProduct/RowProduct'
 
 import styles from './ProductContainer.module.scss'
 
-const ProductContainer = ({ layout, products }: ProductContainerProps) => {
+const ProductContainer = ({
+  layout,
+  products,
+  className
+}: ProductContainerProps) => {
   const renderedProducts =
     layout === 'grid'
       ? products.map(product => (
@@ -19,7 +23,7 @@ const ProductContainer = ({ layout, products }: ProductContainerProps) => {
           </li>
         ))
 
-  return <ul className={cnb(styles[layout])}>{renderedProducts}</ul>
+  return <ul className={cnb(styles[layout], className)}>{renderedProducts}</ul>
 }
 
 export default ProductContainer

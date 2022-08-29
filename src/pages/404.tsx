@@ -11,6 +11,7 @@ const NotFound = () => {
 
 export const getStaticProps: GetStaticProps = async () => {
   const { data: categories } = await $api.get('/categories')
+  // const { data: tags } = await $api.get('/tags')
 
   return {
     props: { categories },

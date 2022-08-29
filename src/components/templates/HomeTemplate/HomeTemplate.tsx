@@ -7,10 +7,12 @@ import {
 } from '~/components/molecules'
 import {
   AsideMenuWithBanner,
-  AsideMenuWithProducts
+  AsideMenuWithProducts,
+  BlogPreviews
 } from '~/components/organisms'
 import { useAppContext } from '~/context/AppContext/App.context'
 import { LeftSliderArrow, RightSliderArrow } from '~/components/atoms'
+import { ROUTES } from '~/constants/routes'
 import Slider, { Settings } from 'react-slick'
 
 import styles from './HomeTemplate.module.scss'
@@ -103,7 +105,21 @@ const HomeTemplate = () => {
           </Button>
         }
       />
-      <ProductContainer layout="grid" products={state.products.slice(0, 4)} />
+      <ProductContainer
+        className={styles.goodsContainer}
+        layout="grid"
+        products={state.products.slice(0, 4)}
+      />
+      <PreSectionContainer
+        className={styles.preSectionContainer}
+        heading={<Typography level="h2-md">Read our Blog posts</Typography>}
+        button={
+          <Button href={ROUTES.blog} variant="plain" endAdornment={<Arrow />}>
+            Go to Blog
+          </Button>
+        }
+      />
+      <BlogPreviews blogs={state.blogPosts} />
     </>
   )
 }

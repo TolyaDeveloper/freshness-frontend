@@ -1,4 +1,4 @@
-import { AnchorHTMLAttributes, forwardRef, LegacyRef } from 'react'
+import { AnchorHTMLAttributes, forwardRef } from 'react'
 import { cnb } from 'cnbuilder'
 import { ButtonProps } from './Button.props'
 
@@ -15,7 +15,7 @@ const Button = (
     href,
     ...props
   }: ButtonProps & AnchorHTMLAttributes<HTMLAnchorElement>,
-  ref: LegacyRef<any>
+  ref: any
 ) => {
   const Component = href ? 'a' : 'button'
 

@@ -1,0 +1,11 @@
+.blogPreviews {
+  display: grid;
+  grid-template-columns: 470px 270px 370px;
+  gap: 30px;
+}
+
+.smallBlog {
+  & + & {
+    margin-top: 40px;
+  }
+}

@@ -10,6 +10,8 @@ export const appReducer = (state: IAppState, action: AppActions) => {
       return { ...state, tags: action.payload }
     case 'SET_CUSTOMERS_REVIEWS':
       return { ...state, customersReviews: action.payload }
+    case 'SET_BLOG_POSTS':
+      return { ...state, blogPosts: action.payload }
     case 'SET_CART':
       return { ...state, cart: [...state.cart, action.payload] }
     case 'SET_LAYOUT':

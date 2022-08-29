@@ -1,0 +1,22 @@
+.smallBlog {
+  display: grid;
+  grid-template-columns: 225px 96px;
+  column-gap: 50px;
+  align-items: center;
+}
+
+.timestamp {
+  margin-top: 15px;
+}
+
+.title {
+  max-width: 100%;
+  display: -webkit-box;
+  overflow: hidden;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+.image {
+  border-radius: 12px;
+}
