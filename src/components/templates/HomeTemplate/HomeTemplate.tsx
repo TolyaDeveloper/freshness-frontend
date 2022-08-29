@@ -3,8 +3,7 @@ import {
   AsideMenu,
   ProductContainer,
   PreSectionContainer,
-  SliderComment,
-  SmallBlog
+  SliderComment
 } from '~/components/molecules'
 import {
   AsideMenuWithBanner,
