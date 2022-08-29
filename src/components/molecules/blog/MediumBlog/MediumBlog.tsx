@@ -20,6 +20,7 @@ const MediumBlog = ({
       <a className={styles.mediumBlog}>
         {postImageUri && (
           <Image
+            className={styles.image}
             src={`${process.env.NEXT_PUBLIC_IMAGES_URI}${postImageUri}`}
             width={270}
             objectFit="cover"
@@ -29,10 +30,8 @@ const MediumBlog = ({
         )}
         {tags && (
           <div className={styles.tagsList}>
-            {tags.map(({ _id, name, slug }) => (
-              <Tag key={_id} href={`${ROUTES.tags}/${slug}`}>
-                {name}
-              </Tag>
+            {tags.map(({ _id, name }) => (
+              <Tag key={_id}>{name}</Tag>
             ))}
           </div>
         )}

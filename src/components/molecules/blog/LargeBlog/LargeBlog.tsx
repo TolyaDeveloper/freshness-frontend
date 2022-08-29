@@ -20,10 +20,8 @@ const LargeBlog = ({
       <a className={styles.largeBlog}>
         {tags && (
           <div className={styles.tagsList}>
-            {tags.map(({ _id, name, slug }) => (
-              <Tag key={_id} href={`${ROUTES.tags}/${slug}`}>
-                {name}
-              </Tag>
+            {tags.map(({ _id, name }) => (
+              <Tag key={_id}>{name}</Tag>
             ))}
           </div>
         )}

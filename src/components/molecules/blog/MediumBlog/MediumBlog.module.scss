@@ -3,12 +3,21 @@
   display: block;
 }
 
+.image {
+  border-radius: 12px;
+}
+
 .tagsList {
   margin-top: 24px;
 }
 
 .title {
   margin-top: 8px;
+  max-width: 100%;
+  display: -webkit-box;
+  overflow: hidden;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
 }
 
 .authorTimestamp {

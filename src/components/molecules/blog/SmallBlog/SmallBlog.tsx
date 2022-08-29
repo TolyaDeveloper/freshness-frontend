@@ -20,13 +20,17 @@ const SmallBlog = ({
     <Link href={`${ROUTES.blog}/${_id}`}>
       <a className={cnb(styles.smallBlog, className)}>
         <div className={styles.descriptionBlock}>
-          <Typography level="h2-sm">{title}</Typography>
-          <AuthorTimestamp
-            className={styles.timestamp}
-            avatarUri={createdBy.avatarUri}
-            authorName={createdBy?.firstName}
-            timestamp={createdAt}
-          />
+          <Typography className={styles.title} level="h2-sm">
+            {title}
+          </Typography>
+          {createdBy?.avatarUri && (
+            <AuthorTimestamp
+              className={styles.timestamp}
+              avatarUri={createdBy?.avatarUri}
+              authorName={createdBy?.firstName}
+              timestamp={createdAt}
+            />
+          )}
         </div>
         {postImageUri && (
           <Image
@@ -35,6 +39,7 @@ const SmallBlog = ({
             width={96}
             height={96}
             objectFit="cover"
+            layout="responsive"
             alt={title}
           />
         )}
