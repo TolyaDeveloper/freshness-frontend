@@ -1,4 +1,5 @@
 import { cnb } from 'cnbuilder'
+import { useRouter } from 'next/router'
 import { AuthorTimestampProps } from './AuthorTimestamp.props'
 import { Avatar, Typography } from '~/components/atoms'
 
@@ -11,6 +12,8 @@ const AuthorTimestamp = ({
   className,
   color = 'primary2'
 }: AuthorTimestampProps) => {
+  const { locale } = useRouter()
+
   return (
     <div className={cnb(styles.authorTimestamp, className)}>
       <Avatar
@@ -28,7 +31,7 @@ const AuthorTimestamp = ({
         {authorName}
       </Typography>
       <Typography className={cnb(styles[color])} level="body6" color="primary1">
-        {new Date(timestamp).toLocaleDateString()}
+        {new Intl.DateTimeFormat(locale).format(new Date(timestamp))}
       </Typography>
     </div>
   )
