@@ -32,3 +32,9 @@
 .copyright {
   padding-bottom: 65px;
 }
+
+@media (max-width: 991px) {
+  .middleBar {
+    margin: 25px 0 40px 0;
+  }
+}

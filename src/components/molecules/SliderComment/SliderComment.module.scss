@@ -1,3 +1,5 @@
+@import '~/styles/mixins';
+
 .sliderComment {
   position: relative;
   max-width: 100%;
@@ -8,12 +10,9 @@
 }
 
 .blockquote {
+  @include truncate(4);
+
   margin: 0 0 20px 0;
-  max-width: 100%;
-  display: -webkit-box;
-  overflow: hidden;
-  -webkit-line-clamp: 4;
-  -webkit-box-orient: vertical;
 }
 
 .avatar {

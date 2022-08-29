@@ -41,7 +41,6 @@ const LargeBlog = ({
           </Typography>
           {createdBy?.avatarUri && (
             <AuthorTimestamp
-              className={styles.authorTimestamp}
               avatarUri={createdBy?.avatarUri}
               authorName={createdBy?.firstName}
               timestamp={createdAt}

@@ -48,3 +48,10 @@ p {
 button:focus-visible {
   outline: var(--app-outline-focusVisible);
 }
+
+@media (max-width: 767px) {
+  :root {
+    --app-padding-right: 20px;
+    --app-padding-left: 20px;
+  }
+}

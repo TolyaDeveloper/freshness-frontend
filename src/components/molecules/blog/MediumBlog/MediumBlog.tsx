@@ -1,3 +1,4 @@
+import { cnb } from 'cnbuilder'
 import { MediumBlogProps } from './MediumBlog.props'
 import { Tag, Typography } from '~/components/atoms'
 import { AuthorTimestamp } from '~/components/molecules'
@@ -8,6 +9,7 @@ import Link from 'next/link'
 import styles from './MediumBlog.module.scss'
 
 const MediumBlog = ({
+  className,
   postImageUri,
   createdBy,
   createdAt,
@@ -17,7 +19,7 @@ const MediumBlog = ({
 }: MediumBlogProps) => {
   return (
     <Link href={`${ROUTES.blog}/${_id}`}>
-      <a className={styles.mediumBlog}>
+      <a className={cnb(styles.mediumBlog, className)}>
         {postImageUri && (
           <Image
             className={styles.image}
