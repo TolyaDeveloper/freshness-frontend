@@ -36,10 +36,9 @@ const SmallBlog = ({
           <Image
             className={styles.image}
             src={`${process.env.NEXT_PUBLIC_IMAGES_URI}${postImageUri}`}
-            width={96}
-            height={96}
+            width={192}
+            height={192}
             objectFit="cover"
-            layout="responsive"
             alt={title}
           />
         )}

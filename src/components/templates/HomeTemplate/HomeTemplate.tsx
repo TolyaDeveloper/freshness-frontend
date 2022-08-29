@@ -3,7 +3,8 @@ import {
   AsideMenu,
   ProductContainer,
   PreSectionContainer,
-  SliderComment
+  SliderComment,
+  SmallBlog
 } from '~/components/molecules'
 import {
   AsideMenuWithBanner,
@@ -120,6 +121,7 @@ const HomeTemplate = () => {
         }
       />
       <BlogPreviews blogs={state.blogPosts} />
+      <SmallBlog {...state.blogPosts[0]} />
     </>
   )
 }
