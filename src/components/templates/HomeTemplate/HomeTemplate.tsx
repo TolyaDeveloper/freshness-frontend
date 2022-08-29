@@ -121,7 +121,6 @@ const HomeTemplate = () => {
         }
       />
       <BlogPreviews blogs={state.blogPosts} />
-      <SmallBlog {...state.blogPosts[0]} />
     </>
   )
 }
