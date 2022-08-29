@@ -13,12 +13,14 @@ const AsideMenuWithBanner = ({
     <div className={cnb(styles.asideMenuWithBanner, className)}>
       {asideMenu}
       <Banner
+        className={styles.banner}
         href={ROUTES.blog}
         title="Space for heading"
         subfocus="Banner subfocus"
         linkTitle="Read recepies"
       />
       <Banner
+        className={styles.banner}
         href={ROUTES.blog}
         title="Space for heading"
         subfocus="Banner subfocus"

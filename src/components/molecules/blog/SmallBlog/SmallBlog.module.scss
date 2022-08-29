@@ -1,6 +1,8 @@
+@import '~/styles/mixins';
+
 .smallBlog {
   display: grid;
-  grid-template-columns: 225px 96px;
+  grid-template-columns: 225px 95px;
   column-gap: 50px;
   align-items: center;
 }
@@ -10,11 +12,7 @@
 }
 
 .title {
-  max-width: 100%;
-  display: -webkit-box;
-  overflow: hidden;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
+  @include truncate(2);
 }
 
 .image {

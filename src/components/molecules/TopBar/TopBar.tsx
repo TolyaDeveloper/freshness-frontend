@@ -25,7 +25,7 @@ const TopBar = ({ className, ...props }: TopBarProps) => {
             {TOP_BAR.PHONE}
           </CustomLink>
         </li>
-        <li className={styles.listItem}>
+        <li className={cnb(styles.listItem, styles.email)}>
           <CustomLink color="primary2" href={`mailto:${TOP_BAR.EMAIL}`}>
             {TOP_BAR.EMAIL}
           </CustomLink>

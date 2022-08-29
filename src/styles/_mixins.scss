@@ -14,3 +14,10 @@
   font-size: $font-size;
   line-height: $line-height;
 }
+
+@mixin truncate($visible-lines) {
+  display: -webkit-box;
+  overflow: hidden;
+  -webkit-line-clamp: $visible-lines;
+  -webkit-box-orient: vertical;
+}

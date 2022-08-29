@@ -3,4 +3,5 @@ export interface BannerProps {
   title: string
   linkTitle?: string
   href: string
+  className?: string
 }

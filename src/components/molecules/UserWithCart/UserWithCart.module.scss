@@ -23,3 +23,9 @@
   font-weight: 600;
   font-family: var(--app-font-secondary);
 }
+
+@media (max-width: 575px) {
+  .cartIcon {
+    margin-left: 20px;
+  }
+}

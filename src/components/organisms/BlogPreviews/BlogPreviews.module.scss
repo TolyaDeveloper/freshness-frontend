@@ -1,11 +1,31 @@
 .blogPreviews {
   display: grid;
-  grid-template-columns: 470px 270px 370px;
+  grid-template-columns: minmax(350px, 470px) 270px 370px;
   gap: 30px;
 }
 
 .smallBlog {
   & + & {
     margin-top: 40px;
+  }
+}
+
+@media (max-width: 1199px) {
+  .blogPreviews {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .mediumBlog {
+    display: none;
+  }
+
+  .smallBlog {
+    grid-template-columns: 1fr 95px;
+  }
+}
+
+@media (max-width: 767px) {
+  .blogPreviews {
+    grid-template-columns: 1fr;
   }
 }

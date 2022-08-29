@@ -3,3 +3,10 @@
   grid-template-columns: 270px auto;
   gap: 30px;
 }
+
+@media (max-width: 767px) {
+  .asideMenuWithProducts {
+    grid-template-columns: 1fr;
+    // grid-auto-flow: dense;
+  }
+}

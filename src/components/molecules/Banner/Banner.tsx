@@ -1,4 +1,5 @@
 import { memo } from 'react'
+import { cnb } from 'cnbuilder'
 import { BannerProps } from './Banner.props'
 import { Arrow, Button, Typography } from '~/components/atoms'
 import BannerBg from '~/assets/images/banner-bg.png'
@@ -7,9 +8,9 @@ import Link from 'next/link'
 
 import styles from './Banner.module.scss'
 
-const Banner = ({ subfocus, title, linkTitle = 'Read', href }: BannerProps) => {
+const Banner = ({ className, subfocus, title, linkTitle = 'Read', href }: BannerProps) => {
   return (
-    <div className={styles.banner}>
+    <div className={cnb(styles.banner, className)}>
       <Image
         className={styles.image}
         src={BannerBg}

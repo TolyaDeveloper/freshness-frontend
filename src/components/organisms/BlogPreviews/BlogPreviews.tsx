@@ -11,7 +11,7 @@ const BlogPreviews = ({ blogs, className }: BlogPreviewsProps) => {
   return (
     <section className={cnb(styles.blogPreviews, className)}>
       <LargeBlog {...largeBlog} />
-      <MediumBlog {...mediumBlog} />
+      <MediumBlog className={styles.mediumBlog} {...mediumBlog} />
       <div>
         {smallBlogs.map(smallBlog => (
           <SmallBlog
