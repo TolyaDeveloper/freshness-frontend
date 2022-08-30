@@ -7,13 +7,9 @@ import Link from 'next/link'
 
 import styles from './UserWithCart.module.scss'
 
-const UserWithCart = ({
-  className,
-  itemsInCart = 0,
-  ...props
-}: UserWithCartProps) => {
+const UserWithCart = ({ className, itemsInCart = 0 }: UserWithCartProps) => {
   return (
-    <div className={cnb(styles.userWithCart, className)} {...props}>
+    <div className={cnb(styles.userWithCart, className)}>
       <Link href={ROUTES.profile}>
         <a aria-label="Open your profile page">
           <UserIcon />

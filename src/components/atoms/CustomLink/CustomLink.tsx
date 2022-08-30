@@ -15,25 +15,23 @@ const CustomLink = (
     ...props
   }: CustomLinkProps,
   ref: LegacyRef<HTMLAnchorElement> | undefined
-) => {
-  return (
-    <a
-      className={cnb(
-        styles.link,
-        styles[`underline-${underline}`],
-        styles[color],
-        styles[level],
-        className
-      )}
-      ref={ref}
-      {...props}
-    >
-      {children}
-      {endAdornment && (
-        <span className={styles.endAdornment}>{endAdornment}</span>
-      )}
-    </a>
-  )
-}
+) => (
+  <a
+    className={cnb(
+      styles.link,
+      styles[`underline-${underline}`],
+      styles[color],
+      styles[level],
+      className
+    )}
+    ref={ref}
+    {...props}
+  >
+    {children}
+    {endAdornment && (
+      <span className={styles.endAdornment}>{endAdornment}</span>
+    )}
+  </a>
+)
 
 export default forwardRef(CustomLink)

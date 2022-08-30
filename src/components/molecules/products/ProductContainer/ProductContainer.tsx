@@ -6,9 +6,9 @@ import RowProduct from '../RowProduct/RowProduct'
 import styles from './ProductContainer.module.scss'
 
 const ProductContainer = ({
+  className,
   layout,
-  products,
-  className
+  products
 }: ProductContainerProps) => {
   const renderedProducts =
     layout === 'grid'

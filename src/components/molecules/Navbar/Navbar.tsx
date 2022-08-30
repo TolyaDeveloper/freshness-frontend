@@ -7,7 +7,7 @@ import Link from 'next/link'
 
 import styles from './Navbar.module.scss'
 
-const Navbar = ({ className, categoryItems, ...props }: NavbarProps) => {
+const Navbar = ({ className, categoryItems }: NavbarProps) => {
   const renderCategories = () => {
     return categoryItems.slice(0, 8).map(({ _id, name }) => (
       <li key={_id} className={styles.listItem}>
@@ -21,7 +21,7 @@ const Navbar = ({ className, categoryItems, ...props }: NavbarProps) => {
   }
 
   return (
-    <nav className={cnb(styles.navbar, className)} {...props}>
+    <nav className={cnb(styles.navbar, className)}>
       <ul className={styles.list}>{renderCategories()}</ul>
     </nav>
   )

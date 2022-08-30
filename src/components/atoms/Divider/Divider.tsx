@@ -8,18 +8,15 @@ const Divider = ({
   orienation = 'horizontal',
   color = 'primary1',
   ...props
-}: DividerProps) => {
-  return (
-    <div
-      className={cnb(
-        styles.divider,
-        styles[orienation],
-        styles[color],
-        className
-      )}
-      {...props}
-    />
-  )
-}
-
+}: DividerProps) => (
+  <div
+    className={cnb(
+      styles.divider,
+      styles[orienation],
+      styles[color],
+      className
+    )}
+    {...props}
+  />
+)
 export default Divider

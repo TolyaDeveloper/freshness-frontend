@@ -8,11 +8,11 @@ import Link from 'next/link'
 
 import styles from './MiddleBar.module.scss'
 
-const MiddleBar = ({ className, ...props }: MiddleBarProps) => {
+const MiddleBar = ({ className }: MiddleBarProps) => {
   const { state } = useAppContext()
 
   return (
-    <div className={cnb(styles.middleBar, className)} {...props}>
+    <div className={cnb(styles.middleBar, className)}>
       <span>
         <Link href={ROUTES.home}>
           <a aria-label="Go home">

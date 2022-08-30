@@ -9,18 +9,11 @@ const Arrow = ({
   color = 'secondary',
   orientation = 'right',
   ...props
-}: ArrowProps) => {
-  return (
-    <ArrowIcon
-      className={cnb(
-        styles.arrow,
-        styles[color],
-        styles[orientation],
-        className
-      )}
-      {...props}
-    />
-  )
-}
+}: ArrowProps) => (
+  <ArrowIcon
+    className={cnb(styles.arrow, styles[color], styles[orientation], className)}
+    {...props}
+  />
+)
 
 export default Arrow

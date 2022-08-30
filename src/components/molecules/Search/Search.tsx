@@ -20,7 +20,7 @@ import SearchIcon from '~/assets/icons/search.svg'
 
 import styles from './Search.module.scss'
 
-const Search = ({ className, ...props }: SearchProps) => {
+const Search = ({ className }: SearchProps) => {
   const { state } = useAppContext()
   const { push } = useRouter()
 
@@ -45,7 +45,6 @@ const Search = ({ className, ...props }: SearchProps) => {
       className={className}
       autoComplete="off"
       onSubmit={handleSubmit(onSubmit)}
-      {...props}
     >
       <FormStyledWrapper>
         <Select

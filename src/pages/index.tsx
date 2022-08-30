@@ -3,13 +3,7 @@ import { $api } from '~/api'
 import { HomeTemplate } from '~/components/templates'
 import { ROUTES } from '~/constants/routes'
 
-const Home = () => {
-  return (
-    <>
-      <HomeTemplate />
-    </>
-  )
-}
+const Home = () => <HomeTemplate />
 
 export const getStaticProps: GetStaticProps = async () => {
   const { data: categories } = await $api.get(ROUTES.categories)

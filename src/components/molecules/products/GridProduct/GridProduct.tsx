@@ -11,7 +11,7 @@ import Image from 'next/image'
 
 import styles from './GridProduct.module.scss'
 
-const GridProduct = ({ product, className }: GridProductProps) => {
+const GridProduct = ({ className, product }: GridProductProps) => {
   const { locale } = useRouter()
   const { dispatch, state } = useAppContext()
   const { _id, imageUri, price, rating, smallDescription, title, oldPrice } =

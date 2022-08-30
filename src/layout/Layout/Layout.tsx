@@ -41,24 +41,22 @@ const Layout = ({
   }, [tags, dispatch])
 
   return (
-    <>
-      <div className={styles.container}>
-        <header className={styles.header}>
-          <TopBar className={styles.topBar} />
-          <Divider />
-          <MiddleBar className={styles.middleBar} />
-          <Navbar categoryItems={categories} />
-        </header>
-        <main className={styles.main}>{children}</main>
-        <footer className={styles.footer}>
-          <FooterLinks className={styles.footerLinks} />
-          <FooterTags className={styles.footerTags} />
-          <Typography className={styles.copyright} level="body4">
-            Copyright © {new Date().getFullYear()}
-          </Typography>
-        </footer>
-      </div>
-    </>
+    <div className={styles.container}>
+      <header className={styles.header}>
+        <TopBar className={styles.topBar} />
+        <Divider />
+        <MiddleBar className={styles.middleBar} />
+        <Navbar categoryItems={categories} />
+      </header>
+      <main className={styles.main}>{children}</main>
+      <footer className={styles.footer}>
+        <FooterLinks className={styles.footerLinks} />
+        <FooterTags className={styles.footerTags} />
+        <Typography className={styles.copyright} level="body4">
+          Copyright © {new Date().getFullYear()}
+        </Typography>
+      </footer>
+    </div>
   )
 }
 
