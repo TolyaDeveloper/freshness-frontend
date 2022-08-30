@@ -1,17 +1,16 @@
+import { forwardRef, LegacyRef } from 'react'
 import { cnb } from 'cnbuilder'
 import { SelectProps } from './Select.props'
 
 import styles from './Select.module.scss'
 
-const Select = ({
-  children,
-  className,
-  endAdornment,
-  ...props
-}: SelectProps) => {
+const Select = (
+  { children, className, endAdornment, ...props }: SelectProps,
+  ref: LegacyRef<HTMLSelectElement>
+) => {
   return (
     <div className={cnb(styles.selectWrapper, className)}>
-      <select className={styles.select} {...props}>
+      <select className={styles.select} ref={ref} {...props}>
         {children}
       </select>
       {endAdornment && (
@@ -21,4 +20,4 @@ const Select = ({
   )
 }
 
-export default Select
+export default forwardRef(Select)

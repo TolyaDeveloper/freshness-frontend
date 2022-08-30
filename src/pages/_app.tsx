@@ -4,7 +4,10 @@ import { NextPage } from 'next'
 import { META } from '~/constants/common'
 import { AppContextProvider } from '~/context/AppContext/App.context'
 import { Layout } from '~/layout'
+import { SWRConfig } from 'swr'
+import { fetcher } from '~/utils/fetcher'
 import Head from 'next/head'
+import NextNProgress from 'nextjs-progressbar'
 
 import '~/styles/globals.scss'
 
@@ -31,9 +34,17 @@ const MyApp = ({ Component, pageProps }: AppPropsWithLayout) => {
         <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
         <link rel="manifest" href="/manifest.webmanifest" />
       </Head>
-      <AppContextProvider>
-        {getLayout(<Component {...pageProps} />)}
-      </AppContextProvider>
+      <NextNProgress
+        color="#6a983c"
+        startPosition={0.4}
+        stopDelayMs={50}
+        height={4}
+      />
+      <SWRConfig value={{ fetcher }}>
+        <AppContextProvider>
+          {getLayout(<Component {...pageProps} />)}
+        </AppContextProvider>
+      </SWRConfig>
     </>
   )
 }

@@ -1,15 +1,9 @@
 import { GetStaticProps } from 'next'
 import { $api } from '~/api'
 import { ROUTES } from '~/constants/routes'
-import Image from 'next/image'
-import ServerErrorImage from '~/assets/images/500-error.jpg'
 
-const ServerError = () => {
-  return (
-    <div style={{ textAlign: 'center' }}>
-      <Image src={ServerErrorImage} alt="Server error" placeholder="blur" />
-    </div>
-  )
+const Search = () => {
+  return <h1>Search</h1>
 }
 
 export const getStaticProps: GetStaticProps = async () => {
@@ -22,4 +16,4 @@ export const getStaticProps: GetStaticProps = async () => {
   }
 }
 
-export default ServerError
+export default Search

@@ -1,21 +1,20 @@
+import { forwardRef, LegacyRef } from 'react'
 import { cnb } from 'cnbuilder'
 import { InputProps } from './Input.props'
 
 import styles from './Input.module.scss'
 
-const Input = ({
-  className,
-  startAdornment,
-  endAdornment,
-  ...props
-}: InputProps) => {
+const Input = (
+  { className, startAdornment, endAdornment, ...props }: InputProps,
+  ref: LegacyRef<HTMLInputElement>
+) => {
   return (
     <>
       <div className={cnb(styles.inputWrapper, className)}>
         {startAdornment && (
           <span className={styles.startAdornment}>{startAdornment}</span>
         )}
-        <input className={styles.input} {...props} />
+        <input className={styles.input} ref={ref} {...props} />
         {endAdornment && (
           <span className={styles.endAdornment}>{endAdornment}</span>
         )}
@@ -24,4 +23,4 @@ const Input = ({
   )
 }
 
-export default Input
+export default forwardRef(Input)

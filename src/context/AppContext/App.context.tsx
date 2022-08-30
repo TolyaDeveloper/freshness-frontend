@@ -3,10 +3,12 @@ import {
   Dispatch,
   PropsWithChildren,
   useContext,
+  useEffect,
   useReducer
 } from 'react'
 import { appReducer } from './App.reducer'
 import { IAppState, AppActions, initialValues } from './App.types'
+import { LocalStorageService } from '~/services/localStorage.service'
 
 export const AppContext = createContext<{
   state: IAppState
@@ -20,6 +22,16 @@ export const useAppContext = () => useContext(AppContext)
 
 export const AppContextProvider = ({ children }: PropsWithChildren) => {
   const [data, dispatch] = useReducer(appReducer, initialValues)
+
+  useEffect(() => {
+    const productsFromLocalStorage = LocalStorageService.getItem('products')
+
+    productsFromLocalStorage &&
+      dispatch({
+        type: 'SET_CART',
+        payload: productsFromLocalStorage
+      })
+  }, [])
 
   return (
     <AppContext.Provider value={{ state: data, dispatch }}>
