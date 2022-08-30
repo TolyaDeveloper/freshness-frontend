@@ -15,12 +15,12 @@ const UserWithCart = ({
   return (
     <div className={cnb(styles.userWithCart, className)} {...props}>
       <Link href={ROUTES.profile}>
-        <a>
+        <a aria-label="Open your profile page">
           <UserIcon />
         </a>
       </Link>
       <Link href={ROUTES.cart}>
-        <a className={styles.cartIcon}>
+        <a className={styles.cartIcon} aria-label="Open your cart">
           <CartIcon />
           <span className={styles.chip}>
             {itemsInCart > 9 ? '9+' : itemsInCart}

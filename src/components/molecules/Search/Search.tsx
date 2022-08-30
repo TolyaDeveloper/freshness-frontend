@@ -65,7 +65,11 @@ const Search = ({ className, ...props }: SearchProps) => {
           className={styles.input}
           placeholder="Search Products, categories ..."
           endAdornment={
-            <button className={styles.searchButton} type="submit">
+            <button
+              className={styles.searchButton}
+              type="submit"
+              aria-label="Search"
+            >
               <SearchIcon />
             </button>
           }

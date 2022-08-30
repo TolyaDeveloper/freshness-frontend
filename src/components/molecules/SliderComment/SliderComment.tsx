@@ -23,7 +23,10 @@ const SliderComment = ({
         {fullname}
       </Typography>
       <div className={styles.avatar}>
-        <Avatar src={`${process.env.NEXT_PUBLIC_IMAGES_URI}/${avatarUri}`} />
+        <Avatar
+          src={`${process.env.NEXT_PUBLIC_IMAGES_URI}/${avatarUri}`}
+          alt={fullname}
+        />
       </div>
     </div>
   )

@@ -15,7 +15,7 @@ const MiddleBar = ({ className, ...props }: MiddleBarProps) => {
     <div className={cnb(styles.middleBar, className)} {...props}>
       <span>
         <Link href={ROUTES.home}>
-          <a>
+          <a aria-label="Go home">
             <Logo />
           </a>
         </Link>
