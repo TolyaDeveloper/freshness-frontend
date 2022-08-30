@@ -4,6 +4,7 @@ import { ITag } from '~/interfaces/tag.interface'
 import { LayoutType } from '~/interfaces/layout.types'
 import { ICustomerReview } from '~/interfaces/customer-review.interface'
 import { IBlogPost } from '~/interfaces/blog-post.interface'
+import { IUser } from '~/interfaces/user.interface'
 
 export type AppActions =
   | { type: 'SET_CATEGORIES'; payload: ICategory[] }
@@ -22,6 +23,7 @@ export interface IAppState {
   blogPosts: IBlogPost[]
   cart: string[]
   layout: LayoutType
+  user: IUser | null
 }
 
 export const initialValues: IAppState = {
@@ -31,5 +33,6 @@ export const initialValues: IAppState = {
   customersReviews: [],
   blogPosts: [],
   cart: [],
-  layout: 'row'
+  layout: 'row',
+  user: null
 }
