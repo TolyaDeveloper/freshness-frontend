@@ -9,9 +9,10 @@ const Blog = () => {
 export const getStaticProps: GetStaticProps = async () => {
   const { data: categories } = await $api.get(ROUTES.categories)
   const { data: tags } = await $api.get(ROUTES.tags)
+  const { data: blogPosts } = await $api.get(ROUTES.blog_posts)
 
   return {
-    props: { categories, tags },
+    props: { categories, tags, blogPosts },
     revalidate: 120
   }
 }
