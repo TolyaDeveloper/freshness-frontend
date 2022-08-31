@@ -20,7 +20,7 @@ const MiddleBar = ({ className }: MiddleBarProps) => {
           </a>
         </Link>
       </span>
-      <Search className={styles.search} />
+      <Search className={styles.search} categories={state.categories} />
       <UserWithCart
         className={styles.userWithCart}
         itemsInCart={state.cart.length}

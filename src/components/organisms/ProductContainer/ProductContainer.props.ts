@@ -5,4 +5,5 @@ export interface ProductContainerProps {
   className?: string
   layout: LayoutType
   products: IProduct[]
+  maxProducts: number
 }

@@ -9,7 +9,6 @@ import {
 } from '~/components/atoms'
 import { ROUTES } from '~/constants/routes'
 import { SearchProps } from './Search.props'
-import { useAppContext } from '~/context/AppContext/App.context'
 import { useForm } from 'react-hook-form'
 import { computedTypesResolver } from '@hookform/resolvers/computed-types'
 import {
@@ -20,8 +19,7 @@ import SearchIcon from '~/assets/icons/search.svg'
 
 import styles from './Search.module.scss'
 
-const Search = ({ className }: SearchProps) => {
-  const { state } = useAppContext()
+const Search = ({ className, categories }: SearchProps) => {
   const { push } = useRouter()
 
   const { handleSubmit, register } = useForm<SearchSchemaType>({
@@ -29,12 +27,12 @@ const Search = ({ className }: SearchProps) => {
   })
 
   const renderedOptions = useMemo(() => {
-    return state.categories.map(({ _id, name }) => (
+    return categories?.map(({ _id, name }) => (
       <option key={_id} value={name}>
         {name}
       </option>
     ))
-  }, [state.categories])
+  }, [categories])
 
   const onSubmit = ({ category, search }: SearchSchemaType) => {
     push({ pathname: ROUTES.search, query: { search, category } })

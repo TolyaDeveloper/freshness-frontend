@@ -1,23 +1,23 @@
 import { cnb } from 'cnbuilder'
 import { ProductContainerProps } from './ProductContainer.props'
-import GridProduct from '../GridProduct/GridProduct'
-import RowProduct from '../RowProduct/RowProduct'
+import { GridProduct, RowProduct } from '~/components/molecules'
 
 import styles from './ProductContainer.module.scss'
 
 const ProductContainer = ({
   className,
   layout,
-  products
+  products,
+  maxProducts
 }: ProductContainerProps) => {
   const renderedProducts =
     layout === 'grid'
-      ? products.map(product => (
+      ? products.slice(0, maxProducts).map(product => (
           <li key={product._id}>
             <GridProduct product={product} />
           </li>
         ))
-      : products.map(product => (
+      : products.slice(0, maxProducts).map(product => (
           <li key={product._id}>
             <RowProduct product={product} />
           </li>
