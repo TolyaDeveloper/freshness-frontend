@@ -5,7 +5,7 @@ import { BlogPreviewsProps } from './BlogPreviews.props'
 
 import styles from './BlogPreviews.module.scss'
 
-const BlogPreviews = ({ blogs, className }: BlogPreviewsProps) => {
+const BlogPreviews = ({ className, blogs }: BlogPreviewsProps) => {
   const [largeBlog, mediumBlog, ...smallBlogs] = blogs
 
   return (

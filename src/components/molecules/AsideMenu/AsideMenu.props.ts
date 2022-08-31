@@ -1,9 +1,9 @@
 import { ICategory } from '~/interfaces/category.interface'
 
 export interface AsideMenuProps {
-  categories: ICategory[]
-  title: string
+  className?: string
   buttonTitle?: string
   maxCategories?: number
-  className?: string
+  categories: ICategory[]
+  title: string
 }

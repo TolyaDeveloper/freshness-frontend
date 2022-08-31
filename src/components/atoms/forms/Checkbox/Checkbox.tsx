@@ -9,20 +9,16 @@ const Checkbox = ({
   label,
   labelTextClassname,
   ...props
-}: CheckboxProps) => {
-  return (
-    <label className={cnb(styles.label, className)}>
-      <input className={styles.checkbox} type="checkbox" {...props} />
-      <span className={styles.customCheckbox}>
-        <CheckedIcon className={styles.checkedIcon} />
-      </span>
-      {label && (
-        <span className={cnb(styles.labelText, labelTextClassname)}>
-          {label}
-        </span>
-      )}
-    </label>
-  )
-}
+}: CheckboxProps) => (
+  <label className={cnb(styles.label, className)}>
+    <input className={styles.checkbox} type="checkbox" {...props} />
+    <span className={styles.customCheckbox}>
+      <CheckedIcon className={styles.checkedIcon} />
+    </span>
+    {label && (
+      <span className={cnb(styles.labelText, labelTextClassname)}>{label}</span>
+    )}
+  </label>
+)
 
 export default Checkbox

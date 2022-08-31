@@ -1,6 +1,4 @@
-import { DetailedHTMLProps, HTMLAttributes } from 'react'
-
-export interface UserWithCartProps
-  extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> {
+export interface UserWithCartProps {
+  className?: string
   itemsInCart?: number
 }

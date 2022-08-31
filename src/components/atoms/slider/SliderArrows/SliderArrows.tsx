@@ -5,30 +5,26 @@ import RightSliderIcon from '~/assets/icons/right-slider-arrow.svg'
 
 import styles from './SliderArrows.module.scss'
 
-const LeftSliderArrow = ({ className, onClick }: SliderArrowsProps) => {
-  return (
-    <button
-      className={cnb(styles.button, styles.prevArrow, className)}
-      type="button"
-      aria-label="Previous slide"
-      onClick={onClick}
-    >
-      <LeftSliderIcon />
-    </button>
-  )
-}
+const LeftSliderArrow = ({ className, onClick }: SliderArrowsProps) => (
+  <button
+    className={cnb(styles.button, styles.prevArrow, className)}
+    type="button"
+    aria-label="Previous slide"
+    onClick={onClick}
+  >
+    <LeftSliderIcon />
+  </button>
+)
 
-const RightSliderArrow = ({ className, onClick }: SliderArrowsProps) => {
-  return (
-    <button
-      className={cnb(styles.button, styles.nextArrow, className)}
-      type="button"
-      aria-label="Next slide"
-      onClick={onClick}
-    >
-      <RightSliderIcon />
-    </button>
-  )
-}
+const RightSliderArrow = ({ className, onClick }: SliderArrowsProps) => (
+  <button
+    className={cnb(styles.button, styles.nextArrow, className)}
+    type="button"
+    aria-label="Next slide"
+    onClick={onClick}
+  >
+    <RightSliderIcon />
+  </button>
+)
 
 export { LeftSliderArrow, RightSliderArrow }

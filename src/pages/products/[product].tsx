@@ -1,16 +1,16 @@
 import { GetStaticPaths, GetStaticProps } from 'next'
 import { $api } from '~/api'
-import { ICategory } from '~/interfaces/category.interface'
 import { ROUTES } from '~/constants/routes'
+import { IProduct } from '~/interfaces/product.interface'
 
-const ProductCategory = () => {
-  return <h1>ProductCategory</h1>
+const Product = () => {
+  return <h1>Product</h1>
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const { data: categories } = await $api.get<ICategory[]>(ROUTES.categories)
-  const paths = categories.map(({ _id }) => ({
-    params: { productCategory: _id }
+  const { data: products } = await $api.get<IProduct[]>(ROUTES.products)
+  const paths = products.map(({ _id }) => ({
+    params: { product: _id }
   }))
 
   return {
@@ -21,19 +21,21 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
   if (!params) {
-    return { notFound: true }
+    return {
+      notFound: true
+    }
   }
 
   const { data: categories } = await $api.get(ROUTES.categories)
   const { data: tags } = await $api.get(ROUTES.tags)
-  const { data: products } = await $api.get(
-    `${ROUTES.products}?category=${params.productCategory}`
+  const { data: product } = await $api.get(
+    `${ROUTES.products}/${params.product}`
   )
 
   return {
-    props: { categories, tags, products },
+    props: { categories, tags, products: [product] },
     revalidate: 120
   }
 }
 
-export default ProductCategory
+export default Product

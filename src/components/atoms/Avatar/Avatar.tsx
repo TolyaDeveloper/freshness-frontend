@@ -11,18 +11,16 @@ const Avatar = ({
   src,
   alt,
   ...props
-}: AvatarProps) => {
-  return (
-    <Image
-      className={cnb(styles.avatar, className)}
-      src={src}
-      alt={alt}
-      width={width}
-      height={height}
-      objectFit="cover"
-      {...props}
-    />
-  )
-}
+}: AvatarProps) => (
+  <Image
+    className={cnb(styles.avatar, className)}
+    src={src}
+    alt={alt}
+    width={width}
+    height={height}
+    objectFit="cover"
+    {...props}
+  />
+)
 
 export default Avatar

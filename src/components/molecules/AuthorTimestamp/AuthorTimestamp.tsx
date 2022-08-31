@@ -6,10 +6,10 @@ import { Avatar, Typography } from '~/components/atoms'
 import styles from './AuthorTimestamp.module.scss'
 
 const AuthorTimestamp = ({
+  className,
   avatarUri,
   authorName,
   timestamp,
-  className,
   color = 'primary2'
 }: AuthorTimestampProps) => {
   const { locale } = useRouter()

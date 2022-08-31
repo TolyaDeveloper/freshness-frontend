@@ -1,7 +1,7 @@
-import { DetailedHTMLProps, HTMLAttributes, ReactElement } from 'react'
+import { ReactElement } from 'react'
 
-export interface PreSectionContainerProps
-  extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> {
+export interface PreSectionContainerProps {
+  className?: string
   heading: ReactElement
   button: ReactElement
 }

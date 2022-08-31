@@ -1,14 +1,14 @@
 import { Arrow, Button, Typography } from '~/components/atoms'
 import {
   AsideMenu,
-  ProductContainer,
   PreSectionContainer,
   SliderComment
 } from '~/components/molecules'
 import {
   AsideMenuWithBanner,
   AsideMenuWithProducts,
-  BlogPreviews
+  BlogPreviews,
+  ProductContainer
 } from '~/components/organisms'
 import { useAppContext } from '~/context/AppContext/App.context'
 import { LeftSliderArrow, RightSliderArrow } from '~/components/atoms'
@@ -62,7 +62,8 @@ const HomeTemplate = () => {
         products={
           <ProductContainer
             layout="grid"
-            products={state.products.slice(0, 3)}
+            products={state.products}
+            maxProducts={3}
           />
         }
       />
@@ -78,7 +79,8 @@ const HomeTemplate = () => {
         products={
           <ProductContainer
             layout="grid"
-            products={state.products.slice(3, 6)}
+            products={state.products}
+            maxProducts={3}
           />
         }
       />
@@ -91,7 +93,6 @@ const HomeTemplate = () => {
           </Button>
         }
       />
-
       <Slider className={styles.slider} {...sliderSettings}>
         {state.customersReviews.map(({ _id, ...rest }) => (
           <SliderComment className={styles.sliderComment} key={_id} {...rest} />
@@ -109,7 +110,8 @@ const HomeTemplate = () => {
       <ProductContainer
         className={styles.goodsContainer}
         layout="grid"
-        products={state.products.slice(0, 4)}
+        products={state.products}
+        maxProducts={4}
       />
       <PreSectionContainer
         className={styles.preSectionContainer}

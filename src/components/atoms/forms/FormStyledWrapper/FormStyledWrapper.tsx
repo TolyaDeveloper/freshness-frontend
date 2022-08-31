@@ -7,12 +7,10 @@ const FormStyledWrapper = ({
   children,
   className,
   ...props
-}: FormStyledWrapperProps) => {
-  return (
-    <div className={cnb(styles.styledWrapper, className)} {...props}>
-      {children}
-    </div>
-  )
-}
+}: FormStyledWrapperProps) => (
+  <div className={cnb(styles.styledWrapper, className)} {...props}>
+    {children}
+  </div>
+)
 
 export default FormStyledWrapper

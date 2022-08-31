@@ -1,7 +1,6 @@
-import { DetailedHTMLProps, FormHTMLAttributes } from 'react'
+import { ICategory } from '~/interfaces/category.interface'
 
-export interface SearchProps
-  extends DetailedHTMLProps<
-    FormHTMLAttributes<HTMLFormElement>,
-    HTMLFormElement
-  > {}
+export interface SearchProps {
+  className?: string
+  categories?: ICategory[]
+}
