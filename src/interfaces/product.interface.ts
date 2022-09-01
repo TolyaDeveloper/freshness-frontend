@@ -29,7 +29,7 @@ export interface IProduct {
   farm: string
   buyBy: string
   freshness: string
-  inStock: number
+  inStock: boolean
   deliveryTime: string
   deliveryArea: string[]
   reviews: any[]

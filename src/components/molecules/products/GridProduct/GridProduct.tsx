@@ -55,15 +55,6 @@ const GridProduct = ({ className, product }: GridProductProps) => {
             {smallDescription}
           </Typography>
           <Rating className={styles.rating} rating={rating} />
-          {oldPrice && (
-            <Typography
-              className={styles.newPrice}
-              level="body5"
-              color="primary2"
-            >
-              {oldPrice}
-            </Typography>
-          )}
           <Typography level="body1" color="primary4">
             {new Intl.NumberFormat(locale, {
               style: 'currency',
@@ -71,6 +62,15 @@ const GridProduct = ({ className, product }: GridProductProps) => {
               currencyDisplay: 'code'
             }).format(price)}
           </Typography>
+          {oldPrice && (
+            <Typography
+              className={styles.oldPrice}
+              level="body5"
+              color="primary2"
+            >
+              {oldPrice}
+            </Typography>
+          )}
         </a>
       </Link>
       {isAlreadyInCart ? (

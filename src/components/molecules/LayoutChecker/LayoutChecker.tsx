@@ -23,8 +23,8 @@ const LayoutChecker = ({ className, layout }: LayoutCheckerProps) => {
         <GridViewIcon />
       </button>
       <button
-        className={cnb(styles.button, { [styles.active]: layout === 'row' })}
-        onClick={() => dispatch({ type: 'SET_LAYOUT', payload: 'row' })}
+        className={cnb(styles.button, { [styles.active]: layout === 'list' })}
+        onClick={() => dispatch({ type: 'SET_LAYOUT', payload: 'list' })}
         type="button"
       >
         <Typography className={styles.text} level="body6" color="primary2">
