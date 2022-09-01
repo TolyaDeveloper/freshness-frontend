@@ -1,0 +1,32 @@
+.layoutChecker {
+  display: flex;
+}
+
+.button {
+  display: flex;
+  align-items: center;
+  padding: 0;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+
+  & + & {
+    margin-left: 25px;
+  }
+}
+
+.text {
+  margin-right: 4px;
+}
+
+.active {
+  svg {
+    stroke: var(--layout-checker-stroke);
+    transition: stroke 0.2s;
+  }
+
+  .text {
+    color: var(--layout-checker-active-text);
+    transition: color 0.2s;
+  }
+}

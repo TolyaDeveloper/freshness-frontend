@@ -33,6 +33,6 @@ export const initialValues: IAppState = {
   customersReviews: [],
   blogPosts: [],
   cart: [],
-  layout: 'row',
+  layout: 'grid',
   user: null
 }

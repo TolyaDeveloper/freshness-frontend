@@ -1,4 +1,5 @@
 import { ICategory } from './category.interface'
+import { ITag } from './tag.interface'
 
 export interface IProductDescriptionBlockVitamins {
   vitamin: string
@@ -23,13 +24,14 @@ export interface IProduct {
   oldPrice?: number
   rating: number
   sku: number
-  category: ICategory
+  tags: ITag[]
+  categories: ICategory[]
   farm: string
   buyBy: string
   freshness: string
   inStock: number
   deliveryTime: string
-  deliveryArea: string
+  deliveryArea: string[]
   reviews: any[]
   questions: any[]
 }
