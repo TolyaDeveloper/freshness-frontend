@@ -15,6 +15,7 @@ export const TOP_BAR = {
 }
 
 export const FRESHNESS = 'freshness'
+export const HOMEPAGE = 'Homepage'
 
 export const footerLinks = [
   {

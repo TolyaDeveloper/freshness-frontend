@@ -2,10 +2,9 @@ import { GetStaticPaths, GetStaticProps } from 'next'
 import { $api } from '~/api'
 import { ICategory } from '~/interfaces/category.interface'
 import { ROUTES } from '~/constants/routes'
+import { ProductCategoryTemplate } from '~/components/templates'
 
-const ProductCategory = () => {
-  return <h1>ProductCategory</h1>
-}
+const ProductCategory = () => <ProductCategoryTemplate />
 
 export const getStaticPaths: GetStaticPaths = async () => {
   const { data: categories } = await $api.get<ICategory[]>(ROUTES.categories)

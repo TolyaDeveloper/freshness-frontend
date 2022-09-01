@@ -4,4 +4,5 @@ export interface BreadcrumbsProps
   extends DetailedHTMLProps<HTMLAttributes<HTMLElement>, HTMLElement> {
   children: ReactNode
   separator?: string
+  homeText?: string
 }
