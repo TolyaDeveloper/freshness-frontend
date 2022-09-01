@@ -25,7 +25,6 @@ export const AppContextProvider = ({ children }: PropsWithChildren) => {
 
   useEffect(() => {
     const productsFromLocalStorage = LocalStorageService.getItem('products')
-    console.log('work')
 
     productsFromLocalStorage &&
       dispatch({
