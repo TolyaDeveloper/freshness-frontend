@@ -1,17 +1,20 @@
-import { useRouter } from 'next/router'
 import { Breadcrumbs, Typography } from '~/components/atoms'
 import { Counter, LayoutChecker } from '~/components/molecules'
-import { ProductContainer } from '~/components/organisms'
+import {
+  ProductContainer,
+  TopFilters,
+  AsideFilters
+} from '~/components/organisms'
 import { useAppContext } from '~/context/AppContext/App.context'
-import { findCategory } from '~/utils/findCategory'
-import { getLastParam } from '~/utils/getLastParam'
+import { ProductCategoryTemplateProps } from './ProductCategoryTemplate.props'
 
 import styles from './ProductCategoryTemplate.module.scss'
 
-const ProductCategoryTemplate = () => {
+const ProductCategoryTemplate = ({
+  category,
+  products
+}: ProductCategoryTemplateProps) => {
   const { state } = useAppContext()
-  const { asPath } = useRouter()
-  const category = findCategory(state.categories, getLastParam(asPath))
 
   return (
     <>
@@ -21,10 +24,13 @@ const ProductCategoryTemplate = () => {
       <div className={styles.prePage}>
         <Typography level="h1">{category}</Typography>
         <LayoutChecker layout={state.layout} />
-        <Counter title="Products" counter={state.products.length} />
+        <Counter title="Products" counter={products.length} />
       </div>
-
-      <ProductContainer layout={state.layout} products={state.products} />
+      <TopFilters />
+      <div className={styles.productsWithFiltersWrapper}>
+        {/* <AsideFilters /> */}
+        <ProductContainer layout={state.layout} products={products} />
+      </div>
     </>
   )
 }

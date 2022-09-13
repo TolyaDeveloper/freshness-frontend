@@ -3,8 +3,36 @@ import { $api } from '~/api'
 import { ICategory } from '~/interfaces/category.interface'
 import { ROUTES } from '~/constants/routes'
 import { ProductCategoryTemplate } from '~/components/templates'
+import { useRouter } from 'next/router'
+import { getLastParam } from '~/utils/getLastParam'
+import { findCategory } from '~/utils/findCategory'
+import { ITag } from '~/interfaces/tag.interface'
+import { IProduct } from '~/interfaces/product.interface'
+import useSWR from 'swr'
 
-const ProductCategory = () => <ProductCategoryTemplate />
+interface ProductCategoryProps {
+  categories: ICategory[]
+  tags: ITag[]
+}
+
+const ProductCategory = ({ categories }: ProductCategoryProps) => {
+  const { asPath } = useRouter()
+  const lastParameter = getLastParam(asPath)
+  const category = findCategory(categories, lastParameter)
+  const { data } = useSWR<IProduct[]>(
+    `${ROUTES.products}?category=${lastParameter}`
+  )
+
+  if (!data || !category) {
+    return <></>
+  }
+
+  return (
+    <>
+      <ProductCategoryTemplate category={category} products={data} />
+    </>
+  )
+}
 
 export const getStaticPaths: GetStaticPaths = async () => {
   const { data: categories } = await $api.get<ICategory[]>(ROUTES.categories)
@@ -25,12 +53,9 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
 
   const { data: categories } = await $api.get(ROUTES.categories)
   const { data: tags } = await $api.get(ROUTES.tags)
-  const { data: products } = await $api.get(
-    `${ROUTES.products}?category=${params.productCategory}`
-  )
 
   return {
-    props: { categories, tags, products },
+    props: { categories, tags },
     revalidate: 120
   }
 }
