@@ -29,6 +29,7 @@ const ProductCategoryTemplate = ({
       <TopFilters />
       <div className={styles.productsWithFiltersWrapper}>
         {/* <AsideFilters /> */}
+        <div>aside filters</div>
         <ProductContainer layout={state.layout} products={products} />
       </div>
     </>

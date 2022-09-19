@@ -1,34 +1,26 @@
-import { useState, memo } from 'react'
+import { useState, memo, Children } from 'react'
 import { AsideMenuProps } from './AsideMenu.props'
-import { Typography, CustomLink, Button, Arrow } from '~/components/atoms'
-import { ROUTES } from '~/constants/routes'
-import Link from 'next/link'
+import { Typography, Button, Arrow } from '~/components/atoms'
 
 import styles from './AsideMenu.module.scss'
 
 const AsideMenu = ({
+  children,
   className,
-  categories,
   title,
   buttonTitle = 'More',
-  maxCategories = 5
+  maxItems
 }: AsideMenuProps) => {
-  const [currentCategories, setCurrentCategories] = useState(maxCategories)
+  const [maxItemsState, setMaxItemsState] = useState<typeof maxItems>(maxItems)
+  const arrayChildren = Children.toArray(children)
 
   const isButtonShouldBeRendered =
-    categories.length !== currentCategories && categories.length > maxCategories
+    maxItemsState && maxItemsState < arrayChildren.length
 
-  const renderedCategories = categories
-    .slice(0, currentCategories)
-    .map(({ _id, name }) => (
-      <li className={styles.category} key={_id}>
-        <Link href={`${ROUTES.categories}/${_id}`} passHref prefetch={false}>
-          <CustomLink underline="always" level="body2">
-            {name}
-          </CustomLink>
-        </Link>
-      </li>
-    ))
+  const renderedCategories = Children.map(
+    arrayChildren.slice(0, maxItemsState),
+    child => <li className={styles.category}>{child}</li>
+  )
 
   return (
     <div className={className}>
@@ -42,7 +34,7 @@ const AsideMenu = ({
           variant="soft"
           endAdornment={<Arrow color="primary2" />}
           type="button"
-          onClick={() => setCurrentCategories(categories.length)}
+          onClick={() => setMaxItemsState(arrayChildren.length)}
         >
           {buttonTitle}
         </Button>

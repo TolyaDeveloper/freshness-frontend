@@ -8,6 +8,7 @@ import { getLastParam } from '~/utils/getLastParam'
 import { findCategory } from '~/utils/findCategory'
 import { ITag } from '~/interfaces/tag.interface'
 import { IProduct } from '~/interfaces/product.interface'
+import Head from 'next/head'
 import useSWR from 'swr'
 
 interface ProductCategoryProps {

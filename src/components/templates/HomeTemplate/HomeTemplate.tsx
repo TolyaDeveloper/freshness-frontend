@@ -43,21 +43,19 @@ const HomeTemplate = () => {
       <AsideMenuWithBanner
         className={styles.asideMenuWithBanner}
         asideMenu={
-          <AsideMenu
-            title="Best from farmers"
-            buttonTitle="More categories"
-            categories={state.categories}
-          />
+          <AsideMenu title="Best from farmers" buttonTitle="More categories">
+            <a>1</a>
+            <a>2</a>
+          </AsideMenu>
         }
       />
       <AsideMenuWithProducts
         className={styles.asideMenuWithProducts}
         asideMenu={
-          <AsideMenu
-            title="Best selling products"
-            buttonTitle="More products"
-            categories={state.categories}
-          />
+          <AsideMenu title="Best selling products" buttonTitle="More products">
+            <a>1</a>
+            <a>2</a>
+          </AsideMenu>
         }
         products={
           <ProductContainer
@@ -70,11 +68,10 @@ const HomeTemplate = () => {
       <AsideMenuWithProducts
         className={styles.asideMenuWithProducts}
         asideMenu={
-          <AsideMenu
-            title="Best from farmers"
-            buttonTitle="More products"
-            categories={state.categories}
-          />
+          <AsideMenu title="Best from farmers" buttonTitle="More products">
+            <a>1</a>
+            <a>2</a>
+          </AsideMenu>
         }
         products={
           <ProductContainer

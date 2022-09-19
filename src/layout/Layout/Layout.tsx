@@ -1,7 +1,7 @@
 import { PropsWithChildren, useEffect } from 'react'
 import { Divider, Typography } from '~/components/atoms'
-import { TopBar, Navbar, FooterLinks, FooterTags } from '~/components/molecules'
-import { MiddleBar } from '~/components/organisms'
+import { TopBar, Navbar, FooterTags } from '~/components/molecules'
+import { MiddleBar, FooterLinks } from '~/components/organisms'
 import { IAppState } from '~/context/AppContext/App.types'
 import { useAppContext } from '~/context/AppContext/App.context'
 
