@@ -1,33 +1,34 @@
-import { useState, memo, Children } from 'react'
-import { AsideMenuProps } from './AsideMenu.props'
+import { useState, Children } from 'react'
+import { LoadMoreListProps } from './LoadMoreList.props'
 import { Typography, Button, Arrow } from '~/components/atoms'
 
-import styles from './AsideMenu.module.scss'
+import styles from './LoadMoreList.module.scss'
 
-const AsideMenu = ({
+const LoadMoreList = ({
   children,
   className,
   title,
   buttonTitle = 'More',
-  maxItems
-}: AsideMenuProps) => {
-  const [maxItemsState, setMaxItemsState] = useState<typeof maxItems>(maxItems)
+  limit,
+  component: Component = 'div'
+}: LoadMoreListProps) => {
+  const [limitState, setMaxItemsState] = useState<typeof limit>(limit)
   const arrayChildren = Children.toArray(children)
 
   const isButtonShouldBeRendered =
-    maxItemsState && maxItemsState < arrayChildren.length
+    limitState && limitState < arrayChildren.length
 
-  const renderedCategories = Children.map(
-    arrayChildren.slice(0, maxItemsState),
-    child => <li className={styles.category}>{child}</li>
+  const renderedList = Children.map(
+    arrayChildren.slice(0, limitState),
+    child => <li className={styles.listItem}>{child}</li>
   )
 
   return (
-    <div className={className}>
+    <Component className={className}>
       <Typography className={styles.title} level="h2-md">
         {title}
       </Typography>
-      <ul>{renderedCategories}</ul>
+      <ul>{renderedList}</ul>
       {isButtonShouldBeRendered && (
         <Button
           className={styles.button}
@@ -39,8 +40,8 @@ const AsideMenu = ({
           {buttonTitle}
         </Button>
       )}
-    </div>
+    </Component>
   )
 }
 
-export default memo(AsideMenu)
+export default LoadMoreList

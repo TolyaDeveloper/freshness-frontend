@@ -1,4 +1,3 @@
-import { memo } from 'react'
 import { cnb } from 'cnbuilder'
 import { BannerProps } from './Banner.props'
 import { Arrow, Button, Typography } from '~/components/atoms'
@@ -46,4 +45,4 @@ const Banner = ({
   </div>
 )
 
-export default memo(Banner)
+export default Banner
