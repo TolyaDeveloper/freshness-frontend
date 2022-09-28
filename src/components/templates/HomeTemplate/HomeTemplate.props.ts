@@ -7,5 +7,5 @@ export interface HomeTemplateProps {
   categories: ICategory[]
   blogPosts: IBlogPost[]
   customersReviews: ICustomerReview[]
-  products: IProduct[]
+  products: IProduct[] | undefined
 }

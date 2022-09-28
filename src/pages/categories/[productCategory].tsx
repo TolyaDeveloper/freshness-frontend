@@ -8,6 +8,7 @@ import { getLastParam } from '~/utils/getLastParam'
 import { findCategory } from '~/utils/findCategory'
 import { ITag } from '~/interfaces/tag.interface'
 import { IProduct } from '~/interfaces/product.interface'
+import { FRESHNESS } from '~/constants/common'
 import Head from 'next/head'
 import useSWR from 'swr'
 
@@ -20,17 +21,16 @@ const ProductCategory = ({ categories }: ProductCategoryProps) => {
   const { asPath } = useRouter()
   const lastParameter = getLastParam(asPath)
   const category = findCategory(categories, lastParameter)
-  const { data } = useSWR<IProduct[]>(
+  const { data: products } = useSWR<IProduct[]>(
     `${ROUTES.products}?category=${lastParameter}`
   )
 
-  if (!data || !category) {
-    return <></>
-  }
-
   return (
     <>
-      <ProductCategoryTemplate category={category} products={data} />
+      <Head>
+        <title>{`${category && category} | ${FRESHNESS}`}</title>
+      </Head>
+      <ProductCategoryTemplate category={category} products={products} />
     </>
   )
 }

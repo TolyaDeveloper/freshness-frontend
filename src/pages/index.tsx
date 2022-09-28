@@ -6,8 +6,8 @@ import { ICategory } from '~/interfaces/category.interface'
 import { ICustomerReview } from '~/interfaces/customer-review.interface'
 import { IBlogPost } from '~/interfaces/blog-post.interface'
 import { ITag } from '~/interfaces/tag.interface'
-import useSWR from 'swr'
 import { IProduct } from '~/interfaces/product.interface'
+import useSWR from 'swr'
 
 interface HomeProps {
   categories: ICategory[]
@@ -17,7 +17,7 @@ interface HomeProps {
 }
 
 const Home = ({ blogPosts, categories, customersReviews }: HomeProps) => {
-  const { data: products = [] } = useSWR<IProduct[]>(ROUTES.products)
+  const { data: products } = useSWR<IProduct[]>(ROUTES.products)
 
   return (
     <>

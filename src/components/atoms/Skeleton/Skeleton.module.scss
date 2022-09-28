@@ -5,8 +5,8 @@
 
 .productsSkeletonWrapper {
   display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
   gap: 30px;
-  grid-template-columns: repeat(3, 1fr);
 }
 
 .image {

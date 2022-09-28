@@ -1,4 +1,4 @@
-import { Breadcrumbs, Typography } from '~/components/atoms'
+import { Breadcrumbs, ProductsSkeleton, Typography } from '~/components/atoms'
 import { Counter, LayoutChecker } from '~/components/molecules'
 import {
   ProductContainer,
@@ -16,6 +16,12 @@ const ProductCategoryTemplate = ({
 }: ProductCategoryTemplateProps) => {
   const { state } = useAppContext()
 
+  const productsView = products ? (
+    <ProductContainer layout={state.layout} products={products} />
+  ) : (
+    <ProductsSkeleton limit={3} />
+  )
+
   return (
     <>
       <Breadcrumbs>
@@ -24,13 +30,13 @@ const ProductCategoryTemplate = ({
       <div className={styles.prePage}>
         <Typography level="h1">{category}</Typography>
         <LayoutChecker layout={state.layout} />
-        <Counter title="Products" counter={products.length} />
+        <Counter title="Products" counter={products?.length} />
       </div>
       <TopFilters />
       <div className={styles.productsWithFiltersWrapper}>
         {/* <AsideFilters /> */}
         <div>aside filters</div>
-        <ProductContainer layout={state.layout} products={products} />
+        {productsView}
       </div>
     </>
   )

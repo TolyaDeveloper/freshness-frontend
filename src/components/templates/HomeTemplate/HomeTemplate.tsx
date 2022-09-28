@@ -43,12 +43,11 @@ const HomeTemplate = ({
     </Link>
   ))
 
-  const p =
-    products.length === 0 ? (
-      <ProductsSkeleton limit={3} />
-    ) : (
-      <ProductContainer layout="grid" products={products} maxProducts={3} />
-    )
+  const productsView = products ? (
+    <ProductContainer layout="grid" products={products} maxProducts={3} />
+  ) : (
+    <ProductsSkeleton limit={3} />
+  )
 
   const sliderSettings: Settings = {
     dots: false,
@@ -92,7 +91,7 @@ const HomeTemplate = ({
             {renderedCategories}
           </LoadMoreList>
         }
-        products={p}
+        products={productsView}
       />
       <AsideMenuWithProducts
         className={styles.asideMenuWithProducts}
@@ -105,7 +104,7 @@ const HomeTemplate = ({
             {renderedCategories}
           </LoadMoreList>
         }
-        products={p}
+        products={productsView}
       />
       <PreSectionContainer
         className={styles.preSectionContainer}
@@ -130,7 +129,7 @@ const HomeTemplate = ({
           </Button>
         }
       />
-      {p}
+      {productsView}
       <PreSectionContainer
         className={styles.preSectionContainer}
         heading={<Typography level="h2-md">Read our Blog posts</Typography>}

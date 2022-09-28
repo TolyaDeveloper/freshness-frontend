@@ -1,6 +1,6 @@
 import { IProduct } from '~/interfaces/product.interface'
 
 export interface ProductCategoryTemplateProps {
-  category: string
-  products: IProduct[]
+  category: string | undefined
+  products: IProduct[] | undefined
 }
