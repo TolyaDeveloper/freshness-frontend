@@ -1,5 +1,6 @@
 import { cnb } from 'cnbuilder'
 import { SkeletonProps } from './Skeleton.props'
+import { LayoutType } from '~/interfaces/layout.types'
 
 import styles from './Skeleton.module.scss'
 
@@ -10,8 +11,14 @@ const Skeleton = ({ className, variant, height, width }: SkeletonProps) => (
   />
 )
 
-const ProductsSkeleton = ({ limit = 3 }: { limit: number }) => (
-  <div className={styles.productsSkeletonWrapper}>
+const ProductsSkeleton = ({
+  limit = 3,
+  layout = 'grid'
+}: {
+  limit: number
+  layout?: LayoutType
+}) => (
+  <div className={cnb(styles[layout])}>
     {[...Array(limit)].map((_, index) => (
       <div key={index}>
         <Skeleton className={styles.image} variant="rounded" height="160px" />
@@ -23,4 +30,17 @@ const ProductsSkeleton = ({ limit = 3 }: { limit: number }) => (
   </div>
 )
 
-export { Skeleton, ProductsSkeleton }
+const FiltersSkeleton = ({ limit = 3 }: { limit: number }) => (
+  <div>
+    {[...Array(limit)].map((_, index) => (
+      <div className={styles.filterBlock} key={index}>
+        <Skeleton className={styles.filterTitle} variant="text" height="25px" />
+        <Skeleton className={styles.filter} variant="text" />
+        <Skeleton className={styles.filter} variant="text" />
+        <Skeleton className={styles.filter} variant="text" />
+      </div>
+    ))}
+  </div>
+)
+
+export { Skeleton, ProductsSkeleton, FiltersSkeleton }

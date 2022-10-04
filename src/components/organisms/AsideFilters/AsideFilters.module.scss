@@ -1,3 +1,42 @@
 .asideFilters {
   max-width: 270px;
 }
+
+.categoryLink {
+  display: flex;
+  justify-content: space-between;
+}
+
+.filterList {
+  margin-bottom: 40px;
+}
+
+.ratingTitle {
+  margin-bottom: 20px;
+}
+
+.priceInputsWrapper {
+  margin-top: 15px;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  gap: 15px;
+}
+
+.formStyledWrapper {
+  padding: 0;
+}
+
+.priceInput input {
+  appearance: none;
+  -moz-appearance: textfield;
+  margin: 0;
+}
+
+.actionButtons {
+  margin-top: 30px;
+  display: flex;
+}
+
+.applyButton {
+  margin-right: 30px;
+}

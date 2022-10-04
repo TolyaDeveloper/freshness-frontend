@@ -3,10 +3,14 @@
   animation: 1.5s ease-in-out 0.5s infinite normal none running skeleton;
 }
 
-.productsSkeletonWrapper {
+.grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
   gap: 30px;
+}
+
+.list {
+  margin-bottom: 30px;
 }
 
 .image {
@@ -56,4 +60,16 @@
 .rounded {
   height: 60px;
   border-radius: 12px;
+}
+
+.filterTitle {
+  margin-bottom: 20px;
+}
+
+.filter {
+  margin-bottom: 12px;
+}
+
+.filterBlock {
+  margin-bottom: 40px;
 }
