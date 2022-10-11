@@ -1,4 +1,4 @@
-export { default as AsideFilters } from './AsideFilters/AsideFilters'
+export { default as AsideFilters } from './ProductsWithFilters/AsideFilters/AsideFilters'
 export { default as AsideMenuWithBanner } from './AsideMenuWithBanner/AsideMenuWithBanner'
 export { default as AsideMenuWithProducts } from './AsideMenuWithProducts/AsideMenuWithProducts'
 export { default as BlogPreviews } from './BlogPreviews/BlogPreviews'
@@ -6,4 +6,5 @@ export { default as CategoryHeadline } from './CategoryHeadline/CategoryHeadline
 export { default as FooterLinks } from './FooterLinks/FooterLinks'
 export { default as MiddleBar } from './MiddleBar/MiddleBar'
 export { default as ProductContainer } from './ProductContainer/ProductContainer'
-export { default as TopFilters } from './TopFilters/TopFilters'
+export { default as ProductsWithFilters } from './ProductsWithFilters/ProductsWithFilters'
+export { default as TopFilters } from './ProductsWithFilters/TopFilters/TopFilters'

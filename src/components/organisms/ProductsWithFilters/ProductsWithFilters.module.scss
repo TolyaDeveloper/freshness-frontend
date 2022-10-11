@@ -1,0 +1,10 @@
+.productsWithFiltersWrapper {
+  display: grid;
+  grid-template-columns: 270px 1fr;
+  gap: 30px;
+  margin-top: 70px;
+}
+
+.bottomFilter {
+  margin-top: 70px;
+}

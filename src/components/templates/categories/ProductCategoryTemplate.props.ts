@@ -1,8 +1,6 @@
-import { IFilters } from '~/interfaces/filters.interface'
-import { IProduct } from '~/interfaces/product.interface'
+import { ReactElement } from 'react'
 
 export interface ProductCategoryTemplateProps {
   category: string | undefined
-  products: IProduct[] | undefined
-  filters: IFilters | undefined
+  productsWithFiltersView: ReactElement
 }

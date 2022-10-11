@@ -2,6 +2,7 @@ import { GetServerSideProps } from 'next'
 import { $api } from '~/api'
 import { ICategory } from '~/interfaces/category.interface'
 import { ROUTES } from '~/constants/routes'
+import { ProductsWithFilters } from '~/components/organisms'
 import { ProductCategoryTemplate } from '~/components/templates'
 import { useRouter } from 'next/router'
 import { findCategory } from '~/utils/findCategory'
@@ -35,8 +36,13 @@ const ProductCategory = ({ categories }: ProductCategoryProps) => {
       </Head>
       <ProductCategoryTemplate
         category={category}
-        products={products}
-        filters={filters}
+        productsWithFiltersView={
+          <ProductsWithFilters
+            products={products}
+            filters={filters}
+            category={category}
+          />
+        }
       />
     </>
   )
