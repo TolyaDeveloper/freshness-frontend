@@ -87,7 +87,7 @@ const AsideFilters = ({
   }, [minPrice, maxPrice])
 
   return (
-    <form className={cnb(styles.asideFilters, className)} autoComplete="off">
+    <div className={cnb(styles.asideFilters, className)}>
       <LoadMoreList className={styles.filterList} title="Categories" limit={3}>
         {categories.map(({ category, total }) => (
           <Link
@@ -213,7 +213,7 @@ const AsideFilters = ({
           Reset
         </Button>
       </div>
-    </form>
+    </div>
   )
 }
 
