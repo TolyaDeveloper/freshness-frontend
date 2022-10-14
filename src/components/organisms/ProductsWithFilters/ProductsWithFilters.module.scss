@@ -10,5 +10,12 @@
 }
 
 .bottomFilter {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
   margin-top: 70px;
+}
+
+.counter {
+  justify-self: end;
 }

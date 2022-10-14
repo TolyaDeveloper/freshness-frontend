@@ -18,9 +18,9 @@ import {
 import { ProductsWithFilters } from './ProductsWithFilters.props'
 import { useAppContext } from '~/context/AppContext/App.context'
 import { useRouter } from 'next/router'
-import { parseQueries, parseQueriesIntoString } from '~/utils/queries'
+import { parseQueries, defaultQueries } from '~/utils/queries'
 import { IQueries } from '~/interfaces/queries.interface'
-import { ParsedUrlQuery } from 'querystring'
+import useSWR from 'swr'
 
 import styles from './ProductsWithFilters.module.scss'
 
@@ -31,14 +31,18 @@ const ProductsWithFilters = ({
 }: ProductsWithFilters) => {
   const { state } = useAppContext()
   const { query, push } = useRouter()
-  const [activeFilters, setActiveFilters] = useState<IQueries>({})
-  const queryURI = parseQueriesIntoString(activeFilters as ParsedUrlQuery)
+  const [shouldFetch, setFetch] = useState(false)
+  const [activeFilters, setActiveFilters] = useState<IQueries>(defaultQueries)
+  // const queryURI = parseQueriesIntoString(activeFilters)
 
-  console.log(activeFilters)
+  // console.log(activeFilters)
 
   useEffect(() => {
-    setActiveFilters(parseQueries(query, 'productCategory'))
-  }, [query])
+    setActiveFilters({
+      ...activeFilters,
+      ...parseQueries(query, 'productCategory')
+    })
+  }, [])
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
@@ -49,7 +53,7 @@ const ProductsWithFilters = ({
   }
 
   const handleReset = () => {
-    setActiveFilters({})
+    setActiveFilters(defaultQueries)
 
     push({ query: { productCategory: query.productCategory } })
   }
@@ -69,7 +73,11 @@ const ProductsWithFilters = ({
   )
 
   const asideFiltersView = filters ? (
-    <AsideFilters filters={filters} />
+    <AsideFilters
+      filters={filters}
+      activeFilters={activeFilters}
+      setActiveFilters={setActiveFilters}
+    />
   ) : (
     <FiltersSkeleton limit={4} />
   )
@@ -99,10 +107,14 @@ const ProductsWithFilters = ({
       </form>
       <div className={styles.bottomFilter}>
         <div>pagination</div>
-        <Button endAdornment={<Arrow color="primary1" />}>
+        <Button endAdornment={<Arrow color="primary1" orientation="down" />}>
           Show more products
         </Button>
-        <Counter title="Products" counter={totalProducts} />
+        <Counter
+          className={styles.counter}
+          title="Products"
+          counter={totalProducts}
+        />
       </div>
     </>
   )

@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { ChangeEvent, useEffect, useState } from 'react'
 import { cnb } from 'cnbuilder'
 import { Range } from 'react-range'
 import { AsideFiltersProps } from './AsideFilters.props'
@@ -15,60 +15,19 @@ import {
 } from '~/components/atoms'
 import { LoadMoreList } from '~/components/molecules'
 import { ROUTES } from '~/constants/routes'
-
+import { getTrackBackground } from '~/utils/priceRange'
 import Link from 'next/link'
 
 import styles from './AsideFilters.module.scss'
 
-export enum Direction {
-  Right = 'to right',
-  Left = 'to left',
-  Down = 'to bottom',
-  Up = 'to top'
-}
-
-export interface ITrackBackground {
-  min: number
-  max: number
-  values: number[]
-  colors: string[]
-  direction?: Direction
-  rtl?: boolean
-}
-
-export function getTrackBackground({
-  values,
-  colors,
-  min,
-  max,
-  direction = Direction.Right,
-  rtl = false
-}: ITrackBackground) {
-  if (rtl && direction === Direction.Right) {
-    direction = Direction.Left
-  } else if (rtl && Direction.Left) {
-    direction = Direction.Right
-  }
-  // sort values ascending
-  const progress = values
-    .slice(0)
-    .sort((a, b) => a - b)
-    .map(value => ((value - min) / (max - min)) * 100)
-  const middle = progress.reduce(
-    (acc, point, index) =>
-      `${acc}, ${colors[index]} ${point}%, ${colors[index + 1]} ${point}%`,
-    ''
-  )
-  return `linear-gradient(${direction}, ${colors[0]} 0%${middle}, ${
-    colors[colors.length - 1]
-  } 100%)`
-}
-
 const AsideFilters = ({
   className,
-  filters: { categories, filters }
+  filters: { categories, filters },
+  activeFilters,
+  setActiveFilters
 }: AsideFiltersProps) => {
   const [shouldDisplayRange, setDisplayRange] = useState(false)
+  const ratings = [5, 4, 3, 2, 1]
 
   const minPrice = filters.minMaxPrices[0]?.minPrice || 0
   const maxPrice = filters.minMaxPrices[0]?.maxPrice || 0
@@ -76,15 +35,61 @@ const AsideFilters = ({
 
   const [values, setValues] = useState<number[]>([])
 
+  const handleBrand = (e: ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value
+    const isChecked = e.target.checked
+
+    if (isChecked) {
+      return setActiveFilters({
+        ...activeFilters,
+        brands: [...activeFilters.brands, value]
+      })
+    }
+
+    return setActiveFilters({
+      ...activeFilters,
+      brands: activeFilters.brands?.filter(item => item !== value)
+    })
+  }
+
+  const handleRating = (e: ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value
+    const isChecked = e.target.checked
+
+    if (isChecked) {
+      return setActiveFilters({
+        ...activeFilters,
+        rating: [...activeFilters.rating, value]
+      })
+    }
+
+    return setActiveFilters({
+      ...activeFilters,
+      rating: activeFilters.rating?.filter(item => item !== value)
+    })
+  }
+
+  const handleFinalChange = (values: number[]) => {
+    return setActiveFilters({
+      ...activeFilters,
+      minPrice: [values[0]],
+      maxPrice: [values[1]]
+    })
+  }
+
   useEffect(() => {
-    setValues([minPrice, maxPrice])
+    const prices = [
+      activeFilters.minPrice[0] || minPrice,
+      activeFilters.maxPrice[0] || maxPrice
+    ]
+    setValues(prices)
 
     if (minPrice !== maxPrice) {
       return setDisplayRange(true)
     }
 
     setDisplayRange(false)
-  }, [minPrice, maxPrice])
+  }, [minPrice, maxPrice, activeFilters.minPrice, activeFilters.maxPrice])
 
   return (
     <div className={cnb(styles.asideFilters, className)}>
@@ -108,15 +113,22 @@ const AsideFilters = ({
           <Checkbox
             key={brand._id}
             label={<Typography level="body4">{brand.name}</Typography>}
+            onChange={handleBrand}
+            value={brand.name}
+            checked={activeFilters.brands?.includes(brand.name)}
           />
         ))}
       </LoadMoreList>
       <LoadMoreList className={styles.filterList} title="Rating">
-        <Checkbox label={<Rating rating={5} />} />
-        <Checkbox label={<Rating rating={4} />} />
-        <Checkbox label={<Rating rating={3} />} />
-        <Checkbox label={<Rating rating={2} />} />
-        <Checkbox label={<Rating rating={1} />} />
+        {ratings.map(rating => (
+          <Checkbox
+            key={rating}
+            label={<Rating rating={rating} />}
+            onChange={handleRating}
+            value={rating}
+            checked={activeFilters.rating?.includes(rating.toString())}
+          />
+        ))}
       </LoadMoreList>
       <Typography className={styles.ratingTitle} level="h2-md">
         Price
@@ -128,6 +140,7 @@ const AsideFilters = ({
           min={minPrice}
           max={maxPrice}
           onChange={values => setValues(values)}
+          onFinalChange={handleFinalChange}
           renderTrack={({ props, children }) => (
             <div
               onMouseDown={props.onMouseDown}

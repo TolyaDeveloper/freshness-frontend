@@ -1,4 +1,4 @@
-import { ChangeEvent, useState } from 'react'
+import { ChangeEvent, useEffect, useState } from 'react'
 import { cnb } from 'cnbuilder'
 import {
   FormStyledWrapper,
@@ -22,11 +22,38 @@ const TopFilters = ({
 }: TopFiltersProps) => {
   const [countryCheckbox, setCountryCheckbox] = useState(false)
   const [selectedCountry, setSelectedCountry] = useState(
-    filters.countries[0]?.country
+    activeFilters.country[0] || filters.countries[0]?.country
   )
 
+  useEffect(() => {
+    if (countryCheckbox) {
+      return setActiveFilters({ ...activeFilters, country: [selectedCountry] })
+    }
+  }, [selectedCountry])
+
+  useEffect(() => {
+    setCountryCheckbox(Boolean(activeFilters.country.length))
+  }, [activeFilters.country])
+
   const handlePriceTypeRadios = (e: ChangeEvent<HTMLInputElement>) => {
-    setActiveFilters({ ...activeFilters, priceType: e.target.value })
+    setActiveFilters({ ...activeFilters, priceType: [e.target.value] })
+  }
+
+  const handleBiology = (e: ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value
+    const isChecked = e.target.checked
+
+    if (isChecked) {
+      return setActiveFilters({
+        ...activeFilters,
+        biology: [...(activeFilters.biology as string[]), value]
+      })
+    }
+
+    return setActiveFilters({
+      ...activeFilters,
+      biology: activeFilters.biology?.filter(item => item !== value)
+    })
   }
 
   const handleCountrySelect = (e: ChangeEvent<HTMLSelectElement>) => {
@@ -34,13 +61,11 @@ const TopFilters = ({
   }
 
   const handleCountryCheckbox = (e: ChangeEvent<HTMLInputElement>) => {
-    setCountryCheckbox(e.target.checked)
-
     if (e.target.checked) {
-      return setActiveFilters({ ...activeFilters, country: selectedCountry })
+      return setActiveFilters({ ...activeFilters, country: [selectedCountry] })
     }
 
-    return setActiveFilters({ ...activeFilters, country: '' })
+    return setActiveFilters({ ...activeFilters, country: [] })
   }
 
   return (
@@ -48,7 +73,7 @@ const TopFilters = ({
       <FormStyledWrapper>
         {radios.map(({ label, value }) => (
           <Radio
-            checked={value === activeFilters.priceType}
+            checked={activeFilters.priceType?.includes(value)}
             onChange={handlePriceTypeRadios}
             className={styles.priceRadio}
             key={value}
@@ -64,6 +89,8 @@ const TopFilters = ({
           label={
             <>Farm {<Tag size="sm">{filters.farmCount[0]?.total || 0}</Tag>}</>
           }
+          onChange={handleBiology}
+          checked={activeFilters.biology?.includes('Farm')}
         />
       </FormStyledWrapper>
       <FormStyledWrapper>
@@ -72,12 +99,14 @@ const TopFilters = ({
           label={
             <>Bio {<Tag size="sm">{filters.bioCount[0]?.total || 0}</Tag>}</>
           }
+          onChange={handleBiology}
+          checked={activeFilters.biology?.includes('Bio')}
         />
       </FormStyledWrapper>
       <FormStyledWrapper>
         <Checkbox
           value="Bio"
-          label={<>{<Tag variant="soft">12</Tag>}</>}
+          label={<>{<Tag variant="soft">0</Tag>}</>}
           checked={countryCheckbox}
           onChange={handleCountryCheckbox}
         />
