@@ -3,7 +3,6 @@ import {
   Arrow,
   Breadcrumbs,
   Button,
-  Checkbox,
   FiltersSkeleton,
   ProductsSkeleton,
   Skeleton,
@@ -31,18 +30,13 @@ import useSWR from 'swr'
 
 import styles from './ProductsWithFilters.module.scss'
 
-const ProductsWithFilters = ({
-  filters,
-  products,
-  category
-}: ProductsWithFilters) => {
+const ProductsWithFilters = ({ filters, category }: ProductsWithFilters) => {
   const { state } = useAppContext()
   const { query, push } = useRouter()
   const [shouldFetch, setFetch] = useState(false)
+  const [isQueryParsed, setQueryParsed] = useState(false)
   const [activeFilters, setActiveFilters] = useState<IQueries>(defaultQueries)
-  const [activeProducts, setActiveProducts] = useState<IProduct[] | undefined>(
-    products
-  )
+  const [products, setProducts] = useState<IProduct[] | undefined>([])
 
   const buildQueryURI = () => {
     return `${ROUTES.products}?category=${
@@ -53,22 +47,22 @@ const ProductsWithFilters = ({
   const {} = useSWR(shouldFetch ? buildQueryURI() : null, {
     onSuccess: (data: IProduct[]) => {
       setFetch(false)
-      setActiveProducts(data)
+      setProducts(data)
     }
   })
-
-  console.log(activeFilters)
 
   useEffect(() => {
     setActiveFilters({
       ...activeFilters,
       ...parseQueries(query, 'productCategory')
     })
+
+    setQueryParsed(true)
   }, [])
 
   useEffect(() => {
-    setActiveProducts(products)
-  }, [products])
+    isQueryParsed && setFetch(true)
+  }, [isQueryParsed])
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
@@ -112,8 +106,8 @@ const ProductsWithFilters = ({
     <FiltersSkeleton limit={4} />
   )
 
-  const productsView = activeProducts ? (
-    <ProductContainer layout={state.layout} products={activeProducts} />
+  const productsView = products ? (
+    <ProductContainer layout={state.layout} products={products} />
   ) : (
     <ProductsSkeleton limit={3} layout={state.layout} />
   )

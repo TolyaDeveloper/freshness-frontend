@@ -22,9 +22,6 @@ const ProductCategory = ({ categories }: ProductCategoryProps) => {
   const { query } = useRouter()
   const categoryId = query.productCategory as string
   const category = findCategory(categories, categoryId)
-  const { data: products } = useSWRIMmutable<IProduct[]>(
-    `${ROUTES.products}?category=${categoryId}`
-  )
   const { data: filters } = useSWRIMmutable<IFilters>(
     `${ROUTES.products}/filters/?category=${categoryId}`
   )
@@ -37,11 +34,7 @@ const ProductCategory = ({ categories }: ProductCategoryProps) => {
       <ProductCategoryTemplate
         category={category}
         productsWithFiltersView={
-          <ProductsWithFilters
-            products={products}
-            filters={filters}
-            category={category}
-          />
+          <ProductsWithFilters filters={filters} category={category} />
         }
       />
     </>
