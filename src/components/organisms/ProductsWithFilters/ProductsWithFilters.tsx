@@ -57,6 +57,8 @@ const ProductsWithFilters = ({
     }
   })
 
+  console.log(activeFilters)
+
   useEffect(() => {
     setActiveFilters({
       ...activeFilters,

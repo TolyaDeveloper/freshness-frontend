@@ -21,15 +21,11 @@ const TopFilters = ({
   setActiveFilters
 }: TopFiltersProps) => {
   const [countryCheckbox, setCountryCheckbox] = useState(false)
-  const [selectedCountry, setSelectedCountry] = useState(
-    activeFilters.country[0] || filters.countries[0]?.country
-  )
+  const [selectedCountry, setSelectedCountry] = useState('')
 
   useEffect(() => {
-    if (countryCheckbox) {
-      return setActiveFilters({ ...activeFilters, country: [selectedCountry] })
-    }
-  }, [selectedCountry])
+    setSelectedCountry(filters.countries[0]?.country)
+  }, [filters.countries])
 
   useEffect(() => {
     setCountryCheckbox(Boolean(activeFilters.country.length))
@@ -58,6 +54,10 @@ const TopFilters = ({
 
   const handleCountrySelect = (e: ChangeEvent<HTMLSelectElement>) => {
     setSelectedCountry(e.target.value)
+
+    if (countryCheckbox) {
+      return setActiveFilters({ ...activeFilters, country: [e.target.value] })
+    }
   }
 
   const handleCountryCheckbox = (e: ChangeEvent<HTMLInputElement>) => {
