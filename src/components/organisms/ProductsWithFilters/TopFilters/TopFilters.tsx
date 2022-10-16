@@ -103,24 +103,26 @@ const TopFilters = ({
           checked={activeFilters.biology?.includes('Bio')}
         />
       </FormStyledWrapper>
-      <FormStyledWrapper>
-        <Checkbox
-          value="Bio"
-          label={<>{<Tag variant="soft">0</Tag>}</>}
-          checked={countryCheckbox}
-          onChange={handleCountryCheckbox}
-        />
-        <Divider orienation="vertical" />
-        <Select
-          endAdornment={<Arrow />}
-          onChange={handleCountrySelect}
-          value={selectedCountry}
-        >
-          {filters.countries.map(({ country }, i) => (
-            <option key={i}>{country}</option>
-          ))}
-        </Select>
-      </FormStyledWrapper>
+      {filters.countries.length !== 0 && (
+        <FormStyledWrapper>
+          <Checkbox
+            value="Bio"
+            label={<>{<Tag variant="soft">0</Tag>}</>}
+            checked={countryCheckbox}
+            onChange={handleCountryCheckbox}
+          />
+          <Divider orienation="vertical" />
+          <Select
+            endAdornment={<Arrow />}
+            onChange={handleCountrySelect}
+            value={selectedCountry}
+          >
+            {filters.countries.map(({ country }, i) => (
+              <option key={i}>{country}</option>
+            ))}
+          </Select>
+        </FormStyledWrapper>
+      )}
     </div>
   )
 }

@@ -3,6 +3,7 @@ import {
   Arrow,
   Breadcrumbs,
   Button,
+  Checkbox,
   FiltersSkeleton,
   ProductsSkeleton,
   Skeleton,
@@ -18,8 +19,14 @@ import {
 import { ProductsWithFilters } from './ProductsWithFilters.props'
 import { useAppContext } from '~/context/AppContext/App.context'
 import { useRouter } from 'next/router'
-import { parseQueries, defaultQueries } from '~/utils/queries'
+import {
+  parseQueries,
+  parseQueriesIntoString,
+  defaultQueries
+} from '~/utils/queries'
 import { IQueries } from '~/interfaces/queries.interface'
+import { ROUTES } from '~/constants/routes'
+import { IProduct } from '~/interfaces/product.interface'
 import useSWR from 'swr'
 
 import styles from './ProductsWithFilters.module.scss'
@@ -33,9 +40,22 @@ const ProductsWithFilters = ({
   const { query, push } = useRouter()
   const [shouldFetch, setFetch] = useState(false)
   const [activeFilters, setActiveFilters] = useState<IQueries>(defaultQueries)
-  // const queryURI = parseQueriesIntoString(activeFilters)
+  const [activeProducts, setActiveProducts] = useState<IProduct[] | undefined>(
+    products
+  )
 
-  // console.log(activeFilters)
+  const buildQueryURI = () => {
+    return `${ROUTES.products}?category=${
+      query.productCategory
+    }&${parseQueriesIntoString(activeFilters)}`
+  }
+
+  const {} = useSWR(shouldFetch ? buildQueryURI() : null, {
+    onSuccess: (data: IProduct[]) => {
+      setFetch(false)
+      setActiveProducts(data)
+    }
+  })
 
   useEffect(() => {
     setActiveFilters({
@@ -44,18 +64,26 @@ const ProductsWithFilters = ({
     })
   }, [])
 
+  useEffect(() => {
+    setActiveProducts(products)
+  }, [products])
+
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
 
     push({
       query: { productCategory: query.productCategory, ...activeFilters }
     })
+
+    setFetch(true)
   }
 
   const handleReset = () => {
     setActiveFilters(defaultQueries)
 
     push({ query: { productCategory: query.productCategory } })
+
+    setFetch(true)
   }
 
   const totalProducts = filters?.filters.totalCategoryProducts[0]?.total
@@ -82,8 +110,8 @@ const ProductsWithFilters = ({
     <FiltersSkeleton limit={4} />
   )
 
-  const productsView = products ? (
-    <ProductContainer layout={state.layout} products={products} />
+  const productsView = activeProducts ? (
+    <ProductContainer layout={state.layout} products={activeProducts} />
   ) : (
     <ProductsSkeleton limit={3} layout={state.layout} />
   )

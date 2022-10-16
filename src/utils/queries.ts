@@ -13,7 +13,19 @@ export const parseQueries = (query: ParsedUrlQuery, keyToOmit?: string) => {
     }, {})
 }
 
-// export const parseQueriesIntoString = (query: IQueries) => {}
+export const parseQueriesIntoString = (query: IQueries) => {
+  const params = new URLSearchParams()
+
+  Object.entries(query).forEach(([key, value]) => {
+    if (Array.isArray(value)) {
+      value.forEach(value => params.append(key, value.toString()))
+    } else {
+      params.append(key, value.toString())
+    }
+  })
+
+  return params.toString()
+}
 
 export const defaultQueries: IQueries = {
   biology: [],
