@@ -8,7 +8,7 @@ import {
   Skeleton,
   Typography
 } from '~/components/atoms'
-import { Counter } from '~/components/molecules'
+import { Counter, Pagination } from '~/components/molecules'
 import {
   TopFilters,
   AsideFilters,
@@ -34,9 +34,8 @@ const ProductsWithFilters = ({ filters, category }: ProductsWithFilters) => {
   const { state } = useAppContext()
   const { query, push } = useRouter()
   const [shouldFetch, setFetch] = useState(false)
-  const [isQueryParsed, setQueryParsed] = useState(false)
   const [activeFilters, setActiveFilters] = useState<IQueries>(defaultQueries)
-  const [products, setProducts] = useState<IProduct[] | undefined>([])
+  const [products, setProducts] = useState<IProduct[] | undefined>(undefined)
 
   const buildQueryURI = () => {
     return `${ROUTES.products}?category=${
@@ -57,12 +56,9 @@ const ProductsWithFilters = ({ filters, category }: ProductsWithFilters) => {
       ...parseQueries(query, 'productCategory')
     })
 
-    setQueryParsed(true)
-  }, [])
-
-  useEffect(() => {
-    isQueryParsed && setFetch(true)
-  }, [isQueryParsed])
+    setFetch(true)
+    console.log('effect')
+  }, [query])
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
@@ -130,7 +126,12 @@ const ProductsWithFilters = ({ filters, category }: ProductsWithFilters) => {
         </div>
       </form>
       <div className={styles.bottomFilter}>
-        <div>pagination</div>
+        <Pagination
+          count={2}
+          link={`${ROUTES.categories}/${
+            query.productCategory
+          }?${parseQueriesIntoString(activeFilters)}`}
+        />
         <Button endAdornment={<Arrow color="primary1" orientation="down" />}>
           Show more products
         </Button>

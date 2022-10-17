@@ -106,12 +106,11 @@ const TopFilters = ({
       {filters.countries.length !== 0 && (
         <FormStyledWrapper>
           <Checkbox
+            className={styles.countryCheckbox}
             value="Bio"
-            label={<>{<Tag variant="soft">0</Tag>}</>}
             checked={countryCheckbox}
             onChange={handleCountryCheckbox}
           />
-          <Divider orienation="vertical" />
           <Select
             endAdornment={<Arrow />}
             onChange={handleCountrySelect}

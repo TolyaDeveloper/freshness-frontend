@@ -29,12 +29,12 @@ export const parseQueriesIntoString = (query: IQueries) => {
 
 export const defaultQueries: IQueries = {
   biology: [],
-  brands: [],
   rating: [],
   priceType: [],
   country: [],
   maxPrice: [],
-  minPrice: []
+  minPrice: [],
+  skip: []
 }
 
 // {

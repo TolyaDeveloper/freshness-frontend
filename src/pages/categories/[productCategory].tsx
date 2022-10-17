@@ -12,6 +12,7 @@ import { FRESHNESS } from '~/constants/common'
 import { IFilters } from '~/interfaces/filters.interface'
 import Head from 'next/head'
 import useSWRIMmutable from 'swr/immutable'
+import { useEffect } from 'react'
 
 interface ProductCategoryProps {
   categories: ICategory[]

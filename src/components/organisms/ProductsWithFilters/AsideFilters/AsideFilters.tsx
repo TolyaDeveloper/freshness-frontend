@@ -35,23 +35,6 @@ const AsideFilters = ({
 
   const [values, setValues] = useState<number[]>([])
 
-  const handleBrand = (e: ChangeEvent<HTMLInputElement>) => {
-    const value = e.target.value
-    const isChecked = e.target.checked
-
-    if (isChecked) {
-      return setActiveFilters({
-        ...activeFilters,
-        brands: [...activeFilters.brands, value]
-      })
-    }
-
-    return setActiveFilters({
-      ...activeFilters,
-      brands: activeFilters.brands?.filter(item => item !== value)
-    })
-  }
-
   const handleRating = (e: ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value
     const isChecked = e.target.checked
@@ -106,17 +89,6 @@ const AsideFilters = ({
               <Tag size="sm">{total}</Tag>
             </CustomLink>
           </Link>
-        ))}
-      </LoadMoreList>
-      <LoadMoreList className={styles.filterList} title="Brands" limit={4}>
-        {filters.brands.map(({ brand }) => (
-          <Checkbox
-            key={brand._id}
-            label={<Typography level="body4">{brand.name}</Typography>}
-            onChange={handleBrand}
-            value={brand.name}
-            checked={activeFilters.brands?.includes(brand.name)}
-          />
         ))}
       </LoadMoreList>
       <LoadMoreList className={styles.filterList} title="Rating">
