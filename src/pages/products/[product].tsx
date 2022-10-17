@@ -2,9 +2,26 @@ import { GetStaticPaths, GetStaticProps } from 'next'
 import { $api } from '~/api'
 import { ROUTES } from '~/constants/routes'
 import { IProduct } from '~/interfaces/product.interface'
+import { ProductTemplate } from '~/components/templates'
+import { ICategory } from '~/interfaces/category.interface'
+import { ITag } from '~/interfaces/tag.interface'
+import Head from 'next/head'
 
-const Product = () => {
-  return <h1>Product</h1>
+interface ProductProps {
+  categories: ICategory[]
+  tags: ITag[]
+  product: IProduct
+}
+
+const Product = ({ product }: ProductProps) => {
+  return (
+    <>
+      <Head>
+        <title>{`${product.title}`}</title>
+      </Head>
+      <ProductTemplate product={product} />
+    </>
+  )
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {
@@ -28,9 +45,12 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
 
   const { data: categories } = await $api.get(ROUTES.categories)
   const { data: tags } = await $api.get(ROUTES.tags)
+  const { data: product } = await $api.get(
+    `${ROUTES.products}/${params.product}`
+  )
 
   return {
-    props: { categories, tags },
+    props: { categories, tags, product },
     revalidate: 120
   }
 }

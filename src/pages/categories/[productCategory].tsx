@@ -7,12 +7,10 @@ import { ProductCategoryTemplate } from '~/components/templates'
 import { useRouter } from 'next/router'
 import { findCategory } from '~/utils/findCategory'
 import { ITag } from '~/interfaces/tag.interface'
-import { IProduct } from '~/interfaces/product.interface'
 import { FRESHNESS } from '~/constants/common'
 import { IFilters } from '~/interfaces/filters.interface'
 import Head from 'next/head'
 import useSWRIMmutable from 'swr/immutable'
-import { useEffect } from 'react'
 
 interface ProductCategoryProps {
   categories: ICategory[]

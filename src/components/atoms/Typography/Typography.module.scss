@@ -30,6 +30,8 @@
 
 .body2 {
   @include typography-set(400, 17px, 23px);
+
+  font-family: var(--app-font-primary);
 }
 
 .body3 {
