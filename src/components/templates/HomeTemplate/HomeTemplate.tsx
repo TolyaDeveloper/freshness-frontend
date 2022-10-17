@@ -1,6 +1,12 @@
-import { Arrow, Button, Typography } from '~/components/atoms'
 import {
-  AsideMenu,
+  Arrow,
+  Button,
+  CustomLink,
+  ProductsSkeleton,
+  Typography
+} from '~/components/atoms'
+import {
+  LoadMoreList,
   PreSectionContainer,
   SliderComment
 } from '~/components/molecules'
@@ -10,16 +16,38 @@ import {
   BlogPreviews,
   ProductContainer
 } from '~/components/organisms'
-import { useAppContext } from '~/context/AppContext/App.context'
 import { LeftSliderArrow, RightSliderArrow } from '~/components/atoms'
 import { ROUTES } from '~/constants/routes'
+import { HomeTemplateProps } from './HomeTemplate.props'
 import Slider, { Settings } from 'react-slick'
 import Link from 'next/link'
 
 import styles from './HomeTemplate.module.scss'
 
-const HomeTemplate = () => {
-  const { state } = useAppContext()
+const HomeTemplate = ({
+  categories,
+  blogPosts,
+  customersReviews,
+  products
+}: HomeTemplateProps) => {
+  const renderedCategories = categories.map(({ _id, name }) => (
+    <Link
+      key={_id}
+      href={`${ROUTES.categories}/${_id}`}
+      passHref
+      prefetch={false}
+    >
+      <CustomLink underline="always" level="body2">
+        {name}
+      </CustomLink>
+    </Link>
+  ))
+
+  const productsView = products ? (
+    <ProductContainer layout="grid" products={products} maxProducts={3} />
+  ) : (
+    <ProductsSkeleton limit={3} />
+  )
 
   const sliderSettings: Settings = {
     dots: false,
@@ -43,46 +71,40 @@ const HomeTemplate = () => {
       <AsideMenuWithBanner
         className={styles.asideMenuWithBanner}
         asideMenu={
-          <AsideMenu
+          <LoadMoreList
             title="Best from farmers"
             buttonTitle="More categories"
-            categories={state.categories}
-          />
+            limit={5}
+          >
+            {renderedCategories}
+          </LoadMoreList>
         }
       />
       <AsideMenuWithProducts
         className={styles.asideMenuWithProducts}
         asideMenu={
-          <AsideMenu
+          <LoadMoreList
             title="Best selling products"
             buttonTitle="More products"
-            categories={state.categories}
-          />
+            limit={5}
+          >
+            {renderedCategories}
+          </LoadMoreList>
         }
-        products={
-          <ProductContainer
-            layout="grid"
-            products={state.products}
-            maxProducts={3}
-          />
-        }
+        products={productsView}
       />
       <AsideMenuWithProducts
         className={styles.asideMenuWithProducts}
         asideMenu={
-          <AsideMenu
+          <LoadMoreList
             title="Best from farmers"
             buttonTitle="More products"
-            categories={state.categories}
-          />
+            limit={5}
+          >
+            {renderedCategories}
+          </LoadMoreList>
         }
-        products={
-          <ProductContainer
-            layout="grid"
-            products={state.products}
-            maxProducts={3}
-          />
-        }
+        products={productsView}
       />
       <PreSectionContainer
         className={styles.preSectionContainer}
@@ -94,7 +116,7 @@ const HomeTemplate = () => {
         }
       />
       <Slider className={styles.slider} {...sliderSettings}>
-        {state.customersReviews.map(({ _id, ...rest }) => (
+        {customersReviews.map(({ _id, ...rest }) => (
           <SliderComment className={styles.sliderComment} key={_id} {...rest} />
         ))}
       </Slider>
@@ -107,12 +129,7 @@ const HomeTemplate = () => {
           </Button>
         }
       />
-      <ProductContainer
-        className={styles.goodsContainer}
-        layout="grid"
-        products={state.products}
-        maxProducts={4}
-      />
+      {productsView}
       <PreSectionContainer
         className={styles.preSectionContainer}
         heading={<Typography level="h2-md">Read our Blog posts</Typography>}
@@ -124,7 +141,7 @@ const HomeTemplate = () => {
           </Link>
         }
       />
-      <BlogPreviews blogs={state.blogPosts} />
+      <BlogPreviews blogs={blogPosts} />
     </>
   )
 }

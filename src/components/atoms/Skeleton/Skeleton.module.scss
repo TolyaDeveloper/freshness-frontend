@@ -1,0 +1,75 @@
+.skeleton {
+  background-color: var(--skeleton-bg);
+  animation: 1.5s ease-in-out 0.5s infinite normal none running skeleton;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+  gap: 30px;
+}
+
+.list {
+  margin-bottom: 30px;
+}
+
+.image {
+  margin-bottom: 15px;
+}
+
+.title {
+  margin-bottom: 5px;
+}
+
+.descripton {
+  margin-bottom: 12px;
+}
+
+.rating {
+  margin-bottom: 15px;
+}
+
+@keyframes skeleton {
+  0% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0.4;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+.text {
+  height: 15px;
+}
+
+.circular {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+}
+
+.rectangular {
+  height: 60px;
+}
+
+.rounded {
+  height: 60px;
+  border-radius: 12px;
+}
+
+.filterTitle {
+  margin-bottom: 20px;
+}
+
+.filter {
+  margin-bottom: 12px;
+}
+
+.filterBlock {
+  margin-bottom: 40px;
+}

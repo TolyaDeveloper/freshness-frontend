@@ -1,0 +1,21 @@
+.productsWithFiltersWrapper {
+  display: grid;
+  grid-template-columns: 270px 1fr;
+  gap: 30px;
+  margin-top: 70px;
+}
+
+.categoryHeadline {
+  margin-bottom: 25px;
+}
+
+.bottomFilter {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  margin-top: 70px;
+}
+
+.counter {
+  justify-self: end;
+}

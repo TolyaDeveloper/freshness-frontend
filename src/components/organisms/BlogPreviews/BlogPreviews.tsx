@@ -1,4 +1,3 @@
-import { memo } from 'react'
 import { cnb } from 'cnbuilder'
 import { LargeBlog, MediumBlog, SmallBlog } from '~/components/molecules'
 import { BlogPreviewsProps } from './BlogPreviews.props'
@@ -25,4 +24,4 @@ const BlogPreviews = ({ className, blogs }: BlogPreviewsProps) => {
   )
 }
 
-export default memo(BlogPreviews)
+export default BlogPreviews

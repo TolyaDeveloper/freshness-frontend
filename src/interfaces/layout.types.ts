@@ -1,1 +1,1 @@
-export type LayoutType = 'row' | 'grid'
+export type LayoutType = 'grid' | 'list'

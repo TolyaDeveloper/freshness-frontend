@@ -11,6 +11,6 @@ export const ROUTES = {
   products: '/products',
   help: '/help',
   search: '/search',
-  customers_reviews: '/customers-reviews',
+  customers_reviews: '/customer-reviews',
   blog_posts: '/blog-posts'
 }

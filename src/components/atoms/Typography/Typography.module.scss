@@ -38,6 +38,8 @@
 
 .body4 {
   @include typography-set(400, 14px, 19px);
+
+  font-family: var(--app-font-primary);
 }
 
 .body5 {

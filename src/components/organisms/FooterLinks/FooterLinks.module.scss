@@ -4,16 +4,6 @@
   gap: 30px;
 }
 
-.title {
-  margin-bottom: 15px;
-}
-
-.listItem {
-  & + & {
-    margin-top: 15px;
-  }
-}
-
 @media (max-width: 767px) {
   .linksContainer {
     grid-template-columns: 1fr 1fr;

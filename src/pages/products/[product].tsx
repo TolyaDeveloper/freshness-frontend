@@ -28,12 +28,9 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
 
   const { data: categories } = await $api.get(ROUTES.categories)
   const { data: tags } = await $api.get(ROUTES.tags)
-  const { data: product } = await $api.get(
-    `${ROUTES.products}/${params.product}`
-  )
 
   return {
-    props: { categories, tags, products: [product] },
+    props: { categories, tags },
     revalidate: 120
   }
 }
