@@ -36,6 +36,7 @@ const ProductsWithFilters = ({ filters, category }: ProductsWithFilters) => {
   const [shouldFetch, setFetch] = useState(false)
   const [activeFilters, setActiveFilters] = useState<IQueries>(defaultQueries)
   const [products, setProducts] = useState<IProduct[] | undefined>(undefined)
+  const skipInterval = 9
 
   const buildQueryURI = () => {
     return `${ROUTES.products}?category=${
@@ -52,12 +53,11 @@ const ProductsWithFilters = ({ filters, category }: ProductsWithFilters) => {
 
   useEffect(() => {
     setActiveFilters({
-      ...activeFilters,
+      ...defaultQueries,
       ...parseQueries(query, 'productCategory')
     })
 
     setFetch(true)
-    console.log('effect')
   }, [query])
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
@@ -66,16 +66,22 @@ const ProductsWithFilters = ({ filters, category }: ProductsWithFilters) => {
     push({
       query: { productCategory: query.productCategory, ...activeFilters }
     })
-
-    setFetch(true)
   }
 
   const handleReset = () => {
     setActiveFilters(defaultQueries)
 
     push({ query: { productCategory: query.productCategory } })
+  }
 
-    setFetch(true)
+  const handlePagination = (index: number) => {
+    push({
+      query: {
+        productCategory: query.productCategory,
+        ...activeFilters,
+        skip: index * skipInterval
+      }
+    })
   }
 
   const totalProducts = filters?.filters.totalCategoryProducts[0]?.total
@@ -126,12 +132,7 @@ const ProductsWithFilters = ({ filters, category }: ProductsWithFilters) => {
         </div>
       </form>
       <div className={styles.bottomFilter}>
-        <Pagination
-          count={2}
-          link={`${ROUTES.categories}/${
-            query.productCategory
-          }?${parseQueriesIntoString(activeFilters)}`}
-        />
+        <Pagination onHandlePagination={handlePagination} count={4} />
         <Button endAdornment={<Arrow color="primary1" orientation="down" />}>
           Show more products
         </Button>

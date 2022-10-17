@@ -1,11 +1,14 @@
 import { cnb } from 'cnbuilder'
 import { PaginationProps } from './Pagination.props'
-import { Typography, CustomLink } from '~/components/atoms'
-import Link from 'next/link'
+import { Typography } from '~/components/atoms'
 
 import styles from './Pagination.module.scss'
 
-const Pagination = ({ className, count, link }: PaginationProps) => {
+const Pagination = ({
+  className,
+  count,
+  onHandlePagination
+}: PaginationProps) => {
   return (
     <nav className={cnb(styles.pagination, className)}>
       <Typography level="body6" color="primary2">
@@ -19,13 +22,15 @@ const Pagination = ({ className, count, link }: PaginationProps) => {
             className={styles.paginationItem}
             key={index}
           >
-            <Link
-              href={`${link}skip=${index * 9}`}
-              passHref={true}
-              prefetch={false}
+            <Typography
+              onClick={() => onHandlePagination(index)}
+              className={styles.paginationButton}
+              level="body5"
+              component="button"
+              aria-label={`Page ${index + 1}, total ${count}`}
             >
-              <CustomLink>{index + 1}</CustomLink>
-            </Link>
+              {index + 1}
+            </Typography>
           </Typography>
         ))}
       </ul>

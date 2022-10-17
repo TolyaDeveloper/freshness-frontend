@@ -1,4 +1,3 @@
-import { Dispatch, SetStateAction } from 'react'
 import { IFilters } from '~/interfaces/filters.interface'
 import { IQueries } from '~/interfaces/queries.interface'
 

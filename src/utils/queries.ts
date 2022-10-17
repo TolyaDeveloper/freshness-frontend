@@ -36,10 +36,3 @@ export const defaultQueries: IQueries = {
   minPrice: [],
   skip: []
 }
-
-// {
-//   biology: ['Farm', 'Bio']
-//   rating: [2, 4]
-// }
-
-// should be: biology=Farm&biology=Bio&rating=2&rating=4
