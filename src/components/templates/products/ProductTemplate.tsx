@@ -1,6 +1,16 @@
 import { ProductTemplateProps } from './ProductTemplate.props'
-import { Breadcrumbs, Typography, Rating, CustomLink } from '~/components/atoms'
-import { AddToWishlist, AddToCompare } from '~/components/molecules'
+import {
+  Breadcrumbs,
+  Typography,
+  Rating,
+  CustomLink,
+  Tag
+} from '~/components/atoms'
+import {
+  AddToWishlist,
+  AddToCompare,
+  ProductDescriptionBlock
+} from '~/components/molecules'
 import { pluralize } from '~/utils/pluralize'
 import { ROUTES } from '~/constants/routes'
 import { ProductAddToCart } from '~/components/molecules'
@@ -140,12 +150,24 @@ const ProductTemplate = ({ product }: ProductTemplateProps) => {
           <Tabs>
             <TabList>
               <Tab>Description</Tab>
-              <Tab>Reviews</Tab>
-              <Tab>Questions</Tab>
+              <Tab>
+                Reviews{' '}
+                <Tag className={styles.tabTag} size="sm">
+                  {product.reviews.length}
+                </Tag>
+              </Tab>
+              <Tab>
+                Questions{' '}
+                <Tag className={styles.tabTag} size="sm">
+                  {product.questions.length}
+                </Tag>
+              </Tab>
             </TabList>
 
             <TabPanel>
-              <h2>Any content 1</h2>
+              <ProductDescriptionBlock
+                descriptionBlock={product.descriptionBlock}
+              />
             </TabPanel>
             <TabPanel>
               <h2>Any content 2</h2>

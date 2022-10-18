@@ -4,13 +4,13 @@ import { ITag } from './tag.interface'
 export interface IProductDescriptionBlockVitamins {
   vitamin: string
   quantity: string
-  dv: number
+  dv: string
 }
 
 export interface IProductDescriptionBlock {
-  origins: string
-  howToCook: string
-  vitamins: IProductDescriptionBlockVitamins[]
+  origins?: string
+  howToCook?: string
+  vitamins?: IProductDescriptionBlockVitamins[]
 }
 
 export interface IProduct {

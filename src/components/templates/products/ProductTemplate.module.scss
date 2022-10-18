@@ -46,6 +46,7 @@
   grid-template-columns: auto auto;
   justify-content: flex-start;
   gap: 15px;
+  margin-bottom: 60px;
 }
 
 .reviewsLink {
@@ -54,4 +55,8 @@
 
 .productAddToCart {
   margin-bottom: 25px;
+}
+
+.tabTag {
+  margin-left: 8px;
 }

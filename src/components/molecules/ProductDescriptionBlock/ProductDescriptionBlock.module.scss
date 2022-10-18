@@ -1,0 +1,29 @@
+.descriptionBlock {
+  & + & {
+    margin-top: 30px;
+  }
+}
+
+.title {
+  margin-bottom: 8px;
+}
+
+.table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.tableTitlesRow {
+  border-bottom: 1px solid var(--palette-primary-300);
+
+  th {
+    text-align: left;
+    padding: 6px 0;
+  }
+}
+
+.tableItemsRow {
+  td {
+    padding: 10px 0;
+  }
+}
