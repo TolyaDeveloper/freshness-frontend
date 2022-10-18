@@ -25,11 +25,25 @@ export const AppContextProvider = ({ children }: PropsWithChildren) => {
 
   useEffect(() => {
     const productsFromLocalStorage = LocalStorageService.getItem('products')
+    const wishlistFromLocalStorage = LocalStorageService.getItem('wishlist')
+    const compareFromLocalStorage = LocalStorageService.getItem('compare')
 
     productsFromLocalStorage &&
       dispatch({
         type: 'SET_CART',
         payload: productsFromLocalStorage
+      })
+
+    wishlistFromLocalStorage &&
+      dispatch({
+        type: 'SET_WISHLIST',
+        payload: wishlistFromLocalStorage
+      })
+
+    compareFromLocalStorage &&
+      dispatch({
+        type: 'SET_COMPARE',
+        payload: compareFromLocalStorage
       })
   }, [])
 

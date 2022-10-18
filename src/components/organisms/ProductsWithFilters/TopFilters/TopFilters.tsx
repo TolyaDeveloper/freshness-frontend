@@ -5,7 +5,6 @@ import {
   Radio,
   Checkbox,
   Tag,
-  Divider,
   Select,
   Arrow
 } from '~/components/atoms'

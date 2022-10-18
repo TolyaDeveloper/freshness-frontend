@@ -1,36 +1,24 @@
 import { ProductTemplateProps } from './ProductTemplate.props'
-import {
-  Breadcrumbs,
-  Typography,
-  Rating,
-  CustomLink,
-  Arrow
-} from '~/components/atoms'
+import { Breadcrumbs, Typography, Rating, CustomLink } from '~/components/atoms'
+import { AddToWishlist, AddToCompare } from '~/components/molecules'
 import { pluralize } from '~/utils/pluralize'
 import { ROUTES } from '~/constants/routes'
-import { useRouter } from 'next/router'
-import {
-  FormStyledWrapper,
-  Input,
-  Select,
-  Divider,
-  Button
-} from '~/components/atoms'
-import AddIcon from '~/assets/icons/add.svg'
-import WishListIcon from '~/assets/icons/wishlist.svg'
-import CompareIcon from '~/assets/icons/compare.svg'
+import { ProductAddToCart } from '~/components/molecules'
 import Image from 'next/image'
 import Link from 'next/link'
 
 import styles from './ProductTemplate.module.scss'
 
 const ProductTemplate = ({ product }: ProductTemplateProps) => {
-  const { locale } = useRouter()
-
   return (
     <>
       <Breadcrumbs>
-        <Typography level="body6">{product.categories[0].name}</Typography>
+        <Link
+          href={`${ROUTES.categories}/${product.categories[0]._id}`}
+          passHref
+        >
+          <CustomLink color="primary1">{product.categories[0].name}</CustomLink>
+        </Link>
         <Typography level="body6">{product.title}</Typography>
       </Breadcrumbs>
       <div className={styles.productContainer}>
@@ -47,7 +35,11 @@ const ProductTemplate = ({ product }: ProductTemplateProps) => {
           <Typography level="h1">{product.title}</Typography>
           <div className={styles.ratingWrapper}>
             <Rating className={styles.rating} rating={product.rating} />
-            <CustomLink href="#" color="primary1">
+            <CustomLink
+              className={styles.reviewsLink}
+              href="#"
+              color="primary1"
+            >
               ({product.reviews.length} customer{' '}
               {pluralize(product.reviews.length, 'review')})
             </CustomLink>
@@ -134,61 +126,15 @@ const ProductTemplate = ({ product }: ProductTemplateProps) => {
               </div>
             </div>
           </div>
-          <div className={styles.priceBlock}>
-            <div>
-              <Typography level="h2-xl" component="p" color="secondary">
-                {new Intl.NumberFormat(locale, {
-                  style: 'currency',
-                  currency: 'USD',
-                  currencyDisplay: 'code'
-                }).format(product.price)}
-              </Typography>
-              {product.oldPrice && (
-                <Typography
-                  className={styles.oldPrice}
-                  level="body5"
-                  color="primary2"
-                >
-                  {new Intl.NumberFormat(locale, {
-                    style: 'currency',
-                    currency: 'USD',
-                    currencyDisplay: 'code'
-                  }).format(product.oldPrice)}
-                </Typography>
-              )}
-            </div>
-            <FormStyledWrapper className={styles.addBlock}>
-              <Input />
-              <Divider className={styles.divider} orienation="vertical" />
-              <Select
-                endAdornment={<Arrow color="primary2" orientation="down" />}
-              >
-                <option>1</option>
-                <option>2</option>
-                <option>5</option>
-                <option>10</option>
-                <option>15</option>
-              </Select>
-            </FormStyledWrapper>
-            <Button startAdornment={<AddIcon />}>Add to cart</Button>
-          </div>
+          <ProductAddToCart
+            className={styles.productAddToCart}
+            price={product.price}
+            productId={product._id}
+            oldPrice={product.oldPrice}
+          />
           <div className={styles.wishlistWithCompareWrapper}>
-            <Button
-              variant="plain"
-              startAdornment={<WishListIcon />}
-              aria-label="Add to wishlist"
-              type="button"
-            >
-              Add to my wishlist
-            </Button>
-            <Button
-              variant="plain"
-              startAdornment={<CompareIcon />}
-              aria-label="Add to compare list"
-              type="button"
-            >
-              Compare
-            </Button>
+            <AddToWishlist productId={product._id} />
+            <AddToCompare productId={product._id} />
           </div>
         </div>
       </div>
