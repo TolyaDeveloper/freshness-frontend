@@ -4,6 +4,7 @@ import { AddToWishlist, AddToCompare } from '~/components/molecules'
 import { pluralize } from '~/utils/pluralize'
 import { ROUTES } from '~/constants/routes'
 import { ProductAddToCart } from '~/components/molecules'
+import { Tabs, TabList, Tab, TabPanel } from 'react-tabs'
 import Image from 'next/image'
 import Link from 'next/link'
 
@@ -136,6 +137,23 @@ const ProductTemplate = ({ product }: ProductTemplateProps) => {
             <AddToWishlist productId={product._id} />
             <AddToCompare productId={product._id} />
           </div>
+          <Tabs>
+            <TabList>
+              <Tab>Description</Tab>
+              <Tab>Reviews</Tab>
+              <Tab>Questions</Tab>
+            </TabList>
+
+            <TabPanel>
+              <h2>Any content 1</h2>
+            </TabPanel>
+            <TabPanel>
+              <h2>Any content 2</h2>
+            </TabPanel>
+            <TabPanel>
+              <h2>Any content 3</h2>
+            </TabPanel>
+          </Tabs>
         </div>
       </div>
     </>
