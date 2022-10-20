@@ -1,5 +1,6 @@
 import { ICategory } from './category.interface'
 import { ITag } from './tag.interface'
+import { IUser } from './user.interface'
 
 export interface IProductDescriptionBlockVitamins {
   vitamin: string
@@ -11,6 +12,13 @@ export interface IProductDescriptionBlock {
   origins?: string
   howToCook?: string
   vitamins?: IProductDescriptionBlockVitamins[]
+}
+
+export interface IProductReview {
+  _id: string
+  user: IUser
+  comment: string
+  createdAt: Date
 }
 
 export interface IProduct {
@@ -32,6 +40,6 @@ export interface IProduct {
   inStock: boolean
   deliveryTime: string
   deliveryArea: string[]
-  reviews: any[]
+  reviews: IProductReview[]
   questions: any[]
 }

@@ -1,5 +1,5 @@
 import { IProduct } from '~/interfaces/product.interface'
 
 export interface ProductTemplateProps {
-  product: IProduct
+  product: Omit<IProduct, 'reviews' | 'questions'>
 }

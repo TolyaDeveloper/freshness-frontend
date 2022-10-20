@@ -27,7 +27,7 @@ export interface IAppState {
   wishlist: string[]
   compare: string[]
   layout: LayoutType
-  user: IUser | null
+  user: IUser | null | true
 }
 
 export const initialValues: IAppState = {
@@ -39,5 +39,5 @@ export const initialValues: IAppState = {
   wishlist: [],
   compare: [],
   layout: 'grid',
-  user: null
+  user: true
 }

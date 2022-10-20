@@ -9,6 +9,8 @@ export const ROUTES = {
   profile: '/profile',
   cart: '/cart',
   products: '/products',
+  products_comments: '/products/comments',
+  add_product_review: '/products/add/review',
   help: '/help',
   search: '/search',
   customers_reviews: '/customer-reviews',
