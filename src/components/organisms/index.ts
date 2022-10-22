@@ -3,6 +3,8 @@ export { default as AsideMenuWithBanner } from './AsideMenuWithBanner/AsideMenuW
 export { default as AsideMenuWithProducts } from './AsideMenuWithProducts/AsideMenuWithProducts'
 export { default as BlogPreviews } from './BlogPreviews/BlogPreviews'
 export { default as CategoryHeadline } from './CategoryHeadline/CategoryHeadline'
+export { default as CommentsForm } from './Comments/CommentsForm/CommentsForm'
+export { default as Comments } from './Comments/Comments'
 export { default as FooterLinks } from './FooterLinks/FooterLinks'
 export { default as MiddleBar } from './MiddleBar/MiddleBar'
 export { default as ProductContainer } from './ProductContainer/ProductContainer'

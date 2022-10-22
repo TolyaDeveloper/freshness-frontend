@@ -62,9 +62,13 @@
 }
 
 .startAdornment {
+  display: inline-flex;
+  align-items: center;
   margin-right: 12px;
 }
 
 .endAdornment {
+  display: inline-flex;
+  align-items: center;
   margin-left: 12px;
 }

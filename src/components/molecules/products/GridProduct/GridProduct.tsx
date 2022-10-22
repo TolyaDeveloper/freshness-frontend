@@ -6,6 +6,7 @@ import { ROUTES } from '~/constants/routes'
 import { useAppContext } from '~/context/AppContext/App.context'
 import { LocalStorageService } from '~/services/localStorage.service'
 import { countDiscountPercentage } from '~/utils/countDiscountPercentage'
+import { ProductCartTypeEnum } from '~/interfaces/cart.interface'
 import Link from 'next/link'
 import Image from 'next/image'
 
@@ -16,12 +17,16 @@ const GridProduct = ({ className, product }: GridProductProps) => {
   const { dispatch, state } = useAppContext()
   const { _id, imageUri, price, rating, smallDescription, title, oldPrice } =
     product
-  const isAlreadyInCart = state.cart.includes(_id)
+  const isAlreadyInCart = state.cart.find(item => item._id === _id)
+  const payload = { _id, amount: 1, type: ProductCartTypeEnum.PCS }
 
   const onAddToCart = () => {
-    dispatch({ type: 'SET_CART', payload: _id })
+    dispatch({
+      type: 'SET_CART',
+      payload
+    })
 
-    LocalStorageService.setItem('products', [...state.cart, _id])
+    LocalStorageService.setItem('products', [...state.cart, payload])
   }
 
   return (

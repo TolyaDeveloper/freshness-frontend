@@ -16,6 +16,28 @@ export const appReducer = (state: IAppState, action: AppActions) => {
       }
 
       return { ...state, cart: [...state.cart, action.payload] }
+    case 'SET_WISHLIST':
+      if (Array.isArray(action.payload)) {
+        return { ...state, wishlist: [...action.payload] }
+      }
+
+      return { ...state, wishlist: [...state.wishlist, action.payload] }
+    case 'REMOVE_FROM_WISHLIST':
+      return {
+        ...state,
+        wishlist: state.wishlist.filter(item => item !== action.payload)
+      }
+    case 'SET_COMPARE':
+      if (Array.isArray(action.payload)) {
+        return { ...state, compare: [...action.payload] }
+      }
+
+      return { ...state, compare: [...state.compare, action.payload] }
+    case 'REMOVE_FROM_COMPARE':
+      return {
+        ...state,
+        compare: state.compare.filter(item => item !== action.payload)
+      }
     case 'SET_LAYOUT':
       return { ...state, layout: action.payload }
     default:

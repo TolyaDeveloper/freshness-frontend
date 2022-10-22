@@ -1,0 +1,62 @@
+.productContainer {
+  display: grid;
+  align-items: flex-start;
+  grid-template-columns: 570px 1fr;
+  gap: 30px;
+}
+
+.image {
+  border-radius: 12px;
+}
+
+.detailedWrapper {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 70px;
+  margin-bottom: 40px;
+}
+
+.oneItemWrapper {
+  display: grid;
+  grid-template-columns: auto auto;
+  justify-content: space-between;
+  gap: 15px;
+
+  & + & {
+    margin-top: 12px;
+  }
+}
+
+.description {
+  margin-bottom: 40px;
+}
+
+.ratingWrapper {
+  display: flex;
+  align-items: center;
+  margin-bottom: 40px;
+}
+
+.rating {
+  margin-right: 5px;
+}
+
+.wishlistWithCompareWrapper {
+  display: grid;
+  grid-template-columns: auto auto;
+  justify-content: flex-start;
+  gap: 15px;
+  margin-bottom: 60px;
+}
+
+.reviewsLink {
+  text-decoration: underline;
+}
+
+.productAddToCart {
+  margin-bottom: 25px;
+}
+
+.tabTag {
+  margin-left: 8px;
+}

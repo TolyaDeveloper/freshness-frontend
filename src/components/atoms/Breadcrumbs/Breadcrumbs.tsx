@@ -20,17 +20,19 @@ const Breadcrumbs = ({
   return (
     <nav className={cnb(styles.breadcrumbs, className)} {...props}>
       <ol>
+        <li>
+          <Link href={ROUTES.home} passHref>
+            <CustomLink color="primary1">{homeText}</CustomLink>
+          </Link>
+        </li>
+        <li className={styles.separator} aria-hidden={true}>
+          {separator}
+        </li>
         {Children.map(arrayChildren, (child, index) => {
           const isLast = index === arrayChildren.length - 1
 
           return (
             <>
-              <Link href={ROUTES.home} passHref>
-                <CustomLink color="primary1">{homeText}</CustomLink>
-              </Link>
-              <li className={styles.separator} aria-hidden={true}>
-                {separator}
-              </li>
               <li>{child}</li>
               {!isLast && (
                 <li className={styles.separator} aria-hidden={true}>
