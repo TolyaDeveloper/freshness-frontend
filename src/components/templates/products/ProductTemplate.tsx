@@ -4,15 +4,23 @@ import {
   Typography,
   Rating,
   CustomLink,
-  Tag
+  Tag,
+  ProductsSkeleton,
+  Button,
+  Arrow
 } from '~/components/atoms'
 import {
   AddToWishlist,
   AddToCompare,
   ProductDescriptionBlock,
-  ProductAddToCart
+  ProductAddToCart,
+  PreSectionContainer
 } from '~/components/molecules'
-import { Comments, CommentsForm } from '~/components/organisms'
+import {
+  Comments,
+  CommentsForm,
+  ProductContainer
+} from '~/components/organisms'
 import { pluralize } from '~/utils/pluralize'
 import { ROUTES } from '~/constants/routes'
 import { Tabs, TabList, Tab, TabPanel } from 'react-tabs'
@@ -23,11 +31,18 @@ import styles from './ProductTemplate.module.scss'
 
 const ProductTemplate = ({
   product,
-  questionsAndReviewsCount
+  questionsAndReviewsCount,
+  relatedProducts
 }: ProductTemplateProps) => {
   const reviewsCount = questionsAndReviewsCount?.reviewsCount[0]?.reviewsCount
   const questionsCount =
     questionsAndReviewsCount?.questionsCount[0]?.questionsCount
+
+  const relatedProductsView = relatedProducts ? (
+    <ProductContainer products={relatedProducts} layout="grid" />
+  ) : (
+    <ProductsSkeleton limit={4} />
+  )
 
   return (
     <>
@@ -189,6 +204,21 @@ const ProductTemplate = ({
           </Tabs>
         </div>
       </div>
+      <PreSectionContainer
+        className={styles.preSectionContainer}
+        heading={<Typography level="h2-md">Related products</Typography>}
+        button={
+          <Link
+            href={`${ROUTES.categories}/${product.categories[0]._id}`}
+            passHref
+          >
+            <Button variant="plain" endAdornment={<Arrow />}>
+              More products
+            </Button>
+          </Link>
+        }
+      />
+      {relatedProductsView}
     </>
   )
 }

@@ -20,12 +20,22 @@ const Product = ({ product }: ProductProps) => {
     `${ROUTES.questions_reviews_count}/${product._id}`
   )
 
+  const { data: relatedProducts } = useSWR<IProduct[]>(
+    `${ROUTES.products}?category=${product.categories[0]._id}&limit=4`
+  )
+
+  console.log(relatedProducts)
+
   return (
     <>
       <Head>
         <title>{`${product.title}`}</title>
       </Head>
-      <ProductTemplate product={product} questionsAndReviewsCount={count} />
+      <ProductTemplate
+        product={product}
+        questionsAndReviewsCount={count}
+        relatedProducts={relatedProducts}
+      />
     </>
   )
 }

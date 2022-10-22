@@ -15,5 +15,6 @@ export const ROUTES = {
   help: '/help',
   search: '/search',
   customers_reviews: '/customer-reviews',
-  blog_posts: '/blog-posts'
+  blog_posts: '/blog-posts',
+  auth_login: '/auth/login'
 }
