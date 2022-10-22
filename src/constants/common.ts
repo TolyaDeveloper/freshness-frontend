@@ -5,6 +5,8 @@ export const META = {
   INITIAL_DESCRIPTION: 'Freshness ecommerce - your favorite food!'
 }
 
+export const DEFAULT_AVATAR_PATH = '/images/avatars/default-avatar-96.png'
+
 export const TOP_BAR = {
   CHAT: 'Chat with us',
   PHONE: '+420 336 775 664',

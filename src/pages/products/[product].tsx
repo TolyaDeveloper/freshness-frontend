@@ -4,7 +4,9 @@ import { ROUTES } from '~/constants/routes'
 import { IProduct } from '~/interfaces/product.interface'
 import { ProductTemplate } from '~/components/templates'
 import { ICategory } from '~/interfaces/category.interface'
+import { IQuestionsReviewsCount } from '~/interfaces/questions-reviews-count.interface'
 import { ITag } from '~/interfaces/tag.interface'
+import useSWR from 'swr'
 import Head from 'next/head'
 
 interface ProductProps {
@@ -14,12 +16,16 @@ interface ProductProps {
 }
 
 const Product = ({ product }: ProductProps) => {
+  const { data: count } = useSWR<IQuestionsReviewsCount>(
+    `${ROUTES.questions_reviews_count}/${product._id}`
+  )
+
   return (
     <>
       <Head>
         <title>{`${product.title}`}</title>
       </Head>
-      <ProductTemplate product={product} />
+      <ProductTemplate product={product} questionsAndReviewsCount={count} />
     </>
   )
 }

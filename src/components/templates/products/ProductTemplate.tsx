@@ -1,4 +1,3 @@
-import { useRef } from 'react'
 import { ProductTemplateProps } from './ProductTemplate.props'
 import {
   Breadcrumbs,
@@ -17,28 +16,18 @@ import { Comments, CommentsForm } from '~/components/organisms'
 import { pluralize } from '~/utils/pluralize'
 import { ROUTES } from '~/constants/routes'
 import { Tabs, TabList, Tab, TabPanel } from 'react-tabs'
-import { IProductComment } from '~/interfaces/product-comment.interface'
-import useSWR from 'swr'
 import Image from 'next/image'
 import Link from 'next/link'
 
 import styles from './ProductTemplate.module.scss'
 
-const ProductTemplate = ({ product }: ProductTemplateProps) => {
-  const { data: reviews } = useSWR<IProductComment>(
-    `${ROUTES.products_comments}/${product._id}`
-  )
-  const reviewsLength = reviews?.reviews.length
-  const reviewRef = useRef<HTMLDivElement>(null)
-
-  const scrollToReviews = () => {
-    reviewRef.current?.scrollIntoView({
-      behavior: 'smooth',
-      block: 'start'
-    })
-
-    reviewRef.current?.focus()
-  }
+const ProductTemplate = ({
+  product,
+  questionsAndReviewsCount
+}: ProductTemplateProps) => {
+  const reviewsCount = questionsAndReviewsCount?.reviewsCount[0]?.reviewsCount
+  const questionsCount =
+    questionsAndReviewsCount?.questionsCount[0]?.questionsCount
 
   return (
     <>
@@ -69,10 +58,9 @@ const ProductTemplate = ({ product }: ProductTemplateProps) => {
               className={styles.reviewsLink}
               href="#reviews"
               color="primary1"
-              onClick={scrollToReviews}
             >
-              ({reviewsLength} customer{' '}
-              {reviewsLength && pluralize(reviewsLength, 'review')})
+              ({reviewsCount} customer{' '}
+              {reviewsCount && pluralize(reviewsCount, 'review')})
             </CustomLink>
           </div>
           <Typography className={styles.description} level="body2">
@@ -163,23 +151,23 @@ const ProductTemplate = ({ product }: ProductTemplateProps) => {
             productId={product._id}
             oldPrice={product.oldPrice}
           />
-          <div className={styles.wishlistWithCompareWrapper} ref={reviewRef}>
+          <div className={styles.wishlistWithCompareWrapper}>
             <AddToWishlist productId={product._id} />
             <AddToCompare productId={product._id} />
           </div>
-          <Tabs>
+          <Tabs id="reviews">
             <TabList>
               <Tab>Description</Tab>
               <Tab>
                 Reviews{' '}
                 <Tag className={styles.tabTag} size="sm">
-                  {reviewsLength}
+                  {reviewsCount}
                 </Tag>
               </Tab>
               <Tab>
                 Questions{' '}
                 <Tag className={styles.tabTag} size="sm">
-                  00
+                  {questionsCount}
                 </Tag>
               </Tab>
             </TabList>
@@ -196,7 +184,7 @@ const ProductTemplate = ({ product }: ProductTemplateProps) => {
               />
             </TabPanel>
             <TabPanel>
-              <h2>Any content 3</h2>
+              <h2>Coming soon...</h2>
             </TabPanel>
           </Tabs>
         </div>
