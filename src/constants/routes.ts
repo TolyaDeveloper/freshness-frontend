@@ -16,5 +16,8 @@ export const ROUTES = {
   search: '/search',
   customers_reviews: '/customer-reviews',
   blog_posts: '/blog-posts',
-  auth_login: '/auth/login'
+  auth_login: '/auth/login',
+  auth_signup: '/auth/signup',
+  auth_logout: '/auth/logout',
+  auth_refresh: '/auth/refresh'
 }

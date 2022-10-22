@@ -24,8 +24,6 @@ const Product = ({ product }: ProductProps) => {
     `${ROUTES.products}?category=${product.categories[0]._id}&limit=4`
   )
 
-  console.log(relatedProducts)
-
   return (
     <>
       <Head>

@@ -40,6 +40,13 @@ export const appReducer = (state: IAppState, action: AppActions) => {
       }
     case 'SET_LAYOUT':
       return { ...state, layout: action.payload }
+    case 'SET_USER':
+      if (!action.payload) {
+        return { ...state, user: null }
+      }
+
+      return { ...state, user: { ...state.user, ...action.payload } }
+
     default:
       return state
   }

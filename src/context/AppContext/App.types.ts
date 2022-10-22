@@ -17,6 +17,7 @@ export type AppActions =
   | { type: 'SET_COMPARE'; payload: string }
   | { type: 'REMOVE_FROM_COMPARE'; payload: string }
   | { type: 'SET_LAYOUT'; payload: LayoutType }
+  | { type: 'SET_USER'; payload: IUser | null }
 
 export interface IAppState {
   categories: ICategory[]

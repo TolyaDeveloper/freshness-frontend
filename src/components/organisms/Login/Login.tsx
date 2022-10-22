@@ -8,19 +8,28 @@ import {
 import { useForm } from 'react-hook-form'
 import { type LoginSchemaType, loginSchema } from '~/validators/login.validator'
 import { computedTypesResolver } from '@hookform/resolvers/computed-types'
-import styles from './Login.module.scss'
 import { $api } from '~/api'
 import { ROUTES } from '~/constants/routes'
+import { useAppContext } from '~/context/AppContext/App.context'
+import { AuthService } from '~/services/auth.service'
+
+import styles from './Login.module.scss'
+import { LocalStorageService } from '~/services/localStorage.service'
 
 const Login = ({}: LoginProps) => {
-  const { handleSubmit, register } = useForm<LoginSchemaType>({
+  const { dispatch } = useAppContext()
+  const { handleSubmit, register, reset } = useForm<LoginSchemaType>({
     resolver: computedTypesResolver(loginSchema)
   })
 
   const onSubmit = async ({ email, password }: LoginSchemaType) => {
     try {
-      const res = await $api.post(`${ROUTES.auth_login}`, { email, password })
-      console.log(res)
+      const res = await AuthService.login({ email, password })
+
+      LocalStorageService.setItem('accessToken', res.data.accessToken)
+      dispatch({ type: 'SET_USER', payload: res.data.user })
+
+      reset()
     } catch (err) {
       if (err instanceof Error) {
         console.log(err)

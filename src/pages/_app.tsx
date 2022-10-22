@@ -1,11 +1,15 @@
 import type { AppProps } from 'next/app'
-import { ReactElement, ReactNode } from 'react'
+import { ReactElement, ReactNode, useEffect } from 'react'
 import { NextPage } from 'next'
 import { META } from '~/constants/common'
 import { AppContextProvider } from '~/context/AppContext/App.context'
 import { Layout } from '~/layout'
 import { SWRConfig } from 'swr'
 import { fetcher } from '~/utils/fetcher'
+import { AuthService } from '~/services/auth.service'
+import { useAppContext } from '~/context/AppContext/App.context'
+import { LocalStorageService } from '~/services/localStorage.service'
+import AuthSetter from '~/layout/AuthSetter/AuthSetter'
 import Head from 'next/head'
 import NextNProgress from 'nextjs-progressbar'
 
@@ -42,7 +46,7 @@ const MyApp = ({ Component, pageProps }: AppPropsWithLayout) => {
       />
       <SWRConfig value={{ fetcher }}>
         <AppContextProvider>
-          {getLayout(<Component {...pageProps} />)}
+          <AuthSetter>{getLayout(<Component {...pageProps} />)}</AuthSetter>
         </AppContextProvider>
       </SWRConfig>
     </>
