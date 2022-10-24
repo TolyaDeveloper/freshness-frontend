@@ -2,8 +2,17 @@ import { GetStaticProps } from 'next'
 import { $api } from '~/api'
 import { ROUTES } from '~/constants/routes'
 import { SignupTemplate } from '~/components/templates'
+import { useRouter } from 'next/router'
+import { useUserContext } from '~/context/UserContext/User.context'
 
 const Signup = () => {
+  const { state } = useUserContext()
+  const { push } = useRouter()
+
+  if (state.user) {
+    push(ROUTES.profile)
+  }
+
   return (
     <>
       <SignupTemplate />
