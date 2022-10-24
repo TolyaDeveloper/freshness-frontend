@@ -3,21 +3,22 @@ import {
   Typography,
   Input,
   FormStyledWrapper,
-  Button
+  Button,
+  CustomLink
 } from '~/components/atoms'
 import { useForm } from 'react-hook-form'
 import { type LoginSchemaType, loginSchema } from '~/validators/login.validator'
 import { computedTypesResolver } from '@hookform/resolvers/computed-types'
-import { $api } from '~/api'
-import { ROUTES } from '~/constants/routes'
-import { useAppContext } from '~/context/AppContext/App.context'
+import { useUserContext } from '~/context/UserContext/User.context'
 import { AuthService } from '~/services/auth.service'
-
-import styles from './Login.module.scss'
 import { LocalStorageService } from '~/services/localStorage.service'
 
+import styles from './Login.module.scss'
+import Link from 'next/link'
+import { ROUTES } from '~/constants/routes'
+
 const Login = ({}: LoginProps) => {
-  const { dispatch } = useAppContext()
+  const { dispatch } = useUserContext()
   const { handleSubmit, register, reset } = useForm<LoginSchemaType>({
     resolver: computedTypesResolver(loginSchema)
   })
@@ -53,7 +54,12 @@ const Login = ({}: LoginProps) => {
             {...register('password')}
           />
         </FormStyledWrapper>
-        <Button>Login</Button>
+        <Button type="submit">Login</Button>
+        <Link href={ROUTES.signup} passHref>
+          <CustomLink className={styles.signupLink}>
+            Do not have an account? Signup here
+          </CustomLink>
+        </Link>
       </form>
     </>
   )

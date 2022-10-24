@@ -6,14 +6,14 @@ import {
   CommentSchemaType
 } from '~/validators/comment.validator'
 import { CommentsFormProps } from './CommentsForm.props'
-import { useAppContext } from '~/context/AppContext/App.context'
+import { useUserContext } from '~/context/UserContext/User.context'
 
 import styles from './CommentsForm.module.scss'
 import { $api } from '~/api'
 import { ROUTES } from '~/constants/routes'
 
 const CommentsForm = ({ className, productId }: CommentsFormProps) => {
-  const { state } = useAppContext()
+  const { state } = useUserContext()
 
   const { handleSubmit, register, reset } = useForm<CommentSchemaType>({
     resolver: computedTypesResolver(commentSchema)

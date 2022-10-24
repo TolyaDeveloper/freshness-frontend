@@ -1,10 +1,10 @@
 import { PropsWithChildren, useEffect } from 'react'
 import { AuthService } from '~/services/auth.service'
 import { LocalStorageService } from '~/services/localStorage.service'
-import { useAppContext } from '~/context/AppContext/App.context'
+import { useUserContext } from '~/context/UserContext/User.context'
 
 const AuthSetter = ({ children }: PropsWithChildren) => {
-  const { dispatch } = useAppContext()
+  const { dispatch } = useUserContext()
 
   useEffect(() => {
     const checkAuth = async () => {

@@ -7,6 +7,7 @@ export const ROUTES = {
   about: '/about-us',
   careers: '/careers',
   profile: '/profile',
+  signup: '/signup',
   cart: '/cart',
   products: '/products',
   products_comments: '/products/comments',

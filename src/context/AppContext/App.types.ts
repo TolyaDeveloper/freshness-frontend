@@ -17,7 +17,6 @@ export type AppActions =
   | { type: 'SET_COMPARE'; payload: string }
   | { type: 'REMOVE_FROM_COMPARE'; payload: string }
   | { type: 'SET_LAYOUT'; payload: LayoutType }
-  | { type: 'SET_USER'; payload: IUser | null }
 
 export interface IAppState {
   categories: ICategory[]
@@ -28,7 +27,6 @@ export interface IAppState {
   wishlist: string[]
   compare: string[]
   layout: LayoutType
-  user: IUser | null
 }
 
 export const initialValues: IAppState = {
@@ -39,6 +37,5 @@ export const initialValues: IAppState = {
   cart: [],
   wishlist: [],
   compare: [],
-  layout: 'grid',
-  user: null
+  layout: 'grid'
 }
