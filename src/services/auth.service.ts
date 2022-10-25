@@ -15,8 +15,20 @@ class AuthService {
     lastName: string
     email: string
     password: string
+    uploadedFile?: File | null
   }): Promise<AxiosResponse> {
-    return $api.post(`${ROUTES.auth_signup}`, { ...credentials })
+    const formData = new FormData()
+    const { email, firstName, lastName, password, uploadedFile } = credentials
+
+    uploadedFile && formData.append('avatarUri', uploadedFile)
+    formData.append('firstName', firstName)
+    formData.append('lastName', lastName)
+    formData.append('email', email)
+    formData.append('password', password)
+
+    return $api.post(ROUTES.auth_signup, formData, {
+      headers: { 'Content-Type': 'multipart/form-data' }
+    })
   }
 
   static async logout(): Promise<AxiosResponse> {

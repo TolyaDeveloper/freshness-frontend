@@ -12,12 +12,39 @@
   margin-top: 15px;
 }
 
+.uploadButton {
+  pointer-events: none;
+  margin: 10px auto 30px auto;
+}
+
+.label {
+  cursor: pointer;
+  text-align: center;
+}
+
+.avatarPreviewWrapper {
+  margin: 10px 0;
+  text-align: center;
+}
+
+.removeAvatarButton {
+  margin: 10px auto;
+}
+
 .fileUploader {
-  width: auto;
-  height: auto;
+  width: 0.1px;
+  height: 0.1px;
+  opacity: 0;
+  overflow: hidden;
+  position: absolute;
+  z-index: -1;
 
   input {
     padding: 12px;
     width: auto;
+  }
+
+  &:focus-visible + .uploadButton {
+    outline: var(--app-outline-focusVisible);
   }
 }

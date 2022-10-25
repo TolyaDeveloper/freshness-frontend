@@ -1,7 +1,6 @@
 import { ProfileTemplateProps } from './ProfileTemplate.props'
 import { ProfileData } from '~/components/organisms'
 import { Tabs, TabList, Tab, TabPanel } from 'react-tabs'
-import withAuth from '~/hocs/withAuth'
 
 const ProfileTemplate = ({}: ProfileTemplateProps) => {
   return (
@@ -26,4 +25,4 @@ const ProfileTemplate = ({}: ProfileTemplateProps) => {
   )
 }
 
-export default withAuth(ProfileTemplate)
+export default ProfileTemplate

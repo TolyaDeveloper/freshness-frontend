@@ -1,9 +1,11 @@
 import { ChangeEvent, useEffect, useState } from 'react'
 import {
+  Avatar,
   Button,
   CustomLink,
   FormStyledWrapper,
   Input,
+  Label,
   Typography
 } from '~/components/atoms'
 import {
@@ -13,13 +15,15 @@ import {
 import { computedTypesResolver } from '@hookform/resolvers/computed-types'
 import { useForm } from 'react-hook-form'
 import { ROUTES } from '~/constants/routes'
-import Image from 'next/image'
+import { useUserContext } from '~/context/UserContext/User.context'
+import { AuthService } from '~/services/auth.service'
+import { LocalStorageService } from '~/services/localStorage.service'
 import Link from 'next/link'
 
 import styles from './Signup.module.scss'
-import { $api } from '~/api'
 
 const Signup = () => {
+  const { dispatch } = useUserContext()
   const [uploadedFile, setUploadedFile] = useState<File | null>(null)
   const [previewFile, setPreviewFile] = useState<string | null>(null)
   const { handleSubmit, register } = useForm<SignupSchemaType>({
@@ -44,43 +48,42 @@ const Signup = () => {
     email,
     password
   }: SignupSchemaType) => {
-    if (!uploadedFile) {
-      return
+    try {
+      const res = await AuthService.signup({
+        firstName,
+        lastName,
+        email,
+        password,
+        uploadedFile
+      })
+
+      LocalStorageService.setItem('accessToken', res.data.accessToken)
+      dispatch({ type: 'SET_USER', payload: res.data.user })
+    } catch (error) {
+      console.log(error)
     }
-
-    const formData = new FormData()
-
-    formData.append('avatarUri', new Blob([JSON.stringify(uploadedFile)]))
-    formData.append('firstName', firstName)
-    formData.append('lastName', lastName)
-    formData.append('email', email)
-    formData.append('password', password)
-
-    await $api.post(ROUTES.auth_signup, formData)
   }
 
   const handleFileUpload = (e: ChangeEvent<HTMLInputElement>) => {
     const files = e.target.files
 
     setUploadedFile(files && files[0])
-    console.log(e.target.files)
+  }
+
+  const handleRemoveFile = () => {
+    setUploadedFile(null)
   }
 
   return (
     <>
-      {previewFile && (
-        <Image
-          src={previewFile}
-          width={300}
-          height={300}
-          objectFit="cover"
-          alt="preview"
-        />
-      )}
       <Typography className={styles.title} level="h2-lg">
         Signup
       </Typography>
-      <form autoComplete="off" onSubmit={handleSubmit(onSubmit)}>
+      <form
+        autoComplete="off"
+        onSubmit={handleSubmit(onSubmit)}
+        encType="multipart/form-data"
+      >
         <FormStyledWrapper className={styles.formStyledWrapper}>
           <Input
             type="text"
@@ -105,12 +108,40 @@ const Signup = () => {
             {...register('password')}
           />
         </FormStyledWrapper>
-        <Input
-          className={styles.fileUploader}
-          type="file"
-          accept="image/png, image/jpeg"
-          onChange={handleFileUpload}
-        />
+        <Label className={styles.label}>
+          Optional (5mb max)
+          <input
+            className={styles.fileUploader}
+            type="file"
+            accept="image/png, image/jpeg"
+            onChange={handleFileUpload}
+          />
+          <Button className={styles.uploadButton} type="button" tabIndex={-1}>
+            Upload avatar
+          </Button>
+        </Label>
+        {previewFile && (
+          <Button
+            className={styles.removeAvatarButton}
+            variant="plain"
+            type="button"
+            onClick={handleRemoveFile}
+          >
+            Remove avatar
+          </Button>
+        )}
+        {previewFile && (
+          <div className={styles.avatarPreviewWrapper}>
+            <Avatar
+              src={previewFile}
+              width={100}
+              height={100}
+              objectFit="cover"
+              alt="preview"
+            />
+          </div>
+        )}
+
         <Button type="submit">Signup</Button>
       </form>
       <Link href={ROUTES.profile} passHref>
