@@ -1,11 +1,9 @@
-import { ChangeEvent, useEffect, useState } from 'react'
+import { useState } from 'react'
 import {
-  Avatar,
   Button,
   CustomLink,
   FormStyledWrapper,
   Input,
-  Label,
   Typography
 } from '~/components/atoms'
 import {
@@ -18,29 +16,18 @@ import { ROUTES } from '~/constants/routes'
 import { useUserContext } from '~/context/UserContext/User.context'
 import { AuthService } from '~/services/auth.service'
 import { LocalStorageService } from '~/services/localStorage.service'
+import { AxiosError } from 'axios'
 import Link from 'next/link'
 
 import styles from './Signup.module.scss'
 
 const Signup = () => {
+  const [error, setError] = useState<string>('')
+  const [isLoading, setLoading] = useState<boolean>(false)
   const { dispatch } = useUserContext()
-  const [uploadedFile, setUploadedFile] = useState<File | null>(null)
-  const [previewFile, setPreviewFile] = useState<string | null>(null)
   const { handleSubmit, register } = useForm<SignupSchemaType>({
     resolver: computedTypesResolver(signupSchema)
   })
-
-  useEffect(() => {
-    if (!uploadedFile) {
-      return setPreviewFile(null)
-    }
-
-    const objectUrl = URL.createObjectURL(uploadedFile)
-
-    setPreviewFile(objectUrl)
-
-    return () => URL.revokeObjectURL(objectUrl)
-  }, [uploadedFile])
 
   const onSubmit = async ({
     firstName,
@@ -48,30 +35,25 @@ const Signup = () => {
     email,
     password
   }: SignupSchemaType) => {
+    setLoading(true)
+
     try {
       const res = await AuthService.signup({
         firstName,
         lastName,
         email,
-        password,
-        uploadedFile
+        password
       })
 
       LocalStorageService.setItem('accessToken', res.data.accessToken)
       dispatch({ type: 'SET_USER', payload: res.data.user })
-    } catch (error) {
-      console.log(error)
+    } catch (err) {
+      if (err instanceof AxiosError) {
+        setError(err.response?.data.message)
+      }
+    } finally {
+      setLoading(false)
     }
-  }
-
-  const handleFileUpload = (e: ChangeEvent<HTMLInputElement>) => {
-    const files = e.target.files
-
-    setUploadedFile(files && files[0])
-  }
-
-  const handleRemoveFile = () => {
-    setUploadedFile(null)
   }
 
   return (
@@ -79,6 +61,11 @@ const Signup = () => {
       <Typography className={styles.title} level="h2-lg">
         Signup
       </Typography>
+      {error && (
+        <Typography className={styles.errorText} level="body5" color="error">
+          {error}
+        </Typography>
+      )}
       <form
         autoComplete="off"
         onSubmit={handleSubmit(onSubmit)}
@@ -108,41 +95,10 @@ const Signup = () => {
             {...register('password')}
           />
         </FormStyledWrapper>
-        <Label className={styles.label}>
-          Optional (5mb max)
-          <input
-            className={styles.fileUploader}
-            type="file"
-            accept="image/png, image/jpeg"
-            onChange={handleFileUpload}
-          />
-          <Button className={styles.uploadButton} type="button" tabIndex={-1}>
-            Upload avatar
-          </Button>
-        </Label>
-        {previewFile && (
-          <Button
-            className={styles.removeAvatarButton}
-            variant="plain"
-            type="button"
-            onClick={handleRemoveFile}
-          >
-            Remove avatar
-          </Button>
-        )}
-        {previewFile && (
-          <div className={styles.avatarPreviewWrapper}>
-            <Avatar
-              src={previewFile}
-              width={100}
-              height={100}
-              objectFit="cover"
-              alt="preview"
-            />
-          </div>
-        )}
 
-        <Button type="submit">Signup</Button>
+        <Button type="submit" disabled={isLoading}>
+          Signup
+        </Button>
       </form>
       <Link href={ROUTES.profile} passHref>
         <CustomLink className={styles.loginLink}>
