@@ -2,7 +2,7 @@ import { cnb } from 'cnbuilder'
 import { useState } from 'react'
 import { ProductAddToCartProps } from './ProductAddToCart.props'
 import { useRouter } from 'next/router'
-import { useAppContext } from '~/context/AppContext/App.context'
+import { useUserContext } from '~/context/UserContext/User.context'
 import {
   Arrow,
   Button,
@@ -27,8 +27,8 @@ const ProductAddToCart = ({
   oldPrice
 }: ProductAddToCartProps) => {
   const { locale } = useRouter()
-  const { dispatch, state } = useAppContext()
-  const isAlreadyInCart = state.cart.find(item => item._id === productId)
+  const { dispatch, state } = useUserContext()
+  const isAlreadyInCart = state.user.cart.find(item => item._id === productId)
 
   const [productAmount, setProductAmount] = useState<number>(1)
   const [selectedType, setSelectedType] = useState(ProductCartTypeEnum.PCS)
@@ -45,7 +45,7 @@ const ProductAddToCart = ({
       payload
     })
 
-    LocalStorageService.setItem('products', [...state.cart, payload])
+    LocalStorageService.setItem('products', [...state.user.cart, payload])
   }
 
   return (

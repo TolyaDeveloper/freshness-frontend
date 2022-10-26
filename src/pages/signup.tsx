@@ -9,7 +9,7 @@ const Signup = () => {
   const { state } = useUserContext()
   const { push } = useRouter()
 
-  if (state.user) {
+  if (state.isAuthenticated) {
     push(ROUTES.profile)
   }
 

@@ -1,12 +1,14 @@
 import { GetStaticProps } from 'next'
 import { $api } from '~/api'
 import { ROUTES } from '~/constants/routes'
-import { useAppContext } from '~/context/AppContext/App.context'
+import { useUserContext } from '~/context/UserContext/User.context'
 import useSWR from 'swr'
 
 const Cart = () => {
-  const { state } = useAppContext()
-  const queries = state.cart.map(cartItem => `productIds=${cartItem}`).join('&')
+  const { state } = useUserContext()
+  const queries = state.user.cart
+    .map(cartItem => `productIds=${cartItem}`)
+    .join('&')
   const { data, error } = useSWR(`${ROUTES.cart}?${queries}`)
 
   if (!data) {

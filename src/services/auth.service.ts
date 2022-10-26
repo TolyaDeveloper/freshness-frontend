@@ -1,12 +1,13 @@
 import axios, { AxiosResponse } from 'axios'
 import { $api } from '~/api'
 import { ROUTES } from '~/constants/routes'
+import { IUser } from '~/interfaces/user.interface'
 
 class AuthService {
   static async login(credentials: {
     email: string
     password: string
-  }): Promise<AxiosResponse> {
+  }): Promise<AxiosResponse<{ accessToken: string; user: IUser }>> {
     return $api.post(`${ROUTES.auth_login}`, { ...credentials })
   }
 
@@ -15,7 +16,7 @@ class AuthService {
     lastName: string
     email: string
     password: string
-  }): Promise<AxiosResponse> {
+  }): Promise<AxiosResponse<{ accessToken: string; user: IUser }>> {
     return $api.post(ROUTES.auth_signup, { ...credentials })
   }
 
@@ -23,7 +24,9 @@ class AuthService {
     return $api.post(`${ROUTES.auth_logout}`)
   }
 
-  static async checkAuth() {
+  static async checkAuth(): Promise<
+    AxiosResponse<{ accessToken: string; user: IUser }>
+  > {
     return axios.get(
       `${process.env.NEXT_PUBLIC_SERVER_URI}${ROUTES.auth_refresh}`,
       { withCredentials: true }

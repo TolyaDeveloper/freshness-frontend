@@ -3,7 +3,7 @@ import { cnb } from 'cnbuilder'
 import { Button, Typography, Tag, Rating } from '~/components/atoms'
 import { GridProductProps } from './GridProduct.props'
 import { ROUTES } from '~/constants/routes'
-import { useAppContext } from '~/context/AppContext/App.context'
+import { useUserContext } from '~/context/UserContext/User.context'
 import { LocalStorageService } from '~/services/localStorage.service'
 import { countDiscountPercentage } from '~/utils/countDiscountPercentage'
 import { ProductCartTypeEnum } from '~/interfaces/cart.interface'
@@ -14,10 +14,10 @@ import styles from './GridProduct.module.scss'
 
 const GridProduct = ({ className, product }: GridProductProps) => {
   const { locale } = useRouter()
-  const { dispatch, state } = useAppContext()
+  const { dispatch, state } = useUserContext()
   const { _id, imageUri, price, rating, smallDescription, title, oldPrice } =
     product
-  const isAlreadyInCart = state.cart.find(item => item._id === _id)
+  const isAlreadyInCart = state.user.cart.find(item => item._id === _id)
   const payload = { _id, amount: 1, type: ProductCartTypeEnum.PCS }
 
   const onAddToCart = () => {
@@ -26,7 +26,7 @@ const GridProduct = ({ className, product }: GridProductProps) => {
       payload
     })
 
-    LocalStorageService.setItem('products', [...state.cart, payload])
+    LocalStorageService.setItem('products', [...state.user.cart, payload])
   }
 
   return (

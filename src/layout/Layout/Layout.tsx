@@ -10,8 +10,6 @@ import styles from './Layout.module.scss'
 const Layout = ({
   children,
   categories,
-  customersReviews,
-  blogPosts,
   tags
 }: PropsWithChildren<Omit<IAppState, 'layout'>>) => {
   const { dispatch } = useAppContext()
@@ -19,15 +17,6 @@ const Layout = ({
   useEffect(() => {
     categories && dispatch({ type: 'SET_CATEGORIES', payload: categories })
   }, [categories, dispatch])
-
-  useEffect(() => {
-    customersReviews &&
-      dispatch({ type: 'SET_CUSTOMERS_REVIEWS', payload: customersReviews })
-  }, [customersReviews, dispatch])
-
-  useEffect(() => {
-    blogPosts && dispatch({ type: 'SET_BLOG_POSTS', payload: blogPosts })
-  }, [blogPosts, dispatch])
 
   useEffect(() => {
     tags && dispatch({ type: 'SET_TAGS', payload: tags })

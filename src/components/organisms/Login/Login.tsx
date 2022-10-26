@@ -34,7 +34,9 @@ const Login = ({}: LoginProps) => {
       const res = await AuthService.login({ email, password })
 
       LocalStorageService.setItem('accessToken', res.data.accessToken)
+
       dispatch({ type: 'SET_USER', payload: res.data.user })
+      dispatch({ type: 'SET_AUTH', payload: true })
 
       reset()
       setError('')

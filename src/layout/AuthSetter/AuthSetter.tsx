@@ -6,20 +6,24 @@ import { useUserContext } from '~/context/UserContext/User.context'
 const AuthSetter = ({ children }: PropsWithChildren) => {
   const { dispatch } = useUserContext()
 
-  useEffect(() => {
-    const checkAuth = async () => {
-      try {
-        const res = await AuthService.checkAuth()
+  const checkAuth = async () => {
+    try {
+      const res = await AuthService.checkAuth()
 
-        LocalStorageService.setItem('accessToken', res.data.accessToken)
-        dispatch({ type: 'SET_USER', payload: res.data.user })
-      } catch (err) {
-        if (err instanceof Error) {
-          console.log(err)
-        }
+      LocalStorageService.setItem('accessToken', res.data.accessToken)
+
+      dispatch({ type: 'SET_USER', payload: res.data.user })
+      dispatch({ type: 'SET_AUTH', payload: true })
+    } catch (err) {
+      dispatch({ type: 'SET_AUTH', payload: false })
+
+      if (err instanceof Error) {
+        console.log(err)
       }
     }
+  }
 
+  useEffect(() => {
     if (LocalStorageService.getItem('accessToken')) {
       checkAuth()
     }

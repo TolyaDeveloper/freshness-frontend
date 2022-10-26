@@ -7,10 +7,10 @@ import {
 } from '~/validators/comment.validator'
 import { CommentsFormProps } from './CommentsForm.props'
 import { useUserContext } from '~/context/UserContext/User.context'
-
-import styles from './CommentsForm.module.scss'
 import { $api } from '~/api'
 import { ROUTES } from '~/constants/routes'
+
+import styles from './CommentsForm.module.scss'
 
 const CommentsForm = ({ className, productId }: CommentsFormProps) => {
   const { state } = useUserContext()
@@ -43,14 +43,14 @@ const CommentsForm = ({ className, productId }: CommentsFormProps) => {
       <FormStyledWrapper className={styles.formWrapper}>
         <Input
           placeholder={
-            !state.user
+            !state.isAuthenticated
               ? ' You must login to leave a comment!'
               : 'Leave your comment...'
           }
           {...register('message')}
-          disabled={Boolean(!state.user)}
+          disabled={Boolean(!state.isAuthenticated)}
         />
-        <Button size="sm" disabled={Boolean(!state.user)}>
+        <Button size="sm" disabled={Boolean(!state.isAuthenticated)}>
           Submit
         </Button>
       </FormStyledWrapper>

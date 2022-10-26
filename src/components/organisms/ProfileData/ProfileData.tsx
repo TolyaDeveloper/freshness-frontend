@@ -11,6 +11,8 @@ import { FileUpload } from '~/components/molecules'
 import { AuthService } from '~/services/auth.service'
 import { LocalStorageService } from '~/services/localStorage.service'
 import { useUserContext } from '~/context/UserContext/User.context'
+import { IUser } from '~/interfaces/user.interface'
+import Login from '../Login/Login'
 
 import styles from './ProfileData.module.scss'
 
@@ -18,15 +20,24 @@ const ProfileData = ({}: ProfileDataProps) => {
   const [uploadedFile, setUploadedFile] = useState<File | null>(null)
   const [previewFile, setPreviewFile] = useState<string | null>(null)
   const {
-    state: { user },
+    state: { user, isAuthenticated },
     dispatch
   } = useUserContext()
 
   const handleLogout = async () => {
     await AuthService.logout()
 
-    dispatch({ type: 'SET_USER', payload: null })
-    LocalStorageService.removeItem('accessToken')
+    dispatch({
+      type: 'SET_USER',
+      payload: {
+        cart: [],
+        compare: [],
+        wishlist: [],
+        ordersHistory: []
+      } as unknown as IUser
+    })
+    dispatch({ type: 'SET_AUTH', payload: false })
+    LocalStorageService.clear()
   }
 
   const handleRemoveFile = () => {
@@ -45,8 +56,8 @@ const ProfileData = ({}: ProfileDataProps) => {
     return () => URL.revokeObjectURL(objectUrl)
   }, [uploadedFile])
 
-  if (!user) {
-    return <h1>Loading...</h1>
+  if (!isAuthenticated) {
+    return <Login />
   }
 
   return (
@@ -105,7 +116,7 @@ const ProfileData = ({}: ProfileDataProps) => {
           />
         </div>
       )}
-      <Button className={styles.logoutButton} onClick={handleLogout}>
+      <Button onClick={handleLogout} type="button">
         Logout
       </Button>
     </>

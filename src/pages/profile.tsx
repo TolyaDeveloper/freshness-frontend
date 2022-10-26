@@ -2,7 +2,6 @@ import { GetStaticProps } from 'next'
 import { $api } from '~/api'
 import { ROUTES } from '~/constants/routes'
 import { ProfileTemplate } from '~/components/templates'
-import withAuth from '~/hocs/withAuth'
 
 const Profile = () => {
   return (
@@ -22,4 +21,4 @@ export const getStaticProps: GetStaticProps = async () => {
   }
 }
 
-export default withAuth(Profile)
+export default Profile

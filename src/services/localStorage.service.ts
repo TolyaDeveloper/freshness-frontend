@@ -41,6 +41,12 @@ class LocalStorageService {
       }
     }
   }
+
+  static clear() {
+    if (typeof window !== 'undefined') {
+      localStorage.clear()
+    }
+  }
 }
 
 export { LocalStorageService }

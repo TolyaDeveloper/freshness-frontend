@@ -46,7 +46,9 @@ const Signup = () => {
       })
 
       LocalStorageService.setItem('accessToken', res.data.accessToken)
+
       dispatch({ type: 'SET_USER', payload: res.data.user })
+      dispatch({ type: 'SET_AUTH', payload: true })
     } catch (err) {
       if (err instanceof AxiosError) {
         setError(err.response?.data.message)

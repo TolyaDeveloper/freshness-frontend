@@ -1,15 +1,15 @@
 import { cnb } from 'cnbuilder'
 import { Button } from '~/components/atoms'
 import { AddToCompareProps } from './AddToCompare.props'
-import { useAppContext } from '~/context/AppContext/App.context'
+import { useUserContext } from '~/context/UserContext/User.context'
 import CompareIcon from '~/assets/icons/compare.svg'
 
 import styles from './AddToCompare.module.scss'
 
 const AddToCompare = ({ className, productId }: AddToCompareProps) => {
-  const { dispatch, state } = useAppContext()
+  const { dispatch, state } = useUserContext()
 
-  const isInCompare = state.compare.includes(productId)
+  const isInCompare = state.user.compare.includes(productId)
 
   const onAddToCompare = () => {
     if (!isInCompare) {
