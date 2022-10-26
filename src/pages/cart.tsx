@@ -5,21 +5,7 @@ import { useUserContext } from '~/context/UserContext/User.context'
 import useSWR from 'swr'
 
 const Cart = () => {
-  const { state } = useUserContext()
-  const queries = state.user.cart
-    .map(cartItem => `productIds=${cartItem}`)
-    .join('&')
-  const { data, error } = useSWR(`${ROUTES.cart}?${queries}`)
-
-  if (!data) {
-    return <h1>Loading</h1>
-  }
-
-  if (error) {
-    return <h1>error</h1>
-  }
-
-  return <pre>{JSON.stringify(data, null, 2)}</pre>
+  return <>Cart</>
 }
 
 export const getStaticProps: GetStaticProps = async () => {

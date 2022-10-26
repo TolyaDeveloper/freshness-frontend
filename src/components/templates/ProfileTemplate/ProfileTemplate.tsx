@@ -1,5 +1,5 @@
 import { ProfileTemplateProps } from './ProfileTemplate.props'
-import { ProfileData } from '~/components/organisms'
+import { ProfileData, Wishlist } from '~/components/organisms'
 import { Tabs, TabList, Tab, TabPanel } from 'react-tabs'
 
 const ProfileTemplate = ({}: ProfileTemplateProps) => {
@@ -15,7 +15,7 @@ const ProfileTemplate = ({}: ProfileTemplateProps) => {
           <ProfileData />
         </TabPanel>
         <TabPanel>
-          <h2>Wishlist</h2>
+          <Wishlist />
         </TabPanel>
         <TabPanel>
           <h2>Compare list</h2>

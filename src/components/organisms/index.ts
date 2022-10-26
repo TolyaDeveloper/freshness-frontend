@@ -13,3 +13,4 @@ export { default as ProductsWithFilters } from './ProductsWithFilters/ProductsWi
 export { default as TopFilters } from './ProductsWithFilters/TopFilters/TopFilters'
 export { default as ProfileData } from './ProfileData/ProfileData'
 export { default as Signup } from './Signup/Signup'
+export { default as Wishlist } from './Wishlist/Wishlist'
