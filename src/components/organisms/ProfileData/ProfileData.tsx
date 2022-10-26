@@ -11,8 +11,17 @@ import { FileUpload } from '~/components/molecules'
 import { AuthService } from '~/services/auth.service'
 import { LocalStorageService } from '~/services/localStorage.service'
 import { useUserContext } from '~/context/UserContext/User.context'
+import { initialValues } from '~/context/UserContext/User.types'
+import { useForm } from 'react-hook-form'
+import {
+  EditProfileSchemaType,
+  editProfileSchema
+} from '~/validators/edit-profile.validator'
+import { computedTypesResolver } from '@hookform/resolvers/computed-types'
+import { $api } from '~/api'
+import { ROUTES } from '~/constants/routes'
 import { IUser } from '~/interfaces/user.interface'
-import Login from '../Login/Login'
+import EditIcon from '~/assets/icons/edit-field.svg'
 
 import styles from './ProfileData.module.scss'
 
@@ -20,21 +29,27 @@ const ProfileData = ({}: ProfileDataProps) => {
   const [uploadedFile, setUploadedFile] = useState<File | null>(null)
   const [previewFile, setPreviewFile] = useState<string | null>(null)
   const {
-    state: { user, isAuthenticated },
+    state: { user },
     dispatch
   } = useUserContext()
+  const {
+    handleSubmit,
+    register,
+    reset,
+    formState: { isDirty }
+  } = useForm<EditProfileSchemaType>({
+    resolver: computedTypesResolver(editProfileSchema),
+    defaultValues: { firstName: user.firstName, lastName: user.lastName }
+  })
+
+  console.log(isDirty)
 
   const handleLogout = async () => {
     await AuthService.logout()
 
     dispatch({
       type: 'SET_USER',
-      payload: {
-        cart: [],
-        compare: [],
-        wishlist: [],
-        ordersHistory: []
-      } as unknown as IUser
+      payload: initialValues.user
     })
     dispatch({ type: 'SET_AUTH', payload: false })
     LocalStorageService.clear()
@@ -56,8 +71,27 @@ const ProfileData = ({}: ProfileDataProps) => {
     return () => URL.revokeObjectURL(objectUrl)
   }, [uploadedFile])
 
-  if (!isAuthenticated) {
-    return <Login />
+  const onSubmit = async ({ firstName, lastName }: EditProfileSchemaType) => {
+    try {
+      const formData = new FormData()
+
+      uploadedFile && formData.append('avatarUri', uploadedFile)
+      formData.append('firstName', firstName)
+      formData.append('lastName', lastName)
+
+      const { data } = await $api.patch<IUser>(
+        ROUTES.user_update_profile,
+        formData,
+        { headers: { 'Content-Type': 'multipart/form-data' } }
+      )
+
+      dispatch({ type: 'UPDATE_USER', payload: data })
+      setUploadedFile(null)
+
+      reset({ firstName: data.firstName, lastName: data.lastName })
+    } catch (error) {
+      console.log(error)
+    }
   }
 
   return (
@@ -69,13 +103,20 @@ const ProfileData = ({}: ProfileDataProps) => {
           alt={user.firstName}
         />
       </div>
+
       <Label className={styles.label}>First name</Label>
       <FormStyledWrapper className={styles.formStyledWrapper}>
-        <Input value={user.firstName} readOnly />
+        <Input
+          {...register('firstName')}
+          endAdornment={<EditIcon style={{ width: '15px', height: '15px' }} />}
+        />
       </FormStyledWrapper>
       <Label className={styles.label}>Last name</Label>
       <FormStyledWrapper className={styles.formStyledWrapper}>
-        <Input value={user.lastName} readOnly />
+        <Input
+          {...register('lastName')}
+          endAdornment={<EditIcon style={{ width: '15px', height: '15px' }} />}
+        />
       </FormStyledWrapper>
       <Label className={styles.label}>Email</Label>
       <FormStyledWrapper className={styles.formStyledWrapper}>
@@ -116,9 +157,20 @@ const ProfileData = ({}: ProfileDataProps) => {
           />
         </div>
       )}
-      <Button onClick={handleLogout} type="button">
-        Logout
-      </Button>
+      <form
+        className={styles.buttonGroup}
+        autoComplete="off"
+        onSubmit={handleSubmit(onSubmit)}
+      >
+        <Button onClick={handleLogout} type="button">
+          Logout
+        </Button>
+        {(isDirty || uploadedFile) && (
+          <Button variant="outlined" type="submit">
+            Apply changes
+          </Button>
+        )}
+      </form>
     </>
   )
 }

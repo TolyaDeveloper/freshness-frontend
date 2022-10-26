@@ -20,5 +20,6 @@ export const ROUTES = {
   auth_login: '/auth/login',
   auth_signup: '/auth/signup',
   auth_logout: '/auth/logout',
-  auth_refresh: '/auth/refresh'
+  auth_refresh: '/auth/refresh',
+  user_update_profile: '/user/update-profile'
 }

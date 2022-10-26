@@ -1,6 +1,6 @@
 .formStyledWrapper {
   max-width: 320px;
-  padding: 0;
+  padding: 0 12px 0 0;
   margin-top: 8px;
 }
 
@@ -22,4 +22,12 @@
 
 .removeAvatarButton {
   margin: 10px auto;
+}
+
+.buttonGroup {
+  display: flex;
+
+  button:first-child {
+    margin-right: 15px;
+  }
 }

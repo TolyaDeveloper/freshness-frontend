@@ -1,8 +1,11 @@
 import { ProfileTemplateProps } from './ProfileTemplate.props'
-import { ProfileData, Wishlist } from '~/components/organisms'
+import { Login, ProfileData, Wishlist } from '~/components/organisms'
 import { Tabs, TabList, Tab, TabPanel } from 'react-tabs'
+import { useUserContext } from '~/context/UserContext/User.context'
 
 const ProfileTemplate = ({}: ProfileTemplateProps) => {
+  const { state } = useUserContext()
+
   return (
     <div>
       <Tabs>
@@ -12,7 +15,7 @@ const ProfileTemplate = ({}: ProfileTemplateProps) => {
           <Tab>Compare list</Tab>
         </TabList>
         <TabPanel>
-          <ProfileData />
+          {!state.isAuthenticated ? <Login /> : <ProfileData />}
         </TabPanel>
         <TabPanel>
           <Wishlist />

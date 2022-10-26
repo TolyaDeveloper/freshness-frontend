@@ -3,6 +3,7 @@ import { IUser } from '~/interfaces/user.interface'
 
 export type UserActions =
   | { type: 'SET_USER'; payload: IUser }
+  | { type: 'UPDATE_USER'; payload: Partial<IUser> }
   | { type: 'SET_USER_LOADING'; payload: boolean }
   | { type: 'SET_AUTH'; payload: boolean }
   | { type: 'SET_CART'; payload: ICart }

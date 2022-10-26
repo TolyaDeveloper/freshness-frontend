@@ -4,6 +4,8 @@ export const userReducer = (state: IUserState, action: UserActions) => {
   switch (action.type) {
     case 'SET_USER':
       return { ...state, user: action.payload }
+    case 'UPDATE_USER':
+      return { ...state, user: { ...state.user, ...action.payload } }
     case 'SET_USER_LOADING':
       return { ...state, isUserLoading: action.payload }
     case 'SET_AUTH':
