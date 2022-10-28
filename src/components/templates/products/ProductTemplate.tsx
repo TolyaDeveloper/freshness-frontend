@@ -75,7 +75,7 @@ const ProductTemplate = ({
               color="primary1"
             >
               ({reviewsCount} customer{' '}
-              {reviewsCount && pluralize(reviewsCount, 'review')})
+              {reviewsCount ? pluralize(reviewsCount, 'review') : 'reviews'})
             </CustomLink>
           </div>
           <Typography className={styles.description} level="body2">
@@ -167,7 +167,9 @@ const ProductTemplate = ({
             oldPrice={product.oldPrice}
           />
           <div className={styles.wishlistWithCompareWrapper}>
-            <AddToWishlist productId={product._id} />
+            <AddToWishlist productId={product._id} variant="plain">
+              Add to my wishlist
+            </AddToWishlist>
             <AddToCompare productId={product._id} />
           </div>
           <Tabs id="reviews">

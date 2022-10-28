@@ -1,4 +1,5 @@
-export interface AddToWishlistProps {
+import { ButtonProps } from '~/components/atoms/Button/Button.props'
+
+export interface AddToWishlistProps extends ButtonProps {
   productId: string
-  className?: string
 }

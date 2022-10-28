@@ -21,5 +21,7 @@ export const ROUTES = {
   auth_signup: '/auth/signup',
   auth_logout: '/auth/logout',
   auth_refresh: '/auth/refresh',
-  user_update_profile: '/user/update-profile'
+  user_update_profile: '/user/update-profile',
+  user_products_ids: '/user/products/ids',
+  user_wishlist_add: '/user/wishlist/add'
 }

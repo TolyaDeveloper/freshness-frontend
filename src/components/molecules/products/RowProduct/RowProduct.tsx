@@ -1,6 +1,7 @@
 import { cnb } from 'cnbuilder'
 import { RowProductProps } from './RowProduct.props'
 import { Typography, Button, Rating, Arrow } from '~/components/atoms'
+import AddToWishlist from '../../AddToWishlist/AddToWishlist'
 import Image from 'next/image'
 import WishListIcon from '~/assets/icons/wishlist.svg'
 import Link from 'next/link'
@@ -105,9 +106,9 @@ const RowProduct = ({ className, product }: RowProductProps) => {
             Product Detail
           </Button>
         </Link>
-        <Button variant="soft" size="sm" startAdornment={<WishListIcon />}>
+        <AddToWishlist productId={_id} variant="soft">
           Add to wishlist
-        </Button>
+        </AddToWishlist>
       </div>
     </div>
   )
