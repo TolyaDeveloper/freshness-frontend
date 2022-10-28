@@ -4,4 +4,5 @@ import { IQuestionsReviewsCount } from '~/interfaces/questions-reviews-count.int
 export interface ProductTemplateProps {
   product: Omit<IProduct, 'reviews' | 'questions'>
   questionsAndReviewsCount: IQuestionsReviewsCount | undefined
+  relatedProducts: IProduct[] | undefined
 }

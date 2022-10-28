@@ -1,9 +1,14 @@
 import { GetStaticProps } from 'next'
 import { $api } from '~/api'
 import { ROUTES } from '~/constants/routes'
+import { ProfileTemplate } from '~/components/templates'
 
 const Profile = () => {
-  return <h1>Profile</h1>
+  return (
+    <>
+      <ProfileTemplate />
+    </>
+  )
 }
 
 export const getStaticProps: GetStaticProps = async () => {

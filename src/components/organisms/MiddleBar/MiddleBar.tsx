@@ -4,12 +4,14 @@ import { Search, UserWithCart } from '~/components/molecules'
 import { ROUTES } from '~/constants/routes'
 import { MiddleBarProps } from './Middlebar.props'
 import { useAppContext } from '~/context/AppContext/App.context'
+import { useUserContext } from '~/context/UserContext/User.context'
 import Link from 'next/link'
 
 import styles from './MiddleBar.module.scss'
 
 const MiddleBar = ({ className }: MiddleBarProps) => {
-  const { state } = useAppContext()
+  const { state } = useUserContext()
+  const { state: appContext } = useAppContext()
 
   return (
     <div className={cnb(styles.middleBar, className)}>
@@ -20,10 +22,10 @@ const MiddleBar = ({ className }: MiddleBarProps) => {
           </a>
         </Link>
       </span>
-      <Search className={styles.search} categories={state.categories} />
+      <Search className={styles.search} categories={appContext.categories} />
       <UserWithCart
         className={styles.userWithCart}
-        itemsInCart={state.cart.length}
+        itemsInCart={state.user.cart.length}
       />
     </div>
   )

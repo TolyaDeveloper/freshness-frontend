@@ -7,6 +7,7 @@ export const ROUTES = {
   about: '/about-us',
   careers: '/careers',
   profile: '/profile',
+  signup: '/signup',
   cart: '/cart',
   products: '/products',
   products_comments: '/products/comments',
@@ -15,5 +16,10 @@ export const ROUTES = {
   help: '/help',
   search: '/search',
   customers_reviews: '/customer-reviews',
-  blog_posts: '/blog-posts'
+  blog_posts: '/blog-posts',
+  auth_login: '/auth/login',
+  auth_signup: '/auth/signup',
+  auth_logout: '/auth/logout',
+  auth_refresh: '/auth/refresh',
+  user_update_profile: '/user/update-profile'
 }

@@ -1,17 +1,15 @@
 import { cnb } from 'cnbuilder'
 import { Button } from '~/components/atoms'
 import { AddToWishlistProps } from './AddToWishlist.props'
-import { useAppContext } from '~/context/AppContext/App.context'
-import { LocalStorageService } from '~/services/localStorage.service'
+import { useUserContext } from '~/context/UserContext/User.context'
 import WishListIcon from '~/assets/icons/wishlist.svg'
 
 import styles from './AddToWishlist.module.scss'
-import { useEffect } from 'react'
 
 const AddToWishlist = ({ className, productId }: AddToWishlistProps) => {
-  const { dispatch, state } = useAppContext()
+  const { dispatch, state } = useUserContext()
 
-  const isInWishlist = state.wishlist.includes(productId)
+  const isInWishlist = state.user.wishlist.includes(productId)
 
   const onAddToWishlist = () => {
     if (!isInWishlist) {

@@ -27,6 +27,10 @@ export const parseQueriesIntoString = (query: IQueries) => {
   return params.toString()
 }
 
+export const buildQueriesFromArray = (arr: string[]) => {
+  return arr.map(item => `ids=${item}`).join('&')
+}
+
 export const defaultQueries: IQueries = {
   biology: [],
   rating: [],

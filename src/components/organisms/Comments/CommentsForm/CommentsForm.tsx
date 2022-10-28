@@ -6,14 +6,14 @@ import {
   CommentSchemaType
 } from '~/validators/comment.validator'
 import { CommentsFormProps } from './CommentsForm.props'
-import { useAppContext } from '~/context/AppContext/App.context'
-
-import styles from './CommentsForm.module.scss'
+import { useUserContext } from '~/context/UserContext/User.context'
 import { $api } from '~/api'
 import { ROUTES } from '~/constants/routes'
 
+import styles from './CommentsForm.module.scss'
+
 const CommentsForm = ({ className, productId }: CommentsFormProps) => {
-  const { state } = useAppContext()
+  const { state } = useUserContext()
 
   const { handleSubmit, register, reset } = useForm<CommentSchemaType>({
     resolver: computedTypesResolver(commentSchema)
@@ -43,14 +43,14 @@ const CommentsForm = ({ className, productId }: CommentsFormProps) => {
       <FormStyledWrapper className={styles.formWrapper}>
         <Input
           placeholder={
-            !state.user
+            !state.isAuthenticated
               ? ' You must login to leave a comment!'
               : 'Leave your comment...'
           }
           {...register('message')}
-          disabled={Boolean(!state.user)}
+          disabled={Boolean(!state.isAuthenticated)}
         />
-        <Button size="sm" disabled={Boolean(!state.user)}>
+        <Button size="sm" disabled={Boolean(!state.isAuthenticated)}>
           Submit
         </Button>
       </FormStyledWrapper>

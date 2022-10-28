@@ -1,0 +1,37 @@
+.formStyledWrapper {
+  max-width: 320px;
+  padding: 0 12px 0 0;
+  margin-top: 8px;
+}
+
+.label {
+  &:not(:first-child) {
+    margin-top: 15px;
+  }
+}
+
+.avatarWrapper {
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.fileUpload {
+  margin-top: 15px;
+}
+
+.avatarPreviewWrapper {
+  margin: 10px 0;
+  text-align: center;
+}
+
+.removeAvatarButton {
+  margin: 10px auto;
+}
+
+.buttonGroup {
+  display: flex;
+
+  button:first-child {
+    margin-right: 15px;
+  }
+}
