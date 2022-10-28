@@ -78,6 +78,7 @@ const ProfileData = ({}: ProfileDataProps) => {
       uploadedFile && formData.append('avatarUri', uploadedFile)
       formData.append('firstName', firstName)
       formData.append('lastName', lastName)
+      formData.append('currentAvatarUri', user.avatarUri)
 
       const { data } = await $api.patch<IUser>(
         ROUTES.user_update_profile,
@@ -132,6 +133,7 @@ const ProfileData = ({}: ProfileDataProps) => {
         />
       </FormStyledWrapper>
       <FileUpload
+        className={styles.fileUpload}
         onChange={file => setUploadedFile(file)}
         additionalLabel="Optional (5mb max)"
         uploadLabel="Upload new avatar"

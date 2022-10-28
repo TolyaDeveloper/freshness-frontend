@@ -13,6 +13,7 @@ const ProfileTemplate = ({}: ProfileTemplateProps) => {
           <Tab>Profile data</Tab>
           <Tab>Wishlist</Tab>
           <Tab>Compare list</Tab>
+          <Tab>Orders history</Tab>
         </TabList>
         <TabPanel>
           {!state.isAuthenticated ? <Login /> : <ProfileData />}
@@ -22,6 +23,9 @@ const ProfileTemplate = ({}: ProfileTemplateProps) => {
         </TabPanel>
         <TabPanel>
           <h2>Compare list</h2>
+        </TabPanel>
+        <TabPanel>
+          {!state.isAuthenticated ? <Login /> : <h2>Orders history</h2>}
         </TabPanel>
       </Tabs>
     </div>
