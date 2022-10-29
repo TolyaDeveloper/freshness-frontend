@@ -37,6 +37,7 @@ const Wishlist = ({}: WishlistProps) => {
     )
   }
 
+  // ? refactor
   const onRemoveFromWishlist = async (productId: string) => {
     if (isAuthenticated) {
       const { data: updated } = await $api.patch(ROUTES.user_wishlist_remove, {

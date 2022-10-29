@@ -7,12 +7,12 @@ import { IProduct } from '~/interfaces/product.interface'
 import { Fragment } from 'react'
 import { useRouter } from 'next/router'
 import { $api } from '~/api'
+import { LocalStorageService } from '~/services/localStorage.service'
 import Link from 'next/link'
 import Image from 'next/image'
 import useSWR from 'swr'
 
 import styles from './CompareList.module.scss'
-import { LocalStorageService } from '~/services/localStorage.service'
 
 const CompareList = ({}: CompareListProps) => {
   const { locale } = useRouter()
@@ -39,6 +39,7 @@ const CompareList = ({}: CompareListProps) => {
     )
   }
 
+  // ? refactor
   const onRemoveFromCompare = async (productId: string) => {
     if (isAuthenticated) {
       const { data: updated } = await $api.patch(ROUTES.user_compare_remove, {

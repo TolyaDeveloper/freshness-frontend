@@ -34,6 +34,7 @@ const AddToCompare = ({ className, productId }: AddToCompareProps) => {
       return dispatch({ type: 'SET_COMPARE', payload: updated.compare })
     }
 
+    // ? refactor
     if (!isInCompare) {
       LocalStorageService.setItem('compare', [...state.user.compare, productId])
 

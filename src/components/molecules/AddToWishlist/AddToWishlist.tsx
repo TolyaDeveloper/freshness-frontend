@@ -40,6 +40,7 @@ const AddToWishlist = ({
       return dispatch({ type: 'SET_WISHLIST', payload: updated.wishlist })
     }
 
+    // ? refactor
     if (!isInWishlist) {
       LocalStorageService.setItem('wishlist', [
         ...state.user.wishlist,
