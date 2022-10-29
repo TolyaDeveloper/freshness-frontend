@@ -35,6 +35,7 @@ export interface IProduct {
   tags: ITag[]
   categories: ICategory[]
   farm: string
+  biology: string
   buyBy: string
   freshness: string
   inStock: boolean

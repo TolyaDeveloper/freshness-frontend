@@ -9,7 +9,7 @@ export type UserActions =
   | { type: 'SET_CART'; payload: ICart }
   | { type: 'SET_WISHLIST'; payload: string | string[] }
   | { type: 'REMOVE_FROM_WISHLIST'; payload: string }
-  | { type: 'SET_COMPARE'; payload: string }
+  | { type: 'SET_COMPARE'; payload: string | string[] }
   | { type: 'REMOVE_FROM_COMPARE'; payload: string }
 
 export interface IUserState {

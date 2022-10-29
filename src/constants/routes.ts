@@ -23,5 +23,8 @@ export const ROUTES = {
   auth_refresh: '/auth/refresh',
   user_update_profile: '/user/update-profile',
   user_products_ids: '/user/products/ids',
-  user_wishlist_add: '/user/wishlist/add'
+  user_wishlist_add: '/user/wishlist/add',
+  user_wishlist_remove: '/user/wishlist/remove',
+  user_compare_add: '/user/compare/add',
+  user_compare_remove: '/user/compare/remove'
 }

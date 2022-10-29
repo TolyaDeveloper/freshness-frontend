@@ -3,11 +3,12 @@ import { Button } from '~/components/atoms'
 import { AddToWishlistProps } from './AddToWishlist.props'
 import { useUserContext } from '~/context/UserContext/User.context'
 import { $api } from '~/api'
+import { ROUTES } from '~/constants/routes'
+import { IUser } from '~/interfaces/user.interface'
 import WishListIcon from '~/assets/icons/wishlist.svg'
 
 import styles from './AddToWishlist.module.scss'
-import { ROUTES } from '~/constants/routes'
-import { IUser } from '~/interfaces/user.interface'
+import { LocalStorageService } from '~/services/localStorage.service'
 
 const AddToWishlist = ({
   className,
@@ -22,27 +23,39 @@ const AddToWishlist = ({
 
   const onAddToWishlist = async () => {
     if (state.isAuthenticated) {
-      try {
+      if (!isInWishlist) {
         const { data: updated } = await $api.patch<Pick<IUser, 'wishlist'>>(
           ROUTES.user_wishlist_add,
-          {
-            productId
-          }
+          { productId }
         )
 
-        console.log({ updated })
-
         return dispatch({ type: 'SET_WISHLIST', payload: updated.wishlist })
-      } catch (error) {
-        console.log(error)
       }
+
+      const { data: updated } = await $api.patch<Pick<IUser, 'wishlist'>>(
+        ROUTES.user_wishlist_remove,
+        { productId }
+      )
+
+      return dispatch({ type: 'SET_WISHLIST', payload: updated.wishlist })
     }
 
     if (!isInWishlist) {
+      LocalStorageService.setItem('wishlist', [
+        ...state.user.wishlist,
+        productId
+      ])
+
       return dispatch({ type: 'SET_WISHLIST', payload: productId })
     }
 
     dispatch({ type: 'REMOVE_FROM_WISHLIST', payload: productId })
+
+    const wishlistStorage: string[] = LocalStorageService.getItem('wishlist')
+    LocalStorageService.setItem(
+      'wishlist',
+      wishlistStorage.filter(item => item !== productId)
+    )
   }
 
   return (

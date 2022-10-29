@@ -1,18 +1,21 @@
 import { WishlistProps } from './Wishlist.props'
 import { useUserContext } from '~/context/UserContext/User.context'
-import { Typography, Button, ProductsSkeleton } from '~/components/atoms'
+import { Typography, Button } from '~/components/atoms'
 import { ROUTES } from '~/constants/routes'
 import { buildQueriesFromArray } from '~/utils/queries'
 import { IProduct } from '~/interfaces/product.interface'
-import ProductContainer from '../ProductContainer/ProductContainer'
+import { GridProduct } from '~/components/molecules'
+import { $api } from '~/api'
 import useSWR from 'swr'
 import Link from 'next/link'
 
 import styles from './Wishlist.module.scss'
+import { LocalStorageService } from '~/services/localStorage.service'
 
 const Wishlist = ({}: WishlistProps) => {
   const {
-    state: { user }
+    state: { user, isAuthenticated },
+    dispatch
   } = useUserContext()
 
   const { data: products } = useSWR<IProduct[]>(
@@ -34,14 +37,45 @@ const Wishlist = ({}: WishlistProps) => {
     )
   }
 
+  const onRemoveFromWishlist = async (productId: string) => {
+    if (isAuthenticated) {
+      const { data: updated } = await $api.patch(ROUTES.user_wishlist_remove, {
+        productId
+      })
+
+      return dispatch({ type: 'SET_WISHLIST', payload: updated.wishlist })
+    }
+
+    dispatch({ type: 'REMOVE_FROM_WISHLIST', payload: productId })
+
+    const wishlistStorage: string[] = LocalStorageService.getItem('wishlist')
+    LocalStorageService.setItem(
+      'wishlist',
+      wishlistStorage.filter(item => item !== productId)
+    )
+  }
+
   if (!products) {
-    return <ProductsSkeleton limit={4} />
+    return null
   }
 
   return (
-    <>
-      <ProductContainer products={products} layout="grid" />
-    </>
+    <ul className="grid-product">
+      {products.map(product => (
+        <li key={product._id}>
+          <GridProduct product={product} />
+          <Button
+            className="full-width-button"
+            type="button"
+            variant="plain"
+            aria-label="Remove product from wishlist"
+            onClick={() => onRemoveFromWishlist(product._id)}
+          >
+            Remove
+          </Button>
+        </li>
+      ))}
+    </ul>
   )
 }
 
