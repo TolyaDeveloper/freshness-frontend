@@ -11,11 +11,13 @@ export type UserActions =
   | { type: 'REMOVE_FROM_WISHLIST'; payload: string }
   | { type: 'SET_COMPARE'; payload: string | string[] }
   | { type: 'REMOVE_FROM_COMPARE'; payload: string }
+  | { type: 'SHOULD_SYNC_TO_LOCAL_STORAGE'; payload: boolean }
 
 export interface IUserState {
   user: IUser
   isAuthenticated: boolean
   isUserLoading: boolean
+  shouldSyncToLocalStorage: boolean
 }
 
 export const initialValues: IUserState = {
@@ -26,5 +28,6 @@ export const initialValues: IUserState = {
     ordersHistory: []
   } as unknown as IUser,
   isAuthenticated: false,
-  isUserLoading: false
+  isUserLoading: false,
+  shouldSyncToLocalStorage: false
 }

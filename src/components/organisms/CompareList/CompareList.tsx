@@ -1,13 +1,12 @@
+import { Fragment } from 'react'
 import { CompareListProps } from './CompareList.props'
 import { buildQueriesFromArray } from '~/utils/queries'
 import { useUserContext } from '~/context/UserContext/User.context'
 import { ROUTES } from '~/constants/routes'
 import { Button, Rating, Typography } from '~/components/atoms'
 import { IProduct } from '~/interfaces/product.interface'
-import { Fragment } from 'react'
 import { useRouter } from 'next/router'
 import { $api } from '~/api'
-import { LocalStorageService } from '~/services/localStorage.service'
 import Link from 'next/link'
 import Image from 'next/image'
 import useSWR from 'swr'
@@ -39,7 +38,6 @@ const CompareList = ({}: CompareListProps) => {
     )
   }
 
-  // ? refactor
   const onRemoveFromCompare = async (productId: string) => {
     if (isAuthenticated) {
       const { data: updated } = await $api.patch(ROUTES.user_compare_remove, {
@@ -50,12 +48,7 @@ const CompareList = ({}: CompareListProps) => {
     }
 
     dispatch({ type: 'REMOVE_FROM_COMPARE', payload: productId })
-
-    const compareStorage: string[] = LocalStorageService.getItem('compare')
-    LocalStorageService.setItem(
-      'compare',
-      compareStorage.filter(item => item !== productId)
-    )
+    dispatch({ type: 'SHOULD_SYNC_TO_LOCAL_STORAGE', payload: true })
   }
 
   if (!products) {

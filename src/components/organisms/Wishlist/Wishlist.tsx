@@ -10,7 +10,6 @@ import useSWR from 'swr'
 import Link from 'next/link'
 
 import styles from './Wishlist.module.scss'
-import { LocalStorageService } from '~/services/localStorage.service'
 
 const Wishlist = ({}: WishlistProps) => {
   const {
@@ -37,7 +36,6 @@ const Wishlist = ({}: WishlistProps) => {
     )
   }
 
-  // ? refactor
   const onRemoveFromWishlist = async (productId: string) => {
     if (isAuthenticated) {
       const { data: updated } = await $api.patch(ROUTES.user_wishlist_remove, {
@@ -48,12 +46,7 @@ const Wishlist = ({}: WishlistProps) => {
     }
 
     dispatch({ type: 'REMOVE_FROM_WISHLIST', payload: productId })
-
-    const wishlistStorage: string[] = LocalStorageService.getItem('wishlist')
-    LocalStorageService.setItem(
-      'wishlist',
-      wishlistStorage.filter(item => item !== productId)
-    )
+    dispatch({ type: 'SHOULD_SYNC_TO_LOCAL_STORAGE', payload: true })
   }
 
   if (!products) {

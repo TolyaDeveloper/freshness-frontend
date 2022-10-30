@@ -8,7 +8,6 @@ import { ROUTES } from '~/constants/routes'
 import CompareIcon from '~/assets/icons/compare.svg'
 
 import styles from './AddToCompare.module.scss'
-import { LocalStorageService } from '~/services/localStorage.service'
 
 const AddToCompare = ({ className, productId }: AddToCompareProps) => {
   const { dispatch, state } = useUserContext()
@@ -34,20 +33,14 @@ const AddToCompare = ({ className, productId }: AddToCompareProps) => {
       return dispatch({ type: 'SET_COMPARE', payload: updated.compare })
     }
 
-    // ? refactor
     if (!isInCompare) {
-      LocalStorageService.setItem('compare', [...state.user.compare, productId])
+      dispatch({ type: 'SET_COMPARE', payload: productId })
 
-      return dispatch({ type: 'SET_COMPARE', payload: productId })
+      return dispatch({ type: 'SHOULD_SYNC_TO_LOCAL_STORAGE', payload: true })
     }
 
     dispatch({ type: 'REMOVE_FROM_COMPARE', payload: productId })
-
-    const compareStorage: string[] = LocalStorageService.getItem('compare')
-    LocalStorageService.setItem(
-      'compare',
-      compareStorage.filter(item => item !== productId)
-    )
+    dispatch({ type: 'SHOULD_SYNC_TO_LOCAL_STORAGE', payload: true })
   }
 
   return (

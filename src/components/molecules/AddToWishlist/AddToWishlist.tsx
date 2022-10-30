@@ -8,7 +8,6 @@ import { IUser } from '~/interfaces/user.interface'
 import WishListIcon from '~/assets/icons/wishlist.svg'
 
 import styles from './AddToWishlist.module.scss'
-import { LocalStorageService } from '~/services/localStorage.service'
 
 const AddToWishlist = ({
   className,
@@ -40,23 +39,14 @@ const AddToWishlist = ({
       return dispatch({ type: 'SET_WISHLIST', payload: updated.wishlist })
     }
 
-    // ? refactor
     if (!isInWishlist) {
-      LocalStorageService.setItem('wishlist', [
-        ...state.user.wishlist,
-        productId
-      ])
+      dispatch({ type: 'SET_WISHLIST', payload: productId })
 
-      return dispatch({ type: 'SET_WISHLIST', payload: productId })
+      return dispatch({ type: 'SHOULD_SYNC_TO_LOCAL_STORAGE', payload: true })
     }
 
     dispatch({ type: 'REMOVE_FROM_WISHLIST', payload: productId })
-
-    const wishlistStorage: string[] = LocalStorageService.getItem('wishlist')
-    LocalStorageService.setItem(
-      'wishlist',
-      wishlistStorage.filter(item => item !== productId)
-    )
+    dispatch({ type: 'SHOULD_SYNC_TO_LOCAL_STORAGE', payload: true })
   }
 
   return (

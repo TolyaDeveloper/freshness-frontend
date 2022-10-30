@@ -47,6 +47,16 @@ export const UserContextProvider = ({ children }: PropsWithChildren) => {
       })
   }, [])
 
+  useEffect(() => {
+    if (data.shouldSyncToLocalStorage) {
+      LocalStorageService.setItem('wishlist', data.user.wishlist)
+      LocalStorageService.setItem('compare', data.user.compare)
+      LocalStorageService.setItem('cart', data.user.cart)
+    }
+
+    dispatch({ type: 'SHOULD_SYNC_TO_LOCAL_STORAGE', payload: false })
+  }, [data.shouldSyncToLocalStorage, data.user])
+
   return (
     <UserContext.Provider value={{ state: data, dispatch }}>
       {children}
