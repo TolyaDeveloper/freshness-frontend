@@ -44,12 +44,16 @@ const ProductsWithFilters = ({ filters, category }: ProductsWithFilters) => {
     }&${parseQueriesIntoString(activeFilters)}`
   }
 
-  const {} = useSWR(shouldFetch ? buildQueryURI() : null, {
-    onSuccess: (data: IProduct[]) => {
-      setFetch(false)
+  const { data } = useSWR<IProduct[] | undefined>(
+    shouldFetch ? buildQueryURI() : null
+  )
+
+  useEffect(() => {
+    if (data) {
       setProducts(data)
+      setFetch(false)
     }
-  })
+  }, [data])
 
   useEffect(() => {
     setActiveFilters({
