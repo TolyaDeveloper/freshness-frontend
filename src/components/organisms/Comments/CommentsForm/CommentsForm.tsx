@@ -12,7 +12,7 @@ import { ROUTES } from '~/constants/routes'
 
 import styles from './CommentsForm.module.scss'
 
-const CommentsForm = ({ className, productId }: CommentsFormProps) => {
+const CommentsForm = ({ className, productId, onSent }: CommentsFormProps) => {
   const { state } = useUserContext()
 
   const { handleSubmit, register, reset } = useForm<CommentSchemaType>({
@@ -27,6 +27,7 @@ const CommentsForm = ({ className, productId }: CommentsFormProps) => {
       })
 
       reset()
+      onSent()
     } catch (err) {
       if (err instanceof Error) {
         alert(err.message)

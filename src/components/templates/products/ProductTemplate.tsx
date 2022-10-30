@@ -16,11 +16,7 @@ import {
   ProductAddToCart,
   PreSectionContainer
 } from '~/components/molecules'
-import {
-  Comments,
-  CommentsForm,
-  ProductContainer
-} from '~/components/organisms'
+import { Comments, ProductContainer } from '~/components/organisms'
 import { pluralize } from '~/utils/pluralize'
 import { ROUTES } from '~/constants/routes'
 import { Tabs, TabList, Tab, TabPanel } from 'react-tabs'
@@ -195,10 +191,7 @@ const ProductTemplate = ({
               />
             </TabPanel>
             <TabPanel>
-              <Comments
-                productId={product._id}
-                commentsForm={<CommentsForm productId={product._id} />}
-              />
+              <Comments productId={product._id} />
             </TabPanel>
             <TabPanel>
               <h2>Coming soon...</h2>
