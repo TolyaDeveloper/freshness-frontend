@@ -2,6 +2,7 @@ export { default as AsideFilters } from './ProductsWithFilters/AsideFilters/Asid
 export { default as AsideMenuWithBanner } from './AsideMenuWithBanner/AsideMenuWithBanner'
 export { default as AsideMenuWithProducts } from './AsideMenuWithProducts/AsideMenuWithProducts'
 export { default as BlogPreviews } from './BlogPreviews/BlogPreviews'
+export { default as Cart } from './Cart/Cart'
 export { default as CategoryHeadline } from './CategoryHeadline/CategoryHeadline'
 export { default as CommentsForm } from './Comments/CommentsForm/CommentsForm'
 export { default as Comments } from './Comments/Comments'

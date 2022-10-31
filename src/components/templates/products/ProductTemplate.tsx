@@ -30,6 +30,8 @@ const ProductTemplate = ({
   questionsAndReviewsCount,
   relatedProducts
 }: ProductTemplateProps) => {
+  const { _id, imageUri, price, rating, smallDescription, oldPrice, title } =
+    product
   const reviewsCount = questionsAndReviewsCount?.reviewsCount[0]?.reviewsCount
   const questionsCount =
     questionsAndReviewsCount?.questionsCount[0]?.questionsCount
@@ -158,9 +160,15 @@ const ProductTemplate = ({
           </div>
           <ProductAddToCart
             className={styles.productAddToCart}
-            price={product.price}
-            productId={product._id}
-            oldPrice={product.oldPrice}
+            product={{
+              _id,
+              imageUri,
+              price,
+              rating,
+              smallDescription,
+              title,
+              oldPrice
+            }}
           />
           <div className={styles.wishlistWithCompareWrapper}>
             <AddToWishlist productId={product._id} variant="plain">

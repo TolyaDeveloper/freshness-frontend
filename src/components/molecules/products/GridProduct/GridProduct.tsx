@@ -4,9 +4,13 @@ import { Button, Typography, Tag, Rating } from '~/components/atoms'
 import { GridProductProps } from './GridProduct.props'
 import { ROUTES } from '~/constants/routes'
 import { useUserContext } from '~/context/UserContext/User.context'
-import { LocalStorageService } from '~/services/localStorage.service'
 import { countDiscountPercentage } from '~/utils/countDiscountPercentage'
-import { ProductCartTypeEnum } from '~/interfaces/cart.interface'
+import {
+  ICart,
+  ProductCartVariantEnum,
+  ICartProduct
+} from '~/interfaces/cart.interface'
+import { $api } from '~/api'
 import Link from 'next/link'
 import Image from 'next/image'
 
@@ -17,16 +21,32 @@ const GridProduct = ({ className, product }: GridProductProps) => {
   const { dispatch, state } = useUserContext()
   const { _id, imageUri, price, rating, smallDescription, title, oldPrice } =
     product
-  const isAlreadyInCart = state.user.cart.find(item => item._id === _id)
-  const payload = { _id, amount: 1, type: ProductCartTypeEnum.PCS }
+  const isAlreadyInCart = state.user.cart.find(item => item._id._id === _id)
+  const payload: ICart = {
+    _id: { _id, imageUri, price, rating, smallDescription, title, oldPrice },
+    amount: 1,
+    variant: ProductCartVariantEnum.PCS
+  }
 
-  const onAddToCart = () => {
-    dispatch({
-      type: 'SET_CART',
-      payload
-    })
+  const onAddToCart = async () => {
+    if (state.isAuthenticated) {
+      const { data: updated } = await $api.patch<{ cart: ICart[] }>(
+        ROUTES.user_cart_add,
+        {
+          _id,
+          amount: 1,
+          variant: ProductCartVariantEnum.PCS
+        }
+      )
 
-    LocalStorageService.setItem('products', [...state.user.cart, payload])
+      return dispatch({
+        type: 'SET_CART',
+        payload: updated.cart
+      })
+    }
+
+    dispatch({ type: 'SET_CART', payload })
+    dispatch({ type: 'SHOULD_SYNC_TO_LOCAL_STORAGE', payload: true })
   }
 
   return (

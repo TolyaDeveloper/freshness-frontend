@@ -12,40 +12,50 @@ import {
   Select,
   Typography
 } from '~/components/atoms'
-import { ProductCartTypeEnum } from '~/interfaces/cart.interface'
+import { ICart, ProductCartVariantEnum } from '~/interfaces/cart.interface'
 import { LocalStorageService } from '~/services/localStorage.service'
 import { ROUTES } from '~/constants/routes'
 import AddIcon from '~/assets/icons/add.svg'
 import Link from 'next/link'
 
 import styles from './ProductAddToCart.module.scss'
+import { $api } from '~/api'
 
-const ProductAddToCart = ({
-  className,
-  productId,
-  price,
-  oldPrice
-}: ProductAddToCartProps) => {
+const ProductAddToCart = ({ className, product }: ProductAddToCartProps) => {
   const { locale } = useRouter()
+  const { _id, imageUri, price, rating, smallDescription, title, oldPrice } =
+    product
   const { dispatch, state } = useUserContext()
-  const isAlreadyInCart = state.user.cart.find(item => item._id === productId)
+  const isAlreadyInCart = state.user.cart.find(item => item._id._id === _id)
 
   const [productAmount, setProductAmount] = useState<number>(1)
-  const [selectedType, setSelectedType] = useState(ProductCartTypeEnum.PCS)
+  const [selectedType, setSelectedType] = useState(ProductCartVariantEnum.PCS)
 
-  const payload = {
-    _id: productId,
-    amount: productAmount,
-    type: selectedType
+  const payload: ICart = {
+    _id: { _id, imageUri, price, rating, smallDescription, title, oldPrice },
+    amount: 1,
+    variant: ProductCartVariantEnum.PCS
   }
 
-  const onAddToCart = () => {
-    dispatch({
-      type: 'SET_CART',
-      payload
-    })
+  const onAddToCart = async () => {
+    if (state.isAuthenticated) {
+      const { data: updated } = await $api.patch<{ cart: ICart[] }>(
+        ROUTES.user_cart_add,
+        {
+          _id,
+          amount: productAmount,
+          variant: selectedType
+        }
+      )
 
-    LocalStorageService.setItem('products', [...state.user.cart, payload])
+      return dispatch({
+        type: 'SET_CART',
+        payload: updated.cart
+      })
+    }
+
+    dispatch({ type: 'SET_CART', payload })
+    dispatch({ type: 'SHOULD_SYNC_TO_LOCAL_STORAGE', payload: true })
   }
 
   return (
@@ -84,13 +94,15 @@ const ProductAddToCart = ({
         <Select
           endAdornment={<Arrow color="primary2" orientation="down" />}
           value={selectedType}
-          onChange={e => setSelectedType(e.target.value as ProductCartTypeEnum)}
+          onChange={e =>
+            setSelectedType(e.target.value as ProductCartVariantEnum)
+          }
           disabled={Boolean(isAlreadyInCart)}
         >
-          <option>{ProductCartTypeEnum.PCS}</option>
-          <option>{ProductCartTypeEnum.KGS}</option>
-          <option>{ProductCartTypeEnum.BOX}</option>
-          <option>{ProductCartTypeEnum.PACK}</option>
+          <option>{ProductCartVariantEnum.PCS}</option>
+          <option>{ProductCartVariantEnum.KGS}</option>
+          <option>{ProductCartVariantEnum.BOX}</option>
+          <option>{ProductCartVariantEnum.PACK}</option>
         </Select>
       </FormStyledWrapper>
       {isAlreadyInCart ? (

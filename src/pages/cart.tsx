@@ -1,11 +1,10 @@
 import { GetStaticProps } from 'next'
 import { $api } from '~/api'
 import { ROUTES } from '~/constants/routes'
-import { useUserContext } from '~/context/UserContext/User.context'
-import useSWR from 'swr'
+import { CartTemplate } from '~/components/templates'
 
 const Cart = () => {
-  return <>Cart</>
+  return <CartTemplate />
 }
 
 export const getStaticProps: GetStaticProps = async () => {

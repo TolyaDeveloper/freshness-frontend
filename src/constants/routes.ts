@@ -26,5 +26,7 @@ export const ROUTES = {
   user_wishlist_add: '/user/wishlist/add',
   user_wishlist_remove: '/user/wishlist/remove',
   user_compare_add: '/user/compare/add',
-  user_compare_remove: '/user/compare/remove'
+  user_compare_remove: '/user/compare/remove',
+  user_cart_add: '/user/cart/add',
+  user_cart_remove: '/user/cart/remove'
 }

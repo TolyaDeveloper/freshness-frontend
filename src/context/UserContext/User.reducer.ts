@@ -19,6 +19,14 @@ export const userReducer = (state: IUserState, action: UserActions) => {
         ...state,
         user: { ...state.user, cart: [...state.user.cart, action.payload] }
       }
+    case 'REMOVE_FROM_CART':
+      return {
+        ...state,
+        user: {
+          ...state.user,
+          cart: state.user.cart.filter(item => item._id._id !== action.payload)
+        }
+      }
     case 'SET_WISHLIST':
       if (Array.isArray(action.payload)) {
         return { ...state, user: { ...state.user, wishlist: action.payload } }

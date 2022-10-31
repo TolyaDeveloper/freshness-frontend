@@ -6,7 +6,8 @@ export type UserActions =
   | { type: 'UPDATE_USER'; payload: Partial<IUser> }
   | { type: 'SET_USER_LOADING'; payload: boolean }
   | { type: 'SET_AUTH'; payload: boolean }
-  | { type: 'SET_CART'; payload: ICart }
+  | { type: 'SET_CART'; payload: ICart[] | ICart }
+  | { type: 'REMOVE_FROM_CART'; payload: string }
   | { type: 'SET_WISHLIST'; payload: string | string[] }
   | { type: 'REMOVE_FROM_WISHLIST'; payload: string }
   | { type: 'SET_COMPARE'; payload: string | string[] }

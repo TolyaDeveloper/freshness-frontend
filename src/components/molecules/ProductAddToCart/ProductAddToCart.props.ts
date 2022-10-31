@@ -1,6 +1,6 @@
+import { ICartProduct } from '~/interfaces/cart.interface'
+
 export interface ProductAddToCartProps {
-  productId: string
-  price: number
-  oldPrice?: number
+  product: ICartProduct
   className?: string
 }

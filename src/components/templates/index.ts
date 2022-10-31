@@ -1,3 +1,4 @@
+export { default as CartTemplate } from './CartTemplate/CartTemplate'
 export { default as ProductCategoryTemplate } from './categories/ProductCategoryTemplate'
 export { default as HomeTemplate } from './HomeTemplate/HomeTemplate'
 export { default as ProductTemplate } from './products/ProductTemplate'

@@ -24,14 +24,14 @@ export const UserContextProvider = ({ children }: PropsWithChildren) => {
   const [data, dispatch] = useReducer(userReducer, initialValues)
 
   useEffect(() => {
-    const productsFromLocalStorage = LocalStorageService.getItem('products')
+    const cartFromLocalStorage = LocalStorageService.getItem('cart')
     const wishlistFromLocalStorage = LocalStorageService.getItem('wishlist')
     const compareFromLocalStorage = LocalStorageService.getItem('compare')
 
-    productsFromLocalStorage &&
+    cartFromLocalStorage &&
       dispatch({
         type: 'SET_CART',
-        payload: productsFromLocalStorage
+        payload: cartFromLocalStorage
       })
 
     wishlistFromLocalStorage &&
