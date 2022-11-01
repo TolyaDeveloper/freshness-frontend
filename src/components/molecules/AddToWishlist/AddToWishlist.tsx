@@ -2,9 +2,7 @@ import { cnb } from 'cnbuilder'
 import { Button } from '~/components/atoms'
 import { AddToWishlistProps } from './AddToWishlist.props'
 import { useUserContext } from '~/context/UserContext/User.context'
-import { $api } from '~/api'
-import { ROUTES } from '~/constants/routes'
-import { IUser } from '~/interfaces/user.interface'
+import userService from '~/services/user.service'
 import WishListIcon from '~/assets/icons/wishlist.svg'
 
 import styles from './AddToWishlist.module.scss'
@@ -23,18 +21,12 @@ const AddToWishlist = ({
   const onAddToWishlist = async () => {
     if (state.isAuthenticated) {
       if (!isInWishlist) {
-        const { data: updated } = await $api.patch<Pick<IUser, 'wishlist'>>(
-          ROUTES.user_wishlist_add,
-          { productId }
-        )
+        const { data: updated } = await userService.addToWishlist(productId)
 
         return dispatch({ type: 'SET_WISHLIST', payload: updated.wishlist })
       }
 
-      const { data: updated } = await $api.patch<Pick<IUser, 'wishlist'>>(
-        ROUTES.user_wishlist_remove,
-        { productId }
-      )
+      const { data: updated } = await userService.removeFromWishlist(productId)
 
       return dispatch({ type: 'SET_WISHLIST', payload: updated.wishlist })
     }

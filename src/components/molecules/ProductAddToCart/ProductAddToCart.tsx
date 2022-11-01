@@ -13,40 +13,37 @@ import {
   Typography
 } from '~/components/atoms'
 import { ICart, ProductCartVariantEnum } from '~/interfaces/cart.interface'
-import { LocalStorageService } from '~/services/localStorage.service'
-import { ROUTES } from '~/constants/routes'
+import { PAGES } from '~/constants/routes'
+import userService from '~/services/user.service'
 import AddIcon from '~/assets/icons/add.svg'
 import Link from 'next/link'
 
 import styles from './ProductAddToCart.module.scss'
-import { $api } from '~/api'
 
-const ProductAddToCart = ({ className, product }: ProductAddToCartProps) => {
+const ProductAddToCart = ({
+  className,
+  productId,
+  price,
+  oldPrice
+}: ProductAddToCartProps) => {
   const { locale } = useRouter()
-  const { _id, imageUri, price, rating, smallDescription, title, oldPrice } =
-    product
   const { dispatch, state } = useUserContext()
-  const isAlreadyInCart = state.user.cart.find(item => item._id._id === _id)
+  const isAlreadyInCart = state.user.cart.find(
+    item => item.productId === productId
+  )
 
   const [productAmount, setProductAmount] = useState<number>(1)
   const [selectedType, setSelectedType] = useState(ProductCartVariantEnum.PCS)
 
-  const payload: ICart = {
-    _id: { _id, imageUri, price, rating, smallDescription, title, oldPrice },
-    amount: 1,
-    variant: ProductCartVariantEnum.PCS
+  const cartProduct: ICart = {
+    productId,
+    quantity: productAmount,
+    variant: selectedType
   }
 
   const onAddToCart = async () => {
     if (state.isAuthenticated) {
-      const { data: updated } = await $api.patch<{ cart: ICart[] }>(
-        ROUTES.user_cart_add,
-        {
-          _id,
-          amount: productAmount,
-          variant: selectedType
-        }
-      )
+      const { data: updated } = await userService.addToCart(cartProduct)
 
       return dispatch({
         type: 'SET_CART',
@@ -54,7 +51,7 @@ const ProductAddToCart = ({ className, product }: ProductAddToCartProps) => {
       })
     }
 
-    dispatch({ type: 'SET_CART', payload })
+    dispatch({ type: 'SET_CART', payload: cartProduct })
     dispatch({ type: 'SHOULD_SYNC_TO_LOCAL_STORAGE', payload: true })
   }
 
@@ -106,7 +103,7 @@ const ProductAddToCart = ({ className, product }: ProductAddToCartProps) => {
         </Select>
       </FormStyledWrapper>
       {isAlreadyInCart ? (
-        <Link href={ROUTES.cart} passHref>
+        <Link href={PAGES.cart} passHref>
           <Button className={styles.buyButton} variant="outlined">
             View in cart
           </Button>

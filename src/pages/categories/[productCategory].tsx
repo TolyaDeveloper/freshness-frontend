@@ -1,7 +1,7 @@
 import { GetServerSideProps } from 'next'
 import { $api } from '~/api'
 import { ICategory } from '~/interfaces/category.interface'
-import { ROUTES } from '~/constants/routes'
+import { API } from '~/constants/routes'
 import { ProductsWithFilters } from '~/components/organisms'
 import { ProductCategoryTemplate } from '~/components/templates'
 import { useRouter } from 'next/router'
@@ -22,7 +22,7 @@ const ProductCategory = ({ categories }: ProductCategoryProps) => {
   const categoryId = query.productCategory as string
   const category = findCategory(categories, categoryId)
   const { data: filters } = useSWRIMmutable<IFilters>(
-    `${ROUTES.products}/filters/?category=${categoryId}`
+    `${API.products}/filters/?category=${categoryId}`
   )
 
   return (
@@ -41,8 +41,8 @@ const ProductCategory = ({ categories }: ProductCategoryProps) => {
 }
 
 export const getServerSideProps: GetServerSideProps = async () => {
-  const { data: categories } = await $api.get(ROUTES.categories)
-  const { data: tags } = await $api.get(ROUTES.tags)
+  const { data: categories } = await $api.get(API.categories)
+  const { data: tags } = await $api.get(API.tags)
 
   return {
     props: { categories, tags }

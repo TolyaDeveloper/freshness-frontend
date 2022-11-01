@@ -13,11 +13,12 @@ import { computedTypesResolver } from '@hookform/resolvers/computed-types'
 import { useUserContext } from '~/context/UserContext/User.context'
 import { AuthService } from '~/services/auth.service'
 import { LocalStorageService } from '~/services/localStorage.service'
-import { ROUTES } from '~/constants/routes'
+import { PAGES } from '~/constants/routes'
+import { LOCAL_STORAGE_KEYS } from '~/constants/common'
+import { AxiosError } from 'axios'
 import Link from 'next/link'
 
 import styles from './Login.module.scss'
-import { AxiosError } from 'axios'
 
 const Login = ({}: LoginProps) => {
   const [error, setError] = useState<string>('')
@@ -31,11 +32,14 @@ const Login = ({}: LoginProps) => {
     setLoading(true)
 
     try {
-      const res = await AuthService.login({ email, password })
+      const { data } = await AuthService.login({ email, password })
 
-      LocalStorageService.setItem('accessToken', res.data.accessToken)
+      LocalStorageService.setItem(
+        LOCAL_STORAGE_KEYS.accessToken,
+        data.accessToken
+      )
 
-      dispatch({ type: 'SET_USER', payload: res.data.user })
+      dispatch({ type: 'SET_USER', payload: data.user })
       dispatch({ type: 'SET_AUTH', payload: true })
 
       reset()
@@ -73,7 +77,7 @@ const Login = ({}: LoginProps) => {
         <Button type="submit" disabled={isLoading}>
           Login
         </Button>
-        <Link href={ROUTES.signup} passHref>
+        <Link href={PAGES.signup} passHref>
           <CustomLink className={styles.signupLink}>
             Do not have an account? Signup here
           </CustomLink>

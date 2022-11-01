@@ -1,7 +1,7 @@
 import { GetStaticProps } from 'next'
 import { $api } from '~/api'
 import { HomeTemplate } from '~/components/templates'
-import { ROUTES } from '~/constants/routes'
+import { API } from '~/constants/routes'
 import { ICategory } from '~/interfaces/category.interface'
 import { ICustomerReview } from '~/interfaces/customer-review.interface'
 import { IBlogPost } from '~/interfaces/blog-post.interface'
@@ -17,7 +17,7 @@ interface HomeProps {
 }
 
 const Home = ({ blogPosts, categories, customersReviews }: HomeProps) => {
-  const { data: products } = useSWR<IProduct[]>(ROUTES.products)
+  const { data: products } = useSWR<IProduct[]>(API.products)
 
   return (
     <>
@@ -32,10 +32,10 @@ const Home = ({ blogPosts, categories, customersReviews }: HomeProps) => {
 }
 
 export const getStaticProps: GetStaticProps = async () => {
-  const { data: categories } = await $api.get(ROUTES.categories)
-  const { data: customersReviews } = await $api.get(ROUTES.customers_reviews)
-  const { data: blogPosts } = await $api.get(`${ROUTES.blog_posts}?limit=5`)
-  const { data: tags } = await $api.get(ROUTES.tags)
+  const { data: categories } = await $api.get(API.categories)
+  const { data: customersReviews } = await $api.get(API.customerReviews)
+  const { data: blogPosts } = await $api.get(`${API.blogPosts}?limit=5`)
+  const { data: tags } = await $api.get(API.tags)
 
   return {
     props: { categories, customersReviews, blogPosts, tags },

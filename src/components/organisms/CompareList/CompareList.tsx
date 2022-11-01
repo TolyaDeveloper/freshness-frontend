@@ -2,11 +2,11 @@ import { Fragment } from 'react'
 import { CompareListProps } from './CompareList.props'
 import { buildQueriesFromArray } from '~/utils/queries'
 import { useUserContext } from '~/context/UserContext/User.context'
-import { ROUTES } from '~/constants/routes'
+import { PAGES, API } from '~/constants/routes'
 import { Button, Rating, Typography } from '~/components/atoms'
 import { IProduct } from '~/interfaces/product.interface'
 import { useRouter } from 'next/router'
-import { $api } from '~/api'
+import userService from '~/services/user.service'
 import Link from 'next/link'
 import Image from 'next/image'
 import useSWR from 'swr'
@@ -21,7 +21,7 @@ const CompareList = ({}: CompareListProps) => {
   } = useUserContext()
   const { data: products } = useSWR<IProduct[]>(
     user.compare.length !== 0
-      ? `${ROUTES.user_products_ids}?${buildQueriesFromArray(user.compare)}`
+      ? `${API.user_products_ids}?${buildQueriesFromArray(user.compare)}`
       : null
   )
 
@@ -29,7 +29,7 @@ const CompareList = ({}: CompareListProps) => {
     return (
       <div className={styles.emptyCompareWrapper}>
         <Typography level="h2-lg">Compare is empty</Typography>
-        <Link href={ROUTES.home} passHref>
+        <Link href={PAGES.home} passHref>
           <Button className={styles.moreLink} variant="outlined">
             Find more products
           </Button>
@@ -40,9 +40,7 @@ const CompareList = ({}: CompareListProps) => {
 
   const onRemoveFromCompare = async (productId: string) => {
     if (isAuthenticated) {
-      const { data: updated } = await $api.patch(ROUTES.user_compare_remove, {
-        productId
-      })
+      const { data: updated } = await userService.removeFromCompare(productId)
 
       return dispatch({ type: 'SET_COMPARE', payload: updated.compare })
     }

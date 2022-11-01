@@ -19,7 +19,7 @@ import {
 } from '~/validators/edit-profile.validator'
 import { computedTypesResolver } from '@hookform/resolvers/computed-types'
 import { $api } from '~/api'
-import { ROUTES } from '~/constants/routes'
+import { API } from '~/constants/routes'
 import { IUser } from '~/interfaces/user.interface'
 import EditIcon from '~/assets/icons/edit-field.svg'
 
@@ -81,7 +81,7 @@ const ProfileData = ({}: ProfileDataProps) => {
       formData.append('currentAvatarUri', user.avatarUri)
 
       const { data } = await $api.patch<IUser>(
-        ROUTES.user_update_profile,
+        API.user_updateProfile,
         formData,
         { headers: { 'Content-Type': 'multipart/form-data' } }
       )

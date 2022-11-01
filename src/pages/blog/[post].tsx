@@ -1,6 +1,6 @@
 import { GetStaticPaths, GetStaticProps } from 'next'
 import { $api } from '~/api'
-import { ROUTES } from '~/constants/routes'
+import { API } from '~/constants/routes'
 import { IBlogPost } from '~/interfaces/blog-post.interface'
 
 const Post = () => {
@@ -8,7 +8,7 @@ const Post = () => {
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const { data: posts } = await $api.get<IBlogPost[]>(ROUTES.blog_posts)
+  const { data: posts } = await $api.get<IBlogPost[]>(API.blogPosts)
   const paths = posts.map(({ _id }) => ({
     params: { post: _id }
   }))
@@ -26,9 +26,9 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
     }
   }
 
-  const { data: categories } = await $api.get(ROUTES.categories)
-  const { data: tags } = await $api.get(ROUTES.tags)
-  const { data: post } = await $api.get(`${ROUTES.blog_posts}/${params.post}`)
+  const { data: categories } = await $api.get(API.categories)
+  const { data: tags } = await $api.get(API.tags)
+  const { data: post } = await $api.get(`${API.blogPosts}/${params.post}`)
 
   return {
     props: { categories, tags, blogPosts: [post] },

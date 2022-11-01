@@ -12,11 +12,12 @@ import {
 } from '~/validators/signup.validator'
 import { computedTypesResolver } from '@hookform/resolvers/computed-types'
 import { useForm } from 'react-hook-form'
-import { ROUTES } from '~/constants/routes'
+import { PAGES } from '~/constants/routes'
 import { useUserContext } from '~/context/UserContext/User.context'
 import { AuthService } from '~/services/auth.service'
 import { LocalStorageService } from '~/services/localStorage.service'
 import { AxiosError } from 'axios'
+import { LOCAL_STORAGE_KEYS } from '~/constants/common'
 import Link from 'next/link'
 
 import styles from './Signup.module.scss'
@@ -38,16 +39,19 @@ const Signup = () => {
     setLoading(true)
 
     try {
-      const res = await AuthService.signup({
+      const { data } = await AuthService.signup({
         firstName,
         lastName,
         email,
         password
       })
 
-      LocalStorageService.setItem('accessToken', res.data.accessToken)
+      LocalStorageService.setItem(
+        LOCAL_STORAGE_KEYS.accessToken,
+        data.accessToken
+      )
 
-      dispatch({ type: 'SET_USER', payload: res.data.user })
+      dispatch({ type: 'SET_USER', payload: data.user })
       dispatch({ type: 'SET_AUTH', payload: true })
     } catch (err) {
       if (err instanceof AxiosError) {
@@ -102,7 +106,7 @@ const Signup = () => {
           Signup
         </Button>
       </form>
-      <Link href={ROUTES.profile} passHref>
+      <Link href={PAGES.profile} passHref>
         <CustomLink className={styles.loginLink}>
           Already have an account? Log in here
         </CustomLink>

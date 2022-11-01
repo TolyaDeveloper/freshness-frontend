@@ -24,7 +24,9 @@ export const userReducer = (state: IUserState, action: UserActions) => {
         ...state,
         user: {
           ...state.user,
-          cart: state.user.cart.filter(item => item._id._id !== action.payload)
+          cart: state.user.cart.filter(
+            item => item.productId !== action.payload
+          )
         }
       }
     case 'SET_WISHLIST':

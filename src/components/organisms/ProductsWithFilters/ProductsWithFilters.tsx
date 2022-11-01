@@ -24,7 +24,7 @@ import {
   defaultQueries
 } from '~/utils/queries'
 import { IQueries } from '~/interfaces/queries.interface'
-import { ROUTES } from '~/constants/routes'
+import { API } from '~/constants/routes'
 import { IProduct } from '~/interfaces/product.interface'
 import useSWR from 'swr'
 
@@ -39,7 +39,7 @@ const ProductsWithFilters = ({ filters, category }: ProductsWithFilters) => {
   const skipInterval = 9
 
   const buildQueryURI = () => {
-    return `${ROUTES.products}?category=${
+    return `${API.products}?category=${
       query.productCategory
     }&${parseQueriesIntoString(activeFilters)}`
   }

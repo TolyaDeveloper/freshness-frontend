@@ -1,5 +1,6 @@
 import { LocalStorageService } from '~/services/localStorage.service'
-import { ROUTES } from '~/constants/routes'
+import { API } from '~/constants/routes'
+import { LOCAL_STORAGE_KEYS } from '~/constants/common'
 import axios, { AxiosRequestConfig } from 'axios'
 
 const $api = axios.create({
@@ -13,7 +14,7 @@ $api.interceptors.request.use((config: AxiosRequestConfig) => {
   }
 
   config.headers.Authorization = `Bearer ${LocalStorageService.getItem(
-    'accessToken'
+    LOCAL_STORAGE_KEYS.accessToken
   )}`
 
   return config
@@ -34,12 +35,15 @@ $api.interceptors.response.use(
       originalRequest._isRetry = true
 
       try {
-        const response = await axios.get(
-          `${process.env.NEXT_PUBLIC_SERVER_URI}${ROUTES.auth_refresh}`,
+        const { data } = await axios.get(
+          `${process.env.NEXT_PUBLIC_SERVER_URI}${API.auth_refresh}`,
           { withCredentials: true }
         )
 
-        LocalStorageService.setItem('accessToken', response.data.accessToken)
+        LocalStorageService.setItem(
+          LOCAL_STORAGE_KEYS.accessToken,
+          data.accessToken
+        )
 
         return $api.request(originalRequest)
       } catch (error) {

@@ -17,7 +17,7 @@ import {
   ProductContainer
 } from '~/components/organisms'
 import { LeftSliderArrow, RightSliderArrow } from '~/components/atoms'
-import { ROUTES } from '~/constants/routes'
+import { PAGES } from '~/constants/routes'
 import { HomeTemplateProps } from './HomeTemplate.props'
 import Slider, { Settings } from 'react-slick'
 import Link from 'next/link'
@@ -33,7 +33,7 @@ const HomeTemplate = ({
   const renderedCategories = categories.map(({ _id, name }) => (
     <Link
       key={_id}
-      href={`${ROUTES.categories}/${_id}`}
+      href={`${PAGES.categories}/${_id}`}
       passHref
       prefetch={false}
     >
@@ -134,7 +134,7 @@ const HomeTemplate = ({
         className={styles.preSectionContainer}
         heading={<Typography level="h2-md">Read our Blog posts</Typography>}
         button={
-          <Link href={ROUTES.blog} passHref>
+          <Link href={PAGES.blog} passHref>
             <Button variant="plain" endAdornment={<Arrow />}>
               Go to Blog
             </Button>

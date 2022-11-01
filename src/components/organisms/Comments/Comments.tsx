@@ -2,7 +2,7 @@ import { Typography, Skeleton } from '~/components/atoms'
 import { AuthorTimestamp } from '~/components/molecules'
 import { CommentsProps } from './Comments.props'
 import { IProductComment } from '~/interfaces/product-comment.interface'
-import { ROUTES } from '~/constants/routes'
+import { API } from '~/constants/routes'
 import { DEFAULT_AVATAR_PATH } from '~/constants/common'
 import CommentsForm from './CommentsForm/CommentsForm'
 import useSWR from 'swr'
@@ -11,7 +11,7 @@ import styles from './Comments.module.scss'
 
 const Comments = ({ productId }: CommentsProps) => {
   const { data: comments, mutate } = useSWR<IProductComment>(
-    `${ROUTES.products_comments}/${productId}`
+    `${API.products_comments}/${productId}`
   )
 
   const commentsView = !comments ? (

@@ -1,8 +1,6 @@
 import { ICategory } from '~/interfaces/category.interface'
 import { ITag } from '~/interfaces/tag.interface'
 import { LayoutType } from '~/interfaces/layout.types'
-import { ICustomerReview } from '~/interfaces/customer-review.interface'
-import { IBlogPost } from '~/interfaces/blog-post.interface'
 
 export type AppActions =
   | { type: 'SET_CATEGORIES'; payload: ICategory[] }

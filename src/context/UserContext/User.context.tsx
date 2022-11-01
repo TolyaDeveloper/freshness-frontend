@@ -9,6 +9,7 @@ import {
 import { type UserActions, IUserState, initialValues } from './User.types'
 import { userReducer } from './User.reducer'
 import { LocalStorageService } from '~/services/localStorage.service'
+import { LOCAL_STORAGE_KEYS } from '~/constants/common'
 
 export const UserContext = createContext<{
   state: IUserState
@@ -24,9 +25,15 @@ export const UserContextProvider = ({ children }: PropsWithChildren) => {
   const [data, dispatch] = useReducer(userReducer, initialValues)
 
   useEffect(() => {
-    const cartFromLocalStorage = LocalStorageService.getItem('cart')
-    const wishlistFromLocalStorage = LocalStorageService.getItem('wishlist')
-    const compareFromLocalStorage = LocalStorageService.getItem('compare')
+    const cartFromLocalStorage = LocalStorageService.getItem(
+      LOCAL_STORAGE_KEYS.cart
+    )
+    const wishlistFromLocalStorage = LocalStorageService.getItem(
+      LOCAL_STORAGE_KEYS.wishlist
+    )
+    const compareFromLocalStorage = LocalStorageService.getItem(
+      LOCAL_STORAGE_KEYS.compare
+    )
 
     cartFromLocalStorage &&
       dispatch({
@@ -49,9 +56,12 @@ export const UserContextProvider = ({ children }: PropsWithChildren) => {
 
   useEffect(() => {
     if (data.shouldSyncToLocalStorage) {
-      LocalStorageService.setItem('wishlist', data.user.wishlist)
-      LocalStorageService.setItem('compare', data.user.compare)
-      LocalStorageService.setItem('cart', data.user.cart)
+      LocalStorageService.setItem(
+        LOCAL_STORAGE_KEYS.wishlist,
+        data.user.wishlist
+      )
+      LocalStorageService.setItem(LOCAL_STORAGE_KEYS.compare, data.user.compare)
+      LocalStorageService.setItem(LOCAL_STORAGE_KEYS.cart, data.user.cart)
     }
 
     dispatch({ type: 'SHOULD_SYNC_TO_LOCAL_STORAGE', payload: false })

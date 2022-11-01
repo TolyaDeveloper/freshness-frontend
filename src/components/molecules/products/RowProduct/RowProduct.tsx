@@ -1,14 +1,13 @@
 import { cnb } from 'cnbuilder'
 import { RowProductProps } from './RowProduct.props'
 import { Typography, Button, Rating, Arrow } from '~/components/atoms'
+import { useRouter } from 'next/router'
+import { PAGES } from '~/constants/routes'
 import AddToWishlist from '../../AddToWishlist/AddToWishlist'
 import Image from 'next/image'
-import WishListIcon from '~/assets/icons/wishlist.svg'
 import Link from 'next/link'
 
 import styles from './RowProduct.module.scss'
-import { useRouter } from 'next/router'
-import { ROUTES } from '~/constants/routes'
 
 const RowProduct = ({ className, product }: RowProductProps) => {
   const { locale } = useRouter()
@@ -98,7 +97,7 @@ const RowProduct = ({ className, product }: RowProductProps) => {
         >
           Delivery in {deliveryTime}
         </Typography>
-        <Link href={`${ROUTES.products}/${_id}`} passHref>
+        <Link href={`${PAGES.products}/${_id}`} passHref>
           <Button
             className={styles.productDetail}
             endAdornment={<Arrow color="primary1" />}

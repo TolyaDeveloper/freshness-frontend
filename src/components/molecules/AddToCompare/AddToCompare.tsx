@@ -2,9 +2,7 @@ import { cnb } from 'cnbuilder'
 import { Button } from '~/components/atoms'
 import { AddToCompareProps } from './AddToCompare.props'
 import { useUserContext } from '~/context/UserContext/User.context'
-import { $api } from '~/api'
-import { IUser } from '~/interfaces/user.interface'
-import { ROUTES } from '~/constants/routes'
+import userService from '~/services/user.service'
 import CompareIcon from '~/assets/icons/compare.svg'
 
 import styles from './AddToCompare.module.scss'
@@ -17,18 +15,12 @@ const AddToCompare = ({ className, productId }: AddToCompareProps) => {
   const onAddToCompare = async () => {
     if (state.isAuthenticated) {
       if (!isInCompare) {
-        const { data: updated } = await $api.patch<Pick<IUser, 'compare'>>(
-          ROUTES.user_compare_add,
-          { productId }
-        )
+        const { data: updated } = await userService.addToCompare(productId)
 
         return dispatch({ type: 'SET_COMPARE', payload: updated.compare })
       }
 
-      const { data: updated } = await $api.patch<Pick<IUser, 'compare'>>(
-        ROUTES.user_compare_remove,
-        { productId }
-      )
+      const { data: updated } = await userService.removeFromCompare(productId)
 
       return dispatch({ type: 'SET_COMPARE', payload: updated.compare })
     }

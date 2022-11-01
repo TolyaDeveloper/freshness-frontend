@@ -1,11 +1,11 @@
 import { WishlistProps } from './Wishlist.props'
 import { useUserContext } from '~/context/UserContext/User.context'
 import { Typography, Button } from '~/components/atoms'
-import { ROUTES } from '~/constants/routes'
+import { API, PAGES } from '~/constants/routes'
 import { buildQueriesFromArray } from '~/utils/queries'
 import { IProduct } from '~/interfaces/product.interface'
 import { GridProduct } from '~/components/molecules'
-import { $api } from '~/api'
+import userService from '~/services/user.service'
 import useSWR from 'swr'
 import Link from 'next/link'
 
@@ -19,7 +19,7 @@ const Wishlist = ({}: WishlistProps) => {
 
   const { data: products } = useSWR<IProduct[]>(
     user.wishlist.length !== 0
-      ? `${ROUTES.user_products_ids}?${buildQueriesFromArray(user.wishlist)}`
+      ? `${API.user_products_ids}?${buildQueriesFromArray(user.wishlist)}`
       : null
   )
 
@@ -27,7 +27,7 @@ const Wishlist = ({}: WishlistProps) => {
     return (
       <div className={styles.emptyWishlistWrapper}>
         <Typography level="h2-lg">Wishlist is empty</Typography>
-        <Link href={ROUTES.home} passHref>
+        <Link href={PAGES.home} passHref>
           <Button className={styles.moreLink} variant="outlined">
             Find more products
           </Button>
@@ -38,9 +38,7 @@ const Wishlist = ({}: WishlistProps) => {
 
   const onRemoveFromWishlist = async (productId: string) => {
     if (isAuthenticated) {
-      const { data: updated } = await $api.patch(ROUTES.user_wishlist_remove, {
-        productId
-      })
+      const { data: updated } = await userService.removeFromWishlist(productId)
 
       return dispatch({ type: 'SET_WISHLIST', payload: updated.wishlist })
     }

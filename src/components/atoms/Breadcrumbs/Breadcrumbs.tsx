@@ -3,7 +3,7 @@ import { cnb } from 'cnbuilder'
 import { BreadcrumbsProps } from './Breadcrumbs.props'
 import { HOMEPAGE } from '~/constants/common'
 import { CustomLink } from '~/components/atoms'
-import { ROUTES } from '~/constants/routes'
+import { PAGES } from '~/constants/routes'
 import Link from 'next/link'
 
 import styles from './Breadcrumbs.module.scss'
@@ -21,7 +21,7 @@ const Breadcrumbs = ({
     <nav className={cnb(styles.breadcrumbs, className)} {...props}>
       <ol>
         <li>
-          <Link href={ROUTES.home} passHref>
+          <Link href={PAGES.home} passHref>
             <CustomLink color="primary1">{homeText}</CustomLink>
           </Link>
         </li>

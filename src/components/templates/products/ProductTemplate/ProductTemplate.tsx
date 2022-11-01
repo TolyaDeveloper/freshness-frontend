@@ -18,7 +18,7 @@ import {
 } from '~/components/molecules'
 import { Comments, ProductContainer } from '~/components/organisms'
 import { pluralize } from '~/utils/pluralize'
-import { ROUTES } from '~/constants/routes'
+import { PAGES } from '~/constants/routes'
 import { Tabs, TabList, Tab, TabPanel } from 'react-tabs'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -30,8 +30,6 @@ const ProductTemplate = ({
   questionsAndReviewsCount,
   relatedProducts
 }: ProductTemplateProps) => {
-  const { _id, imageUri, price, rating, smallDescription, oldPrice, title } =
-    product
   const reviewsCount = questionsAndReviewsCount?.reviewsCount[0]?.reviewsCount
   const questionsCount =
     questionsAndReviewsCount?.questionsCount[0]?.questionsCount
@@ -46,7 +44,7 @@ const ProductTemplate = ({
     <>
       <Breadcrumbs>
         <Link
-          href={`${ROUTES.categories}/${product.categories[0]._id}`}
+          href={`${PAGES.categories}/${product.categories[0]._id}`}
           passHref
         >
           <CustomLink color="primary1">{product.categories[0].name}</CustomLink>
@@ -95,7 +93,7 @@ const ProductTemplate = ({
                   {product.categories.map(({ _id, name }, index, arr) => (
                     <Link
                       key={_id}
-                      href={`${ROUTES.categories}/${_id}`}
+                      href={`${PAGES.categories}/${_id}`}
                       passHref={true}
                     >
                       <CustomLink level="body2">
@@ -160,15 +158,9 @@ const ProductTemplate = ({
           </div>
           <ProductAddToCart
             className={styles.productAddToCart}
-            product={{
-              _id,
-              imageUri,
-              price,
-              rating,
-              smallDescription,
-              title,
-              oldPrice
-            }}
+            price={product.price}
+            productId={product._id}
+            oldPrice={product.oldPrice}
           />
           <div className={styles.wishlistWithCompareWrapper}>
             <AddToWishlist productId={product._id} variant="plain">
@@ -212,7 +204,7 @@ const ProductTemplate = ({
         heading={<Typography level="h2-md">Related products</Typography>}
         button={
           <Link
-            href={`${ROUTES.categories}/${product.categories[0]._id}`}
+            href={`${PAGES.categories}/${product.categories[0]._id}`}
             passHref
           >
             <Button variant="plain" endAdornment={<Arrow />}>

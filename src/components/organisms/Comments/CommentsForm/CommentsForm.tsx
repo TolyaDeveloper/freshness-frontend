@@ -7,8 +7,7 @@ import {
 } from '~/validators/comment.validator'
 import { CommentsFormProps } from './CommentsForm.props'
 import { useUserContext } from '~/context/UserContext/User.context'
-import { $api } from '~/api'
-import { ROUTES } from '~/constants/routes'
+import userService from '~/services/user.service'
 
 import styles from './CommentsForm.module.scss'
 
@@ -21,10 +20,7 @@ const CommentsForm = ({ className, productId, onSent }: CommentsFormProps) => {
 
   const onSubmit = async (data: CommentSchemaType) => {
     try {
-      await $api.post(ROUTES.add_product_review, {
-        comment: data.message,
-        productId
-      })
+      await userService.addProductReview({ comment: data.message, productId })
 
       reset()
       onSent()

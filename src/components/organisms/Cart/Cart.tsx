@@ -1,7 +1,7 @@
 import { CartProps } from './Cart.props'
 import { useUserContext } from '~/context/UserContext/User.context'
 import { Button, Typography } from '~/components/atoms'
-import { ROUTES } from '~/constants/routes'
+import { PAGES } from '~/constants/routes'
 import { CartProduct } from '~/components/molecules'
 import Link from 'next/link'
 
@@ -16,7 +16,7 @@ const Cart = ({}: CartProps) => {
     return (
       <div className={styles.emptyCartWrapper}>
         <Typography level="h2-lg">Cart is empty</Typography>
-        <Link href={ROUTES.home} passHref>
+        <Link href={PAGES.home} passHref>
           <Button className={styles.moreLink} variant="outlined">
             Find more products
           </Button>
@@ -25,17 +25,7 @@ const Cart = ({}: CartProps) => {
     )
   }
 
-  return (
-    <>
-      <ul className="grid-product">
-        {user.cart.map(product => (
-          <li key={product._id._id}>
-            <CartProduct product={product} />
-          </li>
-        ))}
-      </ul>
-    </>
-  )
+  return <>cart</>
 }
 
 export default Cart

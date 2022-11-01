@@ -7,7 +7,7 @@ import {
   Arrow,
   Divider
 } from '~/components/atoms'
-import { ROUTES } from '~/constants/routes'
+import { PAGES } from '~/constants/routes'
 import { SearchProps } from './Search.props'
 import { useForm } from 'react-hook-form'
 import { computedTypesResolver } from '@hookform/resolvers/computed-types'
@@ -35,7 +35,7 @@ const Search = ({ className, categories }: SearchProps) => {
   }, [categories])
 
   const onSubmit = ({ category, search }: SearchSchemaType) => {
-    push({ pathname: ROUTES.search, query: { search, category } })
+    push({ pathname: PAGES.search, query: { search, category } })
   }
 
   return (
