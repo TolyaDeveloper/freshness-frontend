@@ -2,12 +2,12 @@ import { Fragment } from 'react'
 import { CompareListProps } from './CompareList.props'
 import { buildQueriesFromArray } from '~/utils/queries'
 import { useUserContext } from '~/context/UserContext/User.context'
-import { PAGES, API } from '~/constants/routes'
+import { API } from '~/constants/routes'
 import { Button, Rating, Typography } from '~/components/atoms'
+import { EmptyData } from '~/components/molecules'
 import { IProduct } from '~/interfaces/product.interface'
 import { useRouter } from 'next/router'
 import userService from '~/services/user.service'
-import Link from 'next/link'
 import Image from 'next/image'
 import useSWR from 'swr'
 
@@ -26,16 +26,7 @@ const CompareList = ({}: CompareListProps) => {
   )
 
   if (user.compare.length === 0) {
-    return (
-      <div className={styles.emptyCompareWrapper}>
-        <Typography level="h2-lg">Compare is empty</Typography>
-        <Link href={PAGES.home} passHref>
-          <Button className={styles.moreLink} variant="outlined">
-            Find more products
-          </Button>
-        </Link>
-      </div>
-    )
+    return <EmptyData title="Compare is empty" />
   }
 
   const onRemoveFromCompare = async (productId: string) => {

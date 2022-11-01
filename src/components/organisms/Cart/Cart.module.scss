@@ -1,9 +1,21 @@
-.emptyCartWrapper {
+.wrapper {
   margin-top: 50px;
-  text-align: center;
 }
 
-.moreLink {
-  margin: 60px auto 0 auto;
-  width: 200px;
+.totalPriceWrapper {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.totalPriceText {
+  margin-right: 15px;
+}
+
+.cart {
+  margin-top: 50px;
+}
+
+.checkoutLink {
+  width: 120px;
+  margin: 15px 0 0 auto;
 }

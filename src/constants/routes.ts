@@ -11,7 +11,8 @@ export const PAGES = {
   signup: '/signup',
   cart: '/cart',
   help: '/help',
-  search: '/search'
+  search: '/search',
+  checkout: '/checkout'
 }
 
 export const API = {
@@ -37,6 +38,7 @@ export const API = {
   user_compare_remove: '/user/compare/remove',
   user_cart_add: '/user/cart/add',
   user_cart_remove: '/user/cart/remove',
+  user_cart_update: '/user/cart/update',
   customerReviews: '/customer-reviews',
   customerReviews_add: '/customer-reviews/add',
   blogPosts: '/blog-posts',

@@ -16,6 +16,12 @@ class UserService {
     return $api.patch(API.user_cart_remove, { productId })
   }
 
+  public async updateCart(
+    productInfo: ICart
+  ): Promise<AxiosResponse<{ cart: ICart[] }>> {
+    return $api.patch(API.user_cart_update, { ...productInfo })
+  }
+
   public async addToCompare(
     productId: string
   ): Promise<AxiosResponse<{ compare: string[] }>> {
