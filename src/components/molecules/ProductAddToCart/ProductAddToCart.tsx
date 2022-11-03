@@ -3,17 +3,11 @@ import { useState } from 'react'
 import { ProductAddToCartProps } from './ProductAddToCart.props'
 import { useRouter } from 'next/router'
 import { useUserContext } from '~/context/UserContext/User.context'
-import {
-  Arrow,
-  Button,
-  Divider,
-  FormStyledWrapper,
-  Input,
-  Select,
-  Typography
-} from '~/components/atoms'
+import { Button, Typography } from '~/components/atoms'
+import QuantityPicker from '../QuantityPicker/QuantityPicker'
 import { ICart, ProductCartVariantEnum } from '~/interfaces/cart.interface'
 import { PAGES } from '~/constants/routes'
+import { IQuantityPicker } from '~/interfaces/quantity-picker.interface'
 import userService from '~/services/user.service'
 import AddIcon from '~/assets/icons/add.svg'
 import Link from 'next/link'
@@ -34,11 +28,18 @@ const ProductAddToCart = ({
 
   const [productAmount, setProductAmount] = useState<number>(1)
   const [selectedType, setSelectedType] = useState(ProductCartVariantEnum.PCS)
+  const [error, setError] = useState(false)
 
   const cartProduct: ICart = {
     productId,
     quantity: productAmount,
     variant: selectedType
+  }
+
+  const onChangePicker = (quantity: IQuantityPicker, error: boolean) => {
+    setProductAmount(+quantity.productAmount)
+    setSelectedType(quantity.productVariant)
+    setError(error)
   }
 
   const onAddToCart = async () => {
@@ -79,29 +80,12 @@ const ProductAddToCart = ({
           </Typography>
         )}
       </div>
-      <FormStyledWrapper className={styles.addBlock}>
-        <Input
-          value={productAmount}
-          onChange={e => setProductAmount(+e.target.value)}
-          min={1}
-          type="number"
+      {!isAlreadyInCart && (
+        <QuantityPicker
+          onChange={onChangePicker}
           disabled={Boolean(isAlreadyInCart)}
         />
-        <Divider className={styles.divider} orienation="vertical" />
-        <Select
-          endAdornment={<Arrow color="primary2" orientation="down" />}
-          value={selectedType}
-          onChange={e =>
-            setSelectedType(e.target.value as ProductCartVariantEnum)
-          }
-          disabled={Boolean(isAlreadyInCart)}
-        >
-          <option>{ProductCartVariantEnum.PCS}</option>
-          <option>{ProductCartVariantEnum.KGS}</option>
-          <option>{ProductCartVariantEnum.BOX}</option>
-          <option>{ProductCartVariantEnum.PACK}</option>
-        </Select>
-      </FormStyledWrapper>
+      )}
       {isAlreadyInCart ? (
         <Link href={PAGES.cart} passHref>
           <Button className={styles.buyButton} variant="outlined">
@@ -113,6 +97,7 @@ const ProductAddToCart = ({
           startAdornment={<AddIcon />}
           onClick={onAddToCart}
           type="button"
+          disabled={error}
         >
           Add to cart
         </Button>

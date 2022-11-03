@@ -1,0 +1,27 @@
+.checkoutWrapper {
+  display: grid;
+  grid-template-columns: 1fr 470px;
+  gap: 30px;
+}
+
+.billingTitle {
+  margin-bottom: 8px;
+}
+
+.stepWrapper {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 30px;
+}
+
+.formStep {
+  margin-bottom: 60px;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.security {
+  margin-top: 35px;
+}

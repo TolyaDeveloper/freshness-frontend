@@ -1,0 +1,14 @@
+.textarea {
+  padding: 10px 28px;
+  width: 100%;
+  height: 110px;
+  border: 1px solid var(--palette-primary-400);
+  border-radius: 12px;
+  resize: none;
+  font-family: var(--app-font-primary);
+  font-size: 14px;
+
+  &:focus {
+    outline: var(--app-outline-focusVisible);
+  }
+}

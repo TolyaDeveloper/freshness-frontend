@@ -19,6 +19,7 @@ export { default as ProductDescriptionBlock } from './ProductDescriptionBlock/Pr
 export { default as CartProduct } from './products/CartProduct/CartProduct'
 export { default as GridProduct } from './products/GridProduct/GridProduct'
 export { default as RowProduct } from './products/RowProduct/RowProduct'
+export { default as QuantityPicker } from './QuantityPicker/QuantityPicker'
 export { default as Search } from './Search/Search'
 export { default as SliderComment } from './SliderComment/SliderComment'
 export { default as TopBar } from './TopBar/TopBar'

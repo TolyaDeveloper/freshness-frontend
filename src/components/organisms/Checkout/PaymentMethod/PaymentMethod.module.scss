@@ -1,0 +1,21 @@
+.formStyledWrapper {
+  height: 48px;
+
+  & + & {
+    margin-top: 15px;
+  }
+}
+
+.cardPaymentWrapper {
+  display: flex;
+  justify-content: space-between;
+}
+
+.paymentIconsWrapper {
+  display: flex;
+  align-items: center;
+}
+
+.visaIcon {
+  margin-right: 12px;
+}

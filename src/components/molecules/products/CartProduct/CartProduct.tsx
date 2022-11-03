@@ -1,22 +1,12 @@
 import { CartProductProps } from './CartProduct.props'
 import { cnb } from 'cnbuilder'
 import { PAGES } from '~/constants/routes'
-import {
-  Arrow,
-  Button,
-  Divider,
-  FormStyledWrapper,
-  Input,
-  Rating,
-  Select,
-  Tag,
-  Typography
-} from '~/components/atoms'
+import { Button, Rating, Tag, Typography } from '~/components/atoms'
 import { countDiscountPercentage } from '~/utils/countDiscountPercentage'
 import { useRouter } from 'next/router'
-import { ProductCartVariantEnum } from '~/interfaces/cart.interface'
-import { ChangeEvent, useState } from 'react'
 import { useUserContext } from '~/context/UserContext/User.context'
+import { IQuantityPicker } from '~/interfaces/quantity-picker.interface'
+import QuantityPicker from '../../QuantityPicker/QuantityPicker'
 import userService from '~/services/user.service'
 import Link from 'next/link'
 import Image from 'next/image'
@@ -38,20 +28,16 @@ const CartProduct = ({ className, product }: CartProductProps) => {
   )?.variant
 
   const { locale } = useRouter()
-  const [productAmount, setProductAmount] = useState(quantity as number)
-  const [selectedType, setSelectedType] = useState(
-    variant as ProductCartVariantEnum
-  )
 
-  const onHandleQuantity = async (e: ChangeEvent<HTMLInputElement>) => {
-    const newQuantity = +e.target.value
-
-    setProductAmount(newQuantity)
+  const onChangePicker = async (quantity: IQuantityPicker, error: boolean) => {
+    if (error) {
+      return
+    }
 
     const newCartProduct = {
       productId: _id,
-      quantity: newQuantity,
-      variant: selectedType
+      quantity: +quantity.productAmount,
+      variant: quantity.productVariant
     }
 
     if (isAuthenticated) {
@@ -63,30 +49,6 @@ const CartProduct = ({ className, product }: CartProductProps) => {
     dispatch({
       type: 'UPDATE_CART',
       payload: newCartProduct
-    })
-    dispatch({ type: 'SHOULD_SYNC_TO_LOCAL_STORAGE', payload: true })
-  }
-
-  const onHandleType = async (e: ChangeEvent<HTMLSelectElement>) => {
-    const newType = e.target.value as ProductCartVariantEnum
-
-    setSelectedType(newType)
-
-    const newCartProduct = {
-      productId: _id,
-      quantity: productAmount,
-      variant: newType
-    }
-
-    if (isAuthenticated) {
-      const { data: updated } = await userService.updateCart(newCartProduct)
-
-      return dispatch({ type: 'SET_CART', payload: updated.cart })
-    }
-
-    dispatch({
-      type: 'UPDATE_CART',
-      payload: { productId: _id, quantity: productAmount, variant: newType }
     })
     dispatch({ type: 'SHOULD_SYNC_TO_LOCAL_STORAGE', payload: true })
   }
@@ -151,25 +113,12 @@ const CartProduct = ({ className, product }: CartProductProps) => {
           )}
         </a>
       </Link>
-      <FormStyledWrapper className={styles.addBlock}>
-        <Input
-          value={productAmount}
-          onChange={onHandleQuantity}
-          min={1}
-          type="number"
-        />
-        <Divider className={styles.divider} orienation="vertical" />
-        <Select
-          endAdornment={<Arrow color="primary2" orientation="down" />}
-          value={selectedType}
-          onChange={onHandleType}
-        >
-          <option>{ProductCartVariantEnum.PCS}</option>
-          <option>{ProductCartVariantEnum.KGS}</option>
-          <option>{ProductCartVariantEnum.BOX}</option>
-          <option>{ProductCartVariantEnum.PACK}</option>
-        </Select>
-      </FormStyledWrapper>
+      <QuantityPicker
+        className={styles.quantityPicker}
+        onChange={onChangePicker}
+        productAmount={quantity}
+        productVariant={variant}
+      />
       <Button
         className="full-width-button"
         type="button"

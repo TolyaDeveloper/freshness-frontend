@@ -1,16 +1,16 @@
 import { CartProps } from './Cart.props'
 import { useUserContext } from '~/context/UserContext/User.context'
 import { API, PAGES } from '~/constants/routes'
-import { EmptyData, CartProduct } from '~/components/molecules'
+import { EmptyData, CartProduct, QuantityPicker } from '~/components/molecules'
 import { buildQueriesFromArray } from '~/utils/queries'
 import { useRouter } from 'next/router'
 import { IProduct } from '~/interfaces/product.interface'
 import { useMemo } from 'react'
 import { Button, Typography } from '~/components/atoms'
 import useSWR from 'swr'
+import Link from 'next/link'
 
 import styles from './Cart.module.scss'
-import Link from 'next/link'
 
 const Cart = ({}: CartProps) => {
   const {
