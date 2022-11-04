@@ -1,8 +1,11 @@
-import Schema, { string, Type } from 'computed-types'
+import { RegisterOptions } from 'react-hook-form'
 
-export const searchSchema = Schema({
-  category: string,
-  search: string.trim().min(1)
-})
+export interface ISearchFields {
+  category: string
+  search: string
+}
 
-export type SearchSchemaType = Type<typeof searchSchema>
+export const LoginSchema: Record<keyof ISearchFields, RegisterOptions> = {
+  category: {},
+  search: { required: true, minLength: 1 }
+}

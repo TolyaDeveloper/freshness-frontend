@@ -5,7 +5,7 @@ import { CheckoutSchema } from '~/validators/checkout.validator'
 
 import styles from './BillingInfo.module.scss'
 
-const BillingInfo = ({ className, register }: BillingInfo) => {
+const BillingInfo = ({ className, register, errors }: BillingInfo) => {
   return (
     <div className={cnb(styles.inputsWrapper, className)}>
       <div>
@@ -15,6 +15,7 @@ const BillingInfo = ({ className, register }: BillingInfo) => {
             type="text"
             {...register('firstName', CheckoutSchema.firstName)}
             placeholder="First name"
+            error={errors.firstName}
           />
         </FormStyledWrapper>
       </div>
@@ -25,6 +26,7 @@ const BillingInfo = ({ className, register }: BillingInfo) => {
             type="text"
             {...register('lastName', CheckoutSchema.lastName)}
             placeholder="Last name"
+            error={errors.lastName}
           />
         </FormStyledWrapper>
       </div>
@@ -35,6 +37,7 @@ const BillingInfo = ({ className, register }: BillingInfo) => {
             type="email"
             {...register('email', CheckoutSchema.email)}
             placeholder="Email address"
+            error={errors.email}
           />
         </FormStyledWrapper>
       </div>
@@ -45,6 +48,7 @@ const BillingInfo = ({ className, register }: BillingInfo) => {
             type="tel"
             {...register('phone', CheckoutSchema.phone)}
             placeholder="Phone number"
+            error={errors.phone}
           />
         </FormStyledWrapper>
       </div>
@@ -55,6 +59,7 @@ const BillingInfo = ({ className, register }: BillingInfo) => {
             type="text"
             {...register('address', CheckoutSchema.address)}
             placeholder="Address"
+            error={errors.address}
           />
         </FormStyledWrapper>
       </div>
@@ -65,6 +70,7 @@ const BillingInfo = ({ className, register }: BillingInfo) => {
             type="text"
             {...register('town_or_city', CheckoutSchema.town_or_city)}
             placeholder="Town or city"
+            error={errors.town_or_city}
           />
         </FormStyledWrapper>
       </div>
@@ -75,6 +81,7 @@ const BillingInfo = ({ className, register }: BillingInfo) => {
             type="text"
             {...register('state_or_country', CheckoutSchema.state_or_country)}
             placeholder="Choose a state or Country"
+            error={errors.state_or_country}
           />
         </FormStyledWrapper>
       </div>
@@ -88,6 +95,7 @@ const BillingInfo = ({ className, register }: BillingInfo) => {
               CheckoutSchema.zip_or_postal_code
             )}
             placeholder="Postal code or ZIP"
+            error={errors.zip_or_postal_code}
           />
         </FormStyledWrapper>
       </div>

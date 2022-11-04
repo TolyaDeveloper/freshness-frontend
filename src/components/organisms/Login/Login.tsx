@@ -8,8 +8,7 @@ import {
   CustomLink
 } from '~/components/atoms'
 import { useForm } from 'react-hook-form'
-import { type LoginSchemaType, loginSchema } from '~/validators/login.validator'
-import { computedTypesResolver } from '@hookform/resolvers/computed-types'
+import { ILoginFields, LoginSchema } from '~/validators/login.validator'
 import { useUserContext } from '~/context/UserContext/User.context'
 import { AuthService } from '~/services/auth.service'
 import { LocalStorageService } from '~/services/localStorage.service'
@@ -24,11 +23,14 @@ const Login = ({}: LoginProps) => {
   const [error, setError] = useState<string>('')
   const [isLoading, setLoading] = useState<boolean>(false)
   const { dispatch } = useUserContext()
-  const { handleSubmit, register, reset } = useForm<LoginSchemaType>({
-    resolver: computedTypesResolver(loginSchema)
-  })
+  const {
+    handleSubmit,
+    register,
+    reset,
+    formState: { errors }
+  } = useForm<ILoginFields>()
 
-  const onSubmit = async ({ email, password }: LoginSchemaType) => {
+  const onSubmit = async ({ email, password }: ILoginFields) => {
     setLoading(true)
 
     try {
@@ -65,13 +67,19 @@ const Login = ({}: LoginProps) => {
       )}
       <form autoComplete="off" onSubmit={handleSubmit(onSubmit)}>
         <FormStyledWrapper className={styles.formStyledWrapper}>
-          <Input type="email" placeholder="Email..." {...register('email')} />
+          <Input
+            type="email"
+            placeholder="Email..."
+            {...register('email', LoginSchema.email)}
+            error={errors.email}
+          />
         </FormStyledWrapper>
         <FormStyledWrapper className={styles.formStyledWrapper}>
           <Input
             type="password"
             placeholder="Password..."
-            {...register('password')}
+            {...register('password', LoginSchema.password)}
+            error={errors.password}
           />
         </FormStyledWrapper>
         <Button type="submit" disabled={isLoading}>

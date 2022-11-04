@@ -1,9 +1,26 @@
-import Schema, { string, Type } from 'computed-types'
+import { RegisterOptions } from 'react-hook-form'
 import { REGEXPS } from '~/constants/regexps'
+import { trimValidate } from '~/utils/trim-validate'
 
-export const loginSchema = Schema({
-  email: REGEXPS.email,
-  password: string.min(8).error('Password should be minimum 8 characters')
-})
+export interface ILoginFields {
+  email: string
+  password: string
+}
 
-export type LoginSchemaType = Type<typeof loginSchema>
+export const LoginSchema: Record<keyof ILoginFields, RegisterOptions> = {
+  email: {
+    required: 'Email is required',
+    pattern: {
+      value: REGEXPS.email,
+      message: 'Email should be of type example@gmail.com'
+    },
+    validate: trimValidate
+  },
+  password: {
+    required: 'Password is required',
+    minLength: {
+      value: 8,
+      message: 'Password should contain at least 8 characters'
+    }
+  }
+}

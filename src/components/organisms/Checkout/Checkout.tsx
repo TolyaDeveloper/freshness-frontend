@@ -25,8 +25,6 @@ const Checkout = ({}: CheckoutProps) => {
     formState: { errors }
   } = useForm<ICheckoutFields>()
 
-  console.log({ errors })
-
   useEffect(() => {
     if (isAuthenticated) {
       setValue('firstName', user.firstName)
@@ -34,6 +32,8 @@ const Checkout = ({}: CheckoutProps) => {
       setValue('email', user.email)
     }
   }, [isAuthenticated])
+
+  console.log(errors)
 
   const onSubmit = (orderInfo: ICheckoutFields) => {
     console.log(orderInfo)
@@ -54,7 +54,11 @@ const Checkout = ({}: CheckoutProps) => {
               Step 1 of 4
             </Typography>
           </div>
-          <BillingInfo className={styles.formStep} register={register} />
+          <BillingInfo
+            className={styles.formStep}
+            register={register}
+            errors={errors}
+          />
           <Typography className={styles.billingTitle} level="h2-lg">
             Payment method
           </Typography>
@@ -66,7 +70,11 @@ const Checkout = ({}: CheckoutProps) => {
               Step 2 of 4
             </Typography>
           </div>
-          <PaymentMethod className={styles.formStep} register={register} />
+          <PaymentMethod
+            className={styles.formStep}
+            register={register}
+            errors={errors}
+          />
           <Typography className={styles.billingTitle} level="h2-lg">
             Additional information
           </Typography>
@@ -94,7 +102,11 @@ const Checkout = ({}: CheckoutProps) => {
               Step 4 of 4
             </Typography>
           </div>
-          <Confirmation className={styles.formStep} register={register} />
+          <Confirmation
+            className={styles.formStep}
+            register={register}
+            errors={errors}
+          />
           <Button type="submit">Complete order</Button>
           <SecuritySafety className={styles.security} />
         </form>

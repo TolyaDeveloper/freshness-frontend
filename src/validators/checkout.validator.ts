@@ -1,6 +1,7 @@
 import { RegisterOptions } from 'react-hook-form'
 import { REGEXPS } from '~/constants/regexps'
 import { trimValidate } from '~/utils/trim-validate'
+import { PAYMENT_METHODS } from '~/interfaces/payment.enum'
 
 export interface ICheckoutFields {
   firstName: string
@@ -11,10 +12,10 @@ export interface ICheckoutFields {
   town_or_city: string
   state_or_country: string
   zip_or_postal_code: string | number
-  payment_method: string
+  payment_method: PAYMENT_METHODS
   additionalInformation: string
-  resending: boolean
-  terms: boolean
+  mail_subscription: boolean
+  is_policy_accepted: boolean
 }
 
 export const CheckoutSchema: Record<keyof ICheckoutFields, RegisterOptions> = {
@@ -41,6 +42,6 @@ export const CheckoutSchema: Record<keyof ICheckoutFields, RegisterOptions> = {
   },
   payment_method: { required: 'Choose payment method' },
   additionalInformation: { required: false },
-  resending: { required: false },
-  terms: { required: 'Apply our terms' }
+  mail_subscription: { required: false },
+  is_policy_accepted: { required: 'Apply our terms' }
 }

@@ -1,10 +1,6 @@
-import { computedTypesResolver } from '@hookform/resolvers/computed-types'
 import { useForm } from 'react-hook-form'
 import { Button, FormStyledWrapper, Input } from '~/components/atoms'
-import {
-  commentSchema,
-  CommentSchemaType
-} from '~/validators/comment.validator'
+import { ICommentFields, CommentSchema } from '~/validators/comment.validator'
 import { CommentsFormProps } from './CommentsForm.props'
 import { useUserContext } from '~/context/UserContext/User.context'
 import userService from '~/services/user.service'
@@ -14,11 +10,9 @@ import styles from './CommentsForm.module.scss'
 const CommentsForm = ({ className, productId, onSent }: CommentsFormProps) => {
   const { state } = useUserContext()
 
-  const { handleSubmit, register, reset } = useForm<CommentSchemaType>({
-    resolver: computedTypesResolver(commentSchema)
-  })
+  const { handleSubmit, register, reset } = useForm<ICommentFields>()
 
-  const onSubmit = async (data: CommentSchemaType) => {
+  const onSubmit = async (data: ICommentFields) => {
     try {
       await userService.addProductReview({ comment: data.message, productId })
 
@@ -44,7 +38,7 @@ const CommentsForm = ({ className, productId, onSent }: CommentsFormProps) => {
               ? ' You must login to leave a comment!'
               : 'Leave your comment...'
           }
-          {...register('message')}
+          {...register('message', CommentSchema.message)}
           disabled={Boolean(!state.isAuthenticated)}
         />
         <Button size="sm" disabled={Boolean(!state.isAuthenticated)}>

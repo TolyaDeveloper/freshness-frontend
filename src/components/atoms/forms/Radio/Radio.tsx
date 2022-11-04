@@ -10,13 +10,18 @@ const Radio = (
     labelTextClassname,
     color = 'secondary',
     label,
+    error,
     ...props
   }: RadioProps,
   ref: LegacyRef<HTMLInputElement>
 ) => (
   <label className={cnb(styles.label, className)}>
     <input className={styles.radio} type="radio" ref={ref} {...props} />
-    <span className={cnb(styles.customRadio, styles[color])} />
+    <span
+      className={cnb(styles.customRadio, styles[color], {
+        [styles.error]: error
+      })}
+    />
     {label && (
       <span className={cnb(styles.labelText, labelTextClassname)}>{label}</span>
     )}
