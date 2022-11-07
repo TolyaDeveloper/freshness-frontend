@@ -77,6 +77,11 @@ export const userReducer = (state: IUserState, action: UserActions) => {
           compare: state.user.compare.filter(item => item !== action.payload)
         }
       }
+    case 'SET_ORDERS_HISTORY':
+      return {
+        ...state,
+        user: { ...state.user, ordersHistory: action.payload }
+      }
     case 'SHOULD_SYNC_TO_LOCAL_STORAGE':
       return { ...state, shouldSyncToLocalStorage: action.payload }
     default:

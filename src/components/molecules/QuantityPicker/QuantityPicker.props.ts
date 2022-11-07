@@ -7,4 +7,5 @@ export interface QuantityPickerProps {
   productAmount?: number
   productVariant?: ProductCartVariantEnum
   onChange?: (quantity: IQuantityPicker, error: boolean) => void
+  rootClassname?: string
 }

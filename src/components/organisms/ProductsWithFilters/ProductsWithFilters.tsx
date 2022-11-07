@@ -1,8 +1,6 @@
 import { FormEvent, useEffect, useState } from 'react'
 import {
-  Arrow,
   Breadcrumbs,
-  Button,
   FiltersSkeleton,
   ProductsSkeleton,
   Skeleton,
@@ -36,6 +34,8 @@ const ProductsWithFilters = ({ filters, category }: ProductsWithFilters) => {
   const [shouldFetch, setFetch] = useState(false)
   const [activeFilters, setActiveFilters] = useState<IQueries>(defaultQueries)
   const [products, setProducts] = useState<IProduct[] | undefined>(undefined)
+  const totalProducts = filters?.filters.totalCategoryProducts[0]?.total
+  const activePage = +activeFilters.page[0] || 1
   const skipInterval = 9
 
   const buildQueryURI = () => {
@@ -83,12 +83,10 @@ const ProductsWithFilters = ({ filters, category }: ProductsWithFilters) => {
       query: {
         productCategory: query.productCategory,
         ...activeFilters,
-        skip: index * skipInterval
+        page: index + 1
       }
     })
   }
-
-  const totalProducts = filters?.filters.totalCategoryProducts[0]?.total
 
   const topFiltersView = filters ? (
     <TopFilters
@@ -136,10 +134,15 @@ const ProductsWithFilters = ({ filters, category }: ProductsWithFilters) => {
         </div>
       </form>
       <div className={styles.bottomFilter}>
-        <Pagination onHandlePagination={handlePagination} count={4} />
-        <Button endAdornment={<Arrow color="primary1" orientation="down" />}>
+        <Pagination
+          onHandlePagination={handlePagination}
+          count={totalProducts && Math.ceil(totalProducts / skipInterval)}
+          activePage={activePage}
+        />
+        {/* !todo */}
+        {/* <Button endAdornment={<Arrow color="primary1" orientation="down" />}>
           Show more products
-        </Button>
+        </Button> */}
         <Counter
           className={styles.counter}
           title="Products"

@@ -7,6 +7,7 @@ import styles from './Pagination.module.scss'
 const Pagination = ({
   className,
   count,
+  activePage = 1,
   onHandlePagination
 }: PaginationProps) => {
   return (
@@ -24,7 +25,9 @@ const Pagination = ({
           >
             <Typography
               onClick={() => onHandlePagination(index)}
-              className={styles.paginationButton}
+              className={cnb(styles.paginationButton, {
+                [styles.active]: activePage === index + 1
+              })}
               level="body5"
               component="button"
               aria-label={`Page ${index + 1}, total ${count}`}

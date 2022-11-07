@@ -52,6 +52,12 @@ class UserService {
   }): Promise<AxiosResponse<unknown>> {
     return $api.patch(API.products_add_review, { ...review })
   }
+
+  public async createOrder(
+    products: string[]
+  ): Promise<AxiosResponse<{ ordersHistory: string[] }>> {
+    return $api.patch(API.user_order_create, { products })
+  }
 }
 
 export default new UserService()

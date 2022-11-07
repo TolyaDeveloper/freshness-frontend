@@ -13,6 +13,7 @@ export type UserActions =
   | { type: 'REMOVE_FROM_WISHLIST'; payload: string }
   | { type: 'SET_COMPARE'; payload: string | string[] }
   | { type: 'REMOVE_FROM_COMPARE'; payload: string }
+  | { type: 'SET_ORDERS_HISTORY'; payload: string[] }
   | { type: 'SHOULD_SYNC_TO_LOCAL_STORAGE'; payload: boolean }
 
 export interface IUserState {

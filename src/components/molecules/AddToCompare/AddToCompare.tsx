@@ -7,7 +7,11 @@ import CompareIcon from '~/assets/icons/compare.svg'
 
 import styles from './AddToCompare.module.scss'
 
-const AddToCompare = ({ className, productId }: AddToCompareProps) => {
+const AddToCompare = ({
+  className,
+  productId,
+  size = 'md'
+}: AddToCompareProps) => {
   const { dispatch, state } = useUserContext()
 
   const isInCompare = state.user.compare.includes(productId)
@@ -41,6 +45,7 @@ const AddToCompare = ({ className, productId }: AddToCompareProps) => {
       variant={isInCompare ? 'outlined' : 'plain'}
       startAdornment={<CompareIcon />}
       aria-label="Add to compare list"
+      size={size}
       type="button"
       onClick={onAddToCompare}
     >

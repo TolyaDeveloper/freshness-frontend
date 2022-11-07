@@ -39,6 +39,7 @@ export const API = {
   user_cart_add: '/user/cart/add',
   user_cart_remove: '/user/cart/remove',
   user_cart_update: '/user/cart/update',
+  user_order_create: '/user/order/create',
   customerReviews: '/customer-reviews',
   customerReviews_add: '/customer-reviews/add',
   blogPosts: '/blog-posts',

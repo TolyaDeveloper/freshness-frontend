@@ -5,5 +5,5 @@ export interface IQueries {
   rating: string[]
   minPrice: number[]
   maxPrice: number[]
-  skip: number[]
+  page: number[]
 }

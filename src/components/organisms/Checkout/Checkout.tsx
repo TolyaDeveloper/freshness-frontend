@@ -11,12 +11,17 @@ import {
 } from '~/components/organisms'
 import { Button, Typography, SecuritySafety } from '~/components/atoms'
 import { useUserContext } from '~/context/UserContext/User.context'
+import { useRouter } from 'next/router'
+import userService from '~/services/user.service'
 
 import styles from './Checkout.module.scss'
+import { PAGES } from '~/constants/routes'
 
 const Checkout = ({}: CheckoutProps) => {
+  const { push } = useRouter()
   const {
-    state: { user, isAuthenticated }
+    state: { user, isAuthenticated },
+    dispatch
   } = useUserContext()
   const {
     register,
@@ -33,10 +38,17 @@ const Checkout = ({}: CheckoutProps) => {
     }
   }, [isAuthenticated])
 
-  console.log(errors)
+  const onSubmit = async () => {
+    const cartProducts = user.cart.map(item => item.productId)
 
-  const onSubmit = (orderInfo: ICheckoutFields) => {
-    console.log(orderInfo)
+    if (isAuthenticated) {
+      const { data: newOrder } = await userService.createOrder(cartProducts)
+
+      dispatch({ type: 'SET_ORDERS_HISTORY', payload: newOrder.ordersHistory })
+    }
+
+    dispatch({ type: 'SET_CART', payload: [] })
+    push(PAGES.profile)
   }
 
   return (
@@ -107,7 +119,9 @@ const Checkout = ({}: CheckoutProps) => {
             register={register}
             errors={errors}
           />
-          <Button type="submit">Complete order</Button>
+          <Button type="submit" disabled={user.cart.length === 0}>
+            Complete order
+          </Button>
           <SecuritySafety className={styles.security} />
         </form>
         <OrderSummary />

@@ -1,16 +1,39 @@
 import { OrdersHistoryProps } from './OrdersHistory.props'
 import { useUserContext } from '~/context/UserContext/User.context'
-import { EmptyData } from '~/components/molecules'
+import { EmptyData, OrderHistoryProduct } from '~/components/molecules'
+import { IProduct } from '~/interfaces/product.interface'
+import { buildQueriesFromArray } from '~/utils/queries'
+import { API } from '~/constants/routes'
+import useSWR from 'swr'
 
 const OrdersHistory = ({}: OrdersHistoryProps) => {
   const {
     state: { user }
   } = useUserContext()
 
-  if (user.wishlist.length === 0) {
+  const queries = new Set(user.ordersHistory)
+
+  const { data: products } = useSWR<IProduct[]>(
+    `${API.user_products_ids}?${buildQueriesFromArray([...queries])}`
+  )
+
+  if (user.ordersHistory.length === 0) {
     return <EmptyData title="Orders history is empty" />
   }
-  return <div>OrdersHistory</div>
+
+  if (!products) {
+    return null
+  }
+
+  return (
+    <ul className="grid-product">
+      {products.map(product => (
+        <li key={product._id}>
+          <OrderHistoryProduct product={product} />
+        </li>
+      ))}
+    </ul>
+  )
 }
 
 export default OrdersHistory

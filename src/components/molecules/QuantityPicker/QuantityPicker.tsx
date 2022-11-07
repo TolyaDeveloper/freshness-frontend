@@ -17,7 +17,8 @@ const QuantityPicker = ({
   disabled = false,
   productAmount,
   productVariant,
-  onChange
+  onChange,
+  rootClassname
 }: QuantityPickerProps) => {
   const [quantity, setQuantity] = useState({
     productAmount: productAmount || 1,
@@ -42,7 +43,7 @@ const QuantityPicker = ({
   }
 
   return (
-    <form autoComplete="off">
+    <form className={rootClassname} autoComplete="off">
       <FormStyledWrapper className={cnb(styles.addBlock, className)}>
         <Input
           value={quantity.productAmount}

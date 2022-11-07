@@ -38,5 +38,5 @@ export const defaultQueries: IQueries = {
   country: [],
   maxPrice: [],
   minPrice: [],
-  skip: []
+  page: []
 }
