@@ -1,6 +1,6 @@
 import { GetStaticProps } from 'next'
 import { $api } from '~/api'
-import { ROUTES } from '~/constants/routes'
+import { API, PAGES } from '~/constants/routes'
 import { SignupTemplate } from '~/components/templates'
 import { useRouter } from 'next/router'
 import { useUserContext } from '~/context/UserContext/User.context'
@@ -10,7 +10,7 @@ const Signup = () => {
   const { push } = useRouter()
 
   if (state.isAuthenticated) {
-    push(ROUTES.profile)
+    push(PAGES.profile)
   }
 
   return (
@@ -21,8 +21,8 @@ const Signup = () => {
 }
 
 export const getStaticProps: GetStaticProps = async () => {
-  const { data: categories } = await $api.get(ROUTES.categories)
-  const { data: tags } = await $api.get(ROUTES.tags)
+  const { data: categories } = await $api.get(API.categories)
+  const { data: tags } = await $api.get(API.tags)
 
   return {
     props: { categories, tags },

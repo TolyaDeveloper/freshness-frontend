@@ -14,7 +14,7 @@ import {
   Label
 } from '~/components/atoms'
 import { LoadMoreList } from '~/components/molecules'
-import { ROUTES } from '~/constants/routes'
+import { PAGES } from '~/constants/routes'
 import { getTrackBackground } from '~/utils/priceRange'
 import Link from 'next/link'
 
@@ -80,7 +80,7 @@ const AsideFilters = ({
         {categories.map(({ category, total }) => (
           <Link
             key={category._id}
-            href={`${ROUTES.categories}/${category._id}`}
+            href={`${PAGES.categories}/${category._id}`}
             passHref
             prefetch={false}
           >

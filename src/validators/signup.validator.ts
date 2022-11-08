@@ -1,11 +1,38 @@
-import Schema, { string, Type } from 'computed-types'
+import { RegisterOptions } from 'react-hook-form'
+import { REGEXPS } from '~/constants/regexps'
+import { trimValidate } from '~/utils/trim-validate'
 
-export const signupSchema = Schema({
-  firstName: string.trim().min(1),
-  lastName: string.trim().min(1),
-  email:
-    /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
-  password: string.min(8).error('Password should be minimum 8 characters')
-})
+export interface ISignupFields {
+  firstName: string
+  lastName: string
+  email: string
+  password: string
+}
 
-export type SignupSchemaType = Type<typeof signupSchema>
+export const SignupSchema: Record<keyof ISignupFields, RegisterOptions> = {
+  firstName: {
+    required: 'First name is required',
+    minLength: 1,
+    validate: trimValidate
+  },
+  lastName: {
+    required: 'Last name is required',
+    minLength: 1,
+    validate: trimValidate
+  },
+  email: {
+    required: 'Email is required',
+    pattern: {
+      value: REGEXPS.email,
+      message: 'Email should be of type example@gmail.com'
+    },
+    validate: trimValidate
+  },
+  password: {
+    required: 'Password is required',
+    minLength: {
+      value: 8,
+      message: 'Password should contain at least 8 characters'
+    }
+  }
+}

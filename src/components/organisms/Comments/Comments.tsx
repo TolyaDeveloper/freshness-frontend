@@ -2,15 +2,16 @@ import { Typography, Skeleton } from '~/components/atoms'
 import { AuthorTimestamp } from '~/components/molecules'
 import { CommentsProps } from './Comments.props'
 import { IProductComment } from '~/interfaces/product-comment.interface'
-import { ROUTES } from '~/constants/routes'
+import { API } from '~/constants/routes'
 import { DEFAULT_AVATAR_PATH } from '~/constants/common'
+import CommentsForm from './CommentsForm/CommentsForm'
 import useSWR from 'swr'
 
 import styles from './Comments.module.scss'
 
-const Comments = ({ commentsForm, productId }: CommentsProps) => {
-  const { data: comments } = useSWR<IProductComment>(
-    `${ROUTES.products_comments}/${productId}`
+const Comments = ({ productId }: CommentsProps) => {
+  const { data: comments, mutate } = useSWR<IProductComment>(
+    `${API.products_comments}/${productId}`
   )
 
   const commentsView = !comments ? (
@@ -41,6 +42,8 @@ const Comments = ({ commentsForm, productId }: CommentsProps) => {
     ))
   )
 
+  const onCommentSent = () => mutate()
+
   const commentsNotFound = comments?.reviews.length === 0 && (
     <Typography className={styles.noComments} level="body3">
       No reviews found
@@ -49,14 +52,10 @@ const Comments = ({ commentsForm, productId }: CommentsProps) => {
 
   return (
     <>
-      {commentsForm && (
-        <>
-          <Typography className={styles.formTitle} level="h3">
-            Write your review
-          </Typography>
-          {commentsForm}
-        </>
-      )}
+      <Typography className={styles.formTitle} level="h3">
+        Write your review
+      </Typography>
+      <CommentsForm productId={productId} onSent={onCommentSent} />
       {commentsView}
       {commentsNotFound}
     </>

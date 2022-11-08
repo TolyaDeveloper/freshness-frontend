@@ -28,7 +28,7 @@ export const parseQueriesIntoString = (query: IQueries) => {
 }
 
 export const buildQueriesFromArray = (arr: string[]) => {
-  return arr.map(item => `ids=${item}`).join('&')
+  return arr.map(item => `productIds=${item}`).join('&')
 }
 
 export const defaultQueries: IQueries = {
@@ -38,5 +38,5 @@ export const defaultQueries: IQueries = {
   country: [],
   maxPrice: [],
   minPrice: [],
-  skip: []
+  page: []
 }

@@ -2,17 +2,21 @@ import { PropsWithChildren, useEffect } from 'react'
 import { AuthService } from '~/services/auth.service'
 import { LocalStorageService } from '~/services/localStorage.service'
 import { useUserContext } from '~/context/UserContext/User.context'
+import { LOCAL_STORAGE_KEYS } from '~/constants/common'
 
 const AuthSetter = ({ children }: PropsWithChildren) => {
   const { dispatch } = useUserContext()
 
   const checkAuth = async () => {
     try {
-      const res = await AuthService.checkAuth()
+      const { data } = await AuthService.checkAuth()
 
-      LocalStorageService.setItem('accessToken', res.data.accessToken)
+      LocalStorageService.setItem(
+        LOCAL_STORAGE_KEYS.accessToken,
+        data.accessToken
+      )
 
-      dispatch({ type: 'SET_USER', payload: res.data.user })
+      dispatch({ type: 'SET_USER', payload: data.user })
       dispatch({ type: 'SET_AUTH', payload: true })
     } catch (err) {
       dispatch({ type: 'SET_AUTH', payload: false })
@@ -24,7 +28,7 @@ const AuthSetter = ({ children }: PropsWithChildren) => {
   }
 
   useEffect(() => {
-    if (LocalStorageService.getItem('accessToken')) {
+    if (LocalStorageService.getItem(LOCAL_STORAGE_KEYS.accessToken)) {
       checkAuth()
     }
   }, [])

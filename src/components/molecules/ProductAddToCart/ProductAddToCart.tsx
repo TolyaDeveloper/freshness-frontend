@@ -3,18 +3,12 @@ import { useState } from 'react'
 import { ProductAddToCartProps } from './ProductAddToCart.props'
 import { useRouter } from 'next/router'
 import { useUserContext } from '~/context/UserContext/User.context'
-import {
-  Arrow,
-  Button,
-  Divider,
-  FormStyledWrapper,
-  Input,
-  Select,
-  Typography
-} from '~/components/atoms'
-import { ProductCartTypeEnum } from '~/interfaces/cart.interface'
-import { LocalStorageService } from '~/services/localStorage.service'
-import { ROUTES } from '~/constants/routes'
+import { Button, Typography } from '~/components/atoms'
+import QuantityPicker from '../QuantityPicker/QuantityPicker'
+import { ICart, ProductCartVariantEnum } from '~/interfaces/cart.interface'
+import { PAGES } from '~/constants/routes'
+import { IQuantityPicker } from '~/interfaces/quantity-picker.interface'
+import userService from '~/services/user.service'
 import AddIcon from '~/assets/icons/add.svg'
 import Link from 'next/link'
 
@@ -28,24 +22,38 @@ const ProductAddToCart = ({
 }: ProductAddToCartProps) => {
   const { locale } = useRouter()
   const { dispatch, state } = useUserContext()
-  const isAlreadyInCart = state.user.cart.find(item => item._id === productId)
+  const isAlreadyInCart = state.user.cart.find(
+    item => item.productId === productId
+  )
 
   const [productAmount, setProductAmount] = useState<number>(1)
-  const [selectedType, setSelectedType] = useState(ProductCartTypeEnum.PCS)
+  const [selectedType, setSelectedType] = useState(ProductCartVariantEnum.PCS)
+  const [error, setError] = useState(false)
 
-  const payload = {
-    _id: productId,
-    amount: productAmount,
-    type: selectedType
+  const cartProduct: ICart = {
+    productId,
+    quantity: productAmount,
+    variant: selectedType
   }
 
-  const onAddToCart = () => {
-    dispatch({
-      type: 'SET_CART',
-      payload
-    })
+  const onChangePicker = (quantity: IQuantityPicker, error: boolean) => {
+    setProductAmount(+quantity.productAmount)
+    setSelectedType(quantity.productVariant)
+    setError(error)
+  }
 
-    LocalStorageService.setItem('products', [...state.user.cart, payload])
+  const onAddToCart = async () => {
+    if (state.isAuthenticated) {
+      const { data: updated } = await userService.addToCart(cartProduct)
+
+      return dispatch({
+        type: 'SET_CART',
+        payload: updated.cart
+      })
+    }
+
+    dispatch({ type: 'SET_CART', payload: cartProduct })
+    dispatch({ type: 'SHOULD_SYNC_TO_LOCAL_STORAGE', payload: true })
   }
 
   return (
@@ -72,29 +80,14 @@ const ProductAddToCart = ({
           </Typography>
         )}
       </div>
-      <FormStyledWrapper className={styles.addBlock}>
-        <Input
-          value={productAmount}
-          onChange={e => setProductAmount(+e.target.value)}
-          min={1}
-          type="number"
+      {!isAlreadyInCart && (
+        <QuantityPicker
+          onChange={onChangePicker}
           disabled={Boolean(isAlreadyInCart)}
         />
-        <Divider className={styles.divider} orienation="vertical" />
-        <Select
-          endAdornment={<Arrow color="primary2" orientation="down" />}
-          value={selectedType}
-          onChange={e => setSelectedType(e.target.value as ProductCartTypeEnum)}
-          disabled={Boolean(isAlreadyInCart)}
-        >
-          <option>{ProductCartTypeEnum.PCS}</option>
-          <option>{ProductCartTypeEnum.KGS}</option>
-          <option>{ProductCartTypeEnum.BOX}</option>
-          <option>{ProductCartTypeEnum.PACK}</option>
-        </Select>
-      </FormStyledWrapper>
+      )}
       {isAlreadyInCart ? (
-        <Link href={ROUTES.cart} passHref>
+        <Link href={PAGES.cart} passHref>
           <Button className={styles.buyButton} variant="outlined">
             View in cart
           </Button>
@@ -104,6 +97,7 @@ const ProductAddToCart = ({
           startAdornment={<AddIcon />}
           onClick={onAddToCart}
           type="button"
+          disabled={error}
         >
           Add to cart
         </Button>

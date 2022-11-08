@@ -1,7 +1,9 @@
-import Schema, { string, Type } from 'computed-types'
+import { RegisterOptions } from 'react-hook-form'
 
-export const commentSchema = Schema({
-  message: string.trim().min(1)
-})
+export interface ICommentFields {
+  message: string
+}
 
-export type CommentSchemaType = Type<typeof commentSchema>
+export const CommentSchema: Record<keyof ICommentFields, RegisterOptions> = {
+  message: { required: true, minLength: 1 }
+}

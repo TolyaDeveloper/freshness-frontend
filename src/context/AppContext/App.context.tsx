@@ -3,12 +3,10 @@ import {
   Dispatch,
   PropsWithChildren,
   useContext,
-  useEffect,
   useReducer
 } from 'react'
 import { appReducer } from './App.reducer'
 import { IAppState, AppActions, initialValues } from './App.types'
-import { LocalStorageService } from '~/services/localStorage.service'
 
 export const AppContext = createContext<{
   state: IAppState

@@ -6,17 +6,14 @@ import {
   Input,
   Typography
 } from '~/components/atoms'
-import {
-  type SignupSchemaType,
-  signupSchema
-} from '~/validators/signup.validator'
-import { computedTypesResolver } from '@hookform/resolvers/computed-types'
+import { ISignupFields, SignupSchema } from '~/validators/signup.validator'
 import { useForm } from 'react-hook-form'
-import { ROUTES } from '~/constants/routes'
+import { PAGES } from '~/constants/routes'
 import { useUserContext } from '~/context/UserContext/User.context'
 import { AuthService } from '~/services/auth.service'
 import { LocalStorageService } from '~/services/localStorage.service'
 import { AxiosError } from 'axios'
+import { LOCAL_STORAGE_KEYS } from '~/constants/common'
 import Link from 'next/link'
 
 import styles from './Signup.module.scss'
@@ -25,29 +22,34 @@ const Signup = () => {
   const [error, setError] = useState<string>('')
   const [isLoading, setLoading] = useState<boolean>(false)
   const { dispatch } = useUserContext()
-  const { handleSubmit, register } = useForm<SignupSchemaType>({
-    resolver: computedTypesResolver(signupSchema)
-  })
+  const {
+    handleSubmit,
+    register,
+    formState: { errors }
+  } = useForm<ISignupFields>()
 
   const onSubmit = async ({
     firstName,
     lastName,
     email,
     password
-  }: SignupSchemaType) => {
+  }: ISignupFields) => {
     setLoading(true)
 
     try {
-      const res = await AuthService.signup({
+      const { data } = await AuthService.signup({
         firstName,
         lastName,
         email,
         password
       })
 
-      LocalStorageService.setItem('accessToken', res.data.accessToken)
+      LocalStorageService.setItem(
+        LOCAL_STORAGE_KEYS.accessToken,
+        data.accessToken
+      )
 
-      dispatch({ type: 'SET_USER', payload: res.data.user })
+      dispatch({ type: 'SET_USER', payload: data.user })
       dispatch({ type: 'SET_AUTH', payload: true })
     } catch (err) {
       if (err instanceof AxiosError) {
@@ -77,24 +79,32 @@ const Signup = () => {
           <Input
             type="text"
             placeholder="First name..."
-            {...register('firstName')}
+            {...register('firstName', SignupSchema.firstName)}
+            error={errors.firstName}
           />
         </FormStyledWrapper>
         <FormStyledWrapper className={styles.formStyledWrapper}>
           <Input
             type="text"
             placeholder="Last name..."
-            {...register('lastName')}
+            {...register('lastName', SignupSchema.lastName)}
+            error={errors.lastName}
           />
         </FormStyledWrapper>
         <FormStyledWrapper className={styles.formStyledWrapper}>
-          <Input type="email" placeholder="Email..." {...register('email')} />
+          <Input
+            type="email"
+            placeholder="Email..."
+            {...register('email', SignupSchema.email)}
+            error={errors.email}
+          />
         </FormStyledWrapper>
         <FormStyledWrapper className={styles.formStyledWrapper}>
           <Input
             type="password"
             placeholder="Password..."
-            {...register('password')}
+            {...register('password', SignupSchema.password)}
+            error={errors.password}
           />
         </FormStyledWrapper>
 
@@ -102,7 +112,7 @@ const Signup = () => {
           Signup
         </Button>
       </form>
-      <Link href={ROUTES.profile} passHref>
+      <Link href={PAGES.profile} passHref>
         <CustomLink className={styles.loginLink}>
           Already have an account? Log in here
         </CustomLink>

@@ -1,14 +1,3 @@
-.container {
-  display: flex;
-  flex-direction: column;
-  max-width: var(--app-container-width);
-  min-height: 100vh;
-  margin: 0 auto;
-  padding: 0 var(--app-padding-right) 0 var(--app-padding-left);
-  background-color: var(--app-background-container);
-  box-shadow: var(--app-box-shadow-container);
-}
-
 .topBar {
   height: 48px;
 }

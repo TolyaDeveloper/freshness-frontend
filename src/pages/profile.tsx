@@ -1,6 +1,6 @@
 import { GetStaticProps } from 'next'
 import { $api } from '~/api'
-import { ROUTES } from '~/constants/routes'
+import { API } from '~/constants/routes'
 import { ProfileTemplate } from '~/components/templates'
 
 const Profile = () => {
@@ -12,8 +12,8 @@ const Profile = () => {
 }
 
 export const getStaticProps: GetStaticProps = async () => {
-  const { data: categories } = await $api.get(ROUTES.categories)
-  const { data: tags } = await $api.get(ROUTES.tags)
+  const { data: categories } = await $api.get(API.categories)
+  const { data: tags } = await $api.get(API.tags)
 
   return {
     props: { categories, tags },

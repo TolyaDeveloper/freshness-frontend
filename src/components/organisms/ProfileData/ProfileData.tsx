@@ -14,12 +14,11 @@ import { useUserContext } from '~/context/UserContext/User.context'
 import { initialValues } from '~/context/UserContext/User.types'
 import { useForm } from 'react-hook-form'
 import {
-  EditProfileSchemaType,
-  editProfileSchema
+  IEditProfileFields,
+  EditProfileSchema
 } from '~/validators/edit-profile.validator'
-import { computedTypesResolver } from '@hookform/resolvers/computed-types'
 import { $api } from '~/api'
-import { ROUTES } from '~/constants/routes'
+import { API } from '~/constants/routes'
 import { IUser } from '~/interfaces/user.interface'
 import EditIcon from '~/assets/icons/edit-field.svg'
 
@@ -37,12 +36,9 @@ const ProfileData = ({}: ProfileDataProps) => {
     register,
     reset,
     formState: { isDirty }
-  } = useForm<EditProfileSchemaType>({
-    resolver: computedTypesResolver(editProfileSchema),
+  } = useForm<IEditProfileFields>({
     defaultValues: { firstName: user.firstName, lastName: user.lastName }
   })
-
-  console.log(isDirty)
 
   const handleLogout = async () => {
     await AuthService.logout()
@@ -71,7 +67,7 @@ const ProfileData = ({}: ProfileDataProps) => {
     return () => URL.revokeObjectURL(objectUrl)
   }, [uploadedFile])
 
-  const onSubmit = async ({ firstName, lastName }: EditProfileSchemaType) => {
+  const onSubmit = async ({ firstName, lastName }: IEditProfileFields) => {
     try {
       const formData = new FormData()
 
@@ -81,7 +77,7 @@ const ProfileData = ({}: ProfileDataProps) => {
       formData.append('currentAvatarUri', user.avatarUri)
 
       const { data } = await $api.patch<IUser>(
-        ROUTES.user_update_profile,
+        API.user_updateProfile,
         formData,
         { headers: { 'Content-Type': 'multipart/form-data' } }
       )
@@ -108,14 +104,14 @@ const ProfileData = ({}: ProfileDataProps) => {
       <Label className={styles.label}>First name</Label>
       <FormStyledWrapper className={styles.formStyledWrapper}>
         <Input
-          {...register('firstName')}
+          {...register('firstName', EditProfileSchema.firstName)}
           endAdornment={<EditIcon style={{ width: '15px', height: '15px' }} />}
         />
       </FormStyledWrapper>
       <Label className={styles.label}>Last name</Label>
       <FormStyledWrapper className={styles.formStyledWrapper}>
         <Input
-          {...register('lastName')}
+          {...register('lastName', EditProfileSchema.lastName)}
           endAdornment={<EditIcon style={{ width: '15px', height: '15px' }} />}
         />
       </FormStyledWrapper>

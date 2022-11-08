@@ -1,5 +1,5 @@
 import { PropsWithChildren, useEffect } from 'react'
-import { Divider, Typography } from '~/components/atoms'
+import { Divider, Typography, Copyright } from '~/components/atoms'
 import { TopBar, Navbar, FooterTags } from '~/components/molecules'
 import { MiddleBar, FooterLinks } from '~/components/organisms'
 import { IAppState } from '~/context/AppContext/App.types'
@@ -23,7 +23,7 @@ const Layout = ({
   }, [tags, dispatch])
 
   return (
-    <div className={styles.container}>
+    <div className="container">
       <header className={styles.header}>
         <TopBar className={styles.topBar} />
         <Divider />
@@ -34,9 +34,7 @@ const Layout = ({
       <footer className={styles.footer}>
         <FooterLinks className={styles.footerLinks} />
         <FooterTags className={styles.footerTags} tags={tags} />
-        <Typography className={styles.copyright} level="body4">
-          Copyright © {new Date().getFullYear()}
-        </Typography>
+        <Copyright className={styles.copyright} />
       </footer>
     </div>
   )

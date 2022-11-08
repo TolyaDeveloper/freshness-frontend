@@ -7,14 +7,10 @@ import {
   Arrow,
   Divider
 } from '~/components/atoms'
-import { ROUTES } from '~/constants/routes'
+import { PAGES } from '~/constants/routes'
 import { SearchProps } from './Search.props'
 import { useForm } from 'react-hook-form'
-import { computedTypesResolver } from '@hookform/resolvers/computed-types'
-import {
-  searchSchema,
-  type SearchSchemaType
-} from '~/validators/search.validator'
+import { ISearchFields, LoginSchema } from '~/validators/search.validator'
 import SearchIcon from '~/assets/icons/search.svg'
 
 import styles from './Search.module.scss'
@@ -22,9 +18,7 @@ import styles from './Search.module.scss'
 const Search = ({ className, categories }: SearchProps) => {
   const { push } = useRouter()
 
-  const { handleSubmit, register } = useForm<SearchSchemaType>({
-    resolver: computedTypesResolver(searchSchema)
-  })
+  const { handleSubmit, register } = useForm<ISearchFields>()
 
   const renderedOptions = useMemo(() => {
     return categories?.map(({ _id, name }) => (
@@ -34,8 +28,8 @@ const Search = ({ className, categories }: SearchProps) => {
     ))
   }, [categories])
 
-  const onSubmit = ({ category, search }: SearchSchemaType) => {
-    push({ pathname: ROUTES.search, query: { search, category } })
+  const onSubmit = ({ category, search }: ISearchFields) => {
+    push({ pathname: PAGES.search, query: { search, category } })
   }
 
   return (
@@ -48,9 +42,9 @@ const Search = ({ className, categories }: SearchProps) => {
         <Select
           className={styles.select}
           endAdornment={<Arrow orientation="down" />}
-          {...register('category')}
+          {...register('category', LoginSchema.category)}
         >
-          <option value="">All categories</option>
+          <option>All categories</option>
           {renderedOptions}
         </Select>
         <Divider
@@ -70,7 +64,7 @@ const Search = ({ className, categories }: SearchProps) => {
               <SearchIcon />
             </button>
           }
-          {...register('search')}
+          {...register('search', LoginSchema.search)}
         />
       </FormStyledWrapper>
     </form>

@@ -16,13 +16,9 @@ import {
   ProductAddToCart,
   PreSectionContainer
 } from '~/components/molecules'
-import {
-  Comments,
-  CommentsForm,
-  ProductContainer
-} from '~/components/organisms'
+import { Comments, ProductContainer } from '~/components/organisms'
 import { pluralize } from '~/utils/pluralize'
-import { ROUTES } from '~/constants/routes'
+import { PAGES } from '~/constants/routes'
 import { Tabs, TabList, Tab, TabPanel } from 'react-tabs'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -48,7 +44,7 @@ const ProductTemplate = ({
     <>
       <Breadcrumbs>
         <Link
-          href={`${ROUTES.categories}/${product.categories[0]._id}`}
+          href={`${PAGES.categories}/${product.categories[0]._id}`}
           passHref
         >
           <CustomLink color="primary1">{product.categories[0].name}</CustomLink>
@@ -75,7 +71,7 @@ const ProductTemplate = ({
               color="primary1"
             >
               ({reviewsCount} customer{' '}
-              {reviewsCount && pluralize(reviewsCount, 'review')})
+              {reviewsCount ? pluralize(reviewsCount, 'review') : 'reviews'})
             </CustomLink>
           </div>
           <Typography className={styles.description} level="body2">
@@ -97,7 +93,7 @@ const ProductTemplate = ({
                   {product.categories.map(({ _id, name }, index, arr) => (
                     <Link
                       key={_id}
-                      href={`${ROUTES.categories}/${_id}`}
+                      href={`${PAGES.categories}/${_id}`}
                       passHref={true}
                     >
                       <CustomLink level="body2">
@@ -167,7 +163,9 @@ const ProductTemplate = ({
             oldPrice={product.oldPrice}
           />
           <div className={styles.wishlistWithCompareWrapper}>
-            <AddToWishlist productId={product._id} />
+            <AddToWishlist productId={product._id} variant="plain">
+              Add to my wishlist
+            </AddToWishlist>
             <AddToCompare productId={product._id} />
           </div>
           <Tabs id="reviews">
@@ -193,10 +191,7 @@ const ProductTemplate = ({
               />
             </TabPanel>
             <TabPanel>
-              <Comments
-                productId={product._id}
-                commentsForm={<CommentsForm productId={product._id} />}
-              />
+              <Comments productId={product._id} />
             </TabPanel>
             <TabPanel>
               <h2>Coming soon...</h2>
@@ -209,7 +204,7 @@ const ProductTemplate = ({
         heading={<Typography level="h2-md">Related products</Typography>}
         button={
           <Link
-            href={`${ROUTES.categories}/${product.categories[0]._id}`}
+            href={`${PAGES.categories}/${product.categories[0]._id}`}
             passHref
           >
             <Button variant="plain" endAdornment={<Arrow />}>

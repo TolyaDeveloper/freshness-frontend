@@ -1,6 +1,6 @@
 import { GetStaticProps } from 'next'
 import { $api } from '~/api'
-import { ROUTES } from '~/constants/routes'
+import { API } from '~/constants/routes'
 import Image from 'next/image'
 import ServerErrorImage from '~/assets/images/500-error.jpg'
 
@@ -13,8 +13,8 @@ const ServerError = () => {
 }
 
 export const getStaticProps: GetStaticProps = async () => {
-  const { data: categories } = await $api.get(ROUTES.categories)
-  const { data: tags } = await $api.get(ROUTES.tags)
+  const { data: categories } = await $api.get(API.categories)
+  const { data: tags } = await $api.get(API.tags)
 
   return {
     props: { categories, tags },

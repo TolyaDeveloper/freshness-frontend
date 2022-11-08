@@ -1,0 +1,26 @@
+.sectionWrapper {
+  display: flex;
+  scroll-snap-type: x mandatory;
+  white-space: nowrap;
+  overflow-x: auto;
+}
+
+.image {
+  border-radius: 12px;
+}
+
+.section {
+  max-width: 320px;
+
+  & + & {
+    margin-left: 90px;
+  }
+}
+
+.subSection {
+  margin-top: 30px;
+}
+
+.removeFromCompare {
+  margin-bottom: 30px;
+}

@@ -1,7 +1,7 @@
 import { cnb } from 'cnbuilder'
 import { Logo } from '~/components/atoms'
 import { Search, UserWithCart } from '~/components/molecules'
-import { ROUTES } from '~/constants/routes'
+import { PAGES } from '~/constants/routes'
 import { MiddleBarProps } from './Middlebar.props'
 import { useAppContext } from '~/context/AppContext/App.context'
 import { useUserContext } from '~/context/UserContext/User.context'
@@ -16,7 +16,7 @@ const MiddleBar = ({ className }: MiddleBarProps) => {
   return (
     <div className={cnb(styles.middleBar, className)}>
       <span>
-        <Link href={ROUTES.home}>
+        <Link href={PAGES.home}>
           <a aria-label="Go home">
             <Logo />
           </a>

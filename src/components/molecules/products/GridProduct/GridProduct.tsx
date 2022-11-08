@@ -2,11 +2,11 @@ import { useRouter } from 'next/router'
 import { cnb } from 'cnbuilder'
 import { Button, Typography, Tag, Rating } from '~/components/atoms'
 import { GridProductProps } from './GridProduct.props'
-import { ROUTES } from '~/constants/routes'
 import { useUserContext } from '~/context/UserContext/User.context'
-import { LocalStorageService } from '~/services/localStorage.service'
 import { countDiscountPercentage } from '~/utils/countDiscountPercentage'
-import { ProductCartTypeEnum } from '~/interfaces/cart.interface'
+import { PAGES } from '~/constants/routes'
+import { ICart, ProductCartVariantEnum } from '~/interfaces/cart.interface'
+import userService from '~/services/user.service'
 import Link from 'next/link'
 import Image from 'next/image'
 
@@ -17,21 +17,30 @@ const GridProduct = ({ className, product }: GridProductProps) => {
   const { dispatch, state } = useUserContext()
   const { _id, imageUri, price, rating, smallDescription, title, oldPrice } =
     product
-  const isAlreadyInCart = state.user.cart.find(item => item._id === _id)
-  const payload = { _id, amount: 1, type: ProductCartTypeEnum.PCS }
+  const isAlreadyInCart = state.user.cart.find(item => item.productId === _id)
+  const cartProduct: ICart = {
+    productId: _id,
+    quantity: 1,
+    variant: ProductCartVariantEnum.PCS
+  }
 
-  const onAddToCart = () => {
-    dispatch({
-      type: 'SET_CART',
-      payload
-    })
+  const onAddToCart = async () => {
+    if (state.isAuthenticated) {
+      const { data: updated } = await userService.addToCart(cartProduct)
 
-    LocalStorageService.setItem('products', [...state.user.cart, payload])
+      return dispatch({
+        type: 'SET_CART',
+        payload: updated.cart
+      })
+    }
+
+    dispatch({ type: 'SET_CART', payload: cartProduct })
+    dispatch({ type: 'SHOULD_SYNC_TO_LOCAL_STORAGE', payload: true })
   }
 
   return (
     <div className={styles.productWrapper}>
-      <Link href={`${ROUTES.products}/${_id}`} prefetch={false}>
+      <Link href={`${PAGES.products}/${_id}`} prefetch={false}>
         <a className={cnb(styles.product, className)}>
           <div className={styles.imageWrapper}>
             <Image
@@ -79,7 +88,7 @@ const GridProduct = ({ className, product }: GridProductProps) => {
         </a>
       </Link>
       {isAlreadyInCart ? (
-        <Link href={ROUTES.cart} passHref>
+        <Link href={PAGES.cart} passHref>
           <Button className={styles.buyButton} variant="outlined" size="sm">
             View in cart
           </Button>

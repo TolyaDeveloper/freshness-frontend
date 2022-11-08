@@ -1,8 +1,14 @@
-import Schema, { string, Type } from 'computed-types'
+import { RegisterOptions } from 'react-hook-form'
 
-export const editProfileSchema = Schema({
-  firstName: string.trim().min(1),
-  lastName: string.trim().min(1)
-})
+export interface IEditProfileFields {
+  firstName: string
+  lastName: string
+}
 
-export type EditProfileSchemaType = Type<typeof editProfileSchema>
+export const EditProfileSchema: Record<
+  keyof IEditProfileFields,
+  RegisterOptions
+> = {
+  firstName: { required: true, minLength: 1 },
+  lastName: { required: true, minLength: 1 }
+}

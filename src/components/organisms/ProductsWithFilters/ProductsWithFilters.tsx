@@ -1,8 +1,6 @@
 import { FormEvent, useEffect, useState } from 'react'
 import {
-  Arrow,
   Breadcrumbs,
-  Button,
   FiltersSkeleton,
   ProductsSkeleton,
   Skeleton,
@@ -24,7 +22,7 @@ import {
   defaultQueries
 } from '~/utils/queries'
 import { IQueries } from '~/interfaces/queries.interface'
-import { ROUTES } from '~/constants/routes'
+import { API } from '~/constants/routes'
 import { IProduct } from '~/interfaces/product.interface'
 import useSWR from 'swr'
 
@@ -36,20 +34,26 @@ const ProductsWithFilters = ({ filters, category }: ProductsWithFilters) => {
   const [shouldFetch, setFetch] = useState(false)
   const [activeFilters, setActiveFilters] = useState<IQueries>(defaultQueries)
   const [products, setProducts] = useState<IProduct[] | undefined>(undefined)
+  const totalProducts = filters?.filters.totalCategoryProducts[0]?.total
+  const activePage = +activeFilters.page[0] || 1
   const skipInterval = 9
 
   const buildQueryURI = () => {
-    return `${ROUTES.products}?category=${
+    return `${API.products}?category=${
       query.productCategory
     }&${parseQueriesIntoString(activeFilters)}`
   }
 
-  const {} = useSWR(shouldFetch ? buildQueryURI() : null, {
-    onSuccess: (data: IProduct[]) => {
-      setFetch(false)
+  const { data } = useSWR<IProduct[] | undefined>(
+    shouldFetch ? buildQueryURI() : null
+  )
+
+  useEffect(() => {
+    if (data) {
       setProducts(data)
+      setFetch(false)
     }
-  })
+  }, [data])
 
   useEffect(() => {
     setActiveFilters({
@@ -79,12 +83,10 @@ const ProductsWithFilters = ({ filters, category }: ProductsWithFilters) => {
       query: {
         productCategory: query.productCategory,
         ...activeFilters,
-        skip: index * skipInterval
+        page: index + 1
       }
     })
   }
-
-  const totalProducts = filters?.filters.totalCategoryProducts[0]?.total
 
   const topFiltersView = filters ? (
     <TopFilters
@@ -132,10 +134,15 @@ const ProductsWithFilters = ({ filters, category }: ProductsWithFilters) => {
         </div>
       </form>
       <div className={styles.bottomFilter}>
-        <Pagination onHandlePagination={handlePagination} count={4} />
-        <Button endAdornment={<Arrow color="primary1" orientation="down" />}>
+        <Pagination
+          onHandlePagination={handlePagination}
+          count={totalProducts && Math.ceil(totalProducts / skipInterval)}
+          activePage={activePage}
+        />
+        {/* !todo */}
+        {/* <Button endAdornment={<Arrow color="primary1" orientation="down" />}>
           Show more products
-        </Button>
+        </Button> */}
         <Counter
           className={styles.counter}
           title="Products"

@@ -1,5 +1,11 @@
 import { ProfileTemplateProps } from './ProfileTemplate.props'
-import { Login, ProfileData, Wishlist } from '~/components/organisms'
+import {
+  Login,
+  ProfileData,
+  Wishlist,
+  CompareList,
+  OrdersHistory
+} from '~/components/organisms'
 import { Tabs, TabList, Tab, TabPanel } from 'react-tabs'
 import { useUserContext } from '~/context/UserContext/User.context'
 
@@ -22,10 +28,10 @@ const ProfileTemplate = ({}: ProfileTemplateProps) => {
           <Wishlist />
         </TabPanel>
         <TabPanel>
-          <h2>Compare list</h2>
+          <CompareList />
         </TabPanel>
         <TabPanel>
-          {!state.isAuthenticated ? <Login /> : <h2>Orders history</h2>}
+          {!state.isAuthenticated ? <Login /> : <OrdersHistory />}
         </TabPanel>
       </Tabs>
     </div>

@@ -1,12 +1,11 @@
-export enum ProductCartTypeEnum {
+export enum ProductCartVariantEnum {
   PCS = 'Pcs',
   KGS = 'Kgs',
   BOX = 'Box',
   PACK = 'Pack'
 }
-
 export interface ICart {
-  type: ProductCartTypeEnum
-  amount: number
-  _id: string
+  variant: ProductCartVariantEnum
+  quantity: number
+  productId: string
 }

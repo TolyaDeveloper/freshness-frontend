@@ -2,7 +2,7 @@ import { cnb } from 'cnbuilder'
 import { SmallBlogProps } from './SmallBlog.props'
 import { Typography } from '~/components/atoms'
 import { AuthorTimestamp } from '~/components/molecules'
-import { ROUTES } from '~/constants/routes'
+import { PAGES } from '~/constants/routes'
 import Link from 'next/link'
 import Image from 'next/image'
 
@@ -16,7 +16,7 @@ const SmallBlog = ({
   postImageUri,
   _id
 }: SmallBlogProps) => (
-  <Link href={`${ROUTES.blog}/${_id}`}>
+  <Link href={`${PAGES.blog}/${_id}`}>
     <a className={cnb(styles.smallBlog, className)}>
       <div className={styles.descriptionBlock}>
         <Typography className={styles.title} level="h2-sm">

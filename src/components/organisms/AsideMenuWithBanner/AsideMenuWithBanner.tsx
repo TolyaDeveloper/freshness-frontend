@@ -1,7 +1,7 @@
 import { cnb } from 'cnbuilder'
 import { Banner } from '~/components/molecules'
 import { AsideMenuWithBannerProps } from './AsideMenuWithBanner.props'
-import { ROUTES } from '~/constants/routes'
+import { PAGES } from '~/constants/routes'
 
 import styles from './AsideMenuWithBanner.module.scss'
 
@@ -13,14 +13,14 @@ const AsideMenuWithBanner = ({
     {asideMenu}
     <Banner
       className={styles.banner}
-      href={ROUTES.blog}
+      href={PAGES.blog}
       title="Space for heading"
       subfocus="Banner subfocus"
       linkTitle="Read recepies"
     />
     <Banner
       className={styles.banner}
-      href={ROUTES.blog}
+      href={PAGES.blog}
       title="Space for heading"
       subfocus="Banner subfocus"
       linkTitle="Read recepies"
