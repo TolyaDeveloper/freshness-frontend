@@ -1,3 +1,4 @@
+import { cnb } from 'cnbuilder'
 import { Fragment } from 'react'
 import { CompareListProps } from './CompareList.props'
 import { buildQueriesFromArray } from '~/utils/queries'
@@ -13,7 +14,7 @@ import useSWR from 'swr'
 
 import styles from './CompareList.module.scss'
 
-const CompareList = ({}: CompareListProps) => {
+const CompareList = ({ className }: CompareListProps) => {
   const { locale } = useRouter()
   const {
     state: { user, isAuthenticated },
@@ -45,7 +46,7 @@ const CompareList = ({}: CompareListProps) => {
   }
 
   return (
-    <div className={styles.sectionWrapper}>
+    <div className={cnb(styles.sectionWrapper, className)}>
       {products.map(product => (
         <Fragment key={product._id}>
           <div className={styles.section}>

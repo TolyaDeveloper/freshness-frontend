@@ -1,3 +1,4 @@
+import { cnb } from 'cnbuilder'
 import { OrderSummaryProps } from './OrderSummary.props'
 import {
   Button,
@@ -16,7 +17,7 @@ import useSWR from 'swr'
 
 import styles from './OrderSummary.module.scss'
 
-const OrderSummary = ({}: OrderSummaryProps) => {
+const OrderSummary = ({ className }: OrderSummaryProps) => {
   const {
     state: { user }
   } = useUserContext()
@@ -47,7 +48,7 @@ const OrderSummary = ({}: OrderSummaryProps) => {
   }
 
   return (
-    <div className={styles.orderSummary}>
+    <div className={cnb(styles.orderSummary, className)}>
       <Typography level="h2-lg">Order Summary</Typography>
       <Typography className={styles.subtitle} level="body6" color="primary2">
         Price can change depending on shipping method and taxes of your state.

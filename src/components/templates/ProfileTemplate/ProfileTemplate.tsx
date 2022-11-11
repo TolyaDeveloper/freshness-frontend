@@ -1,4 +1,3 @@
-import { ProfileTemplateProps } from './ProfileTemplate.props'
 import {
   Login,
   ProfileData,
@@ -9,7 +8,7 @@ import {
 import { Tabs, TabList, Tab, TabPanel } from 'react-tabs'
 import { useUserContext } from '~/context/UserContext/User.context'
 
-const ProfileTemplate = ({}: ProfileTemplateProps) => {
+const ProfileTemplate = () => {
   const { state } = useUserContext()
 
   return (

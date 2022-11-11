@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react'
-import { ProfileDataProps } from './ProfileData.props'
 import {
   Button,
   Input,
@@ -24,7 +23,7 @@ import EditIcon from '~/assets/icons/edit-field.svg'
 
 import styles from './ProfileData.module.scss'
 
-const ProfileData = ({}: ProfileDataProps) => {
+const ProfileData = () => {
   const [uploadedFile, setUploadedFile] = useState<File | null>(null)
   const [previewFile, setPreviewFile] = useState<string | null>(null)
   const {

@@ -1,1 +1,3 @@
-export interface CompareListProps {}
+export interface CompareListProps {
+  className?: string
+}

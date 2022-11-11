@@ -8,7 +8,7 @@ module.exports = {
   poweredByHeader: false,
   experimental: { scrollRestoration: true },
   images: { domains: ['localhost'] },
-  reactStrictMode: false,
+  reactStrictMode: true,
   swcMinify: true,
   webpack(config, options) {
     config.module.rules.push({

@@ -1,1 +1,3 @@
-export interface CheckoutProps {}
+export interface CheckoutProps {
+  className?: string
+}

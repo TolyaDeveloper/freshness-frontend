@@ -1,12 +1,6 @@
 import { cnb } from 'cnbuilder'
 import { CheckoutProductProps } from './CheckoutProduct.props'
-import {
-  Typography,
-  Input,
-  FormStyledWrapper,
-  Button,
-  Rating
-} from '~/components/atoms'
+import { Typography, Rating } from '~/components/atoms'
 import {
   QuantityPicker,
   AddToWishlist,
@@ -15,8 +9,6 @@ import {
 } from '~/components/molecules'
 import { useRouter } from 'next/router'
 import { useUserContext } from '~/context/UserContext/User.context'
-import { IQuantityPicker } from '~/interfaces/quantity-picker.interface'
-import userService from '~/services/user.service'
 import Image from 'next/image'
 
 import styles from './CheckoutProduct.module.scss'
@@ -26,8 +18,7 @@ const CheckoutProduct = ({ className, product }: CheckoutProductProps) => {
     product
   const { locale } = useRouter()
   const {
-    state: { isAuthenticated, user },
-    dispatch
+    state: { user }
   } = useUserContext()
 
   const quantity = user.cart.find(

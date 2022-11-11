@@ -1,7 +1,8 @@
+import { cnb } from 'cnbuilder'
 import { CartProps } from './Cart.props'
 import { useUserContext } from '~/context/UserContext/User.context'
 import { API, PAGES } from '~/constants/routes'
-import { EmptyData, CartProduct, QuantityPicker } from '~/components/molecules'
+import { EmptyData, CartProduct } from '~/components/molecules'
 import { buildQueriesFromArray } from '~/utils/queries'
 import { useRouter } from 'next/router'
 import { IProduct } from '~/interfaces/product.interface'
@@ -12,7 +13,7 @@ import Link from 'next/link'
 
 import styles from './Cart.module.scss'
 
-const Cart = ({}: CartProps) => {
+const Cart = ({ className }: CartProps) => {
   const {
     state: { user }
   } = useUserContext()
@@ -47,7 +48,7 @@ const Cart = ({}: CartProps) => {
   }
 
   return (
-    <div className={styles.cart}>
+    <div className={cnb(styles.cart, className)}>
       <ul className="grid-product">
         {products.map(product => (
           <li key={product._id}>

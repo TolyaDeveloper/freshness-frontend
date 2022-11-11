@@ -1,1 +1,3 @@
-export interface OrderSummaryProps {}
+export interface OrderSummaryProps {
+  className?: string
+}
