@@ -1,0 +1,23 @@
+@mixin min-width-height($min-width, $height) {
+  min-width: $min-width;
+  height: $height;
+}
+
+@mixin button-variant($border, $bg, $color) {
+  border: $border;
+  background-color: $bg;
+  color: $color;
+}
+
+@mixin typography-set($font-weight, $font-size, $line-height) {
+  font-weight: $font-weight;
+  font-size: $font-size;
+  line-height: $line-height;
+}
+
+@mixin truncate($visible-lines) {
+  display: -webkit-box;
+  overflow: hidden;
+  -webkit-line-clamp: $visible-lines;
+  -webkit-box-orient: vertical;
+}

@@ -1,0 +1,38 @@
+.checkoutProduct {
+  & + & {
+    margin-top: 50px;
+  }
+}
+
+.subtitle {
+  margin-bottom: 40px;
+}
+
+.orderSummary {
+  padding: 30px 15px;
+  border: 1px solid var(--palette-primary-400);
+  border-radius: 12px;
+  align-self: flex-start;
+}
+
+.detailedPriceWrapper {
+  display: flex;
+  justify-content: space-between;
+
+  margin-top: 12px;
+}
+
+.detailedPriceTitle {
+  margin-right: 30px;
+}
+
+.promocode {
+  margin-top: 30px;
+}
+
+.totalOrder {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 40px;
+}

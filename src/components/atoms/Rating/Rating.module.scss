@@ -1,0 +1,32 @@
+.rating {
+  display: flex;
+  align-items: center;
+  height: 14px;
+}
+
+.starButton {
+  display: inline-flex;
+  padding: 0;
+  border: none;
+  background-color: transparent;
+  pointer-events: none;
+
+  & + & {
+    padding-left: 3px;
+  }
+}
+
+.isEditable {
+  cursor: pointer;
+  pointer-events: all;
+}
+
+.primary {
+  fill: var(--rating-star-primary-fill);
+  stroke: var(--rating-star-primary-fill);
+}
+
+.additional {
+  fill: var(--rating-star-additional-fill);
+  stroke: var(--rating-star-additional-fill);
+}

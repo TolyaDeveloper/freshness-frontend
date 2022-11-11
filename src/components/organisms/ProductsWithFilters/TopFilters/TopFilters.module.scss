@@ -1,0 +1,23 @@
+.topFilters {
+  display: grid;
+  grid-auto-columns: max-content;
+  grid-auto-rows: 40px;
+  grid-auto-flow: column;
+  gap: 15px;
+
+  @media (max-width: 991px) {
+    grid-template-columns: repeat(auto-fit, minmax(260px, max-content));
+    grid-auto-flow: unset;
+    grid-auto-columns: unset;
+  }
+}
+
+.priceRadio {
+  & + & {
+    margin-left: 15px;
+  }
+}
+
+.countryCheckbox {
+  margin-right: 15px;
+}

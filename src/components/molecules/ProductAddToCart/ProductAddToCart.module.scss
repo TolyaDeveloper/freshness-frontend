@@ -1,0 +1,21 @@
+.priceBlock {
+  display: grid;
+  grid-template-columns: 1fr auto auto;
+  align-items: center;
+  gap: 25px;
+  border: 1px solid #f5f5f5;
+  border-radius: 12px;
+  padding: 16px;
+}
+
+.oldPrice {
+  text-decoration: line-through;
+}
+
+.divider {
+  margin: 0 10px 0 5px;
+}
+
+.addBlock {
+  width: 165px;
+}

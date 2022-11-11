@@ -1,0 +1,34 @@
+.middleBar {
+  display: grid;
+  grid-template-columns: 1fr minmax(auto, 500px) 1fr;
+  align-items: center;
+  gap: 30px;
+}
+
+.userWithCart {
+  justify-content: flex-end;
+}
+
+@media (max-width: 991px) {
+  .middleBar {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .search {
+    order: 1;
+    grid-column: 1 / 3;
+  }
+}
+
+@media (max-width: 767px) {
+  .middleBar {
+    gap: 15px;
+  }
+}
+
+@media (max-width: 470px) {
+  .search > div:first-of-type {
+    flex-direction: column;
+    padding: 10px 16px;
+  }
+}

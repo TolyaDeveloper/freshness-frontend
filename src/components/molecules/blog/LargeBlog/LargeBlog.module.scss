@@ -1,0 +1,41 @@
+@import '~/styles/mixins';
+
+.largeBlog {
+  position: relative;
+  max-width: 470px;
+  height: 400px;
+  display: block;
+}
+
+.tagsList {
+  position: absolute;
+  top: 24px;
+  left: 24px;
+  z-index: 3;
+}
+
+.postImage {
+  border-radius: 12px;
+}
+
+.darken {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(0deg, #000000 0, rgba(0, 0, 0, 0) 20%);
+  z-index: 2;
+  border-radius: 12px;
+}
+
+.descriptionBlock {
+  position: absolute;
+  bottom: 24px;
+  left: 24px;
+  right: 24px;
+  z-index: 2;
+}
+
+.title {
+  @include truncate(2);
+
+  margin-bottom: 8px;
+}

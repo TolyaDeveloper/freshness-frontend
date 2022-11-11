@@ -1,0 +1,33 @@
+.topBar {
+  height: 48px;
+}
+
+.middleBar {
+  margin: 40px 0 50px 0;
+}
+
+.main {
+  flex-grow: 1;
+}
+
+.footerLinks {
+  padding: 130px 0 50px 0;
+}
+
+.footerTags {
+  padding: 50px 0;
+}
+
+.copyright {
+  padding-bottom: 65px;
+}
+
+@media (max-width: 991px) {
+  .middleBar {
+    margin: 25px 0 40px 0;
+  }
+
+  .footerLinks {
+    padding: 40px 0 30px 0;
+  }
+}

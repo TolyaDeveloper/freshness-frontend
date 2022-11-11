@@ -1,0 +1,89 @@
+@import '~/styles/mixins';
+
+.typography {
+  font-family: var(--app-font-secondary);
+}
+
+.h1 {
+  @include typography-set(600, 32px, 48px);
+}
+
+.h2-xl {
+  @include typography-set(600, 26px, 39px);
+}
+
+.h2-lg {
+  @include typography-set(600, 22px, 33px);
+}
+
+.h2-md {
+  @include typography-set(600, 18px, 27px);
+}
+
+.h2-sm {
+  @include typography-set(500, 15px, 22px);
+}
+
+.body1 {
+  @include typography-set(600, 18px, 27px);
+}
+
+.body2 {
+  @include typography-set(400, 17px, 23px);
+
+  font-family: var(--app-font-primary);
+}
+
+.body3 {
+  @include typography-set(500, 15px, 22px);
+}
+
+.body4 {
+  @include typography-set(400, 14px, 19px);
+
+  font-family: var(--app-font-primary);
+}
+
+.body5 {
+  @include typography-set(600, 12px, 18px);
+}
+
+.body6 {
+  @include typography-set(400, 12px, 16px);
+}
+
+.primary1 {
+  color: var(--typography-primary1-color);
+}
+
+.primary2 {
+  color: var(--typography-primary2-color);
+}
+
+.primary3 {
+  color: var(--typography-primary3-color);
+}
+
+.primary4 {
+  color: var(--typography-primary4-color);
+}
+
+.secondary {
+  color: var(--typography-secondary-color);
+}
+
+.error {
+  color: var(--error-color);
+}
+
+@media (max-width: 991px) {
+  .h1 {
+    font-size: 28px;
+  }
+}
+
+@media (max-width: 767px) {
+  .h1 {
+    font-size: 22px;
+  }
+}

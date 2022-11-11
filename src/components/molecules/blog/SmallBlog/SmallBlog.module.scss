@@ -1,0 +1,20 @@
+@import '~/styles/mixins';
+
+.smallBlog {
+  display: grid;
+  grid-template-columns: 225px 95px;
+  column-gap: 50px;
+  align-items: center;
+}
+
+.timestamp {
+  margin-top: 15px;
+}
+
+.title {
+  @include truncate(2);
+}
+
+.image {
+  border-radius: 12px;
+}

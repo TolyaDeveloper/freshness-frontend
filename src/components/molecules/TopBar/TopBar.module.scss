@@ -1,0 +1,22 @@
+.topBar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  scroll-snap-type: x mandatory;
+  white-space: nowrap;
+  overflow-x: auto;
+}
+
+.list {
+  display: flex;
+}
+
+.email {
+  margin-right: 30px;
+}
+
+.listItem {
+  & + & {
+    margin-left: 35px;
+  }
+}

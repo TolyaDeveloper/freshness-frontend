@@ -1,0 +1,31 @@
+.arrow {
+  transition: var(--app-transform-transition);
+}
+
+.primary1 {
+  stroke: var(--arrow-primary1-stroke);
+}
+
+.primary2 {
+  stroke: var(--arrow-primary2-stroke);
+}
+
+.secondary {
+  stroke: var(--arrow-secondary-stroke);
+}
+
+.up {
+  transform: rotateZ(-90deg);
+}
+
+.right {
+  transform: rotateZ(0);
+}
+
+.down {
+  transform: rotateZ(90deg);
+}
+
+.left {
+  transform: rotateZ(180deg);
+}

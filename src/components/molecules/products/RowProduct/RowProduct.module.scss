@@ -1,0 +1,93 @@
+@import '~/styles/mixins';
+
+.rowProduct {
+  display: grid;
+  grid-template-columns: 270px 1fr 200px;
+  grid-template-rows: 280px;
+  gap: 30px;
+  align-items: center;
+  border: var(--products-border);
+  border-radius: 12px;
+}
+
+.productImage {
+  border-radius: 12px;
+}
+
+.middleDescriptionWrapper {
+  margin: 30px 0;
+}
+
+.title {
+  @include truncate(1);
+
+  margin-bottom: 5px;
+}
+
+.smallDescription {
+  @include truncate(1);
+
+  margin-bottom: 12px;
+}
+
+.rating {
+  margin-bottom: 25px;
+}
+
+.endBlock {
+  margin: 30px 30px 30px 0;
+}
+
+.oldPrice {
+  text-decoration: line-through;
+}
+
+.deliveryTime {
+  margin-top: 15px;
+}
+
+.middleDescription {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 10px 30px;
+}
+
+.productDetail {
+  margin: 25px 0 12px 0;
+}
+
+@media (max-width: 1199px) {
+  .rowProduct {
+    grid-template-columns: 2fr 1fr 1fr;
+    grid-template-rows: auto;
+  }
+
+  .middleDescriptionWrapper {
+    grid-column: 1 / span 3;
+    grid-row: 2 / span 1;
+    margin: 0;
+  }
+
+  .endBlock {
+    margin: 0 0 0 auto;
+    grid-column: 2 / span 2;
+    grid-row: 1 / span 1;
+  }
+
+  .rowProduct {
+    padding: 30px;
+  }
+}
+
+@media (max-width: 575px) {
+  .endBlock {
+    margin: 0;
+    grid-column: 1 / span 2;
+    grid-row: 3 / span 1;
+  }
+
+  .rowProduct {
+    grid-template-columns: minmax(150px, 1fr) 1fr 1fr;
+    grid-template-rows: auto;
+  }
+}

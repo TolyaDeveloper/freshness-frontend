@@ -1,0 +1,18 @@
+.horizontal {
+  border-width: 1px;
+  border-style: solid;
+}
+
+.vertical {
+  border-width: 1px;
+  border-style: solid;
+  align-self: stretch;
+}
+
+.primary1 {
+  border-color: var(--divider-primary1-bg);
+}
+
+.primary2 {
+  border-color: var(--divider-primary2-bg);
+}

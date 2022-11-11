@@ -1,0 +1,27 @@
+.label {
+  cursor: pointer;
+  text-align: center;
+}
+
+.fileUploader {
+  width: 0.1px;
+  height: 0.1px;
+  opacity: 0;
+  overflow: hidden;
+  position: absolute;
+  z-index: -1;
+
+  input {
+    padding: 12px;
+    width: auto;
+  }
+
+  &:focus-visible + .uploadButton {
+    outline: var(--app-outline-focusVisible);
+  }
+}
+
+.uploadButton {
+  pointer-events: none;
+  margin: 10px auto 30px auto;
+}

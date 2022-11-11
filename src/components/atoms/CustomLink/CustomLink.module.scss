@@ -1,0 +1,51 @@
+@import '~/styles/mixins';
+
+.link {
+  &:hover .endAdornment > svg {
+    transform: rotateZ(90deg);
+  }
+
+  &:focus-visible {
+    outline: var(--app-outline-focusVisible);
+  }
+}
+
+.underline-hover {
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+.underline-always {
+  text-decoration: underline;
+}
+
+.secondary {
+  color: var(--custom-link-secondary-color);
+}
+
+.primary1 {
+  color: var(--custom-link-primary1-color);
+}
+
+.primary2 {
+  color: var(--custom-link-primary2-color);
+}
+
+.endAdornment {
+  margin-left: 5px;
+}
+
+.body1 {
+  @include typography-set(400, 12px, 16px);
+}
+
+.body2 {
+  @include typography-set(400, 14px, 19px);
+}
+
+.body3 {
+  @include typography-set(500, 15px, 22px);
+
+  font-family: var(--app-font-secondary);
+}

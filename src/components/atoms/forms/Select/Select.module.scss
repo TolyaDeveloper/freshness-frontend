@@ -1,0 +1,34 @@
+.selectWrapper {
+  position: relative;
+  display: inline-flex;
+  z-index: 1;
+}
+
+.select {
+  padding: 0 12px 0 0;
+  border: none;
+  background-color: transparent;
+  font-family: var(--app-font-secondary);
+  font-weight: 600;
+  appearance: none;
+  cursor: pointer;
+  border-radius: 12px;
+  outline-offset: 2px;
+
+  &:focus {
+    outline: var(--app-outline-focusVisible);
+  }
+
+  &:focus ~ .endAdornment > svg {
+    transform: rotateZ(0);
+  }
+}
+
+.endAdornment {
+  position: absolute;
+  display: inline-flex;
+  top: 50%;
+  transform: translateY(-50%);
+  right: 0;
+  z-index: -1;
+}

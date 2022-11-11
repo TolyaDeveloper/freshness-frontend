@@ -1,0 +1,22 @@
+.navbar {
+  height: 55px;
+  display: flex;
+  align-items: center;
+  background-color: var(--navbar-bg);
+  margin-left: calc(-1 * var(--app-padding-left));
+  margin-right: calc(-1 * var(--app-padding-right));
+  padding: 0 var(--app-padding-right) 0 var(--app-padding-left);
+  scroll-snap-type: x mandatory;
+  white-space: nowrap;
+  overflow-x: auto;
+}
+
+.list {
+  display: flex;
+}
+
+.listItem {
+  & + & {
+    margin-left: 40px;
+  }
+}

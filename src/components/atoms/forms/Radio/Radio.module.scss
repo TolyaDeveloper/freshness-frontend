@@ -1,0 +1,43 @@
+.label {
+  display: inline-flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.radio {
+  position: absolute;
+  appearance: none;
+  margin: 0;
+
+  &:checked ~ .customRadio {
+    &.primary {
+      border: var(--radio-checked-primary-border);
+    }
+
+    &.secondary {
+      border: var(--radio-checked-secondary-border);
+    }
+  }
+
+  &:focus-visible ~ .customRadio {
+    outline: var(--app-outline-focusVisible);
+  }
+}
+
+.customRadio {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  border: var(--radio-not-checked-border);
+  border-radius: 50%;
+  background-color: var(--radio-bg);
+}
+
+.labelText {
+  margin-left: 8px;
+  color: var(--radio-label-color);
+}
+
+.error {
+  border: var(--radio-error-border);
+}

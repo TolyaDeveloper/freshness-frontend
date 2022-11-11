@@ -1,0 +1,80 @@
+@import 'fonts';
+@import 'mixins';
+@import 'variables';
+@import 'slick-slider-globals';
+@import 'react-tabs-globals';
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  height: 100%;
+}
+
+body {
+  margin: var(--app-margin);
+  min-width: var(--app-min-width);
+  font-family: var(--app-font-primary), var(--app-font-fallback);
+  font-weight: var(--app-font-weight-default);
+  font-size: var(--app-font-size-default);
+  background-color: var(--app-background);
+}
+
+a {
+  display: inline-block;
+  text-decoration: none;
+  color: inherit;
+}
+
+ul,
+ol {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  margin: 0;
+}
+
+button:focus-visible {
+  outline: var(--app-outline-focusVisible);
+}
+
+@media (max-width: 767px) {
+  :root {
+    --app-padding-right: 20px;
+    --app-padding-left: 20px;
+  }
+}
+
+.grid-product {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+  gap: 30px;
+}
+
+.full-width-button {
+  width: 100%;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  max-width: var(--app-container-width);
+  min-height: 100vh;
+  margin: 0 auto;
+  padding: 0 var(--app-padding-right) 0 var(--app-padding-left);
+  background-color: var(--app-background-container);
+  box-shadow: var(--app-box-shadow-container);
+}

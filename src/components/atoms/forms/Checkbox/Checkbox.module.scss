@@ -1,0 +1,51 @@
+.label {
+  display: inline-flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.checkbox {
+  appearance: none;
+  position: absolute;
+  margin: 0;
+
+  &:checked ~ .customCheckbox {
+    border: var(--checkbox-checked-border);
+    background-color: var(--checkbox-checked-bg);
+  }
+
+  &:checked ~ .customCheckbox > svg {
+    display: block;
+  }
+
+  &:focus-visible ~ .customCheckbox {
+    outline: var(--app-outline-focusVisible);
+  }
+}
+
+.customCheckbox {
+  position: relative;
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  border: var(--checkbox-not-checked-border);
+  background-color: var(--checkbox-not-checked-bg);
+  border-radius: 4px;
+}
+
+.checkedIcon {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  display: none;
+  transform: translate(-50%, -50%);
+}
+
+.labelText {
+  margin-left: 8px;
+  color: var(--checkbox-label-color);
+}
+
+.error {
+  border: var(--checkbox-error-border);
+}

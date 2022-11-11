@@ -1,0 +1,23 @@
+.pagination {
+  display: flex;
+  align-items: center;
+}
+
+.paginationList {
+  display: flex;
+}
+
+.paginationItem {
+  margin-left: 8px;
+}
+
+.paginationButton {
+  background-color: transparent;
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+}
+
+.active {
+  color: var(--palette-secondary-300);
+}

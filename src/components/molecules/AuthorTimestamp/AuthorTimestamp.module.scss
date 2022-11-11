@@ -1,0 +1,19 @@
+.authorTimestamp {
+  display: flex;
+  align-items: center;
+}
+
+.avatar {
+  background-color: #fff;
+}
+
+.authorName {
+  margin: 0 16px 0 8px;
+}
+
+.primary1 {
+  color: var(--author-timestamp-primary1-color);
+}
+.primary2 {
+  color: var(--author-timestamp-primary2-color);
+}

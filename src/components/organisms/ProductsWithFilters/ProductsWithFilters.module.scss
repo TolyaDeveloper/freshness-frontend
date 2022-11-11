@@ -1,0 +1,28 @@
+.productsWithFiltersWrapper {
+  display: grid;
+  grid-template-columns: 270px 1fr;
+  gap: 30px;
+  margin-top: 70px;
+}
+
+.categoryHeadline {
+  margin-bottom: 25px;
+}
+
+.bottomFilter {
+  display: grid;
+  grid-template-columns: auto auto;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 70px;
+}
+
+.counter {
+  justify-self: end;
+}
+
+@media (max-width: 767px) {
+  .productsWithFiltersWrapper {
+    grid-template-columns: 1fr;
+  }
+}

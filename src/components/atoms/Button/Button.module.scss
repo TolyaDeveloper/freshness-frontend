@@ -1,0 +1,74 @@
+@import '~/styles/mixins';
+
+.button {
+  padding: 0 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 12px;
+  font-family: var(--app-font-secondary);
+  font-weight: 700;
+  font-size: 15px;
+  cursor: pointer;
+
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+}
+
+.solid {
+  @include button-variant(
+    var(--button-solidBorder),
+    var(--button-solidBg),
+    var(--button-solidColor)
+  );
+}
+
+.soft {
+  @include button-variant(
+    var(--button-softBorder),
+    var(--button-softBg),
+    var(--button-softColor)
+  );
+}
+
+.outlined {
+  @include button-variant(
+    var(--button-outlinedBorder),
+    var(--button-outlinedBg),
+    var(--button-outlinedColor)
+  );
+}
+
+.plain {
+  @include button-variant(
+    var(--button-plainBorder),
+    var(--button-plainBg),
+    var(--button-plainColor)
+  );
+}
+
+.sm {
+  @include min-width-height(76px, 36px);
+}
+
+.md {
+  @include min-width-height(84px, 48px);
+}
+
+.lg {
+  @include min-width-height(148px, 56px);
+}
+
+.startAdornment {
+  display: inline-flex;
+  align-items: center;
+  margin-right: 12px;
+}
+
+.endAdornment {
+  display: inline-flex;
+  align-items: center;
+  margin-left: 12px;
+}

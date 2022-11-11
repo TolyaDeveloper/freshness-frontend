@@ -1,0 +1,37 @@
+.asideMenuWithBanner,
+.asideMenuWithProducts {
+  padding: 65px 0;
+
+  @media (max-width: 991px) {
+    padding: 30px 0;
+  }
+}
+
+.preSectionContainer {
+  padding-bottom: 30px;
+}
+
+.slider {
+  position: relative;
+  margin-bottom: 120px;
+
+  @media (max-width: 991px) {
+    margin-bottom: 40px;
+  }
+}
+
+.sliderComment {
+  margin: 0 15px 24px 15px;
+}
+
+.goodsContainer {
+  padding-bottom: 120px;
+}
+
+.blogPostPreSection {
+  padding: 120px 0 35px 0;
+
+  @media (max-width: 991px) {
+    padding: 40px 0 35px 0;
+  }
+}
