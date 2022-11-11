@@ -77,6 +77,15 @@ Ecomerce Next.js web application. With Atomic design pattern
     </li>
 </ul>
 
+### Setup environment variables
+
+NEXT_PUBLIC_SERVER_URI=http://localhost:8000
+NEXT_PUBLIC_IMAGES_URI=http://localhost:8000
+
+### Installation
+
+### run `npm ci`
+
 #### Code style
 
 The project has installed and configured ES Lint and Prettier. All rules are set, you can learn them in .eslintrc.json file.
