@@ -75,3 +75,15 @@
 .error {
   color: var(--error-color);
 }
+
+@media (max-width: 991px) {
+  .h1 {
+    font-size: 28px;
+  }
+}
+
+@media (max-width: 767px) {
+  .h1 {
+    font-size: 22px;
+  }
+}

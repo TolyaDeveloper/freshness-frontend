@@ -131,7 +131,7 @@ const HomeTemplate = ({
       />
       {productsView}
       <PreSectionContainer
-        className={styles.preSectionContainer}
+        className={styles.blogPostPreSection}
         heading={<Typography level="h2-md">Read our Blog posts</Typography>}
         button={
           <Link href={PAGES.blog} passHref>
@@ -141,7 +141,7 @@ const HomeTemplate = ({
           </Link>
         }
       />
-      <BlogPreviews blogs={blogPosts} />
+      <BlogPreviews className={styles.blogPreviews} blogs={blogPosts} />
     </>
   )
 }

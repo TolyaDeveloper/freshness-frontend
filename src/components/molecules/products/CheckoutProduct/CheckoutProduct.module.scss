@@ -44,3 +44,9 @@
 .rating {
   margin: 12px 0 18px 0;
 }
+
+@media (max-width: 575px) {
+  .checkoutProduct {
+    grid-template-columns: 1fr;
+  }
+}

@@ -55,3 +55,39 @@
 .productDetail {
   margin: 25px 0 12px 0;
 }
+
+@media (max-width: 1199px) {
+  .rowProduct {
+    grid-template-columns: 2fr 1fr 1fr;
+    grid-template-rows: auto;
+  }
+
+  .middleDescriptionWrapper {
+    grid-column: 1 / span 3;
+    grid-row: 2 / span 1;
+    margin: 0;
+  }
+
+  .endBlock {
+    margin: 0 0 0 auto;
+    grid-column: 2 / span 2;
+    grid-row: 1 / span 1;
+  }
+
+  .rowProduct {
+    padding: 30px;
+  }
+}
+
+@media (max-width: 575px) {
+  .endBlock {
+    margin: 0;
+    grid-column: 1 / span 2;
+    grid-row: 3 / span 1;
+  }
+
+  .rowProduct {
+    grid-template-columns: minmax(150px, 1fr) 1fr 1fr;
+    grid-template-rows: auto;
+  }
+}
