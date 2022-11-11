@@ -1,4 +1,3 @@
-import { OrdersHistoryProps } from './OrdersHistory.props'
 import { useUserContext } from '~/context/UserContext/User.context'
 import { EmptyData, OrderHistoryProduct } from '~/components/molecules'
 import { IProduct } from '~/interfaces/product.interface'
@@ -6,7 +5,7 @@ import { buildQueriesFromArray } from '~/utils/queries'
 import { API } from '~/constants/routes'
 import useSWR from 'swr'
 
-const OrdersHistory = ({}: OrdersHistoryProps) => {
+const OrdersHistory = () => {
   const {
     state: { user }
   } = useUserContext()

@@ -1,4 +1,3 @@
-import { WishlistProps } from './Wishlist.props'
 import { useUserContext } from '~/context/UserContext/User.context'
 import { Button } from '~/components/atoms'
 import { EmptyData } from '~/components/molecules'
@@ -9,9 +8,7 @@ import { GridProduct } from '~/components/molecules'
 import userService from '~/services/user.service'
 import useSWR from 'swr'
 
-import styles from './Wishlist.module.scss'
-
-const Wishlist = ({}: WishlistProps) => {
+const Wishlist = () => {
   const {
     state: { user, isAuthenticated },
     dispatch

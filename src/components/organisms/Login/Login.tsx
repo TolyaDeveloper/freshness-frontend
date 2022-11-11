@@ -1,5 +1,4 @@
 import { useState } from 'react'
-import { LoginProps } from './Login.props'
 import {
   Typography,
   Input,
@@ -19,7 +18,7 @@ import Link from 'next/link'
 
 import styles from './Login.module.scss'
 
-const Login = ({}: LoginProps) => {
+const Login = () => {
   const [error, setError] = useState<string>('')
   const [isLoading, setLoading] = useState<boolean>(false)
   const { dispatch } = useUserContext()
