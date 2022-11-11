@@ -1,4 +1,4 @@
-# Freshness Ecommerce (Beta version)
+# Freshness Ecommerce - frontend (Beta version)
 
 Ecomerce Next.js web application. With Atomic design pattern
 
