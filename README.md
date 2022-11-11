@@ -79,8 +79,10 @@ Ecomerce Next.js web application. With Atomic design pattern
 
 ### Setup environment variables
 
-NEXT_PUBLIC_SERVER_URI=http://localhost:8000
-NEXT_PUBLIC_IMAGES_URI=http://localhost:8000
+<ul>
+    <li>NEXT_PUBLIC_SERVER_URI=http://localhost:8000</li>
+    <li>NEXT_PUBLIC_IMAGES_URI=http://localhost:8000</li>
+</ul>
 
 ### Installation
 
