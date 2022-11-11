@@ -64,3 +64,29 @@
 .preSectionContainer {
   margin: 70px 0 15px 0;
 }
+
+@media (max-width: 1199px) {
+  .productContainer {
+    grid-template-columns: minmax(320px, 380px) minmax(320px, 1fr);
+  }
+
+  .productAddToCart {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .detailedWrapper {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 767px) {
+  .productContainer {
+    grid-template-columns: minmax(100px, 1fr);
+  }
+}
+
+@media (max-width: 575px) {
+  .productAddToCart {
+    grid-template-columns: 1fr;
+  }
+}

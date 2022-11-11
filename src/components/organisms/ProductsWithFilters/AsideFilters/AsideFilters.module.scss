@@ -40,3 +40,53 @@
 .applyButton {
   margin-right: 30px;
 }
+
+.openFiltersButton {
+  display: none;
+  justify-self: self-start;
+}
+
+.closeButton {
+  display: none;
+  width: 100%;
+  margin-top: 15px;
+}
+
+.actionButtonsMobile {
+  display: none;
+  margin-top: 0;
+}
+
+@media (max-width: 767px) {
+  .asideFilters {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    transform: translateX(-100%);
+    background-color: var(--palette-primary-200);
+    z-index: 100;
+    padding: 20px;
+    border-top-right-radius: 12px;
+    border-bottom-right-radius: 12px;
+    transition: 0.2s transform ease;
+    overflow-y: auto;
+  }
+
+  .opened {
+    transform: translateX(0);
+  }
+
+  .openFiltersButton {
+    display: block;
+  }
+
+  .closeButton {
+    display: block;
+  }
+
+  .actionButtonsMobile {
+    display: flex;
+  }
+}

@@ -54,7 +54,11 @@ const Checkout = ({}: CheckoutProps) => {
   return (
     <>
       <div className={styles.checkoutWrapper}>
-        <form autoComplete="off" onSubmit={handleSubmit(onSubmit)}>
+        <form
+          className={styles.form}
+          autoComplete="off"
+          onSubmit={handleSubmit(onSubmit)}
+        >
           <Typography className={styles.billingTitle} level="h2-lg">
             Billing info
           </Typography>

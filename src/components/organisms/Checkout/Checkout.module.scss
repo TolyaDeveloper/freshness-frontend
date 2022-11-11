@@ -25,3 +25,13 @@
 .security {
   margin-top: 35px;
 }
+
+@media (max-width: 991px) {
+  .checkoutWrapper {
+    grid-template-columns: 1fr;
+  }
+
+  .form {
+    order: 1;
+  }
+}

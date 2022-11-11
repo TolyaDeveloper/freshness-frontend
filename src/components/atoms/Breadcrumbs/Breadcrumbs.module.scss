@@ -1,5 +1,8 @@
 .breadcrumbs {
   margin: 15px 0 35px 0;
+  scroll-snap-type: x mandatory;
+  white-space: nowrap;
+  overflow-x: auto;
   ol {
     display: flex;
     align-items: center;

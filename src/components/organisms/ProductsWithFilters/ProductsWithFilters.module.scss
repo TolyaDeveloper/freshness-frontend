@@ -20,3 +20,9 @@
 .counter {
   justify-self: end;
 }
+
+@media (max-width: 767px) {
+  .productsWithFiltersWrapper {
+    grid-template-columns: 1fr;
+  }
+}
