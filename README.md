@@ -1,4 +1,4 @@
-# Freshness Ecommerce (Beta version)
+# Freshness Ecommerce - frontend (Beta version)
 
 Ecomerce Next.js web application. With Atomic design pattern
 
@@ -76,6 +76,15 @@ Ecomerce Next.js web application. With Atomic design pattern
         </ul>
     </li>
 </ul>
+
+### Setup environment variables
+
+NEXT_PUBLIC_SERVER_URI=http://localhost:8000
+NEXT_PUBLIC_IMAGES_URI=http://localhost:8000
+
+### Installation
+
+### run `npm ci`
 
 #### Code style
 
